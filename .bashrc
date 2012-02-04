@@ -103,7 +103,7 @@ fi
 
 # turn on git bash completion
 if [ -f ~/.git-completion.sh ]; then
-    . .git-completion.sh
+    . ~/.git-completion.sh
 fi
 
 PATH=$PATH:~/bin:/Applications/MAMP/bin/php5.3/bin
