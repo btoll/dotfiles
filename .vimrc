@@ -25,5 +25,64 @@ inoremap <right> <nop>
 
 :map <C-T> <Esc>:tabnew<CR>
 
-nnoremap <leader>ev :vsp $MYVIMRC<CR> "quickly open up my ~/.vimrc file in a vertically split window so I can add new things to it on the fly
-nnoremap <leader><space> :noh<CR> "clear search highlighting
+"quickly open up my ~/.vimrc file in a vertically split window so I can add new things to it on the fly
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+
+"clear search highlighting
+nnoremap <leader><space> :noh<CR> 
+
+nnoremap <leader>na :set noautoindent<CR>
+nnoremap <leader>a :set autoindent<CR>
+
+"close all windows
+nnoremap <leader>ca :windo :q<CR>
+
+"function! ToggleAutoIndent()
+"  if (&foldcolumn != 12)
+"    set laststatus=0
+"    set numberwidth=10
+"    set foldcolumn=12
+"    set noruler
+"    hi FoldColumn ctermbg=none
+"    hi LineNr ctermfg=0 ctermbg=none
+"    hi NonText ctermfg=0
+"  else
+"    set laststatus=2
+"    set numberwidth=4
+"    set foldcolumn=0
+"    set ruler
+"    execute 'colorscheme ' . g:colors_name
+"  endif
+"endfunc
+"nnoremap <leader>f :call ToggleAutoIndent()<CR>
+
+""" FocusMode http://paulrouget.com/e/vimdarkroom/
+function! ToggleFocusMode()
+  if (&foldcolumn != 12)
+    set laststatus=0
+    set numberwidth=10
+    set foldcolumn=12
+    set noruler
+    hi FoldColumn ctermbg=none
+    hi LineNr ctermfg=0 ctermbg=none
+    hi NonText ctermfg=0
+  else
+    set laststatus=2
+    set numberwidth=4
+    set foldcolumn=0
+    set ruler
+    execute 'colorscheme ' . g:colors_name
+  endif
+endfunc
+nnoremap <leader>f :call ToggleFocusMode()<cr>
+
+let g:Favcolorschemes = ["desert", "darkblue", "desert", "evening"]
+function SetTimeOfDayColors()
+    " currentHour will be 0, 1, 2 or 3
+    let g:CurrentHour = (strftime("%H") + 0) / 6
+    if g:colors_name !~ g:Favcolorschemes[g:CurrentHour]
+        execute "colorscheme " . g:Favcolorschemes[g:CurrentHour]
+	echo "execute " "colorscheme " . g:Favcolorschemes[g:CurrentHour]
+	redraw
+    endif
+endfunc
