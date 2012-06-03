@@ -12,6 +12,7 @@ set incsearch "While typing a search command, show where the pattern, as it was 
 set hlsearch "When there is a previous search pattern, highlight all its matches.
 set showcmd "Show (partial) command in the last line of the screen.
 set timeoutlen=2000 "The time in milliseconds that is waited for a key code or mapped key sequence to complete.
+set expandtab "Spaces are used in indents with the '>' and '<' commands and when 'autoindent' is on.
 
 "disable the arrow keys
 nnoremap <up> <nop>
