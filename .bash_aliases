@@ -10,9 +10,6 @@ alias xjtar="tar xjvf"
 
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
-alias ssh_benjamintoll="ssh -p 420 benjamin@benjamintoll.com"
-alias ssh_blueboy="ssh -p 1992 blueboy.dyndns-web.com"
-
 alias jirafy="/usr/local/www/support/jirafy.sh"
 alias mvc="/usr/local/www/support/mvc.sh"
 alias create_ticket="/usr/local/www/support/create_ticket.sh"
