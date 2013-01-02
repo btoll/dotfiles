@@ -1,6 +1,7 @@
 alias desk="cd ~/Desktop"
 alias ll="ls -lhF"
 alias la="ls -lAhF"
+alias lr="ll -R"
 alias gzip="gzip -9"
 alias bzip2="bzip2 -9"
 alias ztar="tar czvf"
