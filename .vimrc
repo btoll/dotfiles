@@ -52,6 +52,10 @@ nnoremap <leader>on :set number<CR>
 "close all windows
 nnoremap <leader>ca :windo :q<CR>
 
+"Markdown to HTML
+"http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
+nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <CR>
+
 """"""""""""""""""""""""
 " searching by keyword "
 """"""""""""""""""""""""
@@ -79,3 +83,7 @@ let g:htmlbeautify = {'indent_size': 4, 'indent_char': ' ', 'max_char': 78, 'bra
 let g:cssbeautify = {'indent_size': 4, 'indent_char': ' '}
 
 map <C-F> :call JsBeautify()<CR>
+
+"possible functions:
+"1. remove all whitespace before property names and colon:
+"   :% s/\s\{1,\}:/:/gc
