@@ -1,7 +1,8 @@
 alias desk="cd ~/Desktop"
 alias ll="ls -lhF"
 alias la="ls -lAhF"
-alias lr="ll -R"
+alias lr="ls -lhFR"
+alias lar="ls -lhFaR"
 alias gzip="gzip -9"
 alias bzip2="bzip2 -9"
 alias ztar="tar czvf"
@@ -17,6 +18,7 @@ alias create_ticket="/usr/local/www/support/create_ticket.sh"
 
 alias bgrep="/usr/local/www/utils/bgrep.sh"
 alias bfind="/usr/local/www/utils/bfind.sh"
+alias brm="/usr/local/www/utils/brm.sh"
 
 alias ..="cd .."
 alias ..2="cd ../.."
