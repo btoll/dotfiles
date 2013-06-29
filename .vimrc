@@ -42,14 +42,11 @@ nnoremap <leader><space> :noh<CR>
 nnoremap <leader>np :set nopaste<CR>
 nnoremap <leader>op :set paste<CR>
 
-nnoremap <leader>na :set noautoindent<CR>
-nnoremap <leader>a :set autoindent<CR>
-
 "nn = no line numbers
 nnoremap <leader>nn :set nonumber<CR>
 nnoremap <leader>on :set number<CR>
 
-"close all windows
+"close all windows (cd == close all)
 nnoremap <leader>ca :windo :q<CR>
 
 "Markdown to HTML
@@ -68,6 +65,16 @@ nnoremap <leader>s1 :cclose <Bar> :execute "vimgrep /" . expand("<cword>") . "/j
 "start recursive search two levels up on a word and open the quickfix window with grepped files
 nnoremap <leader>s2 :cclose <Bar> :execute "vimgrep /" . expand("<cword>") . "/j ../../**/*.js" <Bar> cw<CR>
 
+"Easily grep current word in current file.
+command GREP :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+
+""""""""""""""""""""""""
+""""""""""""""""""""""""
+"Tabbing
+nnoremap <leader>tp <Esc>:tabp<CR>
+nnoremap <leader>tn <Esc>:tabn<CR>
 """"""""""""""""""""""""
 """"""""""""""""""""""""
 
@@ -83,6 +90,12 @@ let g:htmlbeautify = {'indent_size': 4, 'indent_char': ' ', 'max_char': 78, 'bra
 let g:cssbeautify = {'indent_size': 4, 'indent_char': ' '}
 
 map <C-F> :call JsBeautify()<CR>
+
+"Syntastic
+"let g:syntastic_enable_signs=1 " Put errors on left side
+let g:syntastic_check_on_open=1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_javascript_checkers = ['jshint']
 
 "possible functions:
 "1. remove all whitespace before property names and colon:
