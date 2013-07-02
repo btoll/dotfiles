@@ -51,22 +51,25 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    #PS1="\e[0;36m\h:\w \e[m\e[0;32m[\A]\e[m> "
-    PS1="\u@\h:\w \A> "
-else
-    PS1="\h:\w [\A]> "
-fi
-unset color_prompt force_color_prompt
+#if [ "$color_prompt" = yes ]; then
+#    #PS1="\e[0;36m\h:\w \e[m\e[0;32m[\A]\e[m> "
+#    PS1="\u@\h:\w \A> "
+#else
+#    PS1="\h:\w [\A]> "
+#fi
+#unset color_prompt force_color_prompt
+#
+## If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#    ;;
+#*)
+#    ;;
+#esac
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# If you work with git, you've probably had that nagging sensation of not knowing what branch you are on. Worry no longer!
+ export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "
 
 # Function definitions.
 if [ -f ~/.bash_functions ]; then
@@ -106,16 +109,14 @@ if [ -f ~/.git-completion.sh ]; then
     . ~/.git-completion.sh
 fi
 
-PATH=$PATH:~/bin:/Applications/MAMP/bin/php5.3/bin
 set -o vi
 #shopt -s cdable_vars
 #www=/usr/local/www
 #shopt -s cdspell
 bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as my cli editor (not necessary if vi is not set)
-export JSTESTDRIVER_HOME=/usr/local/bin
 
 # MacPorts Installer addition on 2011-07-11_at_12:55:29: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 #for support bash scripts
 export EXT_SDK=../../builds
@@ -123,9 +124,4 @@ export EXT_TICKETS_DIR=/usr/local/www/extjs/tickets/
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
-source /usr/local/src/cdargs-1.35/contrib/cdargs-bash.sh
-
-export PATH=/Applications/SenchaSDKTools-2.0.0-Developer-Preview:$PATH
-export PATH=/Applications/SenchaSDKTools-2.0.0-Developer-Preview/command:$PATH
-export PATH=/Applications/SenchaSDKTools-2.0.0-Developer-Preview/jsbuilder:$PATH
-
+source /usr/local/Cellar/cdargs/1.35/contrib/cdargs-bash.sh
