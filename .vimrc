@@ -1,6 +1,7 @@
 let mapleader=","
 
-call pathogen#infect() "https://github.com/tpope/vim-pathogen
+"https://github.com/tpope/vim-pathogen
+call pathogen#infect()
 
 syntax on
 colors desert
@@ -84,14 +85,16 @@ nnoremap <leader>tn <Esc>:tabn<CR>
 """"""""""""""""""""""""
 """"""""""""""""""""""""
 
-"js-beautify (https://github.com/maksimr/vim-jsbeautify)
+"js-beautify
+"https://github.com/maksimr/vim-jsbeautify
+"https://github.com/maksimr/vim-jsbeautify/issues/9
 let g:jsbeautify = {'indent_size': 1, 'indent_char': '    '}
 let g:htmlbeautify = {'indent_size': 4, 'indent_char': ' ', 'max_char': 78, 'brace_style': 'expand', 'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u']}
 let g:cssbeautify = {'indent_size': 4, 'indent_char': ' '}
-
 map <C-F> :call JsBeautify()<CR>
 
-"Syntastic
+"syntastic
+"https://github.com/scrooloose/syntastic
 "let g:syntastic_enable_signs=1 " Put errors on left side
 let g:syntastic_check_on_open=1
 let g:syntastic_always_populate_loc_list=1
