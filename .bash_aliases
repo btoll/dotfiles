@@ -32,7 +32,6 @@ alias ..9="cd ../../../../../../../../.."
 alias ..l="cd .. && ll"
 
 # debian
-#alias sapt="apt-cache search"
-#alias iapt="sudo apt-get install"
-#alias papt="sudo apt-get purge"
-
+alias sapt="apt-cache search"
+alias iapt="sudo apt-get install"
+alias papt="sudo apt-get purge"
