@@ -19,6 +19,7 @@ alias create_ticket="/usr/local/www/support/create_ticket.sh"
 alias bgrep="/usr/local/www/utils/bgrep.sh"
 alias bfind="/usr/local/www/utils/bfind.sh"
 alias brm="/usr/local/www/utils/brm.sh"
+alias barchiver="python3 /usr/local/www/utils/barchiver.py"
 
 alias ..="cd .."
 alias ..2="cd ../.."
