@@ -120,8 +120,9 @@ bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as 
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 #for support bash scripts
-export EXT_SDK=../../builds
-export EXT_TICKETS_DIR=/usr/local/www/extjs/tickets/
+export EXT_SDK=../../../SDK
+export EXT_BUILDS=../../builds
+export TICKETS_DIR=/usr/local/www/extjs/tickets/
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
