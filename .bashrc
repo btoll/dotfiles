@@ -105,6 +105,7 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 # turn on git bash completion
+# http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
 if [ -f ~/.git-completion.sh ]; then
     . ~/.git-completion.sh
 fi
