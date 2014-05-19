@@ -9,6 +9,8 @@ alias ztar="tar czvf"
 alias jtar="tar cjvf"
 alias xztar="tar xzvf"
 alias xjtar="tar xjvf"
+alias cp="cp -i"
+alias mv="mv -i"
 
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
