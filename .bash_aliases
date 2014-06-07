@@ -33,6 +33,7 @@ alias ..7="cd ../../../../../../.."
 alias ..8="cd ../../../../../../../.."
 alias ..9="cd ../../../../../../../../.."
 alias ..l="cd .. && ll"
+alias :q="exit"
 
 # debian
 alias sapt="apt-cache search"
