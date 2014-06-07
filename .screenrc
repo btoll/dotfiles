@@ -73,5 +73,3 @@ vbell                 on              # default: ???
 
 # Message to be displayed when the visual bell is triggered.
 vbell_msg             " *beep* "
-
-#screen -t blueboy 0 ssh -p 1992 blueboy.dyndns-web.com
