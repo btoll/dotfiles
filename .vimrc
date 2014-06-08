@@ -123,36 +123,14 @@ nnoremap <leader>on :set number<CR>
 " Close all windows (cd == close all).
 nnoremap <leader>ca :windo :q<CR>
 
+" List the cwd in a vertically-split window.
+"   % = the name of the current fil
+"   p = gives its full path
+"   h = gives its dir (the 'head' of the full path)
+nnoremap <leader>ll :vsp %:p:h<CR>
+
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
 nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <CR>
-
-"<------------------------------------------------------------->
-" searching by keyword "
-"<------------------------------------------------------------->
-" By pressing 's' on a word open the quickfix window with grepped files.
-nnoremap <leader>s :cclose <Bar> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-
-" Start recursive search one level up on a word and open the quickfix window with grepped files.
-nnoremap <leader>s1 :cclose <Bar> :execute "vimgrep /" . expand("<cword>") . "/j ../**/*.js" <Bar> cw<CR>
-
-" Start recursive search two levels up on a word and open the quickfix window with grepped files.
-nnoremap <leader>s2 :cclose <Bar> :execute "vimgrep /" . expand("<cword>") . "/j ../../**/*.js" <Bar> cw<CR>
-
-" Easily grep current word in current file.
-command GREP :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
-
-"<------------------------------------------------------------->
-" Tabbing.
-"<------------------------------------------------------------->
-nnoremap <leader>tp <Esc>:tabp<CR>
-nnoremap <leader>tn <Esc>:tabn<CR>
-
-" Indentexpr, autoload indent files ($VIMRUNTIME/indent) based on file type.
-"filetype indent on
-
-" Possible functions:
-"1. remove all whitespace before property names and colon:
-"   :% s/\s\{1,\}:/:/gc
 
 " Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
