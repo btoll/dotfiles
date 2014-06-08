@@ -11,6 +11,11 @@ execute pathogen#helptags()
 "   2. Install https://github.com/mattn/webapi-vim in ~/.vim/bundle (assuming Pathogen) to resolve errors.
 "   3. Enter github password when prompted when creating gist (saves oAuth token in ~/.gist-vim).
 
+" https://github.com/tpope/vim-fugitive
+" set statusline=%{fugitive#statusline()}
+" Open up results of Ggrep and Glog in the quickfix window.
+" autocmd QuickFixCmdPost *grep* cwindow
+
 " https://github.com/maksimr/vim-jsbeautify
 map <c-f>:call JsBeautify()<cr>
 
@@ -25,6 +30,16 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " https://github.com/marijnh/tern_for_vim
 " let g:tern_map_keys=1
+
+" Tabmerge
+" http://www.vim.org/scripts/script.php?script_id=1961
+
+" Text Objects
+" https://github.com/tpope/vim-surround
+" https://github.com/vim-scripts/argtextobj.vim
+
+" bad-whitespace
+" https://github.com/bitc/vim-bad-whitespace
 
 "<------------------------------------------------------------->
 " Crypto
