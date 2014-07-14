@@ -2,4 +2,4 @@ shell bash
 startup_message off
 
 hardstatus alwayslastline
-hardstatus string ' %?%-Lw%?%{R}(%{W}%n*%f%t%?(%u)%?%{R})%{K}%?%+Lw%?%?%=%{g}%{y} %C %Y-%m-%d %D '
+hardstatus string ' %{K}%?%-Lw%?%{W}(%n*%f%t%?(%u)%?)%{K}%?%+Lw%=%{y} %D %Y-%m-%d%C '
