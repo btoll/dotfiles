@@ -104,33 +104,34 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-:map <C-T> <Esc>:tabnew<CR>
+:map <C-T> <Esc>:tabnew<cr>
 
 " Quickly open up my ~/.vimrc file in a vertically split window so I can add new things to it on the fly.
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ev :vsp $MYVIMRC<cr>
 
 " Clear search highlighting.
-nnoremap <leader><space> :noh<CR> 
+nnoremap <leader><space> :noh<cr>
 
-" np = no paste
-nnoremap <leader>np :set nopaste<CR>
-nnoremap <leader>op :set paste<CR>
-
-" nn = no line numbers
-nnoremap <leader>nn :set nonumber<CR>
-nnoremap <leader>on :set number<CR>
-
-" Close all windows (cd == close all).
-nnoremap <leader>ca :windo :q<CR>
+" Toggle
+nnoremap <leader>p :set paste!<cr>
+nnoremap <leader>n :set number!<cr>
 
 " List the cwd in a vertically-split window.
-"   % = the name of the current fil
+"   % = the name of the current file
 "   p = gives its full path
 "   h = gives its dir (the 'head' of the full path)
-nnoremap <leader>ll :vsp %:p:h<CR>
+nnoremap <leader>ll :vsp %:p:h<cr>
+
+" Comment/uncomment out the visual block and clear search highlighting.
+vnoremap <leader>c :s_^_//_g<cr>:noh :w<cr>
+vnoremap <leader>C :s_^//__g<cr>:noh :w<cr>
+
+" Save fingers from having to type 'debugger;' over and over!
+nnoremap <leader>d odebugger;<esc>:w<cr>
+nnoremap <leader>D Odebugger;<esc>:w<cr>
 
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
-nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <CR>
+nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
 " Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
