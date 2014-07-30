@@ -104,17 +104,22 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-:map <C-T> <Esc>:tabnew<cr>
+" Disable the <esc> key in insert mode and map it to 'jk'.
+" inoremap <buffer> <esc> <nop>
+inoremap jk <esc>
+
+noremap <C-T> <Esc>:tabnew<cr>
 
 " Quickly open up my ~/.vimrc file in a vertically split window so I can add new things to it on the fly.
 nnoremap <leader>ev :vsp $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Clear search highlighting.
 nnoremap <leader><space> :noh<cr>
 
-" Toggle
-nnoremap <leader>p :set paste!<cr>
-nnoremap <leader>n :set number!<cr>
+" Toggle!
+nnoremap <leader>p :setlocal paste!<cr>
+nnoremap <leader>n :setlocal number!<cr>
 
 " List the cwd in a vertically-split window.
 "   % = the name of the current file
@@ -123,15 +128,41 @@ nnoremap <leader>n :set number!<cr>
 nnoremap <leader>ll :vsp %:p:h<cr>
 
 " Comment/uncomment out the visual block and clear search highlighting.
-vnoremap <leader>c :s_^_//_g<cr>:noh :w<cr>
-vnoremap <leader>C :s_^//__g<cr>:noh :w<cr>
+" JavaScript
+autocmd FileType javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
+autocmd FileType javascript vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
+" HTML
+" autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
+" autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
+" Other
+autocmd FileType sh,php vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
+autocmd FileType sh,php vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
+
+" Comment/uncomment out the single line.
+" JavaScript
+autocmd FileType javascript nnoremap <leader>c I//<esc>
+autocmd FileType javascript nnoremap <leader>C ^xx
+" HTML
+autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>
+" Other
+autocmd FileType sh,php nnoremap <leader>c I#<esc>
+autocmd FileType sh,php nnoremap <leader>C ^x
+
+" JavaScript syntax helpers.
+" Typing 'iff' will create an empty if block and then put the cursor within the parens in insert mode.
+autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<esc>kf(a
+" Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
+autocmd FileType javascript iabbrev <buffer> forr for () {<cr>}<esc>kf(a;;<esc>2ha
 
 " Save fingers from having to type 'debugger;' over and over!
 nnoremap <leader>d odebugger;<esc>:w<cr>
 nnoremap <leader>D Odebugger;<esc>:w<cr>
 
+" Uppercase a long word (i.e., MAX_CONNECTIONS_ALLOWED) by typing <Ctrl-u> when still in insert mode.
+inoremap <c-u> <esc>viwUea
+
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
-nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
+noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
 " Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -139,3 +170,10 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/a/7078429
 cmap w!! w !sudo tee > /dev/null %
+
+" Common abbreviations
+iabbrev source4 <script type="text/javascript" src="../../../SDK4/extjs/ext.js"></script>
+iabbrev link4 <link rel="stylesheet" type="text/css" href="../../../SDK4/extjs/resources/css/ext-all.css" />
+
+iabbrev source5 <script type="text/javascript" src="../../../SDK5/ext/ext.js"></script>
+iabbrev link5 <link rel="stylesheet" type="text/css" href="../../../SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
