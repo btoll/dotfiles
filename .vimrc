@@ -127,7 +127,7 @@ nnoremap <leader>n :setlocal number!<cr>
 "   h = gives its dir (the 'head' of the full path)
 nnoremap <leader>ll :vsp %:p:h<cr>
 
-augroup comment
+augroup commenting
     autocmd!
     " Comment/uncomment out the visual block and clear search highlighting.
     autocmd FileType javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
@@ -143,8 +143,18 @@ augroup comment
     autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>
     autocmd FileType sh,php nnoremap <leader>c I#<esc>
     autocmd FileType sh,php nnoremap <leader>C ^x
-augroup END
 
+    " Comment out the block, c-style.
+    " From top/down (Start with your cursor anywhere on the first line)...
+    autocmd FileType javascript nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
+    " ...and from bottom/up (cursor must be on the closing bracket).
+    autocmd FileType javascript nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
+    " Uncomment out the block, c-style.
+    " From top/down (Start with your cursor anywhere on the first line)...
+    autocmd FileType javascript nnoremap <leader>ub kddf{%jdd
+    " ...and from bottom/up (cursor must be on the closing bracket).
+    autocmd FileType javascript nnoremap <leader>uB jddk%kdd
+augroup END
 
 augroup syntax
     autocmd!
