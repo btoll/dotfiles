@@ -138,11 +138,11 @@ augroup commenting
     autocmd FileType sh,php vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
 
     " Comment/uncomment out the single line.
-    autocmd FileType javascript nnoremap <leader>c I//<esc>
-    autocmd FileType javascript nnoremap <leader>C ^xx
-    autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>
-    autocmd FileType sh,php nnoremap <leader>c I#<esc>
-    autocmd FileType sh,php nnoremap <leader>C ^x
+    autocmd FileType javascript nnoremap <leader>c I//<esc>:w<cr>
+    autocmd FileType javascript nnoremap <leader>C ^xx:w<cr>
+    autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>:w<cr>
+    autocmd FileType sh,php nnoremap <leader>c I#<esc>:w<cr>
+    autocmd FileType sh,php nnoremap <leader>C ^x:w<cr>
 
     " Comment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
@@ -151,9 +151,9 @@ augroup commenting
     autocmd FileType javascript nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
     " Uncomment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType javascript nnoremap <leader>ub kddf{%jdd
+    autocmd FileType javascript nnoremap <leader>ub kddf{%jdd:w<cr>
     " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType javascript nnoremap <leader>uB jddk%kdd
+    autocmd FileType javascript nnoremap <leader>uB jddk%kdd:w<cr>
 augroup END
 
 augroup syntax
@@ -165,6 +165,8 @@ augroup syntax
     autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<esc>kf(a
     " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
     autocmd FileType javascript iabbrev <buffer> forin for (in) {<cr>}<esc>kf(a
+    " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
+    autocmd FileType javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
 augroup END
 
 " Save fingers from having to type 'debugger;' over and over!
@@ -185,6 +187,7 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 cmap w!! w !sudo tee > /dev/null %
 
 " Common abbreviations
+iabbrev script4x <script type="text/javascript" src="../../../extjs/builds/4.2.x/ext-debug.js"></script>
 iabbrev script4 <script type="text/javascript" src="../../../SDK4/extjs/ext.js"></script>
 iabbrev link4 <link rel="stylesheet" type="text/css" href="../../../SDK4/extjs/resources/css/ext-all.css" />
 
