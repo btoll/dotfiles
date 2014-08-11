@@ -141,6 +141,7 @@ augroup commenting
     autocmd FileType javascript nnoremap <leader>c I//<esc>:w<cr>
     autocmd FileType javascript nnoremap <leader>C ^xx:w<cr>
     autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>:w<cr>
+    autocmd FileType html nnoremap <leader>C ^4x$xxx:w<cr>
     autocmd FileType sh,php nnoremap <leader>c I#<esc>:w<cr>
     autocmd FileType sh,php nnoremap <leader>C ^x:w<cr>
 
