@@ -41,6 +41,10 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " bad-whitespace
 " https://github.com/bitc/vim-bad-whitespace
 
+" gundo
+" http://sjl.bitbucket.org/gundo.vim/
+let g:gundo_preview_bottom = 1
+
 "<------------------------------------------------------------->
 " Crypto
 "<------------------------------------------------------------->
@@ -147,25 +151,25 @@ augroup commenting
 
     " Comment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType javascript nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
+    autocmd FileType javascript,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
     " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType javascript nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
+    autocmd FileType javascript,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
     " Uncomment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType javascript nnoremap <leader>ub kddf{%jdd:w<cr>
+    autocmd FileType javascript,php nnoremap <leader>ub kddf{%jdd:w<cr>
     " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType javascript nnoremap <leader>uB jddk%kdd:w<cr>
+    autocmd FileType javascript,php nnoremap <leader>uB jddk%kdd:w<cr>
 augroup END
 
 augroup syntax
     autocmd!
     " JavaScript syntax helpers.
     " Typing 'iff' will create an empty if block and then put the cursor within the parens in insert mode.
-    autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<esc>kf(a
+    autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<cr><esc>kf(a
     " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<esc>kf(a
+    autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>kf(a
     " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType javascript iabbrev <buffer> forin for (in) {<cr>}<esc>kf(a
+    autocmd FileType javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>kf(a
     " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
     autocmd FileType javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
 augroup END
@@ -188,9 +192,11 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 cmap w!! w !sudo tee > /dev/null %
 
 " Common abbreviations
-iabbrev script4x <script type="text/javascript" src="../../../extjs/builds/4.2.x/ext-debug.js"></script>
-iabbrev script4 <script type="text/javascript" src="../../../SDK4/extjs/ext.js"></script>
-iabbrev link4 <link rel="stylesheet" type="text/css" href="../../../SDK4/extjs/resources/css/ext-all.css" />
+iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
+iabbrev script4 <script type="text/javascript" src="http://localhost/SDK4/extjs/ext.js"></script>
+iabbrev link4 <link rel="stylesheet" type="text/css" href="http://localhost/SDK4/extjs/resources/css/ext-all.css" />
 
-iabbrev script5 <script type="text/javascript" src="../../../SDK5/ext/ext.js"></script>
-iabbrev link5 <link rel="stylesheet" type="text/css" href="../../../SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
+iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
+iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
+
+iabbrev doctype <!DOCTYPE html>
