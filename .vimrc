@@ -195,8 +195,11 @@ cmap w!! w !sudo tee > /dev/null %
 iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
 iabbrev script4 <script type="text/javascript" src="http://localhost/SDK4/extjs/ext.js"></script>
 iabbrev link4 <link rel="stylesheet" type="text/css" href="http://localhost/SDK4/extjs/resources/css/ext-all.css" />
+iabbrev nightly4 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/resources/ext-theme-classic/ext-theme-classic-all.css"> <script type="text/javascript" src="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/ext-all-debug.js"></script>
 
 iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
 iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
+iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"> <script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
 
 iabbrev doctype <!DOCTYPE html>
+iabbrev require Ext.require('*');
