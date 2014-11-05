@@ -69,7 +69,7 @@ fi
 #esac
 
 # If you work with git, you've probably had that nagging sensation of not knowing what branch you are on. Worry no longer!
- export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "
+export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "
 
 # Function definitions.
 if [ -f ~/.bash_functions ]; then
@@ -119,11 +119,38 @@ bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as 
 # MacPorts Installer addition on 2011-07-11_at_12:55:29: adding an appropriate PATH variable for use with MacPorts.
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
-#for support bash scripts
-export EXT_SDK=../../../SDK
+# For support and engineering bash scripts.
+export EXT_SDK=../../..
+export SDK4=/usr/local/www/SDK4/
+export SDK5=/usr/local/www/SDK5/
 export EXT_BUILDS=../../builds
 export TICKETS_DIR=/usr/local/www/extjs/tickets/
+export BOOTSTRAP_LOCATION=/usr/local/www/SDK5/ext/
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
 source /usr/local/Cellar/cdargs/1.35/contrib/cdargs-bash.sh
+
+export SENCHA_CMD_3_0_0="/Users/btoll/bin/Sencha/Cmd/5.0.3.320"
+
+export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.42:/usr/local/mysql/bin:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.73:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.89:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.115:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.145:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.157:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.1.178:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.116:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.1.204:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.3.320:$PATH
