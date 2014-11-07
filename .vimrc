@@ -199,7 +199,8 @@ iabbrev nightly4 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/
 
 iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
 iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
+iabbrev charts5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/packages/sencha-charts/build/classic/resources/sencha-charts-all.css" /> <script type="text/javascript" src="http://localhost/SDK5/packages/sencha-charts/build/sencha-charts-debug.js"></script>
 iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"> <script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
 
 iabbrev doctype <!DOCTYPE html>
-iabbrev require Ext.require('*');
+iabbrev req Ext.require('*');
