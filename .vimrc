@@ -45,6 +45,16 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " http://sjl.bitbucket.org/gundo.vim/
 let g:gundo_preview_bottom = 1
 
+" vim-airline
+" https://github.com/bling/vim-airline
+set laststatus=2
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" vim-colorschemes
+" https://github.com/flazz/vim-colorschemes
+
 "<------------------------------------------------------------->
 " Crypto
 "<------------------------------------------------------------->
