@@ -92,6 +92,7 @@ let mapleader=","
 
 syntax on
 colors desert
+colorscheme jellybeans
 
 set ruler "Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position of the displayed text in the file is shown on the far right.
 set autoindent "Copy indent from current line when starting a new line.
