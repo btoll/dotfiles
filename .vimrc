@@ -1,3 +1,4 @@
+set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in the name properly
 "<------------------------------------------------------------->
 " Plugins
 "<------------------------------------------------------------->
@@ -29,7 +30,7 @@ let g:syntastic_javascript_checkers = ['jslint', 'jshint']
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " https://github.com/marijnh/tern_for_vim
-" let g:tern_map_keys=1
+let g:tern_map_keys=1
 
 " Tabmerge
 " http://www.vim.org/scripts/script.php?script_id=1961
@@ -51,6 +52,22 @@ set laststatus=2
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
+let g:airline_powerline_fonts = 1
+
+" Unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " vim-colorschemes
 " https://github.com/flazz/vim-colorschemes
