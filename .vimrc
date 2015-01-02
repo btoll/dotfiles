@@ -77,11 +77,11 @@ let g:airline_symbols.whitespace = 'Ξ'
 "<------------------------------------------------------------->
 set cryptmethod=blowfish
 " http://stelfox.net/blog/2013/11/using-vim-as-your-password-manager/
-autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
+"autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 
-"<------------------------------------------------------------->
+"<------------------------------------------------------------------------------------->
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
-"<------------------------------------------------------------->
+"<------------------------------------------------------------------------------------->
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
@@ -104,8 +104,8 @@ augroup resCur
 augroup END
 let mapleader=","
 
-"<------------------------------------------------------------->
-"<------------------------------------------------------------->
+"<------------------------------------------------------------------------------------->
+"<------------------------------------------------------------------------------------->
 
 syntax on
 colors desert
@@ -200,14 +200,32 @@ augroup syntax
     autocmd FileType javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>kf(a
     " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
     autocmd FileType javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
+
+    """""""""""""""""""""""""
+    " Common abbreviations "
+    """""""""""""""""""""""""
+    " HTML boilerplate.
+    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr></head><cr><cr><body><cr></body><cr></html>
+
+    " CSS and JavaScript resources.
+    autocmd FileType html iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
+    autocmd FileType html iabbrev script4 <script type="text/javascript" src="http://localhost/SDK4/extjs/ext.js"></script>
+    autocmd FileType html iabbrev link4 <link rel="stylesheet" type="text/css" href="http://localhost/SDK4/extjs/resources/css/ext-all.css" />
+    autocmd FileType html iabbrev nightly4 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/resources/ext-theme-classic/ext-theme-classic-all.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/ext-all-debug.js"></script>
+autocmd FileType html
+    autocmd FileType html iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
+    autocmd FileType html iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
+    autocmd FileType html iabbrev charts5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/packages/sencha-charts/build/classic/resources/sencha-charts-all.css" /><cr><script type="text/javascript" src="http://localhost/SDK5/packages/sencha-charts/build/sencha-charts-debug.js"></script>
+    autocmd FileType html iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
+autocmd FileType html
+
+    autocmd FileType html iabbrev doctype <!DOCTYPE html>
+    autocmd FileType html iabbrev req Ext.require('*');
 augroup END
 
 " Save fingers from having to type 'debugger;' over and over!
 nnoremap <leader>d odebugger;<esc>:w<cr>
 nnoremap <leader>D Odebugger;<esc>:w<cr>
-
-" Uppercase a long word (i.e., MAX_CONNECTIONS_ALLOWED) by typing <Ctrl-u> when still in insert mode.
-inoremap <c-u> <esc>viwUea
 
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
 noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
@@ -218,17 +236,3 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/a/7078429
 cmap w!! w !sudo tee > /dev/null %
-
-" Common abbreviations
-iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
-iabbrev script4 <script type="text/javascript" src="http://localhost/SDK4/extjs/ext.js"></script>
-iabbrev link4 <link rel="stylesheet" type="text/css" href="http://localhost/SDK4/extjs/resources/css/ext-all.css" />
-iabbrev nightly4 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/resources/ext-theme-classic/ext-theme-classic-all.css"> <script type="text/javascript" src="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/ext-all-debug.js"></script>
-
-iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
-iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
-iabbrev charts5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/packages/sencha-charts/build/classic/resources/sencha-charts-all.css" /> <script type="text/javascript" src="http://localhost/SDK5/packages/sencha-charts/build/sencha-charts-debug.js"></script>
-iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"> <script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
-
-iabbrev doctype <!DOCTYPE html>
-iabbrev req Ext.require('*');
