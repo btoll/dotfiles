@@ -1,0 +1,15 @@
+[user]
+	name = Benjamin Toll
+	email = benjam72@yahoo.com
+[alias]
+	co = checkout
+	br = branch
+	st = status -sb
+[core]
+	editor = /usr/bin/vim
+[github]
+	user = benjam72@yahoo.com
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
