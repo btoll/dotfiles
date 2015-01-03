@@ -17,6 +17,12 @@ execute pathogen#helptags()
 " Open up results of Ggrep and Glog in the quickfix window.
 " autocmd QuickFixCmdPost *grep* cwindow
 
+" http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
+" Each time you open a git object using fugitive it creates a new buffer.
+" This means that your buffer listing can quickly become swamped with fugitive buffers.
+" Here’s an autocommand that prevents this from becomming an issue:
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 " https://github.com/maksimr/vim-jsbeautify
 map <c-f>:call JsBeautify()<cr>
 
@@ -205,19 +211,17 @@ augroup syntax
     " Common abbreviations "
     """""""""""""""""""""""""
     " HTML boilerplate.
-    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr></head><cr><cr><body><cr></body><cr></html>
+    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html>
 
     " CSS and JavaScript resources.
     autocmd FileType html iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
     autocmd FileType html iabbrev script4 <script type="text/javascript" src="http://localhost/SDK4/extjs/ext.js"></script>
     autocmd FileType html iabbrev link4 <link rel="stylesheet" type="text/css" href="http://localhost/SDK4/extjs/resources/css/ext-all.css" />
     autocmd FileType html iabbrev nightly4 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/resources/ext-theme-classic/ext-theme-classic-all.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/ext-all-debug.js"></script>
-autocmd FileType html
     autocmd FileType html iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
     autocmd FileType html iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
     autocmd FileType html iabbrev charts5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/packages/sencha-charts/build/classic/resources/sencha-charts-all.css" /><cr><script type="text/javascript" src="http://localhost/SDK5/packages/sencha-charts/build/sencha-charts-debug.js"></script>
     autocmd FileType html iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
-autocmd FileType html
 
     autocmd FileType html iabbrev doctype <!DOCTYPE html>
     autocmd FileType html iabbrev req Ext.require('*');
