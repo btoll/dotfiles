@@ -123,6 +123,7 @@ bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as 
 export EXT_SDK=../../..
 export SDK4=/usr/local/www/SDK4/
 export SDK5=/usr/local/www/SDK5/
+export BUGS=/usr/local/www/extjs/bugs/
 export EXT_BUILDS=../../builds
 export TICKETS_DIR=/usr/local/www/extjs/tickets/
 export BOOTSTRAP_LOCATION=/usr/local/www/SDK5/ext/
@@ -131,7 +132,7 @@ export BOOTSTRAP_LOCATION=/usr/local/www/SDK5/ext/
 
 source /usr/local/Cellar/cdargs/1.35/contrib/cdargs-bash.sh
 
-export SENCHA_CMD_3_0_0="/Users/btoll/bin/Sencha/Cmd/5.0.3.320"
+export SENCHA_CMD_3_0_0="/Users/btoll/bin/Sencha/Cmd/5.1.1.38"
 
 export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
 
@@ -154,3 +155,18 @@ export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.116:$PATH
 export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.1.204:$PATH
 
 export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.3.320:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.4.342:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.13:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.21:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.25:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.26:$PATH
+
+export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.1.38:$PATH
+
+# I compiled a newer version of Vim (7.4) and put it in the below path instead of overwriting the native Vim.
+export PATH=/opt/local/bin:$PATH
