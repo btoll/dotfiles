@@ -78,6 +78,12 @@ let g:airline_symbols.whitespace = 'Ξ'
 " vim-colorschemes
 " https://github.com/flazz/vim-colorschemes
 
+" vim-css-color
+" https://github.com/ap/vim-css-color
+
+" vim-eunuch
+" git@github.com:tpope/vim-eunuch.git
+
 "<------------------------------------------------------------->
 " Crypto
 "<------------------------------------------------------------->
