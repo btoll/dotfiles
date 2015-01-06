@@ -8,6 +8,7 @@
 	ci = commit
 	unstage = reset HEAD --
 	last = log -1 HEAD
+	unmodify = checkout --
 [core]
 	editor = /usr/bin/vim
 [github]
