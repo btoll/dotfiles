@@ -9,6 +9,7 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	unmodify = checkout --
+	open = !sh -c 'echo `open https://github.com/extjs/SDK/commit/$0`'
 [core]
 	editor = /usr/bin/vim
 [github]
