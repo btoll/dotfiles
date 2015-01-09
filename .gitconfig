@@ -9,7 +9,8 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	unmodify = checkout --
-	open = !sh -c 'echo `open https://github.com/extjs/SDK/commit/$0`'
+	open = !sh -c 'open https://github.com/extjs/SDK/commit/$0'
+    get-hash = !sh -c 'git show $0 | grep commit | cut -c 8-'
 [core]
 	editor = /usr/bin/vim
 [github]
