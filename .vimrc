@@ -237,6 +237,9 @@ augroup END
 nnoremap <leader>d odebugger;<esc>:w<cr>
 nnoremap <leader>D Odebugger;<esc>:w<cr>
 
+" Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
+nnoremap <leader>log o<cr>console.log(<esc>pa);<esc>
+
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
 noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
