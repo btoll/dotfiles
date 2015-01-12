@@ -205,11 +205,11 @@ augroup syntax
     autocmd!
     " JavaScript syntax helpers.
     " Typing 'iff' will create an empty if block and then put the cursor within the parens in insert mode.
-    autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<cr><esc>kf(a
+    autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<cr><esc>2kt)
     " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>kf(a
+    autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
     " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>kf(a
+    autocmd FileType javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
     " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
     autocmd FileType javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
 
