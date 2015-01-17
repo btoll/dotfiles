@@ -13,3 +13,5 @@ mysql /usr/local/mysql
 5test /usr/local/www/SDK5/ext/test/specs
 5coretest /usr/local/www/SDK5/packages/sencha-core/test/specs
 4coretest /usr/local/www/SDK4/platform/test/unit/spec
+5base /usr/local/www/SDK5
+4base /usr/local/www/SDK4
