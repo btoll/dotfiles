@@ -127,6 +127,7 @@ export BUGS=/usr/local/www/extjs/bugs/
 export EXT_BUILDS=../../builds
 export TICKETS_DIR=/usr/local/www/extjs/tickets/
 export BOOTSTRAP_LOCATION=/usr/local/www/SDK5/ext/
+export GIT_HUB_DEFAULT_REMOTE_BRANCH=sencha-5.0.x
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
