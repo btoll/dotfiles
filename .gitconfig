@@ -1,5 +1,5 @@
 # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
-
+# https://stackoverflow.com/questions/26243145/git-aliases-operate-in-the-wrong-directory
 [user]
 	name = Benjamin Toll
 	email = benjam72@yahoo.com
@@ -13,8 +13,6 @@
 	unmodify = checkout --
 	get-hash = !sh -c 'git show $0 | grep commit | cut -c8-'
 	goto = !sh -c 'git show $0 | grep commit | cut -c8- | xargs git co'
-	open = "!f() { SHA=$(git get-hash $1); open https://github.com/extjs/SDK/commit/$SHA; }; f"
-	open-sha = !sh -c 'open https://github.com/extjs/SDK/commit/$0'
 [core]
 	editor = /usr/bin/vim
 [github]
