@@ -217,7 +217,7 @@ augroup syntax
     " Common abbreviations "
     """""""""""""""""""""""""
     " HTML boilerplate.
-    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html>
+    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html>
 
     " CSS and JavaScript resources.
     autocmd FileType html iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
@@ -238,7 +238,7 @@ nnoremap <leader>d odebugger;<esc>:w<cr>
 nnoremap <leader>D Odebugger;<esc>:w<cr>
 
 " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
-nnoremap <leader>log o<cr>console.log(<esc>pa);<esc>
+nnoremap <leader>log oconsole.log(<esc>pa);<esc>
 
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
 noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
