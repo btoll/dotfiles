@@ -17,19 +17,10 @@ alias tunnel="ssh -fND tunnel"
 
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
-alias jirafy="/usr/local/www/support/jirafy.sh"
-alias mvc="/usr/local/www/support/mvc.sh"
-
-alias barchiver="python3 /usr/local/www/utils/barchiver.py"
-alias bfind="/usr/local/www/utils/bfind.sh"
-alias bgrep="/usr/local/www/utils/bgrep.sh"
-#alias brm="/usr/local/www/utils/brm.sh"
 alias brm="rm -rf"
-alias bticket="/usr/local/www/utils/bticket.sh"
 
 # system and sencha aliases
 alias bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
-alias update_bootstrap="/usr/local/www/utils/sencha/update_bootstrap.sh"
 
 alias ..="cd .."
 alias ..2="cd ../.."
