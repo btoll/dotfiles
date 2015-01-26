@@ -35,8 +35,8 @@ alias ..l="cd .. && ll"
 alias :q="exit"
 
 # git aliases
-alias co4="cd $SDK4; git checkout extjs-4.2.x"
-alias co5="cd $SDK5; git checkout sencha-5.0.x"
+alias co4='cd $SDK4; git checkout extjs-4.2.x'
+alias co5='cd $SDK5; git checkout sencha-5.0.x'
 
 # debian
 #alias sapt="apt-cache search"
