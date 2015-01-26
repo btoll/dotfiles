@@ -2,9 +2,6 @@ bugs /usr/local/www/extjs/bugs
 utils /usr/local/www/utils
 dotfiles /usr/local/www/dotfiles
 support /usr/local/www/support
-builds /usr/local/www/extjs/builds
-sandbox /usr/local/www/sandbox
-mysql /usr/local/mysql
 5core /usr/local/www/SDK5/packages/sencha-core/src
 5 /usr/local/www/SDK5/ext/src
 4 /usr/local/www/SDK4/extjs/src
@@ -15,3 +12,4 @@ mysql /usr/local/mysql
 4coretest /usr/local/www/SDK4/platform/test/unit/spec
 5base /usr/local/www/SDK5
 4base /usr/local/www/SDK4
+sandbox /usr/local/www/sandbox
