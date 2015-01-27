@@ -205,9 +205,9 @@ augroup syntax
     autocmd!
     " JavaScript syntax helpers.
     " Typing 'iff' will create an empty if block and then put the cursor within the parens.
-    autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<cr><esc>2kt)
+    autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<esc>kt)
     " Typing 'iff' will create an if block with a debugger and then put the cursor within the parens.
-    autocmd FileType javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<cr><esc>3kt)
+    autocmd FileType javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
     " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
     autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
     " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
@@ -234,6 +234,10 @@ augroup syntax
     autocmd FileType html iabbrev doctype <!DOCTYPE html>
     autocmd FileType html iabbrev req Ext.require('*');
 augroup END
+
+" There are references to Jira tickets littered all over the codebase, i.e., 'see EXTJS-14745'.
+" To open in the default browser, simply position the cursor anywhere within 'EXTJS'.
+nnoremap <leader>go 3yiw :silent :!open https://sencha.jira.com/browse/<c-r>0<cr> :redraw!<cr>
 
 " Save fingers from having to type 'debugger;' over and over!
 nnoremap <leader>d odebugger;<esc>:w<cr>
