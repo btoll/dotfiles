@@ -20,7 +20,7 @@ alias tunnel="ssh -fND tunnel"
 alias brm="rm -rf"
 
 # system and sencha aliases
-alias bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
+alias sencha_bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
 
 alias ..="cd .."
 alias ..2="cd ../.."

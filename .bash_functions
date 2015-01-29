@@ -6,6 +6,24 @@ bgrep() {
     vim -p "+/$1" $(grep -riIl "$1" "$2" | uniq)
 }
 
+bootstrap() {
+    local FILES=
+    local TESTCASE=
+
+    if [[ ! ${PWD##*/} =~ ^SDK ]]; then
+        echo "You need to run this command from the toplevel of the working tree."
+    else
+        TESTCASE="$BUGS$1/index.html"
+        if [ -f "$TESTCASE" ]; then
+            FILES="$TESTCASE"
+        fi
+
+        # We need a space here to separate the test case from the files returned by git-ls.
+        FILES+=" "$(git ls)
+        vim -p $FILES
+    fi
+}
+
 # ccd – custom change directory
 # a little something to make life easier
 # position is a number in the stack, and
@@ -24,18 +42,15 @@ ccd() {
     fi
 }
 
+jirafy() {
+    open "https://sencha.jira.com/browse/$1"
+}
+
 # mkdir and then immediately cd into it
 mcd() {
     mkdir -p "$1" && cd "$1";
 }
 
-# cd up ..n dirs
-# NOTE `cd -` doesn't do as you expect if you `.. 6` and then `cd -`
-#function ..() {
-#    local levels=$1
-#    while ((levels > 0)); do
-#        cd .. || break
-#        #let 'levels-'
-#	let "levels=levels-1"
-#    done
-#}
+webify() {
+    open "http://localhost/extjs/bugs/$1"
+}
