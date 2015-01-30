@@ -6,24 +6,6 @@ bgrep() {
     vim -p "+/$1" $(grep -riIl "$1" "$2" | uniq)
 }
 
-bootstrap() {
-    local FILES=
-    local TESTCASE=
-
-    if [[ ! ${PWD##*/} =~ ^SDK ]]; then
-        echo "You need to run this command from the toplevel of the working tree."
-    else
-        TESTCASE="$BUGS$1/index.html"
-        if [ -f "$TESTCASE" ]; then
-            FILES="$TESTCASE"
-        fi
-
-        # We need a space here to separate the test case from the files returned by git-ls.
-        FILES+=" "$(git ls)
-        vim -p $FILES
-    fi
-}
-
 # ccd – custom change directory
 # a little something to make life easier
 # position is a number in the stack, and
