@@ -1,3 +1,6 @@
+# Script dependencies.
+. /usr/local/www/utils/fiddle.sh
+
 bfind() {
     vim -p $(find "$1" -type f -name "$2")
 }

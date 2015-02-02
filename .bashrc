@@ -1,3 +1,13 @@
+# Alias definitions.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Function definitions.
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -127,7 +137,7 @@ export BUGS=/usr/local/www/extjs/bugs/
 export EXT_BUILDS=../../builds
 export TICKETS_DIR=/usr/local/www/extjs/tickets/
 export BOOTSTRAP_LOCATION=/usr/local/www/SDK5/ext/
-export GIT_HUB_DEFAULT_REMOTE_BRANCH=sencha-5.0.x
+export GITHUB_DEFAULT_REMOTE_BRANCH=sencha-5.0.x
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
