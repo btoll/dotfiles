@@ -12,7 +12,7 @@ bgrep() {
 intersect() {
     # http://askubuntu.com/a/472280
     if [ "$#" -eq 0 ]; then
-        echo "Usage: FILE1 FILE2 [ REGEXP ]"
+        echo "Usage: intersect FILE1 FILE2 [ REGEXP ]"
     else
         REGEXP=${3:-'\w* ?: ?((function)|(Ext.emptyFn)|(Ext.identityFn))'}
         sort <(egrep -o "$REGEXP" "$1" | cut -d: -f1 | sort | uniq) <(egrep -o "$REGEXP" "$2" | cut -d: -f1 | sort | uniq) | uniq -d
