@@ -6,6 +6,10 @@ bgrep() {
     vim -p "+/$1" $(grep -riIl "$1" "$2" | uniq)
 }
 
+dump_describes() {
+    sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
+}
+
 intersect() {
     # http://askubuntu.com/a/472280
     if [ "$#" -eq 0 ]; then
