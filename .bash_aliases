@@ -19,6 +19,9 @@ alias tunnel="ssh -fND tunnel"
 
 alias brm="rm -rf"
 
+# Open vim and immediately invoke CtrlP plugin.
+alias vimP='vim -c ":CtrlP"'
+
 # system and sencha aliases
 alias sencha_bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
 
