@@ -21,6 +21,7 @@ alias brm="rm -rf"
 
 # Open vim and immediately invoke CtrlP plugin.
 alias vimP='vim -c ":CtrlP"'
+alias xkcd="open http://c.xkcd.com/random/comic/"
 
 # system and sencha aliases
 alias sencha_bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
