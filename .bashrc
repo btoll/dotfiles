@@ -81,20 +81,6 @@ fi
 # If you work with git, you've probably had that nagging sensation of not knowing what branch you are on. Worry no longer!
 export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "
 
-# Function definitions.
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -105,13 +91,6 @@ if [ -x /usr/bin/dircolors ]; then
     #alias grep='grep --color=auto'
     #alias fgrep='fgrep --color=auto'
     #alias egrep='egrep --color=auto'
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
 fi
 
 # turn on git bash completion
@@ -140,7 +119,7 @@ export BOOTSTRAP_LOCATION=/usr/local/www/SDK5/ext/
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
-source /usr/local/Cellar/cdargs/1.35/contrib/cdargs-bash.sh
+source /usr/local/src/cdargs-1.35/contrib/cdargs-bash.sh
 
 export SENCHA_CMD_3_0_0="/Users/btoll/bin/Sencha/Cmd/5.1.1.38"
 
