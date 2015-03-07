@@ -137,6 +137,7 @@ set number "Same as :print, but precede each line with its line number.
 set dictionary+=/usr/share/dict/words "List of file names, separated by commas, that are used to lookup words for keyword completion commands |i_CTRL-X_CTRL-K|.
 set thesaurus+=/usr/share/thesaurus/mthesaur.txt "List of file names, separated by commas, that are used to lookup words for thesaurus completion commands |i_CTRL-X_CTRL-T|. (http://www.gutenberg.org/dirs/etext02/mthes10.zip)
 set tabstop=4 "Number of spaces that a <Tab> in the file counts for.
+set visualbell "Turn off error sounds and screen flashing.
 
 " Disable the arrow keys.
 nnoremap <up> <nop>
