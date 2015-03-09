@@ -8,6 +8,12 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
+# Turn on git bash completion.
+# http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
+if [ -f ~/.git-completion.sh ]; then
+    . ~/.git-completion.sh
+fi
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -93,12 +99,6 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-# turn on git bash completion
-# http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
-if [ -f ~/.git-completion.sh ]; then
-    . ~/.git-completion.sh
-fi
-
 set -o vi
 #shopt -s cdable_vars
 #www=/usr/local/www
@@ -108,52 +108,22 @@ bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as 
 # MacPorts Installer addition on 2011-07-11_at_12:55:29: adding an appropriate PATH variable for use with MacPorts.
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
-# For support and engineering bash scripts.
-export EXT_SDK=../../..
-export SDK4=/usr/local/www/SDK4/
-export SDK5=/usr/local/www/SDK5/
-export BUGS=/usr/local/www/extjs/bugs/
-export EXT_BUILDS=../../builds
-export TICKETS_DIR=/usr/local/www/extjs/tickets/
-export BOOTSTRAP_LOCATION=/usr/local/www/SDK5/ext/
+# For engineering bash scripts.
+export SDK4=/usr/local/www/SDK4
+export SDK5=/usr/local/www/SDK5
+export SDK6=/usr/local/www/SDK6
+export WEB_SERVER=/usr/local/www
+export BUGS=/usr/local/www/extjs/bugs
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
 source /usr/local/src/cdargs-1.35/contrib/cdargs-bash.sh
 
-export SENCHA_CMD_3_0_0="/Users/btoll/bin/Sencha/Cmd/5.1.1.38"
+export SENCHA_CMD_3_0_0="/Users/btoll/bin/Sencha/Cmd/5.5.0.23"
 
 export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
 
 export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.42:/usr/local/mysql/bin:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.73:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.89:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.115:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.145:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.157:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.1.178:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.116:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.1.204:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.3.320:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.4.342:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.13:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.21:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.25:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.0.26:$PATH
 
 export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.1.38:$PATH
 
