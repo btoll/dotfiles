@@ -3,8 +3,8 @@ utils /usr/local/www/utils
 dotfiles /usr/local/www/dotfiles
 support /usr/local/www/support
 5core /usr/local/www/SDK5/packages/sencha-core/src
-5 /usr/local/www/SDK5/ext/src
-4 /usr/local/www/SDK4/extjs/src
+5src /usr/local/www/SDK5/ext/src
+4src /usr/local/www/SDK4/extjs/src
 4core /usr/local/www/SDK4/platform/src
 4test /usr/local/www/SDK4/extjs/test/unit/spec
 5test /usr/local/www/SDK5/ext/test/specs
