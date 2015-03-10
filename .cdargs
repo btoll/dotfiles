@@ -13,3 +13,5 @@ support /usr/local/www/support
 5base /usr/local/www/SDK5
 4base /usr/local/www/SDK4
 sandbox /usr/local/www/sandbox
+git /usr/local/www/git
+learn_stuff /usr/local/www/learn_stuff
