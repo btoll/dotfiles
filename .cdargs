@@ -1,5 +1,4 @@
 bugs /usr/local/www/extjs/bugs
-utils /usr/local/www/utils
 dotfiles /usr/local/www/dotfiles
 support /usr/local/www/support
 5core /usr/local/www/SDK5/packages/sencha-core/src
@@ -15,3 +14,4 @@ support /usr/local/www/support
 sandbox /usr/local/www/sandbox
 git /usr/local/www/git
 learn_stuff /usr/local/www/learn_stuff
+tools /usr/local/www/tools
