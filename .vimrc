@@ -179,16 +179,16 @@ augroup commenting
     autocmd FileType javascript vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
-    autocmd FileType sh,php vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
-    autocmd FileType sh,php vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
+    autocmd FileType sh,php,python vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
+    autocmd FileType sh,php,python vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
 
     " Comment/uncomment out the single line.
     autocmd FileType javascript nnoremap <leader>c I//<esc>:w<cr>
     autocmd FileType javascript nnoremap <leader>C ^xx:w<cr>
     autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>:w<cr>
     autocmd FileType html nnoremap <leader>C ^4x$xxx:w<cr>
-    autocmd FileType sh,php nnoremap <leader>c I#<esc>:w<cr>
-    autocmd FileType sh,php nnoremap <leader>C ^x:w<cr>
+    autocmd FileType sh,php,python nnoremap <leader>c I#<esc>:w<cr>
+    autocmd FileType sh,php,python nnoremap <leader>C ^x:w<cr>
 
     " Comment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
@@ -227,10 +227,14 @@ augroup syntax
     autocmd FileType html iabbrev script4 <script type="text/javascript" src="http://localhost/SDK4/extjs/ext.js"></script>
     autocmd FileType html iabbrev link4 <link rel="stylesheet" type="text/css" href="http://localhost/SDK4/extjs/resources/css/ext-all.css" />
     autocmd FileType html iabbrev nightly4 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/resources/ext-theme-classic/ext-theme-classic-all.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/ext-all-debug.js"></script>
+
     autocmd FileType html iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
     autocmd FileType html iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
     autocmd FileType html iabbrev charts5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/packages/sencha-charts/build/classic/resources/sencha-charts-all.css" /><cr><script type="text/javascript" src="http://localhost/SDK5/packages/sencha-charts/build/sencha-charts-debug.js"></script>
     autocmd FileType html iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
+
+    autocmd FileType html iabbrev script6 <script type="text/javascript" src="http://localhost/SDK6/ext/ext.js"></script>
+    autocmd FileType html iabbrev link6 <link rel="stylesheet" type="text/css" href="http://localhost/SDK6/ext/build/classic/theme-classic/resources/theme-classic-all-debug.css" />
 
     autocmd FileType html iabbrev doctype <!DOCTYPE html>
     autocmd FileType html iabbrev req Ext.require('*');
