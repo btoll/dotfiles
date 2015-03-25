@@ -6,10 +6,6 @@ alias lr="ls -lhFR"
 alias lar="ls -lhFaR"
 alias gzip="gzip -9"
 alias bzip2="bzip2 -9"
-alias ztar="tar czvf"
-alias jtar="tar cjvf"
-alias xztar="tar xzvf"
-alias xjtar="tar xjvf"
 alias cp="cp -i"
 alias mv="mv -i"
 
@@ -17,6 +13,7 @@ alias tunnel="ssh -fND tunnel"
 
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
+alias barchiver="python3.4 /usr/local/www/tools/python3/barchiver.py"
 alias brm="rm -rf"
 
 # Open vim and immediately invoke CtrlP plugin.
@@ -41,11 +38,7 @@ alias :q="exit"
 # git aliases
 alias co4='cd $SDK4; git checkout extjs-4.2.x'
 alias co5='cd $SDK5; git checkout sencha-5.0.x'
-
-# debian
-#alias sapt="apt-cache search"
-#alias iapt="sudo apt-get install"
-#alias papt="sudo apt-get purge"
+alias co6='cd $SDK6; git checkout sencha-6.0.x'
 
 alias mysqlstart="sudo /Library/StartupItems/MySQLCOM/MySQLCOM start"
 alias mysqlstop="sudo /Library/StartupItems/MySQLCOM/MySQLCOM stop"
