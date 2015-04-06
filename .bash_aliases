@@ -22,6 +22,8 @@ alias xkcd="open http://c.xkcd.com/random/comic/"
 
 # system and sencha aliases
 alias sencha_bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
+alias start_web="pushd /usr/local/www; sudo python3 -m http.server 80 --cgi; popd"
+alias stop_web='ps ax | grep "[p]ython3 -m http.server 80 --cgi" | sudo kill $(cut -d" " -f1)'
 
 alias ..="cd .."
 alias ..2="cd ../.."

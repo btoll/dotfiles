@@ -24,9 +24,8 @@ jirafy() {
     open "https://sencha.jira.com/browse/$1"
 }
 
-# mkdir and then immediately cd into it
 mcd() {
-    mkdir -p "$1" && cd "$1";
+    mkdir -p "$1" && cd "$1"
 }
 
 webify() {
