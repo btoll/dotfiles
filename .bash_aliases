@@ -18,6 +18,7 @@ alias brm="rm -rf"
 
 # Open vim and immediately invoke CtrlP plugin.
 alias vimP='vim -c ":CtrlP"'
+alias vimBP='vim -c ":normal iboilerplate"'
 alias xkcd="open http://c.xkcd.com/random/comic/"
 
 # system and sencha aliases
