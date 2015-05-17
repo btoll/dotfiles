@@ -15,3 +15,10 @@ sandbox /usr/local/www/sandbox
 git /usr/local/www/git
 learn_stuff /usr/local/www/learn_stuff
 tools /usr/local/www/tools
+6base /usr/local/www/SDK6
+6src /usr/local/www/SDK6/ext/classic/classic/src
+6core /usr/local/www/SDK6/ext/packages/core/src
+6coretest /usr/local/www/SDK6/ext/packages/core/test/specs
+6test /usr/local/www/SDK6/ext/classic/classic/test/specs
+owlsnestfarm /usr/local/www/owlsnestfarm
+jsLite /usr/local/www/jsLite
