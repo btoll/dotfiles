@@ -114,6 +114,15 @@ export SDK5=/usr/local/www/SDK5
 export SDK6=/usr/local/www/SDK6
 export WEB_SERVER=/usr/local/www
 export BUGS=/usr/local/www/extjs/bugs
+export YUICOMPRESSOR=/usr/local/src/yuicompressor-2.4.8.jar
+export PYTHONPATH=$PYTHONPATH:/usr/local/bin
+
+# https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html#Invoking-GPG_002dAGENT
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# https://tr.opensuse.org/SDB:Using_gpg-agent
+eval "$(gpg-agent --daemon)"
 
 #export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
 
