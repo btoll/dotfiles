@@ -248,6 +248,9 @@ nnoremap <leader>go 3yiw :silent :!open https://sencha.jira.com/browse/<c-r>0<cr
 nnoremap <leader>d odebugger;<esc>:w<cr>
 nnoremap <leader>D Odebugger;<esc>:w<cr>
 
+" Change all instances of " to ' in a line and clear search highlighting.
+nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
+
 " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
 nnoremap <leader>log oconsole.log(<esc>pa);<esc>
 
@@ -260,3 +263,4 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/a/7078429
 cmap w!! w !sudo tee > /dev/null %
+
