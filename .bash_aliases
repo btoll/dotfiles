@@ -28,6 +28,9 @@ alias sencha_bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
 alias start_web="pushd /usr/local/www; sudo python3 -m http.server 80 --cgi; popd"
 alias stop_web='ps ax | grep "[p]ython3 -m http.server 80 --cgi" | sudo kill $(cut -d" " -f1)'
 alias crypt="python3 /usr/local/www/tools/python3/crypt.py"
+alias build="python3 /usr/local/www/tools/python3/build/build.py"
+alias css_compress="python3 /usr/local/www/tools/python3/build/css_compress.py"
+alias js_compress="python3 /usr/local/www/tools/python3/build/js_compress.py"
 
 alias ..="cd .."
 alias ..2="cd ../.."
