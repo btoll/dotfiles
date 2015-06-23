@@ -28,6 +28,17 @@ mcd() {
     mkdir -p "$1" && cd "$1"
 }
 
+sencha_bootstrap() {
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: sencha_bootstrap VERSION (either 5 or 6)"
+    else
+        eval pushd '$SDK'"$1"'/ext'
+        sencha ant bootstrap
+        popd
+    fi
+}
+
 webify() {
     open "http://localhost/extjs/bugs/$1"
 }
+

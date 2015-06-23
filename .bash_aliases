@@ -24,7 +24,6 @@ alias irc="irssi"
 alias hangman="python3 /usr/local/www/games/python3/hangman/hangman.py"
 
 # system and sencha aliases
-alias sencha_bootstrap='pushd $SDK5/ext; sencha ant bootstrap; popd'
 alias start_web="pushd /usr/local/www; sudo python3 -m http.server 80 --cgi; popd"
 alias stop_web='ps ax | grep "[p]ython3 -m http.server 80 --cgi" | sudo kill $(cut -d" " -f1)'
 alias crypt="python3 /usr/local/www/tools/python3/crypt.py"
