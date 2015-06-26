@@ -30,9 +30,11 @@ mcd() {
 
 sencha_bootstrap() {
     if [ "$#" -eq 0 ]; then
-        echo "Usage: sencha_bootstrap VERSION (either 5 or 6)"
+        echo "Usage: sencha_bootstrap VERSION (either 4, 5 or 6)"
     else
-        eval pushd '$SDK'"$1"'/ext'
+        DIR=$([ "$1" -eq 4 ] && echo "extjs" || echo "ext")
+
+        eval pushd '$SDK'"$1/$DIR"
         sencha ant bootstrap
         popd
     fi
