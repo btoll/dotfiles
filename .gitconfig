@@ -25,3 +25,6 @@
 	rebase = true
 [merge]
 	conflictstyle = diff3
+[hooks "pre-commit"]
+	hook = debugger.sh
+	hook = EOF.sh
