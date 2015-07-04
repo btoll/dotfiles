@@ -22,3 +22,10 @@ tools /usr/local/www/tools
 6test /usr/local/www/SDK6/ext/classic/classic/test/specs
 owlsnestfarm /usr/local/www/owlsnestfarm
 jsLite /usr/local/www/jsLite
+games /usr/local/www/games
+hangman /usr/local/www/games/python3/hangman
+PeteJS /usr/local/www/PeteJS
+utley /usr/local/www/utley
+node_psa /usr/local/www/node_psa
+psa /usr/local/www/psa
+
