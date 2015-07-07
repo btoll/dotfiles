@@ -207,7 +207,7 @@ augroup syntax
     " JavaScript syntax helpers.
     " Typing 'iff' will create an empty if block and then put the cursor within the parens.
     autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<esc>kt)
-    " Typing 'iff' will create an if block with a debugger and then put the cursor within the parens.
+    " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
     autocmd FileType javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
     " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
     autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
@@ -220,7 +220,7 @@ augroup syntax
     " Common abbreviations "
     """""""""""""""""""""""""
     " HTML boilerplate.
-    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html>
+    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
 
     " CSS and JavaScript resources.
     autocmd FileType html iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
