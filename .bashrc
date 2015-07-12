@@ -38,6 +38,9 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Turn off error bells.
+setterm -blength 0
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -121,6 +124,9 @@ export PYTHONPATH=$PYTHONPATH:/usr/local/bin
 GPG_TTY=$(tty)
 export GPG_TTY
 
+# Use vim as default editor instead of nano.
+export EDITOR=vim
+
 # https://tr.opensuse.org/SDB:Using_gpg-agent
 eval "$(gpg-agent --daemon)"
 
@@ -138,3 +144,4 @@ export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.1.38:$PATH
 
 # I compiled a newer version of Vim (7.4) and put it in the below path instead of overwriting the native Vim.
 export PATH=/opt/local/bin:$PATH
+
