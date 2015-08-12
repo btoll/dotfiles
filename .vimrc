@@ -27,10 +27,16 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 map <c-f>:call JsBeautify()<cr>
 
 " https://github.com/scrooloose/syntastic
-let g:syntastic_enable_signs=1 " Put errors on left side
-let g:syntastic_check_on_open=1
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers = ['jslint', 'jshint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+
 
 " https://github.com/kien/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
