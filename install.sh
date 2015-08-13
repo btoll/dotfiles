@@ -8,6 +8,7 @@ ln -s /usr/local/src/dotfiles/.bash_logout ~/.bash_logout
 ln -s /usr/local/src/dotfiles/.bash_profile ~/.bash_profile
 ln -s /usr/local/src/dotfiles/.bashrc ~/.bashrc
 ln -s /usr/local/src/dotfiles/.cdargs ~/.cdargs
+ln -s /usr/local/src/dotfiles/.eslint ~/.eslint
 ln -s /usr/local/src/dotfiles/.gitconfig ~/.gitconfig
 ln -s /usr/local/src/dotfiles/.screenrc ~/.screenrc
 ln -s /usr/local/src/dotfiles/.tmux.conf ~/.tmux.conf
