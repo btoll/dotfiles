@@ -1,18 +1,19 @@
 # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
 # https://stackoverflow.com/questions/26243145/git-aliases-operate-in-the-wrong-directory
+# https://osdir.com/ml/git/2009-01/msg00298.html
 [user]
 	name = Benjamin Toll
 	email = benjam72@yahoo.com
 [alias]
 	co = checkout
 	br = branch
-	st = status -sb
+	st = status
 	ci = commit
-	unstage = reset HEAD --
 	last = log -1 HEAD
+	get-hash = !sh -c 'git show $0 | grep -m 1 commit | cut -c8-'
+	goto = !sh -c 'git show $0 | grep -m 1 commit | cut -c8- | xargs git co'
 	unmodify = checkout --
-	get-hash = !sh -c 'git show $0 | grep commit | cut -c8-'
-	goto = !sh -c 'git show $0 | grep commit | cut -c8- | xargs git co'
+	unstage = reset HEAD --
 [core]
 	editor = /usr/bin/vim
 [github]
@@ -25,6 +26,9 @@
 	rebase = true
 [merge]
 	conflictstyle = diff3
+	renamelimit = 9220
 [hooks "pre-commit"]
-	hook = debugger.sh
-	hook = EOF.sh
+    hook = EOF.sh
+    hook = debugger.sh
+    hook = eslint.sh
+
