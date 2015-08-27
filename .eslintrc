@@ -1,21 +1,20 @@
 {
     "rules": {
-        "indent": [
-            2,
-            4
-        ],
-        "quotes": [
-            2,
-            "single"
-        ],
-        "linebreak-style": [
-            2,
-            "unix"
-        ],
-        "semi": [
-            2,
-            "always"
-        ]
+        "indent": [2, 4, {"SwitchCase": 1, "VariableDeclarator": 1}],
+        "quotes": [2, "single"],
+        "linebreak-style": [2, "unix"],
+        "semi": [2, "always"]
+    },
+    "globals": {
+        "Pete": true,
+        "Ext": true,
+        "jasmine": true,
+        "describe": true,
+        "it": true,
+        "expect": true,
+        "beforeEach": true,
+        "afterEach": true,
+        "MockAjaxManager": true
     },
     "env": {
         "es6": true,
