@@ -198,14 +198,14 @@ augroup commenting
 
     " Comment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType javascript,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
+    autocmd FileType html,javascript,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
     " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType javascript,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
+    autocmd FileType html,javascript,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
     " Uncomment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType javascript,php nnoremap <leader>ub kddf{%jdd:w<cr>
+    autocmd FileType html,javascript,php nnoremap <leader>ub kddf{%jdd:w<cr>
     " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType javascript,php nnoremap <leader>uB jddk%kdd:w<cr>
+    autocmd FileType html,javascript,php nnoremap <leader>uB jddk%kdd:w<cr>
 augroup END
 
 augroup syntax
