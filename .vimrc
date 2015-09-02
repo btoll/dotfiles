@@ -254,6 +254,9 @@ nnoremap <leader>go 3yiw :silent :!open https://sencha.jira.com/browse/<c-r>0<cr
 nnoremap <leader>d odebugger;<esc>:w<cr>
 nnoremap <leader>D Odebugger;<esc>:w<cr>
 
+" Auto-indent blocks.
+nnoremap <leader>i V$%><cr>
+
 " Change all instances of " to ' in a line and clear search highlighting.
 nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
 
