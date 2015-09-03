@@ -32,7 +32,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
@@ -127,7 +127,7 @@ let mapleader=","
 
 syntax on
 colors desert
-colorscheme jellybeans
+colorscheme distinguished
 
 set ruler "Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position of the displayed text in the file is shown on the far right.
 set autoindent "Copy indent from current line when starting a new line.
@@ -256,6 +256,7 @@ nnoremap <leader>D Odebugger;<esc>:w<cr>
 
 " Auto-indent blocks.
 nnoremap <leader>i V$%><cr>
+nnoremap <leader>I V$%<
 
 " Change all instances of " to ' in a line and clear search highlighting.
 nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
