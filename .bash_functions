@@ -10,6 +10,13 @@ dump_describes() {
     sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
 }
 
+# Remove by inode.
+rmi() {
+    for inode in "$@"; do
+        find . -inum "$inode" -exec rm -rf {} \; 2> /dev/null
+    done
+}
+
 intersect() {
     # http://askubuntu.com/a/472280
     if [ "$#" -eq 0 ]; then
