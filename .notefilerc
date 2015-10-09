@@ -1,0 +1,18 @@
+{
+    "notefiles": [
+        "/Users/btoll/notes/misc.txt",
+        "/Users/btoll/notes/todo.txt"
+    ],
+    "noteservers": [
+        "filesystem"
+    ],
+    "encryption": true,
+    "system": "unix",
+    "newlines": 1,
+    "defaults": {
+        "notefile": "/Users/btoll/notes/todo.txt",
+        "noteserver": "filesystem",
+        "cipher": false
+    }
+}
+

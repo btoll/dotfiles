@@ -1,0 +1,8 @@
+{
+    "webserver": "http://localhost/",
+    "ext4": "SDK4/",
+    "ext5": "SDK5/",
+    "ext6": "SDK6/",
+    "theme": "classic"
+}
+

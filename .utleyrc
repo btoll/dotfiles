@@ -1,0 +1,10 @@
+{
+    "js": {
+        "compress": "java -jar /usr/local/src/yuicompressor-2.4.8.jar",
+        "transpile": "babel"
+    },
+    "css": {
+        "compress": true
+    }
+}
+
