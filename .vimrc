@@ -244,6 +244,10 @@ augroup syntax
 
     autocmd FileType html iabbrev doctype <!DOCTYPE html>
     autocmd FileType html iabbrev req Ext.require('*');
+
+    "Misc
+    "anti-Mitchell pattern - removes \s between properties and colons in objects.
+    autocmd FileType html,javascript nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
 augroup END
 
 " There are references to Jira tickets littered all over the codebase, i.e., 'see EXTJS-14745'.
