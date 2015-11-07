@@ -181,8 +181,8 @@ nnoremap <leader>ll :vsp %:p:h<cr>
 augroup commenting
     autocmd!
     " Comment/uncomment out the visual block and clear search highlighting.
-    autocmd FileType javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
-    autocmd FileType javascript vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
+    autocmd FileType html,javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
+    autocmd FileType html,javascript vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
     autocmd FileType sh,php,python vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
@@ -212,15 +212,18 @@ augroup syntax
     autocmd!
     " JavaScript syntax helpers.
     " Typing 'iff' will create an empty if block and then put the cursor within the parens.
-    autocmd FileType javascript iabbrev <buffer> iff if () {<cr>}<esc>kt)
+    autocmd FileType html,javascript iabbrev <buffer> iff if () {<cr>}<esc>kt)
     " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
-    autocmd FileType javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
+    autocmd FileType html,javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
+    " Typing 'iife' will create an IIFE (es6).
+    " Note `<<o` will dedent and then create a new line.
+    autocmd FileType html,javascript iabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
     " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
+    autocmd FileType html,javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
     " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
+    autocmd FileType html,javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
     " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
+    autocmd FileType html,javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
 
     """""""""""""""""""""""""
     " Common abbreviations "
@@ -236,7 +239,6 @@ augroup syntax
 
     autocmd FileType html iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
     autocmd FileType html iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
-    autocmd FileType html iabbrev charts5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/packages/sencha-charts/build/classic/resources/sencha-charts-all.css" /><cr><script type="text/javascript" src="http://localhost/SDK5/packages/sencha-charts/build/sencha-charts-debug.js"></script>
     autocmd FileType html iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
 
     autocmd FileType html iabbrev script6 <script type="text/javascript" src="http://localhost/SDK6/ext/ext.js"></script>
@@ -259,7 +261,7 @@ nnoremap <leader>d odebugger;<esc>:w<cr>
 nnoremap <leader>D Odebugger;<esc>:w<cr>
 
 " Auto-indent blocks.
-nnoremap <leader>i V$%><cr>
+nnoremap <leader>i V$%>
 nnoremap <leader>I V$%<
 
 " Change all instances of " to ' in a line and clear search highlighting.
@@ -267,6 +269,7 @@ nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
 
 " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
 nnoremap <leader>log oconsole.log(<esc>pa);<esc>
+nnoremap <leader>gh oconsole.log('got here');<esc>
 
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
 noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>

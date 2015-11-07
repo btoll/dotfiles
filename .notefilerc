@@ -1,10 +1,12 @@
 {
     "notefiles": [
+        "/Users/btoll/notes/crypto.txt",
         "/Users/btoll/notes/misc.txt",
         "/Users/btoll/notes/todo.txt"
     ],
     "noteservers": [
-        "filesystem"
+        "filesystem",
+        "http://localhost:1972"
     ],
     "useGPG": true,
     "system": "unix",
