@@ -1,19 +1,20 @@
 {
-    "notefiles": [
+    "scratchpads": [
+        "/Users/btoll/notes/cover_letter.txt",
         "/Users/btoll/notes/crypto.txt",
         "/Users/btoll/notes/misc.txt",
         "/Users/btoll/notes/todo.txt"
     ],
-    "noteservers": [
+    "servers": [
         "filesystem",
         "http://localhost:1972"
     ],
     "useGPG": true,
     "system": "unix",
-    "newlines": 1,
+    "newlines": 0,
     "defaults": {
-        "notefile": "/Users/btoll/notes/todo.txt",
-        "noteserver": "filesystem"
+        "scratchpad": "/Users/btoll/notes/todo.txt",
+        "server": "filesystem"
     }
 }
 
