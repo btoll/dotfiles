@@ -19,6 +19,13 @@ alias brm="rm -rf"
 # Open vim and immediately invoke CtrlP plugin.
 alias vimP='vim -c ":CtrlP"'
 alias vimBP='vim -c ":normal iboilerplate"'
+
+# The Vim YouCompleteMe plugin needs the version of Vim to be at least 7.3.598, so
+# unfortunately I needed to download MacVim and alias its Vim binary.
+# I initially tried to symlink but had pathing issues, so screw it, do it here.
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias vi="vim"
+
 alias xkcd="open http://c.xkcd.com/random/comic/"
 alias irc="irssi"
 alias hangman="python3 /usr/local/www/games/python3/hangman/hangman.py"
