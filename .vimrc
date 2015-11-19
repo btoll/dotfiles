@@ -90,6 +90,15 @@ let g:airline_symbols.whitespace = 'Ξ'
 " vim-eunuch
 " git@github.com:tpope/vim-eunuch.git
 
+" vim-easymotion
+" https://github.com/easymotion/vim-easymotion
+
+" YouCompleteMe
+" https://github.com/Valloric/YouCompleteMe
+
+" https://github.com/marijnh/tern_for_vim
+let g:tern_map_keys=1
+
 "<------------------------------------------------------------->
 " Crypto
 "<------------------------------------------------------------->
@@ -181,8 +190,8 @@ nnoremap <leader>ll :vsp %:p:h<cr>
 augroup commenting
     autocmd!
     " Comment/uncomment out the visual block and clear search highlighting.
-    autocmd FileType html,javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
-    autocmd FileType html,javascript vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
+    autocmd FileType javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
+    autocmd FileType javascript vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
     autocmd FileType sh,php,python vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
