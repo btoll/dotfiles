@@ -1,3 +1,22 @@
+# http://fitnr.com/showing-a-bash-spinner.html
+spinner() {
+    local pid=$1
+    local delay=0.2
+    local spinstr='|/-\'
+
+    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+        local temp=${spinstr#?}
+        printf " [%c]  " "$spinstr"
+
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+
+        printf "\b\b\b\b\b\b"
+    done
+
+    printf "    \b\b\b\b"
+}
+
 bfind() {
     vim -p $(find "$1" -type f -name "$2")
 }
@@ -6,9 +25,10 @@ bgrep() {
     vim -p "+/$1" $(grep -riIl "$1" "$2" | uniq)
 }
 
-dump_describes() {
-    sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
-}
+# Deprecating this in favor of https://github.com/btoll/dump_describes node module.
+#dump_describes() {
+#    sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
+#}
 
 # Remove by inode.
 rmi() {

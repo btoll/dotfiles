@@ -115,14 +115,17 @@ bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as 
 export SDK4=/usr/local/www/SDK4
 export SDK5=/usr/local/www/SDK5
 export SDK6=/usr/local/www/SDK6
-export WEB_SERVER=/usr/local/www
+export WEBSERVER=/usr/local/www
 export BUGS=/usr/local/www/extjs/bugs
 export YUICOMPRESSOR=/usr/local/src/yuicompressor-2.4.8.jar
 export PYTHONPATH=$PYTHONPATH:/usr/local/bin
 
 # https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html#Invoking-GPG_002dAGENT
-GPG_TTY=$(tty)
-export GPG_TTY
+#GPG_TTY=$(tty)
+#export GPG_TTY
+
+# https://tr.opensuse.org/SDB:Using_gpg-agent
+#eval "$(gpg-agent --daemon)"
 
 # Use vim as default editor instead of nano.
 export EDITOR=vim
