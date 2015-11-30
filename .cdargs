@@ -38,4 +38,6 @@ jcrypt /usr/local/www/jcrypt
 dump_describes /usr/local/www/dump_describes
 You-Dont-Know-JS /usr/local/www/You-Dont-Know-JS
 scratchpad /usr/local/www/scratchpad
+diceware /usr/local/www/diceware
+rupert /usr/local/www/rupert
 
