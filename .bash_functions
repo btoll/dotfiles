@@ -71,3 +71,8 @@ webify() {
     open "http://localhost/extjs/bugs/$1"
 }
 
+wifi_connect() {
+    sudo iw dev wlan0 connect -w "$1"
+    sudo dhclient wlan0
+}
+
