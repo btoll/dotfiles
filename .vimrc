@@ -225,11 +225,11 @@ augroup syntax
     " Note `<<o` will dedent and then create a new line.
     autocmd FileType html,javascript iabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
     " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript,go iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
+    autocmd FileType html,javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
     " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript,go iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
+    autocmd FileType html,javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
     " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript,go iabbrev <buffer> func function () {<cr>};<esc>kf(a
+    autocmd FileType html,javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
 
     """""""""""""""""""""""""
     " Common abbreviations "
