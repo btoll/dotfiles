@@ -44,9 +44,6 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " https://github.com/marijnh/tern_for_vim
 let g:tern_map_keys=1
 
-" Tabmerge
-" http://www.vim.org/scripts/script.php?script_id=1961
-
 " Text Objects
 " https://github.com/tpope/vim-surround
 " https://github.com/vim-scripts/argtextobj.vim
@@ -136,7 +133,7 @@ let mapleader=","
 
 syntax on
 colors desert
-colorscheme distinguished
+"colorscheme zen
 
 set ruler "Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position of the displayed text in the file is shown on the far right.
 set autoindent "Copy indent from current line when starting a new line.
@@ -190,16 +187,16 @@ nnoremap <leader>ll :vsp %:p:h<cr>
 augroup commenting
     autocmd!
     " Comment/uncomment out the visual block and clear search highlighting.
-    autocmd FileType javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
-    autocmd FileType javascript vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
+    autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
+    autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
     " autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
     autocmd FileType sh,php,python vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
     autocmd FileType sh,php,python vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
 
     " Comment/uncomment out the single line.
-    autocmd FileType javascript nnoremap <leader>c I//<esc>:w<cr>
-    autocmd FileType javascript nnoremap <leader>C ^xx:w<cr>
+    autocmd FileType javascript,go nnoremap <leader>c I//<esc>:w<cr>
+    autocmd FileType javascript,go nnoremap <leader>C ^xx:w<cr>
     autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>:w<cr>
     autocmd FileType html nnoremap <leader>C ^4x$xxx:w<cr>
     autocmd FileType sh,php,python nnoremap <leader>c I#<esc>:w<cr>
@@ -207,32 +204,32 @@ augroup commenting
 
     " Comment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType html,javascript,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
+    autocmd FileType html,javascript,go,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
     " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType html,javascript,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
+    autocmd FileType html,javascript,go,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
     " Uncomment out the block, c-style.
     " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType html,javascript,php nnoremap <leader>ub kddf{%jdd:w<cr>
+    autocmd FileType html,javascript,go,php nnoremap <leader>ub kddf{%jdd:w<cr>
     " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType html,javascript,php nnoremap <leader>uB jddk%kdd:w<cr>
+    autocmd FileType html,javascript,go,php nnoremap <leader>uB jddk%kdd:w<cr>
 augroup END
 
 augroup syntax
     autocmd!
     " JavaScript syntax helpers.
     " Typing 'iff' will create an empty if block and then put the cursor within the parens.
-    autocmd FileType html,javascript iabbrev <buffer> iff if () {<cr>}<esc>kt)
+    autocmd FileType html,javascript,go iabbrev <buffer> iff if () {<cr>}<esc>kt)
     " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
     autocmd FileType html,javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
     " Typing 'iife' will create an IIFE (es6).
     " Note `<<o` will dedent and then create a new line.
     autocmd FileType html,javascript iabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
     " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
+    autocmd FileType html,javascript,go iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
     " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
+    autocmd FileType html,javascript,go iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
     " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
+    autocmd FileType html,javascript,go iabbrev <buffer> func function () {<cr>};<esc>kf(a
 
     """""""""""""""""""""""""
     " Common abbreviations "
