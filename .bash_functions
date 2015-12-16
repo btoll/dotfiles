@@ -76,3 +76,7 @@ wifi_connect() {
     sudo dhclient wlan0
 }
 
+wifi_scan() {
+    sudo iw dev wlan0 scan | grep SSID
+}
+

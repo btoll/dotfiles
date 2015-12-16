@@ -10,8 +10,8 @@ fi
 
 # Turn on git bash completion.
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
-if [ -f ~/.git-completion.sh ]; then
-    . ~/.git-completion.sh
+if [ -f ~/git-completion.bash ]; then
+    . ~/git-completion.bash
 fi
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -38,9 +38,6 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Turn off error bells.
-setterm -blength 0
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -53,6 +50,9 @@ fi
 case "$TERM" in
     xterm-color) color_prompt=no;;
 esac
+
+# Set caps lock to ctrl key.
+#setxkbmap -option ctrl:nocaps
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -133,18 +133,9 @@ export EDITOR=vim
 # https://tr.opensuse.org/SDB:Using_gpg-agent
 eval "$(gpg-agent --daemon)"
 
-#export CDPATH=.:/usr/local/www/extjs:/usr/local/www/extjs/builds:/usr/local/www
-
-source /usr/local/src/cdargs-1.35/contrib/cdargs-bash.sh
-
-export SENCHA_CMD_3_0_0="/Users/btoll/bin/Sencha/Cmd/5.5.0.23"
+source ~/cdargs-bash.sh
 
 export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
 
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.0.0.42:/usr/local/mysql/bin:$PATH
-
-export PATH=/Users/btoll/bin/Sencha/Cmd/5.1.1.38:$PATH
-
-# I compiled a newer version of Vim (7.4) and put it in the below path instead of overwriting the native Vim.
-export PATH=/opt/local/bin:$PATH
+export PATH="$HOME/.node_modules_global/bin:/usr/local/go/bin:$PATH"
 
