@@ -30,6 +30,18 @@ bgrep() {
 #    sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
 #}
 
+# Setup script boilerplate.
+bp() {
+    if [ "$#" -lt 2 ]; then
+        echo "[ERROR] Not enough arguments!"
+        echo "Usage: bp <type> <filename>"
+    elif [ "$1" == "go" ]; then
+        vim -c ":normal igoBP" "$2"
+    elif [ "$1" == "html" ]; then
+        vim -c ":normal ihtmlBP" "$2"
+    fi
+}
+
 # Remove by inode.
 rmi() {
     for inode in "$@"; do

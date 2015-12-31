@@ -8,6 +8,11 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
+# If a fortune program is installed.
+if [ -f ~/.bash_fortune ]; then
+    . ~/.bash_fortune
+fi
+
 # Turn on git bash completion.
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
 if [ -f ~/git-completion.bash ]; then
@@ -112,11 +117,7 @@ bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as 
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # For engineering bash scripts.
-export SDK4=/usr/local/www/SDK4
-export SDK5=/usr/local/www/SDK5
-export SDK6=/usr/local/www/SDK6
 export WEBSERVER=/usr/local/www
-export BUGS=/usr/local/www/extjs/bugs
 export YUICOMPRESSOR=/usr/local/src/yuicompressor-2.4.8.jar
 export PYTHONPATH=$PYTHONPATH:/usr/local/bin
 
@@ -137,5 +138,7 @@ source ~/cdargs-bash.sh
 
 export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
 
-export PATH="$HOME/.node_modules_global/bin:/usr/local/go/bin:$PATH"
+export GOPATH=/usr/local/src/git/go
+
+export PATH="$GOPATH/bin:$HOME/.node_modules_global/bin:/usr/local/go/bin:$PATH"
 

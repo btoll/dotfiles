@@ -99,7 +99,8 @@ let g:tern_map_keys=1
 "<------------------------------------------------------------->
 " Crypto
 "<------------------------------------------------------------->
-set cryptmethod=blowfish
+set cryptmethod=blowfish2
+
 " http://stelfox.net/blog/2013/11/using-vim-as-your-password-manager/
 "autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 
@@ -234,24 +235,14 @@ augroup syntax
     """""""""""""""""""""""""
     " Common abbreviations "
     """""""""""""""""""""""""
+    " Go boilerplate.
+    autocmd FileType go iabbrev goBP package main<cr><cr>func main() {<cr>}<cr>
+
     " HTML boilerplate.
-    autocmd FileType html iabbrev boilerplate <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
+    autocmd FileType html iabbrev htmlBP <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
 
     " CSS and JavaScript resources.
-    autocmd FileType html iabbrev script4x <script type="text/javascript" src="http://localhost/extjs/builds/4.2.x/ext-debug.js"></script>
-    autocmd FileType html iabbrev script4 <script type="text/javascript" src="http://localhost/SDK4/extjs/ext.js"></script>
-    autocmd FileType html iabbrev link4 <link rel="stylesheet" type="text/css" href="http://localhost/SDK4/extjs/resources/css/ext-all.css" />
-    autocmd FileType html iabbrev nightly4 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/resources/ext-theme-classic/ext-theme-classic-all.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/ext-4.2-20141102/ext-all-debug.js"></script>
-
-    autocmd FileType html iabbrev script5 <script type="text/javascript" src="http://localhost/SDK5/ext/ext.js"></script>
-    autocmd FileType html iabbrev link5 <link rel="stylesheet" type="text/css" href="http://localhost/SDK5/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css" />
-    autocmd FileType html iabbrev nightly5 <link rel="stylesheet" href="https://qa.sencha.com/knightly/qa/s5-20141102/ext/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css"><cr><script type="text/javascript" src="https://qa.sencha.com/knightly/qa/s5-20141102/ext/build/ext-all-debug.js"></script>
-
-    autocmd FileType html iabbrev script6 <script type="text/javascript" src="http://localhost/SDK6/ext/ext.js"></script>
-    autocmd FileType html iabbrev link6 <link rel="stylesheet" type="text/css" href="http://localhost/SDK6/ext/build/classic/theme-classic/resources/theme-classic-all-debug.css" />
-
     autocmd FileType html iabbrev doctype <!DOCTYPE html>
-    autocmd FileType html iabbrev req Ext.require('*');
 
     "Misc
     "anti-Mitchell pattern - removes \s between properties and colons in objects.

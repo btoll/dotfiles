@@ -1,0 +1,4 @@
+if [ -f /usr/games/fortune ] && [ -f /usr/games/cowsay ]; then
+    /usr/games/fortune | /usr/games/cowsay
+fi
+

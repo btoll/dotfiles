@@ -19,7 +19,6 @@ alias brm="rm -rf"
 
 # Open vim and immediately invoke CtrlP plugin.
 alias vimP='vim -c ":CtrlP"'
-alias vimBP='vim -c ":normal iboilerplate"'
 
 # The Vim YouCompleteMe plugin needs the version of Vim to be at least 7.3.598, so
 # unfortunately I needed to download MacVim and alias its Vim binary.
@@ -33,7 +32,7 @@ alias hangman="python3 /usr/local/src/git/games/python3/hangman/hangman.py"
 
 # system aliases
 alias web_start="sudo python3 -m http.server 80 --cgi"
-alias web_stop='ps ax | grep "[p]ython3 -m http.server 80 --cgi" | sudo kill $(cut -d" " -f1)'
+alias web_stop='ps ax | grep "[p]ython3 -m http.server 80 --cgi" | sudo kill -9 $(cut -d" " -f2)'
 
 alias pcrypt="python3 /usr/local/src/git/pcrypt/pcrypt.py"
 alias utley="python3 /usr/local/src/git/utley/utley.py"
