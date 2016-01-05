@@ -1,4 +1,6 @@
-set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in the name properly
+" Make sure to escape the spaces in the name properly.
+set guifont=Source\ Code\ Pro\ for\ Powerline
+
 "<------------------------------------------------------------->
 " Plugins
 "<------------------------------------------------------------->
@@ -147,6 +149,8 @@ set showcmd "Show (partial) command in the last line of the screen.
 set timeoutlen=2000 "The time in milliseconds that is waited for a key code or mapped key sequence to complete.
 set expandtab "Spaces are used in indents with the '>' and '<' commands and when 'autoindent' is on.
 set number "Same as :print, but precede each line with its line number.
+"set foldmethod=indent "Auto-fold when opening.
+"set foldtext=""
 set dictionary+=/usr/share/dict/words "List of file names, separated by commas, that are used to lookup words for keyword completion commands |i_CTRL-X_CTRL-K|.
 set thesaurus+=/usr/share/thesaurus/mthesaur.txt "List of file names, separated by commas, that are used to lookup words for thesaurus completion commands |i_CTRL-X_CTRL-T|. (http://www.gutenberg.org/dirs/etext02/mthes10.zip)
 set tabstop=4 "Number of spaces that a <Tab> in the file counts for.

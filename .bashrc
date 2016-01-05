@@ -121,18 +121,13 @@ export WEBSERVER=/usr/local/www
 export YUICOMPRESSOR=/usr/local/src/yuicompressor-2.4.8.jar
 export PYTHONPATH=$PYTHONPATH:/usr/local/bin
 
-# https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html#Invoking-GPG_002dAGENT
-#GPG_TTY=$(tty)
-#export GPG_TTY
-
-# https://tr.opensuse.org/SDB:Using_gpg-agent
-#eval "$(gpg-agent --daemon)"
+# To make use of gpg-agent when not using X, uncomment #use-agent
+# in ~/.gnupg/gpg.conf
+eval "$(gpg-agent --daemon)"
+export GPG_TTY=$(tty)
 
 # Use vim as default editor instead of nano.
 export EDITOR=vim
-
-# https://tr.opensuse.org/SDB:Using_gpg-agent
-eval "$(gpg-agent --daemon)"
 
 source ~/cdargs-bash.sh
 
@@ -141,4 +136,6 @@ export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
 export GOPATH=/usr/local/src/git/go
 
 export PATH="$GOPATH/bin:$HOME/.node_modules_global/bin:/usr/local/go/bin:$PATH"
+
+export HISTIGNORE="stymie *:$HISTIGNORE"
 
