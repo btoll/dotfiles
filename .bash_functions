@@ -42,11 +42,28 @@ bp() {
     fi
 }
 
-# Remove by inode.
-rmi() {
-    for inode in "$@"; do
-        find . -inum "$inode" -exec rm -rf {} \; 2> /dev/null
-    done
+git_clone() {
+    if [ -z "$1" ]; then
+        echo "Usage: git_clone <REPO>"
+    else
+        git clone "$1"
+        git_hooks_install
+    fi
+}
+
+git_hooks_install() {
+    if [ -z "$GITHOOKS" ]; then
+        read -p "Location of git hooks (skip this step by exporting a \$GITHOOKS env var): " LOCATION
+
+        GITHOOKS="$LOCATION"
+    fi
+
+    cp -r "$GITHOOKS"/* .git/hooks/
+}
+
+git_init() {
+    git init
+    git_hooks_install
 }
 
 intersect() {
@@ -67,16 +84,11 @@ mcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-sencha_bootstrap() {
-    if [ "$#" -eq 0 ]; then
-        echo "Usage: sencha_bootstrap VERSION (either 4, 5 or 6)"
-    else
-        DIR=$([ "$1" -eq 4 ] && echo "extjs" || echo "ext")
-
-        eval pushd '$SDK'"$1/$DIR"
-        sencha ant bootstrap
-        popd
-    fi
+# Remove by inode.
+rmi() {
+    for inode in "$@"; do
+        find . -inum "$inode" -exec rm -rf {} \; 2> /dev/null
+    done
 }
 
 webify() {
