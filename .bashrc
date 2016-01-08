@@ -3,14 +3,19 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Function definitions.
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+# All user env vars.
+if [ -f ~/.bash_env ]; then
+    . ~/.bash_env
 fi
 
 # If a fortune program is installed.
 if [ -f ~/.bash_fortune ]; then
     . ~/.bash_fortune
+fi
+
+# Function definitions.
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
 fi
 
 # Turn on git bash completion.
@@ -25,14 +30,6 @@ fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-# ... or force ignoredups and ignorespace
-export HISTCONTROL=ignoreboth
-
-export GREP_OPTIONS='--color=auto' GREP_COLOR='100;8'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -92,9 +89,6 @@ fi
 #    ;;
 #esac
 
-# If you work with git, you've probably had that nagging sensation of not knowing what branch you are on. Worry no longer!
-export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -113,29 +107,5 @@ set -o vi
 #shopt -s cdspell
 bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as my cli editor (not necessary if vi is not set)
 
-# MacPorts Installer addition on 2011-07-11_at_12:55:29: adding an appropriate PATH variable for use with MacPorts.
-#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-# For engineering bash scripts.
-export WEBSERVER=/usr/local/www
-export YUICOMPRESSOR=/usr/local/src/yuicompressor-2.4.8.jar
-export PYTHONPATH=$PYTHONPATH:/usr/local/bin
-
-# To make use of gpg-agent when not using X, uncomment #use-agent
-# in ~/.gnupg/gpg.conf
-eval "$(gpg-agent --daemon)"
-export GPG_TTY=$(tty)
-
-# Use vim as default editor instead of nano.
-export EDITOR=vim
-
 source ~/cdargs-bash.sh
-
-export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
-
-export GOPATH=/usr/local/src/git/go
-
-export PATH="$GOPATH/bin:$HOME/.node_modules_global/bin:/usr/local/go/bin:$PATH"
-
-export HISTIGNORE="stymie *:$HISTIGNORE"
 
