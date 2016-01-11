@@ -1,19 +1,28 @@
+" Required Vundle configs BEGIN.
+set nocompatible
+filetype off
+
+" Set the runtime path to include vundle and initialize.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage itself.
+Plugin 'VundleVim/Vundle.vim'
+
 " Make sure to escape the spaces in the name properly.
 set guifont=Source\ Code\ Pro\ for\ Powerline
 
 "<------------------------------------------------------------->
 " Plugins
 "<------------------------------------------------------------->
-" https://github.com/tpope/vim-pathogen
-call pathogen#infect()
-execute pathogen#helptags()
-
+Plugin 'mattn/gist-vim.git'
 " https://github.com/mattn/gist-vim.git
 " Instructions
 "   1. git config --global github.user xxx@xxx.com (writes to ~/.gitconfig).
 "   2. Install https://github.com/mattn/webapi-vim in ~/.vim/bundle (assuming Pathogen) to resolve errors.
 "   3. Enter github password when prompted when creating gist (saves oAuth token in ~/.gist-vim).
 
+Plugin 'tpope/vim-fugitive'
 " https://github.com/tpope/vim-fugitive
 " set statusline=%{fugitive#statusline()}
 " Open up results of Ggrep and Glog in the quickfix window.
@@ -25,9 +34,11 @@ execute pathogen#helptags()
 " Here’s an autocommand that prevents this from becomming an issue:
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+Plugin 'maksimr/vim-jsbeautify'
 " https://github.com/maksimr/vim-jsbeautify
 map <c-f>:call JsBeautify()<cr>
 
+Plugin 'scrooloose/syntastic'
 " https://github.com/scrooloose/syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -40,16 +51,20 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 
 
+Plugin 'kien/ctrlp.vim'
 " https://github.com/kien/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+" Plugin 'marijnh/tern_for_vim'
 " https://github.com/marijnh/tern_for_vim
 let g:tern_map_keys=1
 
+Plugin 'tpope/vim-surround'
 " Text Objects
 " https://github.com/tpope/vim-surround
 " https://github.com/vim-scripts/argtextobj.vim
 
+Plugin 'bitc/vim-bad-whitespace'
 " bad-whitespace
 " https://github.com/bitc/vim-bad-whitespace
 
@@ -57,6 +72,7 @@ let g:tern_map_keys=1
 " http://sjl.bitbucket.org/gundo.vim/
 let g:gundo_preview_bottom = 1
 
+Plugin 'bling/vim-airline'
 " vim-airline
 " https://github.com/bling/vim-airline
 set laststatus=2
@@ -80,23 +96,28 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
+Plugin 'flazz/vim-colorschemes'
 " vim-colorschemes
 " https://github.com/flazz/vim-colorschemes
 
+Plugin 'ap/vim-css-color'
 " vim-css-color
 " https://github.com/ap/vim-css-color
 
 " vim-eunuch
 " git@github.com:tpope/vim-eunuch.git
 
+Plugin 'easymotion/vim-easymotion'
 " vim-easymotion
 " https://github.com/easymotion/vim-easymotion
 
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
 
-" https://github.com/marijnh/tern_for_vim
-let g:tern_map_keys=1
+call vundle#end()
+filetype plugin indent on
+
+" Required Vundle configs END.
 
 "<------------------------------------------------------------->
 " Crypto
