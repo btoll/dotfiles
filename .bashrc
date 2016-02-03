@@ -1,4 +1,3 @@
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -18,14 +17,14 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-if [ -f ~/cdargs-bash.sh ]; then
-    . ~/cdargs-bash.sh
+if [ -f ~/.cdargs-bash.sh ]; then
+    . ~/.cdargs-bash.sh
 fi
 
 # Turn on git bash completion.
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
-if [ -f ~/git-completion.bash ]; then
-    . ~/git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
 fi
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -35,14 +34,20 @@ fi
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
 # append to the history file, don't overwrite it
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# Turn on recursive globbing.
+if [ "${BASH_VERSINFO}" -ge 4 ]; then
+    shopt -s globstar
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -109,5 +114,7 @@ set -o vi
 #shopt -s cdable_vars
 #www=/usr/local/www
 #shopt -s cdspell
-bind -m vi-insert "\C-l":clear-screen #allows to clear screen when vi is set as my cli editor (not necessary if vi is not set)
+
+#allows to clear screen when vi is set as my cli editor (not necessary if vi is not set)
+bind -m vi-insert "\C-l":clear-screen
 

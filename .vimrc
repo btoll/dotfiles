@@ -1,3 +1,5 @@
+let mapleader=","
+
 " Required Vundle configs BEGIN.
 set nocompatible
 filetype off
@@ -28,12 +30,6 @@ Plugin 'tpope/vim-fugitive'
 " Open up results of Ggrep and Glog in the quickfix window.
 " autocmd QuickFixCmdPost *grep* cwindow
 
-" http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
-" Each time you open a git object using fugitive it creates a new buffer.
-" This means that your buffer listing can quickly become swamped with fugitive buffers.
-" Here’s an autocommand that prevents this from becomming an issue:
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
 Plugin 'maksimr/vim-jsbeautify'
 " https://github.com/maksimr/vim-jsbeautify
 map <c-f>:call JsBeautify()<cr>
@@ -50,10 +46,23 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 
-
 Plugin 'kien/ctrlp.vim'
 " https://github.com/kien/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Open CtrlP plugin in buffer view.
+nnoremap <leader>b :CtrlPBuffer<cr>
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " Plugin 'marijnh/tern_for_vim'
 " https://github.com/marijnh/tern_for_vim
@@ -114,6 +123,11 @@ Plugin 'easymotion/vim-easymotion'
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
 
+Plugin 'tpope/vim-repeat.git'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -138,44 +152,50 @@ set cryptmethod=blowfish2
 "  n... :  where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
-" Add the main function that restores the cursor position and its autocmd so that it gets triggered:
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
-let mapleader=","
-
-"<------------------------------------------------------------------------------------->
-"<------------------------------------------------------------------------------------->
-
 syntax on
 colors desert
 "colorscheme zen
 
-set ruler "Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position of the displayed text in the file is shown on the far right.
-set autoindent "Copy indent from current line when starting a new line.
-set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
-set ignorecase "If the 'ignorecase' option is on, the case of normal letters is ignored.  'smartcase' can be set to ignore case when the pattern contains lowercase letters only.
-set smartcase "Override the 'ignorecase' option if the search pattern contains upper case characters.
-set incsearch "While typing a search command, show where the pattern, as it was typed so far, matches.  The matched string is highlighted.
-set hlsearch "When there is a previous search pattern, highlight all its matches.
-set showcmd "Show (partial) command in the last line of the screen.
-set timeoutlen=2000 "The time in milliseconds that is waited for a key code or mapped key sequence to complete.
-set expandtab "Spaces are used in indents with the '>' and '<' commands and when 'autoindent' is on.
-set number "Same as :print, but precede each line with its line number.
+" Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position
+" of the displayed text in the file is shown on the far right.
+set ruler
+
+" If the 'ignorecase' option is on, the case of normal letters is ignored.  'smartcase' can be set to ignore case when the
+" pattern contains lowercase letters only.
+set ignorecase
+
+" Override the 'ignorecase' option if the search pattern contains upper case characters.
+set smartcase
+
+" While typing a search command, show where the pattern, as it was typed so far, matches.  The matched string is highlighted.
+set incsearch
+
+" When there is a previous search pattern, highlight all its matches.
+set hlsearch
+
+" Show (partial) command in the last line of the screen.
+set showcmd
+
+" The time in milliseconds that is waited for a key code or mapped key sequence to complete.
+set timeoutlen=1000
+
 "set foldmethod=indent "Auto-fold when opening.
 "set foldtext=""
-set dictionary+=/usr/share/dict/words "List of file names, separated by commas, that are used to lookup words for keyword completion commands |i_CTRL-X_CTRL-K|.
-set thesaurus+=/usr/share/thesaurus/mthesaur.txt "List of file names, separated by commas, that are used to lookup words for thesaurus completion commands |i_CTRL-X_CTRL-T|. (http://www.gutenberg.org/dirs/etext02/mthes10.zip)
-set tabstop=4 "Number of spaces that a <Tab> in the file counts for.
-set visualbell "Turn off error sounds and screen flashing.
+
+" List of file names, separated by commas, that are used to lookup words for keyword completion commands |i_CTRL-X_CTRL-K|.
+set dictionary+=/usr/share/dict/words
+
+" List of file names, separated by commas, that are used to lookup words for thesaurus completion commands |i_CTRL-X_CTRL-T|.
+" (http://www.gutenberg.org/dirs/etext02/mthes10.zip)
+set thesaurus+=/usr/share/thesaurus/mthesaur.txt
+
+" Turn on line numbers.
+set number
+
+" Turn off error sounds and screen flashing.
+set visualbell
+
+set hidden
 
 " Disable the arrow keys.
 nnoremap <up> <nop>
@@ -191,96 +211,23 @@ inoremap <right> <nop>
 " inoremap <buffer> <esc> <nop>
 inoremap jk <esc>
 
-noremap <C-T> <Esc>:tabnew<cr>
-
-" Quickly open up my ~/.vimrc file in a vertically split window so I can add new things to it on the fly.
-nnoremap <leader>ev :vsp $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <c-t> <esc>:tabnew<cr>
 
 " Clear search highlighting.
 nnoremap <leader><space> :noh<cr>
 
-" Toggle!
-nnoremap <leader>p :setlocal paste!<cr>
+""" Toggle!
+" Show invisible characters.
+nnoremap <leader>l :setlocal list!<cr>
 nnoremap <leader>n :setlocal number!<cr>
+nnoremap <leader>p :setlocal paste!<cr>
+nnoremap <leader>r :setlocal relativenumber!<cr>
+nnoremap <leader>s :setlocal spell!<cr>
+
+nnoremap <leader>v :tabnew $MYVIMRC<cr>
 
 " List the cwd in a vertically-split window.
-"   % = the name of the current file
-"   p = gives its full path
-"   h = gives its dir (the 'head' of the full path)
-nnoremap <leader>ll :vsp %:p:h<cr>
-
-augroup commenting
-    autocmd!
-    " Comment/uncomment out the visual block and clear search highlighting.
-    autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
-    autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
-    " autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
-    " autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
-    autocmd FileType sh,php,python vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
-    autocmd FileType sh,php,python vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
-
-    " Comment/uncomment out the single line.
-    autocmd FileType javascript,go nnoremap <leader>c I//<esc>:w<cr>
-    autocmd FileType javascript,go nnoremap <leader>C ^xx:w<cr>
-    autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>:w<cr>
-    autocmd FileType html nnoremap <leader>C ^4x$xxx:w<cr>
-    autocmd FileType sh,php,python nnoremap <leader>c I#<esc>:w<cr>
-    autocmd FileType sh,php,python nnoremap <leader>C ^x:w<cr>
-
-    " Comment out the block, c-style.
-    " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType html,javascript,go,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
-    " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType html,javascript,go,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
-    " Uncomment out the block, c-style.
-    " From top/down (Start with your cursor anywhere on the first line)...
-    autocmd FileType html,javascript,go,php nnoremap <leader>ub kddf{%jdd:w<cr>
-    " ...and from bottom/up (cursor must be on the closing bracket).
-    autocmd FileType html,javascript,go,php nnoremap <leader>uB jddk%kdd:w<cr>
-augroup END
-
-augroup syntax
-    autocmd!
-    " JavaScript syntax helpers.
-    " Typing 'iff' will create an empty if block and then put the cursor within the parens.
-    autocmd FileType html,javascript,go iabbrev <buffer> iff if () {<cr>}<esc>kt)
-    " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
-    autocmd FileType html,javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
-    " Typing 'iife' will create an IIFE (es6).
-    " Note `<<o` will dedent and then create a new line.
-    autocmd FileType html,javascript iabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
-    " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
-    " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
-    " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-    autocmd FileType html,javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
-
-    """""""""""""""""""""""""
-    " Common abbreviations "
-    """""""""""""""""""""""""
-    " Go boilerplate.
-    autocmd FileType go iabbrev goBP package main<cr><cr>func main() {<cr>}<cr>
-
-    " HTML boilerplate.
-    autocmd FileType html iabbrev htmlBP <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
-
-    " CSS and JavaScript resources.
-    autocmd FileType html iabbrev doctype <!DOCTYPE html>
-
-    "Misc
-    "anti-Mitchell pattern - removes \s between properties and colons in objects.
-    autocmd FileType html,javascript nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
-augroup END
-
-" There are references to Jira tickets littered all over the codebase, i.e., 'see EXTJS-14745'.
-" To open in the default browser, simply position the cursor anywhere within 'EXTJS'.
-nnoremap <leader>go 3yiw :silent :!open https://sencha.jira.com/browse/<c-r>0<cr> :redraw!<cr>
-
-" Save fingers from having to type 'debugger;' over and over!
-nnoremap <leader>d odebugger;<esc>:w<cr>
-nnoremap <leader>D Odebugger;<esc>:w<cr>
+nnoremap <leader>ll :Vex<cr>
 
 " Auto-indent blocks.
 nnoremap <leader>i V$%>
@@ -289,17 +236,146 @@ nnoremap <leader>I V$%<
 " Change all instances of " to ' in a line and clear search highlighting.
 nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
 
-" Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
-nnoremap <leader>log oconsole.log(<esc>pa);<esc>
-nnoremap <leader>gh oconsole.log('got here');<esc>
+" Change to directory of the current file.
+nnoremap <leader>cwd :cd %:p:h<cr>
 
 " http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
-noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
-
-" Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/a/7078429
-cmap w!! w !sudo tee > /dev/null %
+"cmap w!! w !sudo tee > /dev/null %
+
+" Vim needs to have been compiled with the autocmd flag. Do :version and verify +autocmd.
+if has("autocmd")
+  augroup COMMENTING
+      autocmd!
+      " Comment/uncomment out the single line.
+      autocmd FileType javascript,go nnoremap <leader>c I//<esc>:w<cr>
+      autocmd FileType javascript,go nnoremap <leader>C ^xx:w<cr>
+
+      autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>:w<cr>
+      autocmd FileType html nnoremap <leader>C ^4x$xxx:w<cr>
+
+      autocmd FileType sh,php,python,coffee nnoremap <leader>c I#<esc>:w<cr>
+      autocmd FileType sh,php,python,coffee nnoremap <leader>C ^x:w<cr>
+
+      autocmd FileType vim nnoremap <leader>c I"<esc>:w<cr>
+      autocmd FileType vim nnoremap <leader>C ^x:w<cr>
+
+      " Comment/uncomment out the visual block and clear search highlighting.
+      autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
+      autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
+
+      " autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
+      " autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
+      autocmd FileType sh,php,python,coffee vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
+      autocmd FileType sh,php,python,coffee vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
+
+      " Comment out the block, c-style.
+      " From top/down (Start with your cursor anywhere on the first line)...
+      autocmd FileType html,javascript,go,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
+      " ...and from bottom/up (cursor must be on the closing bracket).
+      autocmd FileType html,javascript,go,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
+      " Uncomment out the block, c-style.
+      " From top/down (Start with your cursor anywhere on the first line)...
+      autocmd FileType html,javascript,go,php nnoremap <leader>ub kddf{%jdd:w<cr>
+      " ...and from bottom/up (cursor must be on the closing bracket).
+      autocmd FileType html,javascript,go,php nnoremap <leader>uB jddk%kdd:w<cr>
+  augroup END
+
+  augroup MISC
+    " Immediately apply any changes to .vimrc after writing.
+    autocmd BufWritePost .vimrc source $MYVIMRC
+
+    " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
+    " Each time you open a git object using fugitive it creates a new buffer.
+    " This means that your buffer listing can quickly become swamped with fugitive buffers.
+    " Here’s an autocommand that prevents this from becomming an issue:
+    autocmd BufReadPost fugitive://* set bufhidden=delete
+
+    " Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
+    " Add the main function that restores the cursor position and its autocmd so that it gets triggered:
+    function! ResCur()
+      if line("'\"") <= line("$")
+        normal! g`"
+        return 1
+      endif
+    endfunction
+
+    autocmd BufWinEnter * call ResCur()
+  augroup END
+
+  augroup SYNTAX
+      autocmd!
+      " JavaScript syntax helpers.
+      " Typing 'iff' will create an empty if block and then put the cursor within the parens.
+      autocmd FileType html,javascript,go iabbrev <buffer> iff if () {<cr>}<esc>kt)
+
+      " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
+      autocmd FileType html,javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
+
+      " Typing 'iife' will create an IIFE (es6).
+      " Note `<<o` will dedent and then create a new line.
+      autocmd FileType html,javascript iabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
+
+      " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then
+      " put the cursor within the first paren in insert mode.
+      autocmd FileType html,javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
+
+      " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
+      autocmd FileType html,javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
+
+      " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
+      autocmd FileType html,javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
+
+      " Save typing 'debugger' all the time!
+      autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>:w<cr>
+      autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>:w<cr>
+
+      autocmd FileType coffee nnoremap <leader>d odebugger<esc>:w<cr>
+      autocmd FileType coffee nnoremap <leader>D Odebugger<esc>:w<cr>
+
+      " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
+      autocmd FileType html,javascript nnoremap <leader>log oconsole.log(<c-r>");<esc>
+      autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
+
+      " Got here!
+      autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
+      autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
+
+      """"""""""""""""""""""""
+      " Common abbreviations "
+      """"""""""""""""""""""""
+      " Go boilerplate (also used in `bp` bash function).
+      autocmd FileType go iabbrev goBP package main<cr><cr>func main() {<cr>}<cr>
+
+      " HTML boilerplate (also used in `bp` bash function).
+      autocmd FileType html iabbrev htmlBP <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
+
+      " CSS and JavaScript resources.
+      autocmd FileType html iabbrev doctype <!DOCTYPE html>
+      autocmd FileType html iabbrev scripttag <script src="" charset="utf-8"></script>
+      autocmd FileType html iabbrev linktag <link href="" rel="stylesheet" type="text/css">
+
+      " anti-Mitchell pattern - removes \s between properties and colons in objects.
+      autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
+  augroup END
+
+  augroup WHITESPACE
+    " autoindent = Copy indent from current line when starting a new line.
+    " shiftwidth = Number of spaces to use for each step of (auto)indent.
+    " expandtab = Spaces are used in indents with the '>' and '<' commands and when 'autoindent' is on.
+    " tabstop = Number of spaces that a <Tab> in the file counts for.
+    autocmd!
+
+    autocmd FileType conf,javascript,go,python,php,sh,html setlocal autoindent expandtab shiftwidth=4 tabstop=4
+    autocmd FileType coffee setlocal autoindent expandtab shiftwidth=2 tabstop=2
+
+    " Set default syntax for files with no extension.
+    autocmd BufNewFile,BufRead * if &filetype == '' | set filetype=sh | endif
+  augroup END
+endif
 

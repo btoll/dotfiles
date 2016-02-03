@@ -1,28 +1,17 @@
-# http://fitnr.com/showing-a-bash-spinner.html
-spinner() {
-    local pid=$1
-    local delay=0.2
-    local spinstr='|/-\'
-
-    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-        local temp=${spinstr#?}
-        printf " [%c]  " "$spinstr"
-
-        local spinstr=$temp${spinstr%"$temp"}
-        sleep $delay
-
-        printf "\b\b\b\b\b\b"
-    done
-
-    printf "    \b\b\b\b"
-}
-
 bfind() {
     vim -p $(find "$1" -type f -name "$2")
 }
 
 bgrep() {
     vim -p "+/$1" $(grep -riIl "$1" "$2" | uniq)
+}
+
+cdl() {
+    if [ -z "$1" ]; then
+        echo "Usage: cdl <DIR>"
+    else
+        cd "$1" && ls -l
+    fi
 }
 
 # Deprecating this in favor of https://github.com/btoll/dump_describes node module.
@@ -91,8 +80,17 @@ rmi() {
     done
 }
 
-webify() {
-    open "http://localhost/extjs/bugs/$1"
+# Open vim and immediately invoke CtrlP plugin.
+vimp() {
+    vim -c ":CtrlP"
+}
+
+webstart() {
+	sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
+}
+
+webstop() {
+    ps ax | ag "[p]ython3 -m http.server 80 --cgi --bind 127.0.0.1" | sudo kill -9 $(cut -d" " -f1)
 }
 
 wifi_connect() {
@@ -101,6 +99,6 @@ wifi_connect() {
 }
 
 wifi_scan() {
-    sudo iw dev wlan0 scan | grep SSID
+    sudo iw dev wlan0 scan | ag SSID
 }
 
