@@ -250,38 +250,35 @@ nnoremap <leader>cwd :cd %:p:h<cr>
 if has("autocmd")
   augroup COMMENTING
       autocmd!
-      " Comment/uncomment out the single line.
-      autocmd FileType javascript,go nnoremap <leader>c I//<esc>:w<cr>
-      autocmd FileType javascript,go nnoremap <leader>C ^xx:w<cr>
+      autocmd FileType html nnoremap <leader>c 0i<!--<esc>A--><esc>:w<cr>
+      autocmd FileType html nnoremap <leader>C 04x$xxx:w<cr>
+"      autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
+"      autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
 
-      autocmd FileType html nnoremap <leader>c I<!--<esc>A--><esc>:w<cr>
-      autocmd FileType html nnoremap <leader>C ^4x$xxx:w<cr>
+      autocmd FileType vim nnoremap <leader>c 0i"<esc>:w<cr>
+      autocmd FileType vim nnoremap <leader>C 0x:w<cr>
 
-      autocmd FileType sh,php,python,coffee nnoremap <leader>c I#<esc>:w<cr>
-      autocmd FileType sh,php,python,coffee nnoremap <leader>C ^x:w<cr>
-
-      autocmd FileType vim nnoremap <leader>c I"<esc>:w<cr>
-      autocmd FileType vim nnoremap <leader>C ^x:w<cr>
-
-      " Comment/uncomment out the visual block and clear search highlighting.
+      " Comment/uncomment out and clear search highlighting for visual blocks.
+      autocmd FileType javascript,go nnoremap <leader>c 0i//:w<cr>
+      autocmd FileType javascript,go nnoremap <leader>C 02x:w<cr>
       autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
       autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
 
-      " autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
-      " autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
-      autocmd FileType sh,php,python,coffee vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
-      autocmd FileType sh,php,python,coffee vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
+      autocmd FileType coffee,php,python,sh nnoremap <leader>c 0i#<esc>:w<cr>
+      autocmd FileType coffee,php,python,sh nnoremap <leader>C 0x:w<cr>
+      autocmd FileType coffee,php,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
+      autocmd FileType coffee,php,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
 
       " Comment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType html,javascript,go,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType html,javascript,go,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
       " Uncomment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType html,javascript,go,php nnoremap <leader>ub kddf{%jdd:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>ub kddf{%jdd:w<cr>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType html,javascript,go,php nnoremap <leader>uB jddk%kdd:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>uB jddk%kdd:w<cr>
   augroup END
 
   augroup MISC
