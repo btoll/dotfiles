@@ -177,7 +177,7 @@ set hlsearch
 set showcmd
 
 " The time in milliseconds that is waited for a key code or mapped key sequence to complete.
-set timeoutlen=1000
+set timeoutlen=500
 
 "set foldmethod=indent "Auto-fold when opening.
 "set foldtext=""
@@ -271,14 +271,14 @@ if has("autocmd")
 
       " Comment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType go,html,javascript,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>bc O/*<esc>jf{%o*/<esc>:w<cr>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType go,html,javascript,php nnoremap <leader>B o*/<esc>k%O/*<esc>:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>Bc o*/<esc>k%O/*<esc>:w<cr>
       " Uncomment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType go,html,javascript,php nnoremap <leader>ub kddf{%jdd:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>ubc kddf{%jdd:w<cr>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType go,html,javascript,php nnoremap <leader>uB jddk%kdd:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>uBc jddk%kdd:w<cr>
   augroup END
 
   augroup MISC
