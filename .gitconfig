@@ -10,8 +10,8 @@
 	st = status
 	ci = commit
 	last = log -1 HEAD
-	get-hash = !sh -c 'git show $0 | grep -m 1 commit | cut -c8-'
-	goto = !sh -c 'git show $0 | grep -m 1 commit | cut -c8- | xargs git co'
+	get-hash = rev-parse
+	goto = !sh -c 'git rev-parse $0 | xargs git co'
 	unmodify = checkout --
 	unstage = reset HEAD --
 [core]
@@ -28,7 +28,7 @@
 	conflictstyle = diff3
 	renamelimit = 9220
 [hooks "pre-commit"]
-    hook = EOF.sh
-    hook = debugger.sh
-    hook = eslint.sh
+        hook = EOF.sh
+        hook = debugger.sh
+        hook = eslint.sh
 
