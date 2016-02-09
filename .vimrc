@@ -1,4 +1,4 @@
-let mapleader=","
+let mapleader=','
 
 " Required Vundle configs BEGIN.
 set nocompatible
@@ -127,6 +127,7 @@ Plugin 'tpope/vim-repeat.git'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'mhinz/vim-startify'
 
 call vundle#end()
 filetype plugin indent on
@@ -239,12 +240,33 @@ nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
 " Change to directory of the current file.
 nnoremap <leader>cwd :cd %:p:h<cr>
 
-" http://net.tutsplus.com/tutorials/other/vim-essential-plugin-markdown-to-html/
-"noremap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
-
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " http://stackoverflow.com/a/7078429
 "cmap w!! w !sudo tee > /dev/null %
+
+" TODO
+function! G(...)
+    let file = a:0 ? a:1 : expand('%')
+    let blame = a:0 == 2 && a:2 == 1 ? ' --blame' : ''
+    let branch = a:0 == 3 ? (' --branch ' . a:3) : ''
+
+    execute 'silent ! git hub -f ' . l:file . l:blame . l:branch
+    redraw!
+endfunction
+
+" Triggers blame view for current file.
+function! Gbl()
+    call G('%', 1)
+endfunction
+
+" This allows to specify a different branch for current file.
+function! Gbr(branch)
+    call G('%', 0, a:branch)
+endfunction
+
+nnoremap <leader>g :call G()<cr>
+" This mapping will turn on blame view.
+nnoremap <leader>gb :call Gbl()<cr>
 
 " Vim needs to have been compiled with the autocmd flag. Do :version and verify +autocmd.
 if has("autocmd")
@@ -264,10 +286,10 @@ if has("autocmd")
       autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
       autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
 
-      autocmd FileType coffee,php,python,sh nnoremap <leader>c 0i#<esc>:w<cr>
-      autocmd FileType coffee,php,python,sh nnoremap <leader>C 0x:w<cr>
-      autocmd FileType coffee,php,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
-      autocmd FileType coffee,php,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
+      autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>c 0i#<esc>:w<cr>
+      autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>C 0x:w<cr>
+      autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
+      autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
 
       " Comment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
@@ -338,10 +360,12 @@ if has("autocmd")
       " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
       autocmd FileType html,javascript nnoremap <leader>log oconsole.log(<c-r>");<esc>
       autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
+      autocmd FileType sh nnoremap <leader>log oecho <c-r>"<esc>
 
       " Got here!
       autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
       autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
+      autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
 
       """"""""""""""""""""""""
       " Common abbreviations "
@@ -368,7 +392,7 @@ if has("autocmd")
     " tabstop = Number of spaces that a <Tab> in the file counts for.
     autocmd!
 
-    autocmd FileType conf,javascript,go,python,php,sh,html setlocal autoindent expandtab shiftwidth=4 tabstop=4
+    autocmd FileType conf,javascript,go,html,python,php,sh,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
     autocmd FileType coffee setlocal autoindent expandtab shiftwidth=2 tabstop=2
 
     " Set default syntax for files with no extension.
