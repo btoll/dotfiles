@@ -272,35 +272,35 @@ nnoremap <leader>gb :call Gbl()<cr>
 if has("autocmd")
   augroup COMMENTING
       autocmd!
-      autocmd FileType html nnoremap <leader>c 0i<!--<esc>A--><esc>:w<cr>
-      autocmd FileType html nnoremap <leader>C 04x$xxx:w<cr>
-"      autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>:w<cr>
-"      autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>:w<cr>
+      autocmd FileType html nnoremap <leader>c 0i<!--<esc>A--><esc>
+      autocmd FileType html nnoremap <leader>C 04x$xxx<cr>
+"      autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>
+"      autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>
 
-      autocmd FileType vim nnoremap <leader>c 0i"<esc>:w<cr>
-      autocmd FileType vim nnoremap <leader>C 0x:w<cr>
+      autocmd FileType vim nnoremap <leader>c 0i"<esc>
+      autocmd FileType vim nnoremap <leader>C 0x<cr>
 
       " Comment/uncomment out and clear search highlighting for visual blocks.
-      autocmd FileType javascript,go nnoremap <leader>c 0i//:w<cr>
-      autocmd FileType javascript,go nnoremap <leader>C 02x:w<cr>
-      autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>:w<cr>
-      autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>:w<cr>
+      autocmd FileType javascript,go nnoremap <leader>c 0i//<cr>
+      autocmd FileType javascript,go nnoremap <leader>C 02x<cr>
+      autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
+      autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-      autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>c 0i#<esc>:w<cr>
-      autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>C 0x:w<cr>
-      autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>:w<cr>
-      autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>:w<cr>
+      autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>c 0i#<esc>
+      autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>C 0x<cr>
+      autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+      autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
       " Comment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType go,html,javascript,php nnoremap <leader>bc O/*<esc>jf{%o*/<esc>:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>bc O/*<esc>jf{%o*/<esc>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType go,html,javascript,php nnoremap <leader>Bc o*/<esc>k%O/*<esc>:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>Bc o*/<esc>k%O/*<esc>
       " Uncomment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType go,html,javascript,php nnoremap <leader>ubc kddf{%jdd:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>ubc kddf{%jdd<cr>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType go,html,javascript,php nnoremap <leader>uBc jddk%kdd:w<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>uBc jddk%kdd<cr>
   augroup END
 
   augroup MISC
@@ -351,11 +351,11 @@ if has("autocmd")
       autocmd FileType html,javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
 
       " Save typing 'debugger' all the time!
-      autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>:w<cr>
-      autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>:w<cr>
+      autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
+      autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
 
-      autocmd FileType coffee nnoremap <leader>d odebugger<esc>:w<cr>
-      autocmd FileType coffee nnoremap <leader>D Odebugger<esc>:w<cr>
+      autocmd FileType coffee nnoremap <leader>d odebugger<esc>
+      autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
 
       " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
       autocmd FileType html,javascript nnoremap <leader>log oconsole.log(<c-r>");<esc>
