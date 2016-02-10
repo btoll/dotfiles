@@ -238,24 +238,31 @@ nnoremap <leader>cwd :cd %:p:h<cr>
 " http://stackoverflow.com/a/7078429
 "cmap w!! w !sudo tee > /dev/null %
 
-" TODO
 function! G(...)
     let file = a:0 ? a:1 : expand('%')
-    let blame = a:0 == 2 && a:2 == 1 ? ' --blame' : ''
-    let branch = a:0 == 3 ? (' --branch ' . a:3) : ''
+    let blame = (a:0 && a:2 == 1) ? ' --blame' : ''
+    let branch = a:0 > 2 && a:3 != '' ? (' --branch ' . a:3) : ''
+    let range = a:0 > 3 ? (' --range ' . a:4) : ''
 
-    execute 'silent ! git hub -f ' . l:file . l:blame . l:branch
+    execute 'silent ! git hub -f ' . l:file . l:blame . l:branch . l:range
     redraw!
 endfunction
 
 " Triggers blame view for current file.
-function! Gbl()
+function! Gblame()
     call G('%', 1)
 endfunction
 
 " This allows to specify a different branch for current file.
-function! Gbr(branch)
+function! Gbranch(branch)
     call G('%', 0, a:branch)
+endfunction
+
+function! Grange(...) range
+    let range = 'L' . a:firstline . '-L' . a:lastline
+    let branch = a:0 == 1 ? a:1 : ''
+
+    call G('%', 0, l:branch, l:range)
 endfunction
 
 nnoremap <leader>g :call G()<cr>
