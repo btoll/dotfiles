@@ -24,12 +24,6 @@ Plugin 'mattn/gist-vim.git'
 "   2. Install https://github.com/mattn/webapi-vim in ~/.vim/bundle (assuming Pathogen) to resolve errors.
 "   3. Enter github password when prompted when creating gist (saves oAuth token in ~/.gist-vim).
 
-Plugin 'tpope/vim-fugitive'
-" https://github.com/tpope/vim-fugitive
-" set statusline=%{fugitive#statusline()}
-" Open up results of Ggrep and Glog in the quickfix window.
-" autocmd QuickFixCmdPost *grep* cwindow
-
 Plugin 'maksimr/vim-jsbeautify'
 " https://github.com/maksimr/vim-jsbeautify
 map <c-f>:call JsBeautify()<cr>
@@ -306,12 +300,6 @@ if has("autocmd")
   augroup MISC
     " Immediately apply any changes to .vimrc after writing.
     autocmd BufWritePost .vimrc source $MYVIMRC
-
-    " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
-    " Each time you open a git object using fugitive it creates a new buffer.
-    " This means that your buffer listing can quickly become swamped with fugitive buffers.
-    " Here’s an autocommand that prevents this from becomming an issue:
-    autocmd BufReadPost fugitive://* set bufhidden=delete
 
     " Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
