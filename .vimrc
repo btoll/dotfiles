@@ -202,6 +202,10 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" http://stackoverflow.com/a/21761782
+nnoremap ; :
+vnoremap ; :
+
 " Disable the <esc> key in insert mode and map it to 'jk'.
 " inoremap <buffer> <esc> <nop>
 inoremap jk <esc>
