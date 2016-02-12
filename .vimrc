@@ -252,26 +252,35 @@ function! G(...)
     redraw!
 endfunction
 
-" Triggers blame view for current file.
-function! Gblame()
-    call G('%', 1)
+" Triggers blame view for current file with an optional a:branch argument.
+function! Gblame(...)
+    let branch = a:0 ? a:1 : ''
+
+    call G('%', 1, l:branch)
 endfunction
 
-" This allows to specify a different branch for current file.
-function! Gbranch(branch)
-    call G('%', 0, a:branch)
+" This allows specifying a different branch for the current file with an
+" optional a:blame argument.
+function! Gbranch(...)
+    let branch = a:0 ? a:1 : ''
+    let blame = a:0 > 1 ? a:2 : 0
+
+    call G('%', l:blame, l:branch)
 endfunction
 
+" Highlight a visual range for the current file. a:blame and a:branch are
+" optional arguments.
 function! Grange(...) range
     let range = 'L' . a:firstline . '-L' . a:lastline
-    let branch = a:0 == 1 ? a:1 : ''
+    let blame = a:0 ? a:1 : 0
+    let branch = a:0 > 1 ? a:2 : ''
 
-    call G('%', 0, l:branch, l:range)
+    call G('%', l:blame, l:branch, l:range)
 endfunction
 
 nnoremap <leader>g :call G()<cr>
-" This mapping will turn on blame view.
-nnoremap <leader>gb :call Gbl()<cr>
+nnoremap <leader>gbl :call Gblame()<cr>
+vnoremap <leader>gr :call Grange()<cr>
 
 " Vim needs to have been compiled with the autocmd flag. Do :version and verify +autocmd.
 if has("autocmd")
