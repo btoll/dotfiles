@@ -90,7 +90,7 @@ webstart() {
 }
 
 webstop() {
-    ps ax | ag "[p]ython3 -m http.server 80 --cgi --bind 127.0.0.1" | sudo kill -9 $(cut -d" " -f1)
+    ps ax | ag "[p|P]ython3? -m http.server" | sudo kill -9 $(cut -d" " -f2)
 }
 
 wifi_connect() {
