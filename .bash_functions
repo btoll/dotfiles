@@ -1,9 +1,31 @@
+bag() {
+    if [ "$#" -eq 0 ]; then
+        echo "[ERROR] Not enough arguments!"
+        echo "Usage: bag <pattern> [<search_dir>]"
+    else
+        STARTSEARCH="$2"
+        vim -p "+/$1" $(ag -il "$1" ${STARTSEARCH:="."} | uniq)
+    fi
+}
+
 bfind() {
-    vim -p $(find "$1" -type f -name "$2")
+    if [ "$#" -eq 0 ]; then
+        echo "[ERROR] Not enough arguments!"
+        echo "Usage: bfind <pattern> [<search_dir>]"
+    else
+        STARTSEARCH="$2"
+        vim -p $(find ${STARTSEARCH:="."} -type f -name "$1")
+    fi
 }
 
 bgrep() {
-    vim -p "+/$1" $(grep -riIl "$1" "$2" | uniq)
+    if [ "$#" -eq 0 ]; then
+        echo "[ERROR] Not enough arguments!"
+        echo "Usage: bgrep <pattern> [<root_dir>]"
+    else
+        STARTSEARCH="$2"
+        vim -p "+/$1" $(grep -riIl "$1" ${STARTSEARCH:="."} | uniq)
+    fi
 }
 
 cdl() {
