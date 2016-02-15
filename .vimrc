@@ -279,7 +279,7 @@ function! Grange(...) range
 endfunction
 
 nnoremap <leader>g :call G()<cr>
-nnoremap <leader>gbl :call Gblame()<cr>
+nnoremap <leader>gb :call Gblame()<cr>
 vnoremap <leader>gr :call Grange()<cr>
 
 " Vim needs to have been compiled with the autocmd flag. Do :version and verify +autocmd.
