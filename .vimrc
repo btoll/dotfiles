@@ -202,9 +202,9 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" http://stackoverflow.com/a/21761782
-nnoremap ; :
-vnoremap ; :
+" Disabling as this interferes with repeated line searches, i.e. 'fE' and then ';'.
+"nnoremap ; :
+"vnoremap ; :
 
 " Disable the <esc> key in insert mode and map it to 'jk'.
 " inoremap <buffer> <esc> <nop>
@@ -339,24 +339,30 @@ if has("autocmd")
       autocmd!
       " JavaScript syntax helpers.
       " Typing 'iff' will create an empty if block and then put the cursor within the parens.
-      autocmd FileType html,javascript,go iabbrev <buffer> iff if () {<cr>}<esc>kt)
+      autocmd FileType html,javascript,go inoreabbrev <buffer> iff if () {<cr>}<esc>kt)
 
       " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
-      autocmd FileType html,javascript iabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
+      autocmd FileType html,javascript inoreabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
 
       " Typing 'iife' will create an IIFE (es6).
       " Note `<<o` will dedent and then create a new line.
-      autocmd FileType html,javascript iabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
+      autocmd FileType html,javascript inoreabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
 
       " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then
       " put the cursor within the first paren in insert mode.
-      autocmd FileType html,javascript iabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
+      autocmd FileType html,javascript inoreabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
 
       " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-      autocmd FileType html,javascript iabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
+      autocmd FileType html,javascript inoreabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
 
       " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-      autocmd FileType html,javascript iabbrev <buffer> func function () {<cr>};<esc>kf(a
+      autocmd FileType html,javascript inoreabbrev <buffer> func function () {<cr>};<esc>kf(a
+
+      " dump_describes
+      " http://stackoverflow.com/a/7515418
+      autocmd FileType coffee cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && coffee -p %' : 'dd'
+      autocmd FileType javascript cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && dump_describes -f %' : 'dd'
+      autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -f % -v' : 'ddv'
 
       " Save typing 'debugger' all the time!
       autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
@@ -379,15 +385,15 @@ if has("autocmd")
       " Common abbreviations "
       """"""""""""""""""""""""
       " Go boilerplate (also used in `bp` bash function).
-      autocmd FileType go iabbrev goBP package main<cr><cr>func main() {<cr>}<cr>
+      autocmd FileType go inoreabbrev goBP package main<cr><cr>func main() {<cr>}<cr>
 
       " HTML boilerplate (also used in `bp` bash function).
-      autocmd FileType html iabbrev htmlBP <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
+      autocmd FileType html inoreabbrev htmlBP <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
 
       " CSS and JavaScript resources.
-      autocmd FileType html iabbrev doctype <!DOCTYPE html>
-      autocmd FileType html iabbrev scripttag <script src="" charset="utf-8"></script>
-      autocmd FileType html iabbrev linktag <link href="" rel="stylesheet" type="text/css">
+      autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
+      autocmd FileType html inoreabbrev scripttag <script src="" charset="utf-8"></script>
+      autocmd FileType html inoreabbrev linktag <link href="" rel="stylesheet" type="text/css">
 
       " anti-Mitchell pattern - removes \s between properties and colons in objects.
       autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
