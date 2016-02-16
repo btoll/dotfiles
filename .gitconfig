@@ -5,13 +5,14 @@
 	name = Benjamin Toll
 	email = benjam72@yahoo.com
 [alias]
-	co = checkout
 	br = branch
-	st = status
 	ci = commit
-	last = log -1 HEAD
+	co = checkout
+	st = status
+	dirty = ls --dirty -e
 	get-hash = rev-parse
 	goto = !sh -c 'git rev-parse $0 | xargs git co'
+	last = log -1 HEAD
 	unmodify = checkout --
 	unstage = reset HEAD --
 [core]
