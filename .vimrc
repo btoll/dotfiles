@@ -34,8 +34,6 @@ let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 Plug 'kien/ctrlp.vim'
 " https://github.com/kien/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-" Open CtrlP plugin in buffer view.
-nnoremap <leader>b :CtrlPBuffer<cr>
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -161,7 +159,7 @@ set hlsearch
 set showcmd
 
 " The time in milliseconds that is waited for a key code or mapped key sequence to complete.
-set timeoutlen=500
+set timeoutlen=750
 
 "set foldmethod=indent "Auto-fold when opening.
 "set foldtext=""
@@ -296,14 +294,14 @@ if has("autocmd")
 
       " Comment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType go,html,javascript,php nnoremap <leader>bc O/*<esc>jf{%o*/<esc>
+      autocmd FileType go,html,javascript,php nnoremap <leader>c O/*<esc>jf{%o*/<esc>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType go,html,javascript,php nnoremap <leader>Bc o*/<esc>k%O/*<esc>
+      autocmd FileType go,html,javascript,php nnoremap <leader>c o*/<esc>k%O/*<esc>
       " Uncomment out the block, c-style.
       " From top/down (Start with your cursor anywhere on the first line)...
-      autocmd FileType go,html,javascript,php nnoremap <leader>ubc kddf{%jdd<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>uc kddf{%jdd<cr>
       " ...and from bottom/up (cursor must be on the closing bracket).
-      autocmd FileType go,html,javascript,php nnoremap <leader>uBc jddk%kdd<cr>
+      autocmd FileType go,html,javascript,php nnoremap <leader>uc jddk%kdd<cr>
   augroup END
 
   augroup MISC
@@ -395,7 +393,7 @@ if has("autocmd")
     " tabstop = Number of spaces that a <Tab> in the file counts for.
     autocmd!
 
-    autocmd FileType conf,javascript,go,html,python,php,sh,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
+    autocmd FileType conf,javascript,go,html,markdown,python,php,sh,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
     autocmd FileType coffee setlocal autoindent expandtab shiftwidth=2 tabstop=2
 
     " Set default syntax for files with no extension.
