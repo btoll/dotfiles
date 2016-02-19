@@ -34,6 +34,8 @@ let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 Plug 'kien/ctrlp.vim'
 " https://github.com/kien/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Opens ctrlp in buffer mode.
+let g:ctrlp_cmd = 'CtrlPBuffer'
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -197,7 +199,9 @@ inoremap <right> <nop>
 " inoremap <buffer> <esc> <nop>
 inoremap jk <esc>
 
-nnoremap <c-t> <esc>:tabnew<cr>
+" Toggle between the last opened buffer.
+nnoremap <c-t> <esc>:b#<cr>
+inoremap <c-t> <esc>:b#<cr>
 
 " Clear search highlighting.
 nnoremap <leader><space> :noh<cr>
