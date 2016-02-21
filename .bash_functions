@@ -54,11 +54,43 @@ bp() {
 }
 
 git_clone() {
-    if [ -z "$1" ]; then
-        echo "Usage: git_clone <REPO>"
+    URL="$1"
+    ALIAS="$2"
+    BASE=
+
+    if [ -z "$URL" ]; then
+        echo "Usage: git_clone <REPO> [<ALIAS>]"
     else
-        git clone "$1"
-        git_hooks_install
+        if [ -z "$ALIAS" ]; then
+            git clone "$URL"
+        else
+            git clone "$URL" "$ALIAS"
+        fi
+
+        if [ $? -eq 0 ]; then
+            # Will match:
+            #
+            #       https://github.com/btoll/dotfiles.git
+            #       or
+            #       git@github.com:btoll/dotfiles.git
+            #       or
+            #       git+https://github.com/btoll/dotfiles
+            #
+            # and capture only `dotfiles`.
+            if [ -z "$ALIAS" ]; then
+                BASE=$([[ "$URL" = *.* ]] && basename "$URL" || echo "")
+                # Remove the `.git` extension.
+                ALIAS=${BASE%.git}
+            fi
+
+            echo "[INFO] Cloned into ./$ALIAS/"
+
+            pushd "$ALIAS" > /dev/null
+            git_hooks_install
+            popd > /dev/null
+
+            echo "[INFO] Installed git hooks."
+        fi
     fi
 }
 
