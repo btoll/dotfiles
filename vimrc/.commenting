@@ -1,0 +1,35 @@
+if has("autocmd")
+    augroup COMMENTING
+        autocmd!
+        autocmd FileType html nnoremap <leader>c 0i<!--<esc>A--><esc>
+        autocmd FileType html nnoremap <leader>C 04x$xxx<cr>
+        "      autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>
+        "      autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>
+
+        autocmd FileType vim nnoremap <leader>c 0i"<esc>
+        autocmd FileType vim nnoremap <leader>C 0x<cr>
+
+        " Comment/uncomment out and clear search highlighting for visual blocks.
+        autocmd FileType javascript,go nnoremap <leader>c 0i//<cr>
+        autocmd FileType javascript,go nnoremap <leader>C 02x<cr>
+        autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
+        autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>
+
+        autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>c 0i#<esc>
+        autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>C 0x<cr>
+        autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType coffee,gitconfig,php,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+
+        " Comment out the block, c-style.
+        " From top/down (Start with your cursor anywhere on the first line)...
+        autocmd FileType go,html,javascript,php nnoremap <leader>c O/*<esc>jf{%o*/<esc>
+        " ...and from bottom/up (cursor must be on the closing bracket).
+        autocmd FileType go,html,javascript,php nnoremap <leader>c o*/<esc>k%O/*<esc>
+        " Uncomment out the block, c-style.
+        " From top/down (Start with your cursor anywhere on the first line)...
+        autocmd FileType go,html,javascript,php nnoremap <leader>uc kddf{%jdd<cr>
+        " ...and from bottom/up (cursor must be on the closing bracket).
+        autocmd FileType go,html,javascript,php nnoremap <leader>uc jddk%kdd<cr>
+    augroup END
+endif
+

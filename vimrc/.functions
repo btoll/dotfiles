@@ -1,0 +1,40 @@
+function! G(...)
+    let file = a:0 ? a:1 : expand('%')
+    let blame = (a:0 && a:2 == 1) ? ' --blame' : ''
+    let branch = a:0 > 2 && a:3 != '' ? (' --branch ' . a:3) : ''
+    let range = a:0 > 3 ? (' --range ' . a:4) : ''
+
+    execute 'silent ! git hub -f ' . l:file . l:blame . l:branch . l:range
+    redraw!
+endfunction
+
+" Triggers blame view for current file with an optional a:branch argument.
+function! Gblame(...)
+    let branch = a:0 ? a:1 : ''
+
+    call G('%', 1, l:branch)
+endfunction
+
+" This allows specifying a different branch for the current file with an
+" optional a:blame argument.
+function! Gbranch(...)
+    let branch = a:0 ? a:1 : ''
+    let blame = a:0 > 1 ? a:2 : 0
+
+    call G('%', l:blame, l:branch)
+endfunction
+
+" Highlight a visual range for the current file. a:blame and a:branch are
+" optional arguments.
+function! Grange(...) range
+    let range = 'L' . a:firstline . '-L' . a:lastline
+    let blame = a:0 ? a:1 : 0
+    let branch = a:0 > 1 ? a:2 : ''
+
+    call G('%', l:blame, l:branch, l:range)
+endfunction
+
+nnoremap <leader>g :call G()<cr>
+nnoremap <leader>gb :call Gblame()<cr>
+vnoremap <leader>gr :call Grange()<cr>
+

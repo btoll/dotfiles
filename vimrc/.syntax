@@ -1,0 +1,66 @@
+if has("autocmd")
+    augroup SYNTAX
+        autocmd!
+        " JavaScript syntax helpers.
+        " Typing 'iff' will create an empty if block and then put the cursor within the parens.
+        autocmd FileType html,javascript,go inoreabbrev <buffer> iff if () {<cr>}<esc>kt)
+
+        " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
+        autocmd FileType html,javascript inoreabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
+
+        " Typing 'iife' will create an IIFE (es6).
+        " Note `<<o` will dedent and then create a new line.
+        autocmd FileType html,javascript inoreabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
+
+        " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then
+        " put the cursor within the first paren in insert mode.
+        autocmd FileType html,javascript inoreabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
+
+        " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
+        autocmd FileType html,javascript inoreabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
+
+        " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
+        autocmd FileType html,javascript inoreabbrev <buffer> func function () {<cr>};<esc>kf(a
+
+        " dump_describes
+        " http://stackoverflow.com/a/7515418
+        autocmd FileType coffee cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && coffee -p %' : 'dd'
+        autocmd FileType javascript cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && dump_describes -f %' : 'dd'
+        autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -f % -v' : 'ddv'
+
+        " Save typing 'debugger' all the time!
+        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
+        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
+
+        autocmd FileType coffee nnoremap <leader>d odebugger<esc>
+        autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
+
+        " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
+        autocmd FileType html,javascript nnoremap <leader>log oconsole.log(<c-r>");<esc>
+        autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
+        autocmd FileType sh nnoremap <leader>log oecho <c-r>"<esc>
+
+        " Got here!
+        autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
+        autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
+        autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
+
+        """"""""""""""""""""""""
+        " Common abbreviations "
+        """"""""""""""""""""""""
+        " Go boilerplate (also used in `bp` bash function).
+        autocmd FileType go inoreabbrev goBP package main<cr><cr>func main() {<cr>}<cr>
+
+        " HTML boilerplate (also used in `bp` bash function).
+        autocmd FileType html inoreabbrev htmlBP <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
+
+        " CSS and JavaScript resources.
+        autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
+        autocmd FileType html inoreabbrev scripttag <script src="" charset="utf-8"></script>
+        autocmd FileType html inoreabbrev linktag <link href="" rel="stylesheet" type="text/css">
+
+        " anti-Mitchell pattern - removes \s between properties and colons in objects.
+        autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
+    augroup END
+endif
+

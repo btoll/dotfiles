@@ -1,0 +1,16 @@
+if has("autocmd")
+    augroup WHITESPACE
+        " autoindent = Copy indent from current line when starting a new line.
+        " shiftwidth = Number of spaces to use for each step of (auto)indent.
+        " expandtab = Spaces are used in indents with the '>' and '<' commands and when 'autoindent' is on.
+        " tabstop = Number of spaces that a <Tab> in the file counts for.
+        autocmd!
+
+        autocmd FileType conf,javascript,go,html,markdown,python,php,sh,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
+        autocmd FileType coffee setlocal autoindent expandtab shiftwidth=2 tabstop=2
+
+        " Set default syntax for files with no extension.
+        autocmd BufNewFile,BufRead * if &filetype == '' | set filetype=sh | endif
+    augroup END
+endif
+

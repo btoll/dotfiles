@@ -1,0 +1,48 @@
+" Disable the arrow keys.
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Disabling as this interferes with repeated line searches, i.e. 'fE' and then ';'.
+"nnoremap ; :
+"vnoremap ; :
+
+" Disable the <esc> key in insert mode and map it to 'jk'.
+" inoremap <buffer> <esc> <nop>
+inoremap jk <esc>
+
+" Toggle between the last opened buffer.
+nnoremap <c-t> <esc>:b#<cr>
+inoremap <c-t> <esc>:b#<cr>
+
+" Clear search highlighting.
+nnoremap <leader><space> :noh<cr>
+
+""" Toggle!
+" Show invisible characters.
+nnoremap <leader>l :setlocal list!<cr>
+nnoremap <leader>n :setlocal number!<cr>
+nnoremap <leader>p :setlocal paste!<cr>
+nnoremap <leader>r :setlocal relativenumber!<cr>
+nnoremap <leader>s :setlocal spell!<cr>
+
+nnoremap <leader>v :tabnew $MYVIMRC<cr>
+
+" List the cwd in a vertically-split window.
+nnoremap <leader>ll :Vex<cr>
+
+" Auto-indent blocks.
+nnoremap <leader>i V$%>
+nnoremap <leader>I V$%<
+
+" Change all instances of " to ' in a line and clear search highlighting.
+nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
+
+" Change to directory of the current file.
+nnoremap <leader>cwd :cd %:p:h<cr>
+

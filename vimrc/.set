@@ -1,0 +1,62 @@
+" Crypto
+set cryptmethod=blowfish
+
+" http://stelfox.net/blog/2013/11/using-vim-as-your-password-manager/
+"autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
+
+"<------------------------------------------------------------------------------------->
+" http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+"<------------------------------------------------------------------------------------->
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+syntax on
+"colors desert
+colorscheme jellybeans
+
+" Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position
+" of the displayed text in the file is shown on the far right.
+set ruler
+
+" If the 'ignorecase' option is on, the case of normal letters is ignored.  'smartcase' can be set to ignore case when the
+" pattern contains lowercase letters only.
+set ignorecase
+
+" Override the 'ignorecase' option if the search pattern contains upper case characters.
+set smartcase
+
+" While typing a search command, show where the pattern, as it was typed so far, matches.  The matched string is highlighted.
+set incsearch
+
+" When there is a previous search pattern, highlight all its matches.
+set hlsearch
+
+" Show (partial) command in the last line of the screen.
+set showcmd
+
+" The time in milliseconds that is waited for a key code or mapped key sequence to complete.
+set timeoutlen=750
+
+"set foldmethod=indent "Auto-fold when opening.
+"set foldtext=""
+
+" List of file names, separated by commas, that are used to lookup words for keyword completion commands |i_CTRL-X_CTRL-K|.
+set dictionary+=/usr/share/dict/words
+
+" List of file names, separated by commas, that are used to lookup words for thesaurus completion commands |i_CTRL-X_CTRL-T|.
+" (http://www.gutenberg.org/dirs/etext02/mthes10.zip)
+set thesaurus+=/usr/share/thesaurus/mthesaur.txt
+
+" Turn on line numbers.
+set number
+
+" Turn off error sounds and screen flashing.
+set visualbell
+
+set hidden
+
