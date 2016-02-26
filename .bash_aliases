@@ -25,13 +25,11 @@ alias irc="irssi"
 alias hangman="python3 /usr/local/src/git/games/python3/hangman/hangman.py"
 
 # system aliases
-alias web_start="sudo python3 -m http.server 80 --cgi"
-alias web_stop='ps ax | grep "[p]ython3 -m http.server 80 --cgi" | sudo kill -9 $(cut -d" " -f2)'
-
 alias pcrypt="python3 /usr/local/src/git/pcrypt/pcrypt.py"
 alias utley="python3 /usr/local/src/git/utley/utley.py"
 alias css_compress="python3 /usr/local/src/git/utley/css_compress.py"
 alias js_compress="python3 /usr/local/src/git/utley/js_compress.py"
+alias bootstrap="git bootstrap"
 
 alias ..="cd .."
 alias ..2="cd ../.."
@@ -42,6 +40,6 @@ alias ..6="cd ../../../../../.."
 alias ..7="cd ../../../../../../.."
 alias ..8="cd ../../../../../../../.."
 alias ..9="cd ../../../../../../../../.."
-alias ..l="cd .. && ll"
+alias ..l="ll .."
 alias :q="exit"
 
