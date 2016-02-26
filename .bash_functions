@@ -4,7 +4,7 @@ bag() {
         echo "Usage: bag <pattern> [<search_dir>]"
     else
         STARTSEARCH="$2"
-        vim -p "+/$1" $(ag -il "$1" ${STARTSEARCH:="."} | uniq)
+        vim -p "+/$1" $(ag -ilw "$1" ${STARTSEARCH:="."} | uniq)
     fi
 }
 
