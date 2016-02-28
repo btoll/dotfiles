@@ -10,8 +10,8 @@ if has("autocmd")
         autocmd FileType vim nnoremap <leader>C 0x<cr>
 
         " Comment/uncomment out and clear search highlighting for visual blocks.
-        autocmd FileType javascript,go nnoremap <leader>c 0i//<cr>
-        autocmd FileType javascript,go nnoremap <leader>C 02x<cr>
+        autocmd FileType javascript,go nnoremap <leader>c 0i//<esc>
+        autocmd FileType javascript,go nnoremap <leader>C 02x
 "        autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType javascript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
 "        autocmd FileType javascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>
