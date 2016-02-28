@@ -28,6 +28,9 @@ if has("autocmd")
         autocmd FileType javascript cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && dump_describes -f %' : 'dd'
         autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -f % -v' : 'ddv'
 
+        " jasmine
+        autocmd FileType javascript cnoreabbrev <expr> jas getcmdtype() == ":" && getcmdline() == 'jas' ? '!clear && jasmine %' : 'jas'
+
         " Save typing 'debugger' all the time!
         autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
         autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
