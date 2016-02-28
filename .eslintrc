@@ -27,22 +27,13 @@
     "globals": {
         "Pete": true,
         "Ext": true,
-        "require": true,
-        "module": true,
-        "exports": true,
-        "process": true,
-        "jasmine": true,
-        "describe": true,
-        "it": true,
-        "expect": true,
-        "beforeEach": true,
-        "afterEach": true,
-        "spyOn": true,
         "MockAjaxManager": true
     },
     "env": {
         "es6": true,
-        "browser": true
+        "browser": true,
+        "jasmine": true,
+        "node": true
     },
     "extends": "eslint:recommended"
 }
