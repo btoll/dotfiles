@@ -88,8 +88,6 @@ git_clone() {
             pushd "$ALIAS" > /dev/null
             git_hooks_install
             popd > /dev/null
-
-            echo "[INFO] Installed git hooks."
         fi
     fi
 }
@@ -102,6 +100,8 @@ git_hooks_install() {
     fi
 
     cp -r "$GITHOOKS"/* .git/hooks/
+
+    echo "[INFO] Installed git hooks."
 }
 
 git_init() {
