@@ -28,8 +28,11 @@ if has("autocmd")
         autocmd FileType javascript cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && dump_describes -f %' : 'dd'
         autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -f % -v' : 'ddv'
 
-        " jasmine
-        autocmd FileType javascript cnoreabbrev <expr> jas getcmdtype() == ":" && getcmdline() == 'jas' ? '!clear && jasmine %' : 'jas'
+        " Run specs only for the current file.
+        autocmd FileType javascript cnoreabbrev <expr> jthis getcmdtype() == ":" && getcmdline() == 'jthis' ? '!clear && jasmine %' : 'jthis'
+
+        " Run all specs.
+        autocmd FileType javascript cnoreabbrev <expr> jall getcmdtype() == ":" && getcmdline() == 'jall' ? '!clear && npm run specs' : 'jall'
 
         " Save typing 'debugger' all the time!
         autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
