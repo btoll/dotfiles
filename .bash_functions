@@ -99,7 +99,10 @@ git_hooks_install() {
         GITHOOKS="$LOCATION"
     fi
 
-    cp -r "$GITHOOKS"/* .git/hooks/
+    pushd .git/hooks > /dev/null
+    rm -rf pre-commit pre-commit.d
+    cp -r "$GITHOOKS"/* .
+    popd > /dev/null
 
     echo "[INFO] Installed git hooks."
 }
