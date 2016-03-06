@@ -136,8 +136,9 @@ rmi() {
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: rmi file [file ...]"
     else
-        for inode in "$@"; do
-            find . -inum "$inode" -exec rm -rf {} \; 2> /dev/null
+        for FILE in "$@"; do
+            INODE=$(ls -i "$FILE" | cut -f1 -d" ")
+            find . -inum $INODE -exec rm -rf {} \; 2> /dev/null
         done
     fi
 }
@@ -148,7 +149,7 @@ vimp() {
 }
 
 webstart() {
-	sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
+    sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
 }
 
 webstop() {
