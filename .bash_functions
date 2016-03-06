@@ -1,6 +1,6 @@
 bag() {
     if [ "$#" -eq 0 ]; then
-        echo "[ERROR] Not enough arguments!"
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bag <pattern> [<search_dir>]"
     else
         STARTSEARCH="$2"
@@ -10,7 +10,7 @@ bag() {
 
 bfind() {
     if [ "$#" -eq 0 ]; then
-        echo "[ERROR] Not enough arguments!"
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bfind <pattern> [<search_dir>]"
     else
         STARTSEARCH="$2"
@@ -20,7 +20,7 @@ bfind() {
 
 bgrep() {
     if [ "$#" -eq 0 ]; then
-        echo "[ERROR] Not enough arguments!"
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bgrep <pattern> [<root_dir>]"
     else
         STARTSEARCH="$2"
@@ -44,7 +44,7 @@ cdl() {
 # Setup script boilerplate.
 bp() {
     if [ "$#" -lt 2 ]; then
-        echo "[ERROR] Not enough arguments!"
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bp <type> <filename>"
     elif [ "$1" == "go" ]; then
         vim -c ":normal igoBP" "$2"
@@ -132,9 +132,14 @@ mcd() {
 
 # Remove by inode.
 rmi() {
-    for inode in "$@"; do
-        find . -inum "$inode" -exec rm -rf {} \; 2> /dev/null
-    done
+    if [ "$#" -eq 0 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: rmi file [file ...]"
+    else
+        for inode in "$@"; do
+            find . -inum "$inode" -exec rm -rf {} \; 2> /dev/null
+        done
+    fi
 }
 
 # Open vim and immediately invoke CtrlP plugin.
