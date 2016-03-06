@@ -44,7 +44,7 @@ if has("autocmd")
         " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
         autocmd FileType html,javascript nnoremap <leader>log oconsole.log(<c-r>");<esc>
         autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
-        autocmd FileType sh nnoremap <leader>log oecho <c-r>"<esc>
+        autocmd FileType sh nnoremap <leader>log oecho $<c-r>"<esc>
 
         " Got here!
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
