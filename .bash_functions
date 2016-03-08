@@ -14,7 +14,8 @@ bfind() {
         echo "Usage: bfind <pattern> [<search_dir>]"
     else
         STARTSEARCH="$2"
-        vim -p $(find ${STARTSEARCH:="."} -type f -name "$1")
+        # http://blog.sanctum.geek.nz/unix-as-ide-files/
+        find ${STARTSEARCH:="."} -type f -name "$1" -exec vim {} +
     fi
 }
 

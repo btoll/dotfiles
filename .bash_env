@@ -14,11 +14,6 @@ export WEBSERVER=/usr/local/www
 export YUICOMPRESSOR=/usr/local/src/yuicompressor-2.4.8.jar
 export PYTHONPATH=$PYTHONPATH:/usr/local/bin
 
-# To make use of gpg-agent when not using X, uncomment #use-agent
-# in ~/.gnupg/gpg.conf
-eval "$(gpg-agent --daemon)"
-export GPG_TTY=$(tty)
-
 # Use vim as default editor instead of nano.
 export EDITOR=vim
 
