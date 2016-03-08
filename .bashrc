@@ -34,8 +34,8 @@ fi
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+export HISTSIZE=500000
+export HISTFILESIZE=100000
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -48,6 +48,9 @@ shopt -s checkwinsize
 if [ "${BASH_VERSINFO}" -ge 4 ]; then
     shopt -s globstar
 fi
+
+# Prepend cd to directory names automatically.
+shopt -s autocd 2> /dev/null
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -111,8 +114,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 set -o vi
-#shopt -s cdable_vars
-#www=/usr/local/www
 #shopt -s cdspell
 
 #allows to clear screen when vi is set as my cli editor (not necessary if vi is not set)
