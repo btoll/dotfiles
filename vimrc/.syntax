@@ -51,20 +51,6 @@ if has("autocmd")
         autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
         autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
 
-        """"""""""""""""""""""""
-        " Common abbreviations "
-        """"""""""""""""""""""""
-        " Go boilerplate (also used in `bp` bash function).
-        autocmd FileType go inoreabbrev goBP package main<cr><cr>func main() {<cr>}<cr>
-
-        " HTML boilerplate (also used in `bp` bash function).
-        autocmd FileType html inoreabbrev htmlBP <!DOCTYPE html><cr><html><cr><head><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
-
-        " CSS and JavaScript resources.
-        autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
-        autocmd FileType html inoreabbrev scripttag <script src="" charset="utf-8"></script>
-        autocmd FileType html inoreabbrev linktag <link href="" rel="stylesheet" type="text/css">
-
         " anti-Mitchell pattern - removes \s between properties and colons in objects.
         autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
     augroup END

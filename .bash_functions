@@ -29,14 +29,6 @@ bgrep() {
     fi
 }
 
-cdl() {
-    if [ -z "$1" ]; then
-        echo "Usage: cdl <DIR>"
-    else
-        cd "$1" && ls -l
-    fi
-}
-
 # Deprecating this in favor of https://github.com/btoll/dump_describes node module.
 #dump_describes() {
 #    sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
@@ -44,13 +36,19 @@ cdl() {
 
 # Setup script boilerplate.
 bp() {
-    if [ "$#" -lt 2 ]; then
+    if [ "$#" -eq 0 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: bp <type> <filename>"
-    elif [ "$1" == "go" ]; then
-        vim -c ":normal igoBP" "$2"
-    elif [ "$1" == "html" ]; then
-        vim -c ":normal ihtmlBP" "$2"
+        echo "Usage: bp <filename>"
+    else
+        vim -c ":normal ibp" "$1"
+    fi
+}
+
+cdl() {
+    if [ -z "$1" ]; then
+        echo "Usage: cdl <DIR>"
+    else
+        cd "$1" && ls -l
     fi
 }
 

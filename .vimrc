@@ -135,6 +135,10 @@ endif
 
 " Vim needs to have been compiled with the autocmd flag. Do :version and verify +autocmd.
 if has("autocmd")
+    if filereadable($HOME . "/.vim/vimrc/.abbreviations")
+      source ~/.vim/vimrc/.abbreviations
+    endif
+
     if filereadable($HOME . "/.vim/vimrc/.commenting")
       source ~/.vim/vimrc/.commenting
     endif
