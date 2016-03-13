@@ -147,11 +147,11 @@ vimp() {
     vim -c ":CtrlP"
 }
 
-webstart() {
+web_start() {
     sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
 }
 
-webstop() {
+web_stop() {
     ps ax | ag "[p|P]ython3? -m http.server" | sudo kill -9 $(cut -d" " -f2)
 }
 
