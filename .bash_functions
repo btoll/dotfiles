@@ -82,7 +82,7 @@ git_clone() {
                 ALIAS=${BASE%.git}
             fi
 
-            echo "[INFO] Cloned into ./$ALIAS/"
+            echo "$(tput setaf 2)[INFO]$(tput sgr0) Cloned into ./$ALIAS/"
 
             pushd "$ALIAS" > /dev/null
             git_hooks_install
@@ -103,7 +103,7 @@ git_hooks_install() {
     cp -r "$GITHOOKS"/* .
     popd > /dev/null
 
-    echo "[INFO] Installed git hooks."
+    echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed git hooks."
 }
 
 git_init() {
