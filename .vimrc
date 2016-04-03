@@ -112,7 +112,6 @@ Plug 'tpope/vim-repeat.git'
 Plug 'kchmck/vim-coffee-script'
 Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
-Plug 'mhinz/vim-startify'
 
 " Add plugins to &runtimepath
 call plug#end()
