@@ -4,7 +4,7 @@ bag() {
         echo "Usage: bag <pattern> [<search_dir>]"
     else
         STARTSEARCH="$2"
-        vim -p "+/$1" $(ag -ilw "$1" ${STARTSEARCH:="."} | uniq)
+        vim "+/$1" $(ag -ilw "$1" ${STARTSEARCH:="."} | uniq)
     fi
 }
 
@@ -25,7 +25,7 @@ bgrep() {
         echo "Usage: bgrep <pattern> [<root_dir>]"
     else
         STARTSEARCH="$2"
-        vim -p "+/$1" $(grep -riIl "$1" ${STARTSEARCH:="."} | uniq)
+        vim "+/$1" $(grep -riIl "$1" ${STARTSEARCH:="."} | uniq)
     fi
 }
 
