@@ -6,7 +6,7 @@
 	email = benjam72@yahoo.com
 [alias]
 	br = branch
-	ci = commit
+	ci = commit -S
 	co = checkout
 	st = status
 	dirty = ls --dirty -e
@@ -16,7 +16,7 @@
 	unmodify = checkout --
 	unstage = reset HEAD --
 [core]
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 [github]
 	user = benjam72@yahoo.com
 [diff]
