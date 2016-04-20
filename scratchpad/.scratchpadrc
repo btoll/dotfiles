@@ -1,0 +1,24 @@
+{
+    "scratchpads": [
+        "ctct/arch_notes",
+        "ctct/debugging",
+        "ctct/process",
+        "todo",
+        "vim_notes",
+        "ctct/dnd",
+        "misc",
+        "ctct/brother"
+    ],
+    "servers": [
+        "filesystem"
+    ],
+    "useGPG": true,
+    "system": "unix",
+    "newlines": 0,
+    "defaults": {
+        "newlines": 0,
+        "scratchpad": "todo",
+        "server": "filesystem"
+    }
+}
+

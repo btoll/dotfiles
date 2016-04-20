@@ -4,6 +4,7 @@
 [user]
 	name = Benjamin Toll
 	email = benjam72@yahoo.com
+	signingkey = A977BCBC
 [alias]
 	br = branch
 	ci = commit -S
