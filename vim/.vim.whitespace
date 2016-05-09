@@ -6,7 +6,7 @@ if has("autocmd")
         " tabstop = Number of spaces that a <Tab> in the file counts for.
         autocmd!
 
-        autocmd FileType conf,javascript,go,html,markdown,python,php,sh,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
+        autocmd FileType conf,javascript,go,haskell,html,markdown,python,php,sh,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
         autocmd FileType coffee setlocal autoindent expandtab shiftwidth=2 tabstop=2
 
         " Set default syntax for files with no extension.
