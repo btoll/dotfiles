@@ -49,8 +49,8 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Plug 'marijnh/tern_for_vim'
 " https://github.com/marijnh/tern_for_vim
+Plug 'marijnh/tern_for_vim'
 let g:tern_map_keys=1
 
 Plug 'tpope/vim-surround'
@@ -107,6 +107,7 @@ Plug 'easymotion/vim-easymotion'
 
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
+Plug 'Valloric/YouCompleteMe'
 
 Plug 'tpope/vim-repeat.git'
 Plug 'kchmck/vim-coffee-script'
