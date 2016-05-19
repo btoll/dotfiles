@@ -4,7 +4,7 @@ if has("autocmd")
         autocmd BufWritePost .vimrc source $MYVIMRC
 
         " Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
-        autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"        autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
         " Add the main function that restores the cursor position and its autocmd so that it gets triggered:
         function! ResCur()

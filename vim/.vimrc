@@ -50,8 +50,9 @@ if executable('ag')
 endif
 
 " https://github.com/marijnh/tern_for_vim
-Plug 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 let g:tern_map_keys=1
+autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 Plug 'tpope/vim-surround'
 " Text Objects
