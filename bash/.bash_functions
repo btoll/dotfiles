@@ -52,6 +52,16 @@ cdl() {
     fi
 }
 
+get_code_point() {
+    if [ -z "$1" ]; then
+        echo "Usage: get_code_point <char>"
+    else
+        # -A = Specify the input address base (n == no address)
+        # -t = Specify the output format (d == signed decimal, 4 == four bytes)
+        printf "$1" | od -A n -t d4
+    fi
+}
+
 git_clone() {
     URL="$1"
     ALIAS="$2"
