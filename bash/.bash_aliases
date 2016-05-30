@@ -30,6 +30,7 @@ alias utley="python3 /usr/local/src/git/utley/utley.py"
 alias css_compress="python3 /usr/local/src/git/utley/css_compress.py"
 alias js_compress="python3 /usr/local/src/git/utley/js_compress.py"
 alias bootstrap="git bootstrap"
+alias dirty="git dirty"
 
 alias ..="cd .."
 alias ..2="cd ../.."
