@@ -14,13 +14,20 @@
 	get-hash = rev-parse
 	goto = !sh -c 'git rev-parse $0 | xargs git co'
 	last = log -1 HEAD
+	l  = log --pretty='%Cred%h%Creset | %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)[%an]%Creset'
+	# Show changes inline and display 10 lines before changes.
+	prose = diff --word-diff --unified=10
 	unmodify = checkout --
 	unstage = reset HEAD --
 [core]
 	editor = /usr/local/bin/vim
+	# FX = Have pager automatically exit if all text fits on the screen.
+	pager = less -RFX
 [github]
 	user = benjam72@yahoo.com
 [diff]
+	# Group diff changes more accurately for better readability.
+	algorithm = histogram
 	tool = vimdiff
 [difftool]
 	prompt = false
