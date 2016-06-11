@@ -15,6 +15,12 @@ bfind() {
     else
         STARTSEARCH="$2"
         # http://blog.sanctum.geek.nz/unix-as-ide-files/
+        #
+        #   "You can use + as the terminating character instead if you want to put all
+        #    of the results on one invocation of the command. One trick I find myself
+        #    using often is using find to generate lists of files that I then edit in
+        #    vertically split Vim windows"
+        #
         find ${STARTSEARCH:="."} -type f -name "$1" -exec vim {} +
     fi
 }
