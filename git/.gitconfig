@@ -17,8 +17,6 @@
 	l  = log --pretty='%Cred%h%Creset | %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)[%an]%Creset'
 	# Show changes inline and display 10 lines before changes.
 	prose = diff --word-diff --unified=10
-	unmodify = checkout --
-	unstage = reset HEAD --
 [core]
 	editor = /usr/local/bin/vim
 	# FX = Have pager automatically exit if all text fits on the screen.
