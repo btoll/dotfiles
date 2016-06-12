@@ -7,9 +7,11 @@
 	signingkey = A977BCBC
 [alias]
 	br = branch
+	# -S = GPG-sign commit.
 	ci = commit -S
+	ca = commit -S --amend
 	co = checkout
-	st = status
+	st = status --short --branch
 	dirty = ls --dirty -e
 	get-hash = rev-parse
 	goto = !sh -c 'git rev-parse $0 | xargs git co'
@@ -19,8 +21,10 @@
 	prose = diff --word-diff --unified=10
 [core]
 	editor = /usr/local/bin/vim
-	# FX = Have pager automatically exit if all text fits on the screen.
+	# FX = Have the pager automatically exit if all the diff text fits on the screen.
 	pager = less -RFX
+	# No tabs!
+	whitespace = tab-in-indent
 [github]
 	user = benjam72@yahoo.com
 [diff]
@@ -38,4 +42,7 @@
         hook = EOF.sh
         hook = debugger.sh
         hook = eslint.sh
+
+[rerere]
+	enabled = true
 
