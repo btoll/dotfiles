@@ -7,7 +7,8 @@
         "vim_notes",
         "ctct/dnd",
         "misc",
-        "ctct/brother"
+        "ctct/brother",
+        "doc_migration"
     ],
     "servers": [
         "filesystem"
@@ -21,4 +22,3 @@
         "server": "filesystem"
     }
 }
-

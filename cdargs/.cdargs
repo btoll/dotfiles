@@ -17,7 +17,7 @@ scratchpad /usr/local/src/git/scratchpad
 diceware /usr/local/src/git/diceware
 rupert /usr/local/src/git/rupert
 stymie /usr/local/src/git/stymie
-sandbox /home/btoll/sandbox
+sandbox /Users/btoll/sandbox
 gosrc /usr/local/src/git/go/src
 repos /usr/local/src/git
 ext-makefile /usr/local/src/git/ext-makefile
