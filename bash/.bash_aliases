@@ -12,9 +12,6 @@ alias bzip2="bzip2 -9"
 alias cp="cp -i"
 alias mv="mv -i"
 
-alias tunnel="ssh -fND tunnel"
-alias ssh_owl="ssh -p 1972 owlsnestfarm"
-
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
 alias barchiver="python3.4 /usr/local/src/git/tools/python3/barchiver.py"
