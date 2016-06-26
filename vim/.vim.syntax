@@ -25,8 +25,8 @@ if has("autocmd")
         " dump_describes
         " http://stackoverflow.com/a/7515418
         autocmd FileType coffee cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && coffee -p %' : 'dd'
-        autocmd FileType javascript cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && dump_describes -f %' : 'dd'
-        autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -f % -v' : 'ddv'
+        autocmd FileType javascript cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && dump_describes -t %' : 'dd'
+        autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -t % -v' : 'ddv'
 
         " Run specs only for the current file.
         autocmd FileType javascript cnoreabbrev <expr> jthis getcmdtype() == ":" && getcmdline() == 'jthis' ? '!clear && jasmine %' : 'jthis'
