@@ -34,6 +34,9 @@ if has("autocmd")
         " Run all specs.
         autocmd FileType javascript cnoreabbrev <expr> jall getcmdtype() == ":" && getcmdline() == 'jall' ? '!clear && npm run specs' : 'jall'
 
+        " Run all specs.
+        autocmd FileType typescript cnoreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? '!clear && ts-node %' : 'ts'
+
         " Save typing 'debugger' all the time!
         autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
         autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
