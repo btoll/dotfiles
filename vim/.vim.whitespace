@@ -6,7 +6,7 @@ if has("autocmd")
         " tabstop = Number of spaces that a <Tab> in the file counts for.
         autocmd!
 
-        autocmd FileType c,conf,cpp,javascript,go,haskell,html,json,markdown,python,php,sh,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
+        autocmd FileType c,conf,cpp,javascript,go,haskell,html,json,markdown,python,php,sh,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
         " Remember no spaces in Makefiles!
         autocmd FileType make setlocal autoindent shiftwidth=4 tabstop=4
         autocmd FileType coffee,javascript setlocal autoindent expandtab shiftwidth=2 tabstop=2

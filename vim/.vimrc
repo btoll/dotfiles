@@ -92,6 +92,7 @@ Plug 'tpope/vim-repeat.git'
 Plug 'kchmck/vim-coffee-script'
 Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
+Plug 'leafgarland/typescript-vim'
 
 " Add plugins to &runtimepath
 call plug#end()
