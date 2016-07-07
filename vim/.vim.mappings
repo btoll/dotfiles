@@ -12,9 +12,10 @@ inoremap <right> <nop>
 "nnoremap ; :
 "vnoremap ; :
 
-" Disable the <esc> key in insert mode and map it to 'jk'.
+" Disable the <esc> key in insert mode and map it to 'jk' or 'JK'.
 " inoremap <buffer> <esc> <nop>
 inoremap jk <esc>
+inoremap JK <esc>
 
 " Toggle between the last opened buffer.
 nnoremap <c-t> <esc>:b#<cr>
