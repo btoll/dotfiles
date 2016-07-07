@@ -45,7 +45,7 @@ if has("autocmd")
         autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
 
         " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
-        autocmd FileType html,javascript nnoremap <leader>log oconsole.log(<c-r>");<esc>
+        autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log(<c-r>");<esc>
         autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
         autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
 
@@ -56,6 +56,9 @@ if has("autocmd")
 
         " anti-Mitchell pattern - removes \s between properties and colons in objects.
         autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
+
+        " Redefine makeprg for typescript to clear screen before compiling.
+        autocmd FileType typescript :set makeprg=clear\ &&\ tsc\ $*\ %
     augroup END
 endif
 
