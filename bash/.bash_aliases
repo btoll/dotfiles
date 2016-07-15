@@ -12,6 +12,9 @@ alias bzip2="bzip2 -9"
 alias cp="cp -i"
 alias mv="mv -i"
 
+alias cll="clear && ls -lhF"
+alias cls="clear && ls"
+
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
 alias barchiver="python3.4 /usr/local/src/git/tools/python3/barchiver.py"
@@ -28,6 +31,8 @@ alias css_compress="python3 /usr/local/src/git/utley/css_compress.py"
 alias js_compress="python3 /usr/local/src/git/utley/js_compress.py"
 alias bootstrap="git bootstrap"
 alias dirty="git dirty"
+alias web_start="node /usr/local/src/git/tools/node/server.js"
+
 alias remove_debugger="/usr/local/src/git/tools/bash/remove_debugger.sh"
 
 alias ..="cd .."
