@@ -163,13 +163,13 @@ vimp() {
     vim -c ":CtrlP"
 }
 
-web_start() {
-    sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
-}
-
-web_stop() {
-    ps ax | ag "[p|P]ython3? -m http.server" | sudo kill -9 $(cut -d" " -f2)
-}
+#web_start() {
+#    sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
+#}
+#
+#web_stop() {
+#    ps ax | ag "[p|P]ython3? -m http.server" | sudo kill -9 $(cut -d" " -f2)
+#}
 
 wifi_connect() {
     sudo iw dev wlan0 connect -w "$1"
