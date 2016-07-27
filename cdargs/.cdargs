@@ -18,6 +18,7 @@ diceware /usr/local/src/git/diceware
 diceware-go /usr/local/src/git/diceware-go
 rupert /usr/local/src/git/rupert
 stymie /usr/local/src/git/stymie
+stymie-ts /usr/local/src/git/stymie-ts
 sandbox /Users/btoll/sandbox
 gosrc /usr/local/src/git/go/src
 repos /usr/local/src/git
@@ -26,4 +27,6 @@ music_theory /usr/local/src/git/music_theory
 logger /usr/local/src/git/logger
 logger-ts /usr/local/src/git/logger-ts
 stank /usr/local/src/git/stank
+sillypass /usr/local/src/git/sillypass
+sneak /usr/local/src/git/sneak
 

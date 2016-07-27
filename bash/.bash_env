@@ -20,7 +20,7 @@ export EDITOR=vim
 
 export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
 export GOPATH=/usr/local/src/git/go
-export PATH="$GOPATH/bin:$HOME/.node_modules_global/bin:/usr/local/go/bin:$PATH"
+export PATH="$GOPATH/bin:$HOME/npm/bin:/usr/local/go/bin:$PATH"
 export HISTIGNORE="stymie *:$HISTIGNORE"
 export GITHOOKS=/usr/local/src/git/git/hooks
 
