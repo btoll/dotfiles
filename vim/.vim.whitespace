@@ -9,7 +9,7 @@ if has("autocmd")
         autocmd FileType c,conf,cpp,javascript,go,haskell,html,json,markdown,python,php,sh,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
         " Remember no spaces in Makefiles!
         autocmd FileType make setlocal autoindent shiftwidth=4 tabstop=4
-        autocmd FileType coffee,javascript setlocal autoindent expandtab shiftwidth=2 tabstop=2
+        autocmd FileType coffee setlocal autoindent expandtab shiftwidth=2 tabstop=2
 
         " Set default syntax for files with no extension.
         autocmd BufNewFile,BufRead * if &filetype == '' | set filetype=sh | endif
