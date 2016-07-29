@@ -30,6 +30,7 @@
 [diff]
 	# Group diff changes more accurately for better readability.
 	algorithm = histogram
+	submodule = log
 	tool = vimdiff
 [difftool]
 	prompt = false
