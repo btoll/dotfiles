@@ -14,6 +14,7 @@ alias mv="mv -i"
 
 alias cll="clear && ls -lhF"
 alias cls="clear && ls"
+alias cla="clear && la"
 
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
