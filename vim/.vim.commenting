@@ -8,6 +8,8 @@ if has("autocmd")
 
         autocmd FileType vim nnoremap <leader>c 0i"<esc>
         autocmd FileType vim nnoremap <leader>C 0x<cr>
+        autocmd FileType vim vnoremap <leader>c :s_^_"_g<cr>:noh<cr>
+        autocmd FileType vim vnoremap <leader>C :s_^"__g<cr>:noh<cr>
 
         " Comment/uncomment out and clear search highlighting for visual blocks.
         autocmd FileType haskell nnoremap <leader>c 0i--<esc>
@@ -29,14 +31,14 @@ if has("autocmd")
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
-        autocmd FileType go,html,javascript,php nnoremap <leader>b O/*<esc>jf{%o*/<esc>
+        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>b O/*<esc>jf{%o*/<esc>
         " ...and from bottom/up (cursor must be on the closing bracket).
-        autocmd FileType go,html,javascript,php nnoremap <leader>B o*/<esc>k%O/*<esc>
+        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>B o*/<esc>k%O/*<esc>
         " Uncomment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
-        autocmd FileType go,html,javascript,php nnoremap <leader>ub kddf{%jdd<cr>
+        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>ub kddf{%jdd<cr>
         " ...and from bottom/up (cursor must be on the closing bracket).
-        autocmd FileType go,html,javascript,php nnoremap <leader>uB jddk%kdd<cr>
+        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>uB jddk%kdd<cr>
     augroup END
 endif
 
