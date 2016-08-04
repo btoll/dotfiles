@@ -6,6 +6,8 @@ owlsnestfarm /usr/local/src/git/owlsnestfarm
 jsLite /usr/local/src/git/jsLite
 games /usr/local/src/git/games
 PeteJS /usr/local/src/git/PeteJS
+pete-core /usr/local/src/git/pete-core
+pete-dom /usr/local/src/git/pete-dom
 utley /usr/local/src/git/utley
 music_theory /usr/local/src/git/music_theory
 benjamintoll.com /usr/local/src/git/benjamintoll.com
