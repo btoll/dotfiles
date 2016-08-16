@@ -1,3 +1,5 @@
+alias g="git"
+alias v="vim"
 alias vi="vim"
 
 alias desk="cd ~/Desktop"
