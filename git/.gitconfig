@@ -11,7 +11,7 @@
 	ci = commit -S
 	ca = commit -S --amend
 	co = checkout
-	st = status --short --branch
+	d = diff
 	dirty = ls --dirty -e
 	get-hash = rev-parse
 	goto = !sh -c 'git rev-parse $0 | xargs git co'
@@ -19,6 +19,8 @@
 	l  = log --pretty='%Cred%h%Creset | %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(cyan)[%an]%Creset'
 	# Show changes inline and display 10 lines before changes.
 	prose = diff --word-diff --unified=10
+	s = status --short --branch
+	st = status --short --branch
 [core]
 	editor = /usr/local/bin/vim
 	# FX = Have the pager automatically exit if all the diff text fits on the screen.
