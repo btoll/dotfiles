@@ -1,6 +1,6 @@
 {
     "js": {
-        "compress": "yuicompressor",
+        "compress": "uglifyjs",
         "transpile": "babel"
     },
     "css": {
