@@ -25,7 +25,7 @@ alias hangman="python3 /usr/local/src/git/games/python3/hangman/hangman.py"
 
 # system aliases
 alias pcrypt="python3 /usr/local/src/git/pcrypt/pcrypt.py"
-alias utley="python3 /usr/local/src/git/utley/utley.py"
+#alias utley="python3 /usr/local/src/git/utley/utley.py"
 alias css_compress="python3 /usr/local/src/git/utley/css_compress.py"
 alias js_compress="python3 /usr/local/src/git/utley/js_compress.py"
 alias bootstrap="git bootstrap"

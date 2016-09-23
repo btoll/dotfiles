@@ -1,9 +1,12 @@
 {
+    "css": {
+        "compress": true
+    },
     "js": {
         "compress": "uglifyjs",
         "transpile": "babel"
     },
-    "css": {
+    "json": {
         "compress": true
     }
 }

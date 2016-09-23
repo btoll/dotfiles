@@ -26,7 +26,6 @@ sandbox /Users/btoll/sandbox
 gosrc /usr/local/src/git/go/src
 repos /usr/local/src/git
 ext-makefile /usr/local/src/git/ext-makefile
-music_theory /usr/local/src/git/music_theory
 logger /usr/local/src/git/logger
 logger-ts /usr/local/src/git/logger-ts
 stank /usr/local/src/git/stank
