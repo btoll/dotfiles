@@ -36,8 +36,6 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
-[pull]
-	rebase = true
 [merge]
 	conflictstyle = diff3
 	renamelimit = 9220
@@ -49,3 +47,5 @@
 [rerere]
 	enabled = true
 
+[pull]
+	rebase = true
