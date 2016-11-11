@@ -60,12 +60,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=no;;
-    *) export TERM="xterm"
-esac
-
 # Set caps lock to ctrl key.
 #setxkbmap -option ctrl:nocaps
 
@@ -119,4 +113,9 @@ set -o vi
 
 #allows to clear screen when vi is set as my cli editor (not necessary if vi is not set)
 bind -m vi-insert "\C-l":clear-screen
+
+# Default to opening or creating a new tmux session when opening a terminal.
+if [[ "$TERM" != "screen-256color" ]]; then
+    tmux attach-session -t "$USER" || tmux new-session -s "$USER"
+fi
 
