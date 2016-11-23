@@ -29,7 +29,7 @@ if has("autocmd")
         autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -t % -v' : 'ddv'
 
         " Run specs only for the current file.
-        autocmd FileType javascript cnoreabbrev <expr> jthis getcmdtype() == ":" && getcmdline() == 'jthis' ? '!clear && jasmine %' : 'jthis'
+        autocmd FileType javascript cnoreabbrev <expr> jas getcmdtype() == ":" && getcmdline() == 'jas' ? '!clear && jasmine %' : 'jas'
 
         " Run all specs.
         autocmd FileType javascript cnoreabbrev <expr> jall getcmdtype() == ":" && getcmdline() == 'jall' ? '!clear && npm run specs' : 'jall'
