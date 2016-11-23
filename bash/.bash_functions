@@ -157,6 +157,10 @@ git_init() {
     git_hooks_install
 }
 
+go_tmux() {
+    tmux new-session -s $(basename `pwd`)
+}
+
 intersect() {
     # http://askubuntu.com/a/472280
     if [ "$#" -eq 0 ]; then
