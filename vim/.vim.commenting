@@ -17,12 +17,12 @@ if has("autocmd")
         autocmd FileType haskell vnoremap <leader>c :s_^_--_g<cr>:noh<cr>
         autocmd FileType haskell vnoremap <leader>C :s_^--__g<cr>:noh<cr>
 
-        autocmd FileType c,go,javascript,typescript nnoremap <leader>c 0i//<esc>
-        autocmd FileType c,go,javascript,typescript nnoremap <leader>C 02x
+        autocmd FileType c,go,javascript,typescript nnoremap <leader>c 0i// <esc>
+        autocmd FileType c,go,javascript,typescript nnoremap <leader>C 03x
 "        autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
-        autocmd FileType c,javascript,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
-"        autocmd FileType avascript,go vnoremap <leader>C :s_^//__g<cr>:noh<cr>
-        autocmd FileType c,javascript,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
+        autocmd FileType c,javascript,typescript vnoremap <leader>c :s_^_// _g<cr>:noh<cr>
+"        autocmd FileType avascript,go vnoremap <leader>C :s_^// __g<cr>:noh<cr>
+        autocmd FileType c,javascript,typescript vnoremap <leader>C :s_^// __g<cr>:noh<cr>
 
         autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>c 0i#<esc>
         autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>C 0x<cr>
