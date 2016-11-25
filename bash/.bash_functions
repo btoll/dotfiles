@@ -158,7 +158,15 @@ git_init() {
 }
 
 go_tmux() {
-    tmux new-session -s $(basename `pwd`)
+    SESSION=$(basename `pwd`)
+
+    tmux has-session -t $SESSION 2> /dev/null
+
+    if [ "$?" -eq 1 ]; then
+        tmux new-session -s $SESSION -d
+    fi
+
+    tmux attach -t $SESSION
 }
 
 intersect() {
