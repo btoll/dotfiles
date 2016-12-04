@@ -45,4 +45,5 @@ alias ..8="cd ../../../../../../../.."
 alias ..9="cd ../../../../../../../../.."
 alias ..l="ll .."
 alias :q="exit"
+alias :x="exit"
 
