@@ -130,9 +130,10 @@ git_clone() {
 
             echo "$(tput setaf 2)[INFO]$(tput sgr0) Cloned into ./$ALIAS/"
 
-            pushd "$ALIAS" > /dev/null
-            git_hooks_install
-            popd > /dev/null
+            (
+                cd "$ALIAS" > /dev/null
+                git_hooks_install
+            )
         fi
     fi
 }
@@ -144,10 +145,11 @@ git_hooks_install() {
         GITHOOKS="$LOCATION"
     fi
 
-    pushd .git/hooks > /dev/null
-    rm -rf pre-commit pre-commit.d
-    cp -r "$GITHOOKS"/* .
-    popd > /dev/null
+    (
+        cd .git/hooks > /dev/null
+        rm -rf pre-commit pre-commit.d
+        cp -r "$GITHOOKS"/* .
+    )
 
     echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed git hooks."
 }
