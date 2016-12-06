@@ -27,20 +27,20 @@ if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
 
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything.
 [ -z "$PS1" ] && return
 
-export HISTSIZE=500000
-export HISTFILESIZE=100000
+# Prevent file overwrite on stdout redirection.
+# Use '>|' to force redirection to an existing file.
+set -o noclobber
 
-# append to the history file, don't overwrite it
+set -o vi
+#shopt -s cdspell
+
+# Append to the history file, don't overwrite it.
 shopt -s histappend
 
-# check the window size after each command and, if necessary,
+# Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
@@ -52,10 +52,10 @@ fi
 # Prepend cd to directory names automatically.
 shopt -s autocd 2> /dev/null
 
-# make less more friendly for non-text input files, see lesspipe(1)
+# Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
+# Set variable identifying the chroot you work in (used in the prompt below).
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
@@ -63,9 +63,9 @@ fi
 # Set caps lock to ctrl key.
 #setxkbmap -option ctrl:nocaps
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
+# Uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
+# should be on the output of commands, not on the prompt.
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -79,24 +79,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-#if [ "$color_prompt" = yes ]; then
-#    #PS1="\e[0;36m\h:\w \e[m\e[0;32m[\A]\e[m> "
-#    PS1="\u@\h:\w \A> "
-#else
-#    PS1="\h:\w [\A]> "
-#fi
-#unset color_prompt force_color_prompt
-#
-## If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#    ;;
-#*)
-#    ;;
-#esac
-
-# enable color support of ls and also add handy aliases
+# Enable color support of ls and also add handy aliases.
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
@@ -108,14 +91,16 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-set -o vi
-#shopt -s cdspell
-
-#allows to clear screen when vi is set as my cli editor (not necessary if vi is not set)
+# Allows to clear screen when vi is set as my cli editor (not necessary if vi is not set).
 bind -m vi-insert "\C-l":clear-screen
 
+# Enable history expansion with [[space]].
+# E.g., typing !![[space]] will replace the !! with your last command!
+# No more appending `:p` to do a dry-run of the expansion!!
+bind Space:magic-space
+
 # Default to opening or creating a new tmux session when opening a terminal.
-if [[ "$TERM" != "screen-256color" ]]; then
-    tmux attach-session -t "$USER" || tmux new-session -s "$USER"
-fi
+#if [[ "$TERM" != "screen-256color" ]]; then
+#    tmux attach-session -t "$USER" || tmux new-session -s "$USER"
+#fi
 
