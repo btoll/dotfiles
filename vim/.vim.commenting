@@ -1,8 +1,11 @@
 if has("autocmd")
     augroup COMMENTING
         autocmd!
+        autocmd FileType css nnoremap <leader>c 0i/*<esc>A*/<esc>
+        autocmd FileType css nnoremap <leader>C 02x$xx
+
         autocmd FileType html nnoremap <leader>c 0i<!--<esc>A--><esc>
-        autocmd FileType html nnoremap <leader>C 04x$xxx<cr>
+        autocmd FileType html nnoremap <leader>C 04x$xxx
         "autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>
         "autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>
 
