@@ -47,3 +47,11 @@ nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
 " Change to directory of the current file.
 nnoremap <leader>cwd :cd %:p:h<cr>
 
+" Execute selected JavaScript text on-the-fly in Node.js.
+"
+" http://stackoverflow.com/questions/7845671/executing-base64-decode-on-a-selection-in-vim
+" http://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript#6271254
+"
+vnoremap <leader>js y:echo system('node ', @")<cr>
+nnoremap <leader>js :!clear && node %<cr>
+

@@ -38,3 +38,11 @@ nnoremap <leader>g :call G()<cr>
 nnoremap <leader>gb :call Gblame()<cr>
 vnoremap <leader>gr :call Grange()<cr>
 
+"-----------------------------------------------------------------------"
+"-----------------------------------------------------------------------"
+
+"function! Node(...)
+"    execute '!clear && node %'
+"    redraw!
+"endfunction
+

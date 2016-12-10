@@ -169,6 +169,7 @@ go_tmux() {
     fi
 
     tmux attach -t $SESSION
+    clear
 }
 
 intersect() {
