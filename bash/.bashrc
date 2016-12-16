@@ -2,11 +2,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# All user env vars.
-if [ -f ~/.bash_env ]; then
-    . ~/.bash_env
-fi
-
 # If a fortune program is installed.
 if [ -f ~/.bash_fortune ]; then
     . ~/.bash_fortune
@@ -26,9 +21,6 @@ fi
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
-
-# If not running interactively, don't do anything.
-[ -z "$PS1" ] && return
 
 # Prevent file overwrite on stdout redirection.
 # Use '>|' to force redirection to an existing file.
