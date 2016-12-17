@@ -61,6 +61,9 @@ if has("autocmd")
 
         " Redefine makeprg for typescript to clear screen before compiling.
         autocmd FileType typescript :set makeprg=clear\ &&\ tsc\ $*\ %
+
+        " Draw a 50 char dashed line.
+        autocmd FileType txt,text nnoremap <leader>dash i-<esc>yl49p
     augroup END
 endif
 
