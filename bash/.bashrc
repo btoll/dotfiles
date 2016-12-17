@@ -22,6 +22,10 @@ if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
 
+# Disable <CTRL-d> which is used to logout of a login shell
+# (local or remote login session over ssh).
+set -o ignoreeof
+
 # Prevent file overwrite on stdout redirection.
 # Use '>|' to force redirection to an existing file.
 set -o noclobber
