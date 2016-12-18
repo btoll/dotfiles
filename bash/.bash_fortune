@@ -1,4 +1,0 @@
-if which fortune  > /dev/null && which cowsay > /dev/null; then
-    fortune | cowsay
-fi
-

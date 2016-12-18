@@ -2,11 +2,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# If a fortune program is installed.
-if [ -f ~/.bash_fortune ]; then
-    . ~/.bash_fortune
-fi
-
 # Function definitions.
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
@@ -20,6 +15,15 @@ fi
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
+fi
+
+# If a fortune program is installed.
+if which fortune > /dev/null; then
+    if which cowsay > /dev/null; then
+        fortune | cowsay
+    else
+        fortune
+    fi
 fi
 
 # Disable <CTRL-d> which is used to logout of a login shell
