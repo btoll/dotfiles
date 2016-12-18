@@ -13,6 +13,9 @@ if has("autocmd")
         autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
         autocmd FileType html inoreabbrev scripttag <script src="" charset="utf-8"></script>
         autocmd FileType html inoreabbrev linktag <link href="" rel="stylesheet" type="text/css">
+
+        " Set base filetype.
+        autocmd FileType conf,text,txt inoreabbrev filetype /* vim: set filetype=text : */
     augroup END
 endif
 
