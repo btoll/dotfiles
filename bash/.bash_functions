@@ -203,6 +203,32 @@ rmi() {
     fi
 }
 
+# Background a job to interrupt you, you hard worker!
+take_a_break() {
+    MINS="$1"
+
+    if [ -z $MINS ]; then
+        MINS=30
+    fi
+
+    echo "You're going to do something awesome in $MINS minutes!"
+
+    # Note that Bash shells must have parens around the commands!
+    (
+        # http://www.tldp.org/LDP/abs/html/arithexp.html
+        sleep $((MINS * 60)) ;
+        echo -e "\n\nHello, sailor, let's take a break!\n" ;
+
+        # Let's ring the bell (BEL)!
+        # `tput bel` or `echo -e "\a"` or `echo $'\a'` are all (mostly) equivalent.
+        tput bel ;
+        sleep .5 ;
+        tput bel ;
+        sleep .2 ;
+        tput bel
+    )&
+}
+
 # Open vim and immediately invoke CtrlP plugin.
 vimp() {
     vim -c ":CtrlP"
