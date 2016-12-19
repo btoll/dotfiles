@@ -190,14 +190,37 @@ mcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-ring_bells() {
+moby_dick() {
+    # Well, sort of (apologies to John Bonham)...
+    #
     # Let's ring the bell (BEL)!
     # `tput bel` or `echo -e "\a"` or `echo $'\a'` are all (mostly) equivalent.
-    tput bel ;
-    sleep .5 ;
-    tput bel ;
-    sleep .3 ;
+
     tput bel
+    sleep .2
+    tput bel
+    sleep .2
+    tput bel
+    sleep .2
+    tput bel
+
+    sleep .4
+    tput bel
+    sleep .4
+    tput bel
+    sleep .4
+    tput bel
+
+    sleep .4
+    tput bel
+    sleep .2
+    tput bel
+    sleep .2
+    tput bel
+    sleep .2
+    tput bel
+
+    sleep 1
 }
 
 # Remove by inode.
@@ -216,12 +239,17 @@ rmi() {
 # Background a job to interrupt you, you hard worker!
 take_a_break() {
     MINS="$1"
+    s=
 
     if [ -z $MINS ]; then
         MINS=30
     fi
 
-    echo "You're going to do something different in $MINS minutes!"
+    if [ $MINS -ne 1 ]; then
+        s=s
+    fi
+
+    echo "You're going to do something different in $MINS minute$s!"
 
     # Note that Bash shells must run the commands in a subshell!
     (
@@ -231,7 +259,7 @@ take_a_break() {
         # Infinite loop.
         while :
         do
-            ring_bells
+            moby_dick
         done
     )&
 }
