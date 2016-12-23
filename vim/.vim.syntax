@@ -65,6 +65,7 @@ if has("autocmd")
         " Draw a dividing line.
         autocmd FileType javascript nnoremap <leader>line i/* -<esc>yl59pi */<esc>
         autocmd FileType txt,text nnoremap <leader>line i-<esc>yl59p
+        autocmd FileType sh nnoremap <leader>line i#<esc>yl59p
     augroup END
 endif
 
