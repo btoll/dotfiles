@@ -30,3 +30,8 @@ export GOPATH=/usr/local/src/git/go
 export PATH="$HOME/bin:$HOME/npm/bin:$PATH"
 export GITHOOKS=/usr/local/src/git/git/hooks
 
+# To make use of gpg-agent when not using X, uncomment `use-agent`
+# in ~/.gnupg/gpg.conf.
+eval "$(gpg-agent --daemon)"
+export GPG_TTY=$(tty)
+

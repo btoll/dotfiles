@@ -1,6 +1,7 @@
 alias g="git"
-alias v="vim"
-alias vi="vim"
+alias v="vi"
+alias vi="vi"
+alias vim="vi"
 
 alias desk="cd ~/Desktop"
 alias l="less"
