@@ -16,8 +16,7 @@ set cryptmethod=blowfish
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
 syntax on
-"colors desert
-colorscheme olive
+" colors desert
 
 " Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position
 " of the displayed text in the file is shown on the far right.
@@ -55,8 +54,8 @@ set thesaurus+=/usr/share/thesaurus/mthesaur.txt
 " Turn on line numbers.
 set number
 
-" Turn off error sounds and screen flashing.
-set visualbell
+" Turn off error sounds and screen flashing (visual bell).
+set vb t_vb=
 
 set hidden
 
