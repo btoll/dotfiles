@@ -256,11 +256,11 @@ take_a_break() {
         # http://www.tldp.org/LDP/abs/html/arithexp.html
         sleep $((MINS * 60)) ;
 
-        # Infinite loop.
-        while :
-        do
-            moby_dick
-        done
+        # In case .xsession or other turned the bell off!
+        xset b on ;
+        moby_dick ;
+        # TODO: Set value of `b` back to what it was before rather than just turning it off.
+        xset b off
     )&
 }
 
