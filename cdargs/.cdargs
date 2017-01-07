@@ -12,11 +12,11 @@ utley /usr/local/src/git/utley
 music_theory /usr/local/src/git/music_theory
 benjamintoll.com /usr/local/src/git/benjamintoll.com
 pcrypt /usr/local/src/git/pcrypt
-jcrypt /usr/local/src/git/jcrypt
+onf-gpg-wrapper /usr/local/src/git/onf-gpg-wrapper
 dump_describes /usr/local/src/git/dump_describes
 You-Dont-Know-JS /usr/local/www/You-Dont-Know-JS
 scratchpad /usr/local/src/git/scratchpad
-diceware /usr/local/src/git/diceware
+onf-diceware /usr/local/src/git/onf-diceware
 diceware-go /usr/local/src/git/diceware-go
 rupert /usr/local/src/git/rupert
 stymie /usr/local/src/git/stymie
@@ -26,11 +26,12 @@ sandbox /Users/btoll/sandbox
 gosrc /usr/local/src/git/go/src
 repos /usr/local/src/git
 ext-makefile /usr/local/src/git/ext-makefile
-logger /usr/local/src/git/logger
+onf-logger /usr/local/src/git/onf-logger
 logger-ts /usr/local/src/git/logger-ts
 stank /usr/local/src/git/stank
 sillypass /usr/local/src/git/sillypass
-sneak /usr/local/src/git/sneak
+onf-sneak /usr/local/src/git/onf-sneak
 test /usr/local/src/git/test
 derp /usr/local/src/git/derp
+onf-static /usr/local/src/git/onf-static
 
