@@ -52,3 +52,5 @@ nnoremap <leader>cwd :cd %:p:h<cr>
 vnoremap <leader>js y:echo system('node ', @")<cr>
 nnoremap <leader>js :!clear && node %<cr>
 
+nnoremap <leader>gcc :!clear && gcc % && ./a.out<cr>
+

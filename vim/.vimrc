@@ -84,8 +84,8 @@ Plug 'easymotion/vim-easymotion'
 
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_confirm_extra_conf = 0
+"Plug 'Valloric/YouCompleteMe'
+"let g:ycm_confirm_extra_conf = 0
 " TODO: https://github.com/rdnetto/YCM-Generator
 
 Plug 'tpope/vim-repeat.git'

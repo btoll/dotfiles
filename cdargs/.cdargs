@@ -22,7 +22,7 @@ rupert /usr/local/src/git/rupert
 stymie /usr/local/src/git/stymie
 stymie-fs /usr/local/src/git/stymie-fs
 stymie-ts /usr/local/src/git/stymie-ts
-sandbox /Users/btoll/sandbox
+sandbox /home/btoll/sandbox
 gosrc /usr/local/src/git/go/src
 repos /usr/local/src/git
 ext-makefile /usr/local/src/git/ext-makefile

@@ -1,4 +1,5 @@
 alias g="git"
+alias gpg="gpg2"
 alias v="vi"
 alias vi="vi"
 alias vim="vi"
