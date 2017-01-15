@@ -37,6 +37,12 @@ set -o noclobber
 set -o vi
 #shopt -s cdspell
 
+# By setting the bell length to 0, all console beeps are
+# disabled while running from the shell.
+if [ -z $XTERM_SHELL ]; then
+    setterm -blength 0
+fi
+
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
