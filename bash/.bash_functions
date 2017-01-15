@@ -256,11 +256,21 @@ take_a_break() {
         # http://www.tldp.org/LDP/abs/html/arithexp.html
         sleep $((MINS * 60)) ;
 
-        # In case .xsession or other turned the bell off!
-        xset b on ;
+        # If in an XSession use `xset`, else use `setterm` when in terminal.
+        if [ -z $XTERM_SHELL ]; then
+            setterm -blength 100 ;
+        else
+            xset b on
+        fi
+
         moby_dick ;
+
         # TODO: Set value of `b` back to what it was before rather than just turning it off.
-        xset b off
+        if [ -z $XTERM_SHELL ]; then
+            setterm -blength 0
+        else
+            xset b off
+        fi
     )&
 }
 
