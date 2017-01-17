@@ -59,3 +59,6 @@ set vb t_vb=
 
 set hidden
 
+" Exuberant ctags.
+set tags+=./tags,tags;$HOME
+
