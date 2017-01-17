@@ -13,3 +13,8 @@ fi
 # If not running interactively, don't do anything.
 [ -z "$PS1" ] && return
 
+# To make use of gpg-agent when not using X, uncomment `use-agent`
+# in ~/.gnupg/gpg.conf.
+eval "$(gpg-agent --daemon)"
+export GPG_TTY=$(tty)
+
