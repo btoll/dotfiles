@@ -49,8 +49,12 @@ nnoremap <leader>cwd :cd %:p:h<cr>
 
 " http://stackoverflow.com/questions/7845671/executing-base64-decode-on-a-selection-in-vim
 " http://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript#6271254
-vnoremap <leader>js y:echo system('node ', @")<cr>
-nnoremap <leader>js :!clear && node %<cr>
 
-nnoremap <leader>gcc :!clear && gcc % && ./a.out<cr>
-
+if has("autocmd")
+    augroup RUNCODE
+        autocmd FileType c nnoremap <leader>go :!clear && gcc % && ./a.out<cr>
+        autocmd FileType javascript vnoremap <leader>go y:echo system('node ', @")<cr>
+        autocmd FileType javascript nnoremap <leader>go :!clear && node %<cr>
+        autocmd FileType python nnoremap <leader>go :!clear && python3 %<cr>
+    augroup RUNCODE
+endif
