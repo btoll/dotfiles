@@ -13,8 +13,8 @@ fi
 
 # Turn on git bash completion.
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
-if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash
+if [ -f ~/git-completion.bash ]; then
+    . ~/git-completion.bash
 fi
 
 # If a fortune program is installed.
