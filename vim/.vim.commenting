@@ -24,7 +24,7 @@ if has("autocmd")
         autocmd FileType c,go,javascript,typescript nnoremap <leader>C 03x
 "        autocmd FileType javascript,go vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,javascript,typescript vnoremap <leader>c :s_^_// _g<cr>:noh<cr>
-"        autocmd FileType avascript,go vnoremap <leader>C :s_^// __g<cr>:noh<cr>
+"        autocmd FileType javascript,go vnoremap <leader>C :s_^// __g<cr>:noh<cr>
         autocmd FileType c,javascript,typescript vnoremap <leader>C :s_^// __g<cr>:noh<cr>
 
         autocmd FileType coffee,gitconfig,php,python,sh nnoremap <leader>c 0i#<esc>
@@ -34,14 +34,14 @@ if has("autocmd")
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
-        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>b O/*<esc>jf{%o*/<esc>
+        autocmd FileType c,go,html,javascript,php,typescript nnoremap <leader>b O/*<esc>jf{%o*/<esc>
         " ...and from bottom/up (cursor must be on the closing bracket).
-        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>B o*/<esc>k%O/*<esc>
+        autocmd FileType c,go,html,javascript,php,typescript nnoremap <leader>B o*/<esc>k%O/*<esc>
         " Uncomment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
-        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>ub kddf{%jdd<cr>
+        autocmd FileType c,go,html,javascript,php,typescript nnoremap <leader>ub kddf{%jdd<cr>
         " ...and from bottom/up (cursor must be on the closing bracket).
-        autocmd FileType go,html,javascript,php,typescript nnoremap <leader>uB jddk%kdd<cr>
+        autocmd FileType c,go,html,javascript,php,typescript nnoremap <leader>uB jddk%kdd<cr>
     augroup END
 endif
 
