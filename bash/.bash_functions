@@ -46,7 +46,13 @@ bp() {
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bp <filename>"
     else
-        vim -c ":normal ibp" "$1"
+        stat "$1" &> /dev/null
+
+        if [ $? -eq 1 ]; then
+            vim -c ":normal ibp" "$1"
+        else
+            echo "$(tput setaf 3)[WARN]$(tput sgr0) File exists, aborting."
+        fi
     fi
 }
 
