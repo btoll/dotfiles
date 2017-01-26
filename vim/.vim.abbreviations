@@ -12,6 +12,9 @@ if has("autocmd")
         " JavaScript boilerplate (also used in `bp` bash function).
         autocmd FileType javascript inoreabbrev bp 'use strict';<cr><cr>(() => {<cr>})();<cr>
 
+        " Python boilerplate (also used in `bp` bash function).
+        autocmd FileType python inoreabbrev bp def main():<cr>''' TODO '''<cr><esc>O<cr>if __name__ == '__main__':<cr>main()
+
         " CSS and JavaScript resources.
         autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
         autocmd FileType html inoreabbrev scripttag <script src="" charset="utf-8"></script>
