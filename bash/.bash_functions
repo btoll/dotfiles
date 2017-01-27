@@ -242,6 +242,28 @@ rmi() {
     fi
 }
 
+secure_browse() {
+    # http://www.catonmat.net/blog/linux-socks5-proxy/
+    #
+    # -f - Requests ssh to go to background just before command execution.
+    # -N - Do not execute a remote command.
+    # -D - Specifies a local "dynamic" application-level port forwarding.
+    #
+    # Also, in FF make sure to set network.proxy.socks_remote_dns to true so DNS queries aren't leaked to the ISP.
+    if [ $# -eq 0 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: secure_browse your_website"
+    else
+        ssh -f -N -D 1080 "$1"
+
+        if [ $? -ne 0 ]; then
+            echo "$(tput setaf 3)[WARN]$(tput sgr0) Could not establish tunnel"
+        else
+            firefox &> /dev/null &
+        fi
+    fi
+}
+
 # Background a job to interrupt you, you hard worker!
 take_a_break() {
     MINS="$1"
