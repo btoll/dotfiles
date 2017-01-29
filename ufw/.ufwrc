@@ -3,6 +3,13 @@
 sudo ufw allow 22/tcp
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
+sudo ufw deny 25/tcp
+
+# Port 111 is rpcbind
+# http://www.debian.org/doc/manuals/securing-debian-howto/ch12.en.html
+# http://www.debian.org/doc/manuals/securing-debian-howto/ch-sec-services.en.html#s-rpc
+sudo ufw deny 111/tcp
+
 sudo ufw enable
 sudo ufw status
 
