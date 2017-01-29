@@ -34,4 +34,5 @@ onf-sneak /usr/local/src/git/onf-sneak
 test /usr/local/src/git/test
 derp /usr/local/src/git/derp
 onf-static /usr/local/src/git/onf-static
+fortune /usr/local/src/git/fortune
 
