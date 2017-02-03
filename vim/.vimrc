@@ -137,5 +137,9 @@ if has("autocmd")
     if filereadable($HOME . "/.vim.whitespace")
       source ~/.vim.whitespace
     endif
+
+    if filereadable($HOME . "/cscope_maps.vim")
+      source ~/cscope_maps.vim
+    endif
 endif
 
