@@ -20,7 +20,7 @@ fi
 # If a fortune program is installed.
 if which fortune > /dev/null; then
     if which cowsay > /dev/null; then
-        fortune 25% george_carlin 25% kurt_vonnegut 25% malcolm_x 25% morrissey | cowsay
+        fortune | cowsay
     else
         fortune
     fi
