@@ -52,7 +52,7 @@ if has("autocmd")
         autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
 
         " Got here!
-        autocmd FileType c nnoremap <leader>gh oprintf("got here");<esc>
+        autocmd FileType c nnoremap <leader>gh oprintf("got here\n");<esc>
         autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
         autocmd FileType python nnoremap <leader>gh oprint('got here')<esc>
