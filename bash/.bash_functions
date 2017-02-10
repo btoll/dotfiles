@@ -178,6 +178,14 @@ go_tmux() {
     clear
 }
 
+hexbits() {
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: hexbits <hexadecimal>"
+    else
+        asbits `htoi "$1"`
+    fi
+}
+
 intersect() {
     # http://askubuntu.com/a/472280
     if [ "$#" -eq 0 ]; then
