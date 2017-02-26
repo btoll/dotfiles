@@ -180,9 +180,9 @@ go_tmux() {
 
 hexbits() {
     if [ "$#" -eq 0 ]; then
-        echo "Usage: hexbits <hexadecimal>"
+        echo "Usage: hexbits <hexadecimal> [number of display bytes]"
     else
-        asbits `htoi "$1"`
+        asbits `htoi "$1"` ${2:-4}
     fi
 }
 
@@ -260,7 +260,7 @@ secure_browse() {
     # Also, in FF make sure to set network.proxy.socks_remote_dns to true so DNS queries aren't leaked to the ISP.
     if [ $# -eq 0 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: secure_browse your_website"
+        echo "Usage: secure_browse <website_to_tunnel_traffic>"
     else
         ssh -f -N -D 1080 "$1"
 

@@ -6,12 +6,3 @@ if [ "$SHLVL" = 1 ]; then
     [ -x /usr/bin/clear_console ] && /usr/bin/clear_console -q
 fi
 
-# If a fortune program is installed.
-if which fortune > /dev/null; then
-    if which cowsay > /dev/null; then
-        fortune | cowsay -W 60
-    else
-        fortune
-    fi
-fi
-
