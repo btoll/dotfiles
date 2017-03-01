@@ -324,7 +324,7 @@ vimp() {
 #}
 
 wifi_connect() {
-    sudo iw dev wlan0 connect -w "$1"
+    sudo iw dev wlan0 connect -w "$1" &> /dev/null
     sudo dhclient wlan0
 }
 
