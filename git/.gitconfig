@@ -28,7 +28,7 @@
 	# No tabs!
 	whitespace = tab-in-indent
 [github]
-	user = benjam72@yahoo.com
+	user = btoll
 [diff]
 	# Group diff changes more accurately for better readability.
 	algorithm = histogram

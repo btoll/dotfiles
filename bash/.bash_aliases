@@ -25,7 +25,6 @@ alias brm="rm -rf"
 
 alias xkcd="open http://c.xkcd.com/random/comic/"
 alias irc="irssi"
-alias hangman="python3 /usr/local/src/git/games/python3/hangman/hangman.py"
 
 # system aliases
 alias pcrypt="python3 /usr/local/src/git/pcrypt/pcrypt.py"
