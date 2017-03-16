@@ -294,7 +294,7 @@ take_a_break() {
 
         # If in an XSession use `xset`, else use `setterm` when in terminal.
         if [ -z $XTERM_SHELL ]; then
-            setterm -blength 100 ;
+            setterm -blength 100 &> /dev/null ;
         else
             xset b on
         fi
