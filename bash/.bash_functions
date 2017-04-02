@@ -272,6 +272,15 @@ secure_browse() {
     fi
 }
 
+sshp() {
+    if [ "$#" -eq 0 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: sshp domain"
+    else
+        ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no "$1"
+    fi
+}
+
 # Background a job to interrupt you, you hard worker!
 take_a_break() {
     MINS="$1"
