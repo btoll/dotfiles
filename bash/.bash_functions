@@ -94,6 +94,19 @@ cls() {
     fi
 }
 
+falloc() {
+    if [ "$#" -eq 0 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: falloc <name> <size (ex. 1GB, 500MB)>"
+    else
+        NAME="$1"
+        SIZE="$2"
+
+        fallocate -l $SIZE $NAME
+        sudo mkfs.ext3 $NAME
+    fi
+}
+
 get_code_point() {
     if [ -z "$1" ]; then
         echo "Usage: get_code_point <char>"
@@ -202,6 +215,26 @@ jirafy() {
 
 mcd() {
     mkdir -p "$1" && cd "$1"
+}
+
+mnt_me() {
+    if [ "$#" -eq 0 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: mnt_me <name> <mount point>"
+    else
+        NAME="$1"
+        MNT="$2"
+
+        lsmod | grep loop &> /dev/null
+
+        # Add the loop device if not present.
+        if [ $? -gt 0 ]; then
+            sudo modprobe loop
+        fi
+
+        mkdir -p $MNT
+        sudo mount -o loop $NAME $MNT
+    fi
 }
 
 moby_dick() {
