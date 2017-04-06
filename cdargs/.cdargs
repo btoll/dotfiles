@@ -18,7 +18,7 @@ You-Dont-Know-JS /usr/local/www/You-Dont-Know-JS
 scratchpad /usr/local/src/git/scratchpad
 onf-diceware /usr/local/src/git/onf-diceware
 diceware-go /usr/local/src/git/diceware-go
-rupert /usr/local/src/git/rupert
+rupert-fs /usr/local/src/git/rupert-fs
 stymie /usr/local/src/git/stymie
 stymie-fs /usr/local/src/git/stymie-fs
 stymie-ts /usr/local/src/git/stymie-ts
@@ -37,4 +37,5 @@ onf-static /usr/local/src/git/onf-static
 fortune /usr/local/src/git/fortune
 receipts /usr/local/src/git/receipts
 chroot /usr/local/src/git/chroot
+simple_server /usr/local/src/git/simple_server
 
