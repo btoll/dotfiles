@@ -33,7 +33,6 @@ alias css_compress="python3 /usr/local/src/git/utley/css_compress.py"
 alias js_compress="python3 /usr/local/src/git/utley/js_compress.py"
 alias bootstrap="git bootstrap"
 alias dirty="git dirty"
-alias web_start="node /usr/local/src/git/tools/node/server.js"
 
 alias remove_debugger="/usr/local/src/git/tools/bash/remove_debugger.sh"
 
