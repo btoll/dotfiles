@@ -38,4 +38,5 @@ fortune /usr/local/src/git/fortune
 receipts /usr/local/src/git/receipts
 chroot /usr/local/src/git/chroot
 simple_server /usr/local/src/git/simple_server
+onf-watch /usr/local/src/git/onf-watch
 
