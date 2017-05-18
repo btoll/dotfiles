@@ -53,7 +53,8 @@ nnoremap <leader>cwd :cd %:p:h<cr>
 if has("autocmd")
     augroup RUNCODE
         autocmd FileType c nnoremap <leader>go :!clear && gcc % && ./a.out<cr>
-        autocmd FileType javascript vnoremap <leader>go y:echo system('node ', @")<cr>
+        autocmd FileType cc,cpp nnoremap <leader>go :!clear && g++ % && ./a.out<cr>
+
         autocmd FileType javascript nnoremap <leader>go :!clear && node %<cr>
         autocmd FileType python nnoremap <leader>go :!clear && python3 %<cr>
     augroup RUNCODE
