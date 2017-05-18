@@ -1,7 +1,13 @@
 if has("autocmd")
     augroup ABBREVIATIONS
+        " Bash boilerplate (also used in `bp` bash function).
+        autocmd FileType sh inoreabbrev bp #!/bin/bash<cr><cr>
+
         " C boilerplate (also used in `bp` bash function).
         autocmd FileType c inoreabbrev bp #include <stdio.h><cr><cr>int main(int argc, char **argv) {<cr><cr>return 0;<cr>}<cr>
+
+        " C++ boilerplate (also used in `bp` bash function).
+        autocmd FileType cc,cpp inoreabbrev bp #include <iostream><cr><cr>using namespace std;<cr><cr>int main() {<cr><cr>return 0;<cr>}<cr>
 
         " Go boilerplate (also used in `bp` bash function).
         autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
