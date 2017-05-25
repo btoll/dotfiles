@@ -25,9 +25,7 @@
         "wrap-iife": [2, "outside"]
     },
     "globals": {
-        "Pete": true,
-        "Ext": true,
-        "MockAjaxManager": true
+        "Pete": true
     },
     "env": {
         "es6": true,
