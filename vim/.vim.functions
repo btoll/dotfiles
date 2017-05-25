@@ -31,11 +31,13 @@ function! Grange(...) range
     let blame = a:0 ? a:1 : 0
     let branch = a:0 > 1 ? a:2 : ''
 
-    call G('%', l:blame, l:branch, l:range)
+   call G('%', l:blame, l:branch, l:range)
 endfunction
 
 nnoremap <leader>g :call G()<cr>
 nnoremap <leader>gb :call Gblame()<cr>
+
+vnoremap <leader>gbr :call Grange(1)<cr>
 vnoremap <leader>gr :call Grange()<cr>
 
 "-----------------------------------------------------------------------"
