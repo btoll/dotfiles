@@ -95,7 +95,7 @@ cls() {
 }
 
 falloc() {
-    if [ "$#" -eq 0 ]; then
+    if [ "$#" -lt 2 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: falloc <name> <size (ex. 1GB, 500MB)>"
     else
@@ -218,7 +218,7 @@ mcd() {
 }
 
 mnt_me() {
-    if [ "$#" -eq 0 ]; then
+    if [ "$#" -lt 2 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: mnt_me <name> <mount point>"
     else
