@@ -59,3 +59,5 @@ set vb t_vb=
 
 set hidden
 
+set fileformat=unix
+

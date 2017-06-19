@@ -1,27 +1,6 @@
 if has("autocmd")
     augroup SYNTAX
         autocmd!
-        " JavaScript syntax helpers.
-        " Typing 'iff' will create an empty if block and then put the cursor within the parens.
-        autocmd FileType html,javascript,go inoreabbrev <buffer> iff if () {<cr>}<esc>kt)
-
-        " Typing 'ifd' will create an if block with a debugger and then put the cursor within the parens.
-        autocmd FileType html,javascript inoreabbrev <buffer> ifd if () {<cr>debugger;<cr>}<esc>2kt)
-
-        " Typing 'iife' will create an IIFE (es6).
-        " Note `<<o` will dedent and then create a new line.
-        autocmd FileType html,javascript inoreabbrev <buffer> iife (() => {<cr><tab>'use strict';<cr><cr>})();<esc><<o<esc>
-
-        " Typing 'forr' will create an empty for block, insert two semi-colons within the parens and then
-        " put the cursor within the first paren in insert mode.
-        autocmd FileType html,javascript inoreabbrev <buffer> forr for (;;) {<cr>}<cr><esc>2kt;
-
-        " Typing 'forin' will create an empty for block, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-        autocmd FileType html,javascript inoreabbrev <buffer> forin for (in) {<cr>}<cr><esc>2kti
-
-        " Typing 'func' will create a function expression, insert the keyword in within the parens and then put the cursor within the first paren in insert mode.
-        autocmd FileType html,javascript inoreabbrev <buffer> func function () {<cr>};<esc>kf(a
-
         " dump_describes
         " http://stackoverflow.com/a/7515418
         autocmd FileType coffee cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && coffee -p %' : 'dd'
@@ -48,6 +27,7 @@ if has("autocmd")
         autocmd FileType c,cc,cpp nnoremap <leader>log oprintf("%s\n", <c-r>");<esc>
         autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
         autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log(<c-r>");<esc>
+        autocmd FileType php nnoremap <leader>log ovar_dump(<c-r>");<esc>
         autocmd FileType python nnoremap <leader>log oprint(<c-r>")<esc>
         autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
 
@@ -55,6 +35,7 @@ if has("autocmd")
         autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
         autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
+        autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
         autocmd FileType python nnoremap <leader>gh oprint('got here')<esc>
         autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
 
