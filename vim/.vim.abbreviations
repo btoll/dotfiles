@@ -13,7 +13,7 @@ if has("autocmd")
         autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
 
         " HTML boilerplate (also used in `bp` bash function).
-        autocmd FileType html inoreabbrev bp <!DOCTYPE html><cr><html><cr><head><cr><meta charset="utf-8"><cr><title></title><<style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
+        autocmd FileType html inoreabbrev bp <!DOCTYPE html><cr><html><cr><head><cr><meta charset="utf-8"><cr><title></title><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
 
         " JavaScript boilerplate (also used in `bp` bash function).
         autocmd FileType javascript inoreabbrev bp 'use strict';<cr><cr>(() => {<cr>})();<cr>
