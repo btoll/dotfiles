@@ -352,6 +352,19 @@ take_a_break() {
     )&
 }
 
+# Specify the number of seconds to sleep before taking the screenshot.
+# Increase the default of 5 seconds if more time is needed to prepare the screenshot.
+take_screenshot() {
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: take_screenshot outfile [sleep=5]"
+    else
+        SECONDS=${2:-5}
+
+        sleep "$SECONDS"
+        xwd -root | xwdtopnm | pnmtopng > "$1"
+    fi
+}
+
 # Open vim and immediately invoke CtrlP plugin.
 vimp() {
     vim -c ":CtrlP"
