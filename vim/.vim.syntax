@@ -26,7 +26,7 @@ if has("autocmd")
         " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
         autocmd FileType c,cc,cpp nnoremap <leader>log oprintf("%s\n", <c-r>");<esc>
         autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
-        autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log(<c-r>");<esc>
+        autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log('<c-r>"', <c-r>");<esc>
         autocmd FileType php nnoremap <leader>log ovar_dump(<c-r>");<esc>
         autocmd FileType python nnoremap <leader>log oprint(<c-r>")<esc>
         autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
