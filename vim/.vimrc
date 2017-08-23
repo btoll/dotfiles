@@ -104,6 +104,10 @@ Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
 Plug 'leafgarland/typescript-vim'
 
+" https://github.com/fatih/vim-go
+" Run :GoInstallBinaries after install.
+Plug 'fatih/vim-go'
+
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -123,7 +127,7 @@ if filereadable($HOME . "/.vim.set")
   source ~/.vim.set
 endif
 
-" Vim needs to have been compiled with the autocmd flag. Do :version and verify +autocmd.
+" Vim needs to have been compiled with the autocmd flag. Do vim --version and verify +autocmd.
 if has("autocmd")
     if filereadable($HOME . "/.vim.abbreviations")
       source ~/.vim.abbreviations
