@@ -1,3 +1,4 @@
 #icewm
-fluxbox
+#fluxbox
+i3
 
