@@ -37,6 +37,7 @@ alias dirty="git dirty"
 alias remove_debugger="/usr/local/src/git/tools/bash/remove_debugger.sh"
 
 alias ..="cd .."
+alias ..1="cd .."
 alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
