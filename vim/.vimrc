@@ -105,8 +105,8 @@ Plug 'mileszs/ack.vim'
 Plug 'leafgarland/typescript-vim'
 
 " https://github.com/fatih/vim-go
-" Run :GoInstallBinaries after install.
-Plug 'fatih/vim-go'
+" To update, :GoUpdateBinaries
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Add plugins to &runtimepath
 call plug#end()
