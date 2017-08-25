@@ -1,0 +1,173 @@
+if has("autocmd")
+    augroup ABBREVIATIONS
+        " Bash boilerplate (also used in `bp` bash function).
+        autocmd FileType sh inoreabbrev bp #!/bin/bash<cr><cr>
+
+        " C boilerplate (also used in `bp` bash function).
+        autocmd FileType c inoreabbrev bp #include <stdio.h><cr><cr>int main(int argc, char **argv) {<cr><cr>return 0;<cr>}<cr>
+
+        " C++ boilerplate (also used in `bp` bash function).
+        autocmd FileType cc,cpp inoreabbrev bp #include <iostream><cr><cr>using namespace std;<cr><cr>int main() {<cr><cr>return 0;<cr>}<cr>
+
+        " Go boilerplate (also used in `bp` bash function).
+        autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
+
+        " HTML boilerplate (also used in `bp` bash function).
+        autocmd FileType html inoreabbrev bp <!DOCTYPE html><cr><html><cr><head><cr><meta charset="utf-8"><cr><title></title><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
+
+        " JavaScript boilerplate (also used in `bp` bash function).
+        autocmd FileType javascript inoreabbrev bp 'use strict';<cr><cr>(() => {<cr>})();<cr>
+
+        " Python boilerplate (also used in `bp` bash function).
+        autocmd FileType python inoreabbrev bp def main():<cr>''' TODO '''<cr><esc>O<cr>if __name__ == '__main__':<cr>main()
+
+        " CSS and JavaScript resources.
+        autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
+        autocmd FileType html inoreabbrev scripttag <script src="" type="text/javascript" charset="utf-8"></script>
+        autocmd FileType html inoreabbrev linktag <link href="" rel="stylesheet" type="text/css">
+
+        " Set base filetype.
+        autocmd FileType conf,text,txt inoreabbrev filetype /* vim: set filetype=text : */
+    augroup END
+
+    augroup COMMENTING
+        autocmd!
+        autocmd FileType css nnoremap <leader>c 0i/*<esc>A*/<esc>
+        autocmd FileType css nnoremap <leader>C 02x$xx
+
+        autocmd FileType html nnoremap <leader>c 0i<!--<esc>A--><esc>
+        autocmd FileType html nnoremap <leader>C 04x$xxx
+        "autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>
+        "autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>
+
+        autocmd FileType vim nnoremap <leader>c 0i"<esc>
+        autocmd FileType vim nnoremap <leader>C 0x<cr>
+        autocmd FileType vim vnoremap <leader>c :s_^_"_g<cr>:noh<cr>
+        autocmd FileType vim vnoremap <leader>C :s_^"__g<cr>:noh<cr>
+
+        " Comment/uncomment out and clear search highlighting for visual blocks.
+        autocmd FileType haskell nnoremap <leader>c 0i--<esc>
+        autocmd FileType haskell nnoremap <leader>C 02x
+        autocmd FileType haskell vnoremap <leader>c :s_^_--_g<cr>:noh<cr>
+        autocmd FileType haskell vnoremap <leader>C :s_^--__g<cr>:noh<cr>
+
+        autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>c 0i//<esc>
+        autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>C 02x
+        autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
+        autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
+
+        autocmd FileType coffee,gitconfig,python,sh nnoremap <leader>c 0i#<esc>
+        autocmd FileType coffee,gitconfig,python,sh nnoremap <leader>C 0x<cr>
+        autocmd FileType coffee,gitconfig,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType coffee,gitconfig,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+
+        " Comment out the block, c-style.
+        " From top/down (Start with your cursor anywhere on the first line)...
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cb O/*<esc>jf{%o*/<esc>
+        " ...and from bottom/up (cursor must be on the closing bracket).
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>Bc o*/<esc>k%O/*<esc>
+        " Uncomment out the block, c-style.
+        " From top/down (Start with your cursor anywhere on the first line)...
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cub kddf{%jdd<cr>
+        " ...and from bottom/up (cursor must be on the closing bracket).
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cuB jddk%kdd<cr>
+    augroup END
+
+    augroup MISC
+        " Immediately apply any changes to .vimrc after writing.
+        autocmd BufWritePost .vimrc source $MYVIMRC
+
+        " Set autocomplete for JS. <C-X><C-O> to initiate, <C-N> and <C-P> to step through.
+"        autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
+        " Add the main function that restores the cursor position and its autocmd so that it gets triggered:
+        function! ResCur()
+            if line("'\"") <= line("$")
+                normal! g`"
+                return 1
+            endif
+        endfunction
+
+        autocmd BufWinEnter * call ResCur()
+    augroup END
+
+    augroup RUNCODE
+        autocmd FileType c nnoremap <leader>go :!clear && gcc % && ./a.out<cr>
+        autocmd FileType cc,cpp nnoremap <leader>go :!clear && g++ % && ./a.out<cr>
+
+        autocmd FileType javascript nnoremap <leader>go :!clear && node %<cr>
+        autocmd FileType javascript vnoremap <leader>go y:echo system('node ', @")<cr>
+
+        autocmd FileType python nnoremap <leader>go :!clear && python3 %<cr>
+        autocmd FileType python vnoremap <leader>go y:echo system('python3 ' @")<cr>
+    augroup END
+
+    augroup SYNTAX
+        autocmd!
+        " dump_describes
+        " http://stackoverflow.com/a/7515418
+        autocmd FileType coffee cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && coffee -p %' : 'dd'
+        autocmd FileType javascript cnoreabbrev <expr> dd getcmdtype() == ":" && getcmdline() == 'dd' ? '!clear && dump_describes -t %' : 'dd'
+        autocmd FileType javascript cnoreabbrev <expr> ddv getcmdtype() == ":" && getcmdline() == 'ddv' ? '!clear && dump_describes -t % -v' : 'ddv'
+
+        " Run specs only for the current file.
+        autocmd FileType javascript cnoreabbrev <expr> jas getcmdtype() == ":" && getcmdline() == 'jas' ? '!clear && jasmine %' : 'jas'
+
+        " Run all specs.
+        autocmd FileType javascript cnoreabbrev <expr> jall getcmdtype() == ":" && getcmdline() == 'jall' ? '!clear && npm run specs' : 'jall'
+
+        " Run all specs.
+        autocmd FileType typescript cnoreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? '!clear && ts-node %' : 'ts'
+
+        " Save typing 'debugger' all the time!
+        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
+        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
+
+        autocmd FileType coffee nnoremap <leader>d odebugger<esc>
+        autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
+
+        " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
+        autocmd FileType c,cc,cpp nnoremap <leader>log oprintf("%s\n", <c-r>");<esc>
+        autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
+        autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log('<c-r>"', <c-r>");<esc>
+        autocmd FileType php nnoremap <leader>log ovar_dump(<c-r>");<esc>
+        autocmd FileType python nnoremap <leader>log oprint(<c-r>")<esc>
+        autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
+
+        " Got here!
+        autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
+        autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
+        autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
+        autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
+        autocmd FileType python nnoremap <leader>gh oprint('got here')<esc>
+        autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
+
+        " anti-Mitchell pattern - removes \s between properties and colons in objects.
+        autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
+
+        " Redefine makeprg for typescript to clear screen before compiling.
+        autocmd FileType typescript :set makeprg=clear\ &&\ tsc\ $*\ %
+
+        " Draw a dividing line.
+        autocmd FileType javascript nnoremap <leader>line i/* -<esc>yl59pi */<esc>
+        autocmd FileType txt,text nnoremap <leader>line i-<esc>yl59p
+        autocmd FileType sh nnoremap <leader>line i#<esc>yl59p
+    augroup END
+
+    augroup WHITESPACE
+        " autoindent = Copy indent from current line when starting a new line.
+        " shiftwidth = Number of spaces to use for each step of (auto)indent.
+        " expandtab = Spaces are used in indents with the '>' and '<' commands and when 'autoindent' is on.
+        " tabstop = Number of spaces that a <Tab> in the file counts for.
+        autocmd!
+
+        autocmd FileType c,conf,cpp,javascript,go,haskell,html,json,markdown,python,php,sh,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4
+        " Remember no spaces in Makefiles!
+        autocmd FileType make setlocal autoindent shiftwidth=4 tabstop=4
+        autocmd FileType coffee,css setlocal autoindent expandtab shiftwidth=4 tabstop=4
+
+        " Set default syntax for files with no extension.
+        autocmd BufNewFile,BufRead * if &filetype == '' | set filetype=sh | endif
+    augroup END
+endif
+
