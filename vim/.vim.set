@@ -16,7 +16,7 @@ set cryptmethod=blowfish
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
 syntax on
-" colors desert
+colors desert
 
 " Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position
 " of the displayed text in the file is shown on the far right.
