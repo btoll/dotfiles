@@ -73,6 +73,32 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cuB jddk%kdd<cr>
     augroup END
 
+    augroup GOT_HERE
+        autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
+        autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
+        autocmd FileType go nnoremap <leader>gh oprintln("got here")<esc>
+        autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
+        autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
+        autocmd FileType python nnoremap <leader>gh oprint('got here')<esc>
+        autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
+    augroup END
+
+    augroup LOGGING
+        " It will paste as the argument(s) whatever is in the default register.
+        autocmd FileType c,cc,cpp nnoremap <leader>log oprintf("%s\n", <c-r>");<esc>
+        autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
+
+        " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
+        "           let g:go_fmt_command = "goimports"
+        " is set (it is).
+        autocmd FileType go nnoremap <leader>log ofmt.Println("<c-r>"", <c-r>")<esc>
+
+        autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log('<c-r>"', <c-r>");<esc>
+        autocmd FileType php nnoremap <leader>log ovar_dump(<c-r>");<esc>
+        autocmd FileType python nnoremap <leader>log oprint(<c-r>")<esc>
+        autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
+    augroup END
+
     augroup MISC
         " Immediately apply any changes to .vimrc after writing.
         autocmd BufWritePost .vimrc source $MYVIMRC
@@ -94,6 +120,8 @@ if has("autocmd")
     augroup RUNCODE
         autocmd FileType c nnoremap <leader>go :!clear && gcc % && ./a.out<cr>
         autocmd FileType cc,cpp nnoremap <leader>go :!clear && g++ % && ./a.out<cr>
+
+        autocmd FileType go nmap <leader>go <Plug>(go-run)
 
         autocmd FileType javascript nnoremap <leader>go :!clear && node %<cr>
         autocmd FileType javascript vnoremap <leader>go y:echo system('node ', @")<cr>
@@ -126,22 +154,6 @@ if has("autocmd")
         autocmd FileType coffee nnoremap <leader>d odebugger<esc>
         autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
 
-        " Save fingers from typing console.log. It will paste as the argument(s) whatever is in the default register.
-        autocmd FileType c,cc,cpp nnoremap <leader>log oprintf("%s\n", <c-r>");<esc>
-        autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
-        autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log('<c-r>"', <c-r>");<esc>
-        autocmd FileType php nnoremap <leader>log ovar_dump(<c-r>");<esc>
-        autocmd FileType python nnoremap <leader>log oprint(<c-r>")<esc>
-        autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
-
-        " Got here!
-        autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
-        autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
-        autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
-        autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
-        autocmd FileType python nnoremap <leader>gh oprint('got here')<esc>
-        autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
-
         " anti-Mitchell pattern - removes \s between properties and colons in objects.
         autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
 
@@ -152,6 +164,13 @@ if has("autocmd")
         autocmd FileType javascript nnoremap <leader>line i/* -<esc>yl59pi */<esc>
         autocmd FileType txt,text nnoremap <leader>line i-<esc>yl59p
         autocmd FileType sh nnoremap <leader>line i#<esc>yl59p
+    augroup END
+
+    augroup TOOLING
+        autocmd FileType go nmap <leader>b :<C-u>call Build_go_files()<CR>
+        autocmd FileType go nmap <Leader>cov <Plug>(go-coverage-toggle)
+        autocmd FileType go nmap <leader>r <Plug>(go-run)
+        autocmd FileType go nmap <leader>t <Plug>(go-test)
     augroup END
 
     augroup WHITESPACE

@@ -105,8 +105,22 @@ Plug 'mileszs/ack.vim'
 Plug 'leafgarland/typescript-vim'
 
 " https://github.com/fatih/vim-go
+" https://github.com/fatih/vim-go-tutorial
 " To update, :GoUpdateBinaries
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" `goimports` is a replacement for `gofmt` and will add any missing package names.
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
+" https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
