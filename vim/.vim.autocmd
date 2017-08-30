@@ -10,13 +10,12 @@ if has("autocmd")
         autocmd FileType cc,cpp inoreabbrev bp #include <iostream><cr><cr>using namespace std;<cr><cr>int main() {<cr><cr>return 0;<cr>}<cr>
 
         " Go boilerplate (also used in `bp` bash function).
-        autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
+        " Note that the `bp` abbreviation is unnecessary if vim-go plugin is installed.
+        "autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
+        autocmd FileType go inoreabbrev goerr if err != nil {<cr>fmt.Println(err)<cr>}
 
         " HTML boilerplate (also used in `bp` bash function).
         autocmd FileType html inoreabbrev bp <!DOCTYPE html><cr><html><cr><head><cr><meta charset="utf-8"><cr><title></title><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
-
-        " JavaScript boilerplate (also used in `bp` bash function).
-        autocmd FileType javascript inoreabbrev bp 'use strict';<cr><cr>(() => {<cr>})();<cr>
 
         " Python boilerplate (also used in `bp` bash function).
         autocmd FileType python inoreabbrev bp def main():<cr>''' TODO '''<cr><esc>O<cr>if __name__ == '__main__':<cr>main()
@@ -167,7 +166,7 @@ if has("autocmd")
     augroup END
 
     augroup TOOLING
-        autocmd FileType go nmap <leader>b :<C-u>call Build_go_files()<CR>
+        autocmd FileType go nmap <leader>b :<C-u>call Build_go_files()<cr>
         autocmd FileType go nmap <Leader>cov <Plug>(go-coverage-toggle)
         autocmd FileType go nmap <leader>r <Plug>(go-run)
         autocmd FileType go nmap <leader>t <Plug>(go-test)

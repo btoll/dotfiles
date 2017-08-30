@@ -18,8 +18,9 @@ inoremap jk <esc>
 inoremap JK <esc>
 
 " Toggle between the last opened buffer.
-nnoremap <c-t> <esc>:b#<cr>
-inoremap <c-t> <esc>:b#<cr>
+" Note changed from Ctrl-T to avoid conflict with vim-go (:GoDefPop).
+nnoremap <c-l> <esc>:b#<cr>
+inoremap <c-l> <esc>:b#<cr>
 
 " Clear search highlighting.
 nnoremap <leader><space> :noh<cr>
