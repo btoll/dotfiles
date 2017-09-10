@@ -17,6 +17,12 @@ if [ -f ~/git-completion.bash ]; then
     . ~/git-completion.bash
 fi
 
+# xterm color settings.
+# Note, this should be in .xinitrc to be read when the startx wrapper in invoked by xinit, but it no worky.
+if [ -f ~/.Xresources ]; then
+    xrdb -merge ~/.Xresources
+fi
+
 # If a fortune program is installed.
 if which fortune > /dev/null; then
     if which cowsay > /dev/null; then
