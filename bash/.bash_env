@@ -26,6 +26,7 @@ export EDITOR=vim
 
 export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
 export GOPATH="$HOME/sandbox/go"
+export GOROOT=/usr/local/src/go
 export GOROOT_BOOTSTRAP=/usr/local/src/go1.4
 #export PATH="$GOPATH/bin:$HOME/npm/bin:/usr/local/go/bin:$PATH"
 export PATH="/usr/local/src/go/bin:$GOPATH/bin:$HOME/bin:$HOME/npm/bin:$PATH"
