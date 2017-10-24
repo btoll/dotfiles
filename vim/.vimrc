@@ -122,6 +122,8 @@ let g:go_highlight_generate_tags = 1
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
 Plug 'AndrewRadev/splitjoin.vim'
 
+Plug 'elmcast/elm-vim'
+
 " Add plugins to &runtimepath
 call plug#end()
 
