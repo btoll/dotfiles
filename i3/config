@@ -153,6 +153,11 @@ bar {
 }
 
 # Make the currently focused window a scratchpad
+#
+# Note: To toggle floating mode for the scratchpad, i.e. "remove the scratchpad":
+#
+#       $mod+Shift+Space
+#
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
