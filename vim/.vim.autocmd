@@ -150,11 +150,21 @@ if has("autocmd")
         autocmd FileType typescript cnoreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? '!clear && ts-node %' : 'ts'
 
         " Save typing 'debugger' all the time!
-        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
-        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
-
         autocmd FileType coffee nnoremap <leader>d odebugger<esc>
         autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
+
+        " 1. Go back one or more words (in case there is a period, i.e. model.sports).
+        " 2. Yank up until the <space>.
+        " 3. Begint the Elm debug syntax, i.e., ( Debug.log
+        " 4. Escape and paste in the yanked text that we want to inspect.
+        " 5. Enter a space after the closing double quotes.
+        " 6. Escape and search to the next <space> (note this will not work if the text to inspect is at the end of the line, i.e., model.sports$).
+        " 7. Close the parens and escape to end.
+        autocmd FileType elm nnoremap <leader>d Byt i( Debug.log "<esc>pa" <esc> f i )<esc>
+"        autocmd FileType elm nnoremap <leader>D d3f f xx
+
+        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
+        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
 
         " anti-Mitchell pattern - removes \s between properties and colons in objects.
         autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
@@ -163,6 +173,7 @@ if has("autocmd")
         autocmd FileType typescript :set makeprg=clear\ &&\ tsc\ $*\ %
 
         " Draw a dividing line.
+        autocmd FileType elm nnoremap <leader>line i-<esc>yl59p<esc>
         autocmd FileType go,javascript nnoremap <leader>line i/* -<esc>yl59pi */<esc>
         autocmd FileType txt,text nnoremap <leader>line i-<esc>yl59p<esc>
         autocmd FileType sh nnoremap <leader>line i#<esc>yl59p<esc>
