@@ -35,6 +35,9 @@ nnoremap <leader>s :setlocal spell!<cr>
 
 nnoremap <leader>v :tabnew $MYVIMRC<cr>
 
+" Search! (Ag vim plugin https://github.com/ggreer/the_silver_searcher)
+nnoremap <leader>ag :Ag <c-r><c-w><cr>
+
 " List the cwd in a vertically-split window.
 nnoremap <leader>ll :Vex<cr>
 
