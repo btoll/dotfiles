@@ -52,6 +52,13 @@ if has("autocmd")
         " It will paste as the argument(s) whatever is in the default register ("0p), so it can paste multiple words.
         " Note that "E" will jump to the last letter of a multi-word.
         autocmd FileType elm nnoremap <leader>log i(Debug.log "<esc>"0pa" <esc>Ea)<esc>
+        "
+        " Remove debug log
+        " This will work as long as the cursor is between the parens!
+        " 1. Go back to the open paren.
+        " 2. Delete up to and including the second space.
+        " 3. Go to the last character before the work boundary, the closed paren in this case, and delete it.
+        autocmd FileType elm nnoremap <leader>D F(d2f Ex
 
         autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
         autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
