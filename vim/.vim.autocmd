@@ -32,6 +32,31 @@ if has("autocmd")
         autocmd FileType conf,text,txt inoreabbrev filetype /* vim: set filetype=text : */
     augroup END
 
+    augroup DEBUGGING
+        " Save typing 'debugger' all the time!
+        autocmd FileType coffee nnoremap <leader>d odebugger<esc>
+        autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
+
+        " This is a shortcut to log one word (the one under the cursor)
+        " See the `log` macro below to log more than one word.
+        "
+        " 1. Go back one or more words (in case there is a period, i.e. model.sports).
+        " 2. Inner yank the word that the cursor is over.
+        " 3. Begin the Elm debug syntax, i.e., ( Debug.log
+        " 4. Escape and paste in the yanked text that we want to log.
+        " 5. Enter insert mode to add the closing double quote and a space.
+        " 6. Jump over the word and finish macro with the closing paren.
+        autocmd FileType elm nnoremap <leader>d yiwi(Debug.log "<esc>pa" <esc>ea)<esc>
+        "
+        " Log more than one word.
+        " It will paste as the argument(s) whatever is in the default register ("0p), so it can paste multiple words.
+        " Note that "E" will jump to the last letter of a multi-word.
+        autocmd FileType elm nnoremap <leader>log i(Debug.log "<esc>"0pa" <esc>Ea)<esc>
+
+        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
+        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
+    augroup END
+
     augroup COMMENTING
         autocmd!
         autocmd FileType css nnoremap <leader>c 0i/*<esc>A*/<esc>
@@ -148,23 +173,6 @@ if has("autocmd")
 
         " Run all specs.
         autocmd FileType typescript cnoreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? '!clear && ts-node %' : 'ts'
-
-        " Save typing 'debugger' all the time!
-        autocmd FileType coffee nnoremap <leader>d odebugger<esc>
-        autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
-
-        " 1. Go back one or more words (in case there is a period, i.e. model.sports).
-        " 2. Yank up until the <space>.
-        " 3. Begint the Elm debug syntax, i.e., ( Debug.log
-        " 4. Escape and paste in the yanked text that we want to inspect.
-        " 5. Enter a space after the closing double quotes.
-        " 6. Escape and search to the next <space> (note this will not work if the text to inspect is at the end of the line, i.e., model.sports$).
-        " 7. Close the parens and escape to end.
-        autocmd FileType elm nnoremap <leader>d Byt i( Debug.log "<esc>pa" <esc> f i )<esc>
-"        autocmd FileType elm nnoremap <leader>D d3f f xx
-
-        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
-        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
 
         " anti-Mitchell pattern - removes \s between properties and colons in objects.
         autocmd FileType html,javascript,go,coffee nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
