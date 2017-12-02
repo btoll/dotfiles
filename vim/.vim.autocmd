@@ -9,6 +9,9 @@ if has("autocmd")
         " C++ boilerplate (also used in `bp` bash function).
         autocmd FileType cc,cpp inoreabbrev bp #include <iostream><cr><cr>using namespace std;<cr><cr>int main() {<cr><cr>return 0;<cr>}<cr>
 
+        " Elm boilerplate (also used in `bp` bash function).
+        " TODO
+
         " Go boilerplate (also used in `bp` bash function).
         " Note that the `bp` abbreviation is unnecessary if vim-go plugin is installed.
         "autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
