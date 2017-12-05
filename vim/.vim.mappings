@@ -27,10 +27,10 @@ nnoremap <leader><space> :noh<cr>
 
 """ Toggle!
 " Show invisible characters.
-nnoremap <leader>l :setlocal list!<cr>
+"nnoremap <leader>l :setlocal list!<cr>
 nnoremap <leader>n :setlocal number!<cr>
 nnoremap <leader>p :setlocal paste!<cr>
-nnoremap <leader>r :setlocal relativenumber!<cr>
+"nnoremap <leader>r :setlocal relativenumber!<cr>
 nnoremap <leader>s :setlocal spell!<cr>
 
 nnoremap <leader>v :tabnew $MYVIMRC<cr>

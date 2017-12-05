@@ -40,29 +40,6 @@ if has("autocmd")
         autocmd FileType coffee nnoremap <leader>d odebugger<esc>
         autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
 
-        " This is a shortcut to log one word (the one under the cursor)
-        " See the `log` macro below to log more than one word.
-        "
-        " 1. Go back one or more words (in case there is a period, i.e. model.sports).
-        " 2. Inner yank the word that the cursor is over.
-        " 3. Begin the Elm debug syntax, i.e., ( Debug.log
-        " 4. Escape and paste in the yanked text that we want to log.
-        " 5. Enter insert mode to add the closing double quote and a space.
-        " 6. Jump over the word and finish macro with the closing paren.
-        autocmd FileType elm nnoremap <leader>d yiwi(Debug.log "<esc>pa" <esc>ea)<esc>
-        "
-        " Log more than one word.
-        " It will paste as the argument(s) whatever is in the default register ("0p), so it can paste multiple words.
-        " Note that "E" will jump to the last letter of a multi-word.
-        autocmd FileType elm nnoremap <leader>log i(Debug.log "<esc>"0pa" <esc>Ea)<esc>
-        "
-        " Remove debug log
-        " This will work as long as the cursor is between the parens!
-        " 1. Go back to the open paren.
-        " 2. Delete up to and including the second space.
-        " 3. Go to the last character before the work boundary, the closed paren in this case, and delete it.
-        autocmd FileType elm nnoremap <leader>D F(d2f Ex
-
         autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
         autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
     augroup END
@@ -110,6 +87,11 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>CB jddk%kdd<cr>
     augroup END
 
+    augroup DOCS
+        autocmd FileType elm nnoremap <leader>d :ElmShowDocs<cr>
+        autocmd FileType elm nnoremap <leader>db :ElmBrowseDocs<cr>
+    augroup END
+
     augroup GOT_HERE
         autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
         autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
@@ -121,6 +103,29 @@ if has("autocmd")
     augroup END
 
     augroup LOGGING
+        " This is a shortcut to log one word (the one under the cursor)
+        " See the `log` macro below to log more than one word.
+        "
+        " 1. Go back one or more words (in case there is a period, i.e. model.sports).
+        " 2. Inner yank the word that the cursor is over.
+        " 3. Begin the Elm debug syntax, i.e., ( Debug.log
+        " 4. Escape and paste in the yanked text that we want to log.
+        " 5. Enter insert mode to add the closing double quote and a space.
+        " 6. Jump over the word and finish macro with the closing paren.
+        autocmd FileType elm nnoremap <leader>l yiwi(Debug.log "<esc>pa" <esc>ea)<esc>
+        "
+        " Log more than one word.
+        " It will paste as the argument(s) whatever is in the default register ("0p), so it can paste multiple words.
+        " Note that "E" will jump to the last letter of a multi-word.
+        autocmd FileType elm nnoremap <leader>log i(Debug.log "<esc>"0pa" <esc>Ea)<esc>
+        "
+        " Remove debug log
+        " This will work as long as the cursor is between the parens!
+        " 1. Go back to the open paren.
+        " 2. Delete up to and including the second space.
+        " 3. Go to the last character before the work boundary, the closed paren in this case, and delete it.
+        autocmd FileType elm nnoremap <leader>L F(d2f Ex
+
         " It will paste as the argument(s) whatever is in the default register.
         autocmd FileType c,cc,cpp nnoremap <leader>log oprintf("%s\n", <c-r>");<esc>
         autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
@@ -128,12 +133,12 @@ if has("autocmd")
         " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
         "           let g:go_fmt_command = "goimports"
         " is set (it is).
-        autocmd FileType go nnoremap <leader>log o<cr>fmt.Println()<cr>fmt.Println("<c-r>"", <c-r>")<cr>fmt.Println()<cr><esc>
+        autocmd FileType go nnoremap <leader>l o<cr>fmt.Println()<cr>fmt.Println("<c-r>"", <c-r>")<cr>fmt.Println()<cr><esc>
 
-        autocmd FileType html,javascript,typescript nnoremap <leader>log oconsole.log('<c-r>"', <c-r>");<esc>
-        autocmd FileType php nnoremap <leader>log ovar_dump(<c-r>");<esc>
-        autocmd FileType python nnoremap <leader>log oprint(<c-r>")<esc>
-        autocmd FileType sh nnoremap <leader>log oecho "$<c-r>""<esc>
+        autocmd FileType html,javascript,typescript nnoremap <leader>l oconsole.log('<c-r>"', <c-r>");<esc>
+        autocmd FileType php nnoremap <leader>l ovar_dump(<c-r>");<esc>
+        autocmd FileType python nnoremap <leader>l oprint(<c-r>")<esc>
+        autocmd FileType sh nnoremap <leader>l oecho "$<c-r>""<esc>
     augroup END
 
     augroup MISC
@@ -152,19 +157,6 @@ if has("autocmd")
         endfunction
 
         autocmd BufWinEnter * call ResCur()
-    augroup END
-
-    augroup RUNCODE
-        autocmd FileType c nnoremap <leader>go :!clear && gcc % && ./a.out<cr>
-        autocmd FileType cc,cpp nnoremap <leader>go :!clear && g++ % && ./a.out<cr>
-
-        autocmd FileType go nmap <leader>go <Plug>(go-run)
-
-        autocmd FileType javascript nnoremap <leader>go :!clear && node %<cr>
-        autocmd FileType javascript vnoremap <leader>go y:echo system('node ', @")<cr>
-
-        autocmd FileType python nnoremap <leader>go :!clear && python3 %<cr>
-        autocmd FileType python vnoremap <leader>go y:echo system('python3 ' @")<cr>
     augroup END
 
     augroup SYNTAX
@@ -198,10 +190,36 @@ if has("autocmd")
     augroup END
 
     augroup TOOLING
-        autocmd FileType go nmap <leader>b :<C-u>call Build_go_files()<cr>
-        autocmd FileType go nmap <Leader>cov <Plug>(go-coverage-toggle)
-        autocmd FileType go nmap <leader>r <Plug>(go-run)
-        autocmd FileType go nmap <leader>t <Plug>(go-test)
+        augroup BUILD
+            autocmd FileType elm nmap <leader>b :ElmMake<cr>
+            autocmd FileType go nmap <leader>b :<C-u>call Build_go_files()<cr>
+        augroup END
+
+        augroup TEST
+            autocmd FileType go nmap <Leader>cov <Plug>(go-coverage-toggle)
+        augroup END
+
+        augroup REPL
+            autocmd FileType elm nmap <leader>r :ElmRepl<cr>
+        augroup END
+
+        augroup RUN
+            autocmd FileType c nnoremap <leader>r :!clear && gcc % && ./a.out<cr>
+            autocmd FileType cc,cpp nnoremap <leader>r :!clear && g++ % && ./a.out<cr>
+
+            autocmd FileType go nmap <leader>r <Plug>(go-run)
+
+            autocmd FileType javascript nnoremap <leader>r :!clear && node %<cr>
+            autocmd FileType javascript vnoremap <leader>r y:echo system('node ', @")<cr>
+
+            autocmd FileType python nnoremap <leader>r :!clear && python3 %<cr>
+            autocmd FileType python vnoremap <leader>r y:echo system('python3 ' @")<cr>
+        augroup END
+
+        augroup TEST
+            autocmd FileType elm nmap <leader>t :ElmTest<cr>
+            autocmd FileType go nmap <leader>t <Plug>(go-test)
+        augroup END
     augroup END
 
     augroup WHITESPACE
