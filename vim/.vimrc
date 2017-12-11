@@ -35,7 +35,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
@@ -118,6 +118,14 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+" I got the following error doing a vimdiff:
+"
+" vim-go requires Vim 7.4.1689 or Neovim, but you're using an older version.
+" Please update your Vim for the best vim-go experience.
+" If you really want to continue you can set this to make the error go away:
+"     Note that some features may error out or behave incorrectly.
+"     Please do not report bugs unless you're using Vim 7.4.1689 or newer.
+let g:go_version_warning = 0
 
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
 Plug 'AndrewRadev/splitjoin.vim'
