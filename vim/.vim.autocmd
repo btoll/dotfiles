@@ -70,10 +70,10 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-        autocmd FileType coffee,gitconfig,python,sh nnoremap <leader>c 0i#<esc>
-        autocmd FileType coffee,gitconfig,python,sh nnoremap <leader>C 0x<cr>
-        autocmd FileType coffee,gitconfig,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
-        autocmd FileType coffee,gitconfig,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+        autocmd FileType coffee,gitconfig,make,python,sh nnoremap <leader>c 0i#<esc>
+        autocmd FileType coffee,gitconfig,make,python,sh nnoremap <leader>C 0x<cr>
+        autocmd FileType coffee,gitconfig,make,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType coffee,gitconfig,make,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...

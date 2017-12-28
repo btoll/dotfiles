@@ -17,6 +17,11 @@ if [ -f ~/git-completion.bash ]; then
     . ~/git-completion.bash
 fi
 
+# https://github.com/ingydotnet/git-subrepo
+if [ -f /usr/local/src/git/git-subrepo/.rc ]; then
+    . /usr/local/src/git/git-subrepo/.rc
+fi
+
 # xterm color settings.
 # Note, this should be in .xinitrc to be read when the startx wrapper in invoked by xinit, but it no worky.
 if [ -f ~/.Xresources ]; then

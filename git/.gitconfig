@@ -39,10 +39,10 @@
 [merge]
 	conflictstyle = diff3
 	renamelimit = 9220
-[hooks "pre-commit"]
-        hook = EOF.sh
-        hook = debugger.sh
-        hook = eslint.sh
+#[hooks "pre-commit"]
+#        hook = EOF.sh
+#        hook = debugger.sh
+#        hook = eslint.sh
 
 [rerere]
 	enabled = true

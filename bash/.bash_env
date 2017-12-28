@@ -10,7 +10,7 @@ export HISTFILESIZE=100000
 # Let's ignore some commands.
 export HISTIGNORE="&:[ ]*:exit:\:q:\:x:ls:la:ll:bg:fg:history:clear:jobs"
 
-export GREP_OPTIONS='--color=auto'
+#export GREP_OPTIONS='--color=auto'
 
 # \033[36m = Begin cyan coloring (foreground).
 # \033[m   = End coloring.
