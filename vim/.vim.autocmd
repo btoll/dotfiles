@@ -60,10 +60,10 @@ if has("autocmd")
         autocmd FileType vim vnoremap <leader>C :s_^"__g<cr>:noh<cr>
 
         " Comment/uncomment out and clear search highlighting for visual blocks.
-        autocmd FileType elm,haskell nnoremap <leader>c 0i--<esc>
-        autocmd FileType elm,haskell nnoremap <leader>C 02x
-        autocmd FileType elm,haskell vnoremap <leader>c :s_^_--_g<cr>:noh<cr>
-        autocmd FileType elm,haskell vnoremap <leader>C :s_^--__g<cr>:noh<cr>
+        autocmd FileType elm,haskell,sql nnoremap <leader>c 0i--<esc>
+        autocmd FileType elm,haskell,sql nnoremap <leader>C 02x
+        autocmd FileType elm,haskell,sql vnoremap <leader>c :s_^_--_g<cr>:noh<cr>
+        autocmd FileType elm,haskell,sql vnoremap <leader>C :s_^--__g<cr>:noh<cr>
 
         autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>c 0i//<esc>
         autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>C 02x

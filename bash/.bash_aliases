@@ -17,6 +17,16 @@ alias bzip2="bzip2 -9"
 alias cp="cp -i"
 alias mv="mv -i"
 
+# Always enable colored `grep` output.
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+# Job Control
+alias j="jobs"
+alias f="fg"
+alias b="bg"
+
 alias gdb="gdb -q"
 
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.

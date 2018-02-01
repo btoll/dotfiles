@@ -8,9 +8,7 @@ export HISTSIZE=500000
 export HISTFILESIZE=100000
 
 # Let's ignore some commands.
-export HISTIGNORE="&:[ ]*:exit:\:q:\:x:ls:la:ll:bg:fg:history:clear:jobs"
-
-#export GREP_OPTIONS='--color=auto'
+export HISTIGNORE="&:[ ]*:exit:\:q:\:x:ls:la:ll:bg:fg:history:clear:jobs:stymie"
 
 # \033[36m = Begin cyan coloring (foreground).
 # \033[m   = End coloring.
@@ -36,4 +34,7 @@ export GITHOOKS=/usr/local/src/git/git/hooks
 # in ~/.gnupg/gpg.conf.
 #eval "$(gpg-agent --daemon)"
 #export GPG_TTY=$(tty)
+
+# https://duckduckgo.com/?q=GREP_OPTIONS+is+deprecated%3B+please+use+an+alias+or+script
+unset GREP_OPTIONS
 

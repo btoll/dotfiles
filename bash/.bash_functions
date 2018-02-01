@@ -56,44 +56,6 @@ bp() {
     fi
 }
 
-cdl() {
-    if [ -z "$1" ]; then
-        echo "Usage: cdl <DIR>"
-    else
-        cd "$1" && ls -l
-    fi
-}
-
-cla() {
-    if [ -n "$1" ]; then
-        clear
-        echo "$(tput setab 7)$(tput setaf 4)Listing $(tput bold)$1$(tput sgr0)"
-        ls -lAhF "${1}"
-    else
-        clear && ls -lAhF
-    fi
-}
-
-cll() {
-    if [ -n "$1" ]; then
-        clear
-        echo "$(tput setab 7)$(tput setaf 4)Listing $(tput bold)$1$(tput sgr0)"
-        ls -lhF "${1}"
-    else
-        clear && ls -lhF
-    fi
-}
-
-cls() {
-    if [ -n "$1" ]; then
-        clear
-        echo "$(tput setab 7)$(tput setaf 4)Listing $(tput bold)$1$(tput sgr0)"
-        ls "${1}"
-    else
-        clear && ls
-    fi
-}
-
 falloc() {
     if [ "$#" -lt 2 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
