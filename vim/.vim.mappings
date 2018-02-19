@@ -8,47 +8,41 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" Disabling as this interferes with repeated line searches, i.e. 'fE' and then ';'.
-"nnoremap ; :
-"vnoremap ; :
-
-" Disable the <esc> key in insert mode and map it to 'jk' or 'JK'.
+" disable the <esc> key in insert mode and map it to 'jk' or 'jk'.
 " inoremap <buffer> <esc> <nop>
 inoremap jk <esc>
-inoremap JK <esc>
+inoremap jk <esc>
 
-" Toggle between the last opened buffer.
-" Note changed from Ctrl-T to avoid conflict with vim-go (:GoDefPop).
+" toggle between the last opened buffer.
+" note changed from ctrl-t to avoid conflict with vim-go (:godefpop).
 nnoremap <c-l> <esc>:b#<cr>
 inoremap <c-l> <esc>:b#<cr>
 
-" Clear search highlighting.
+" clear search highlighting.
 nnoremap <leader><space> :noh<cr>
 
-""" Toggle!
-" Show invisible characters.
-"nnoremap <leader>l :setlocal list!<cr>
+""" toggle!
 nnoremap <leader>n :setlocal number!<cr>
 nnoremap <leader>p :setlocal paste!<cr>
-"nnoremap <leader>r :setlocal relativenumber!<cr>
 nnoremap <leader>s :setlocal spell!<cr>
 
-nnoremap <leader>v :tabnew $MYVIMRC<cr>
+" open .vimrc in a new buffer.
+nnoremap <leader>v :e $myvimrc<cr>
 
-" Search! (Ag vim plugin https://github.com/ggreer/the_silver_searcher)
-nnoremap <leader>ag :Ag <c-r><c-w><cr>
+" search! (ag vim plugin https://github.com/ggreer/the_silver_searcher)
+nnoremap <leader>ag :ag <c-r><c-w><cr>
 
-" List the cwd in a vertically-split window.
-nnoremap <leader>ll :Vex<cr>
+" list the cwd in a vertically-split window.
+nnoremap <leader>ll :vex<cr>
 
-" Auto-indent blocks.
-nnoremap <leader>i V$%>
-nnoremap <leader>I V$%<
+" auto-indent blocks.
+nnoremap <leader>i v$%>
+nnoremap <leader>i v$%<
 
-" Change all instances of " to ' in a line and clear search highlighting.
-nnoremap <leader>' V:s/"/'/g<cr>:noh<cr>
+" change all instances of " to ' in a line and clear search highlighting.
+nnoremap <leader>' v:s/"/'/g<cr>:noh<cr>
 
-" Change to directory of the current file.
+" change to directory of the current file.
 nnoremap <leader>cwd :cd %:p:h<cr>
 
 " http://stackoverflow.com/questions/7845671/executing-base64-decode-on-a-selection-in-vim

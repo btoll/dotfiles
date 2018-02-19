@@ -136,10 +136,6 @@ Plug 'vim-scripts/SearchComplete'
 " Add plugins to &runtimepath
 call plug#end()
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-" http://stackoverflow.com/a/7078429
-"cmap w!! w !sudo tee > /dev/null %
-
 if filereadable($HOME . "/.vim.functions")
   source ~/.vim.functions
 endif

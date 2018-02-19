@@ -1,3 +1,9 @@
+set filetype=vim
+
+"
+" NOTE: mq...`q sets a mark to maintain the cursor position!
+"
+
 if has("autocmd")
     augroup ABBREVIATIONS
         " Bash boilerplate (also used in `bp` bash function).
@@ -17,6 +23,9 @@ if has("autocmd")
         "autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
         autocmd FileType go inoreabbrev goerr if err != nil {<cr>fmt.Println(err)<cr>}
 
+        " Go error block.
+        autocmd FileType go inoreabbrev iferr if err != nil {<cr>fmt.Println(err)<cr>}
+
         " HTML boilerplate (also used in `bp` bash function).
         autocmd FileType html inoreabbrev bp <!DOCTYPE html><cr><html><cr><head><cr><meta charset="utf-8"><cr><title></title><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
 
@@ -27,9 +36,6 @@ if has("autocmd")
         autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
         autocmd FileType html inoreabbrev scripttag <script src="" type="text/javascript" charset="utf-8"></script>
         autocmd FileType html inoreabbrev linktag <link href="" rel="stylesheet" type="text/css">
-
-        " Golang
-        autocmd FileType go inoreabbrev iferr if err != nil {<cr>panic(err)<cr>}
 
         " Set base filetype.
         autocmd FileType conf,text,txt inoreabbrev filetype /* vim: set filetype=text : */
@@ -54,32 +60,32 @@ if has("autocmd")
         "autocmd FileType html vnoremap <leader>c :s_^_<!--_g|s_$_-->_g<cr>:noh<cr>
         "autocmd FileType html vnoremap <leader>C :s_^<!--__g|s_-->$__g<cr>:noh<cr>
 
-        autocmd FileType vim nnoremap <leader>c 0i"<esc>
+        autocmd FileType vim nnoremap <leader>c mq0i"<esc>`q
         autocmd FileType vim nnoremap <leader>C 0x<cr>
         autocmd FileType vim vnoremap <leader>c :s_^_"_g<cr>:noh<cr>
         autocmd FileType vim vnoremap <leader>C :s_^"__g<cr>:noh<cr>
 
         " Comment/uncomment out and clear search highlighting for visual blocks.
-        autocmd FileType elm,haskell,sql nnoremap <leader>c 0i--<esc>
+        autocmd FileType elm,haskell,sql nnoremap <leader>c mq0i--<esc>`q
         autocmd FileType elm,haskell,sql nnoremap <leader>C 02x
         autocmd FileType elm,haskell,sql vnoremap <leader>c :s_^_--_g<cr>:noh<cr>
         autocmd FileType elm,haskell,sql vnoremap <leader>C :s_^--__g<cr>:noh<cr>
 
-        autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>c 0i//<esc>
+        autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>c mq0i//<esc>`q
         autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>C 02x
         autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-        autocmd FileType coffee,gitconfig,make,python,sh nnoremap <leader>c 0i#<esc>
+        autocmd FileType coffee,gitconfig,make,python,sh nnoremap <leader>c mq0i#<esc>`q
         autocmd FileType coffee,gitconfig,make,python,sh nnoremap <leader>C 0x<cr>
         autocmd FileType coffee,gitconfig,make,python,sh vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
         autocmd FileType coffee,gitconfig,make,python,sh vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
-        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cb O/*<esc>jf{%o*/<esc>
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cb mqO/*<esc>jf{%o*/<esc>`q
         " ...and from bottom/up (cursor must be on the closing bracket).
-        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>Cb o*/<esc>k%O/*<esc>
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>Cb mqo*/<esc>k%O/*<esc>`q
         " Uncomment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
         autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cB kddf{%jdd<cr>
@@ -95,11 +101,20 @@ if has("autocmd")
     augroup GOT_HERE
         autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
         autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
+        autocmd FileType elm nnoremap <leader>gh ogh = "got here"<cr>ghh = (Debug.log "DEBUG" gh)<esc>
         autocmd FileType go nnoremap <leader>gh ofmt.Println("got here")<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
         autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
         autocmd FileType python nnoremap <leader>gh oprint('got here')<esc>
         autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
+    augroup END
+
+    augroup HIGHLIGHTING
+        " Highlight word (all filetypes).
+        nnoremap <space> viw
+
+        " Highlight function (note that it uses the same pattern as <operator:motion>).
+        autocmd FileType go nnoremap f<space> :normal [[V$%<cr>
     augroup END
 
     augroup LOGGING
@@ -112,33 +127,33 @@ if has("autocmd")
         " 4. Escape and paste in the yanked text that we want to log.
         " 5. Enter insert mode to add the closing double quote and a space.
         " 6. Jump over the word and finish macro with the closing paren.
-        autocmd FileType elm nnoremap <leader>l yiwi(Debug.log "<esc>pa" <esc>ea)<esc>
+        autocmd FileType elm nnoremap <leader>l mqyiwi(Debug.log "<esc>pa" <esc>ea)<esc>`q
         "
         " Log more than one word.
         " It will paste as the argument(s) whatever is in the default register ("0p), so it can paste multiple words.
         " Note that "E" will jump to the last letter of a multi-word.
-        autocmd FileType elm nnoremap <leader>log i(Debug.log "<esc>"0pa" <esc>Ea)<esc>
+        autocmd FileType elm nnoremap <leader>log mqi(Debug.log "<esc>"0pa" <esc>Ea)<esc>`q
         "
         " Remove debug log
         " This will work as long as the cursor is between the parens!
         " 1. Go back to the open paren.
         " 2. Delete up to and including the second space.
         " 3. Go to the last character before the work boundary, the closed paren in this case, and delete it.
-        autocmd FileType elm nnoremap <leader>L F(d2f Ex
+        autocmd FileType elm nnoremap <leader>L mqF(d2f Ex`q
 
         " It will paste as the argument(s) whatever is in the default register.
-        autocmd FileType c,cc,cpp nnoremap <leader>log oprintf("%s\n", <c-r>");<esc>
-        autocmd FileType coffee nnoremap <leader>log oconsole.log(<c-r>")<esc>
+        autocmd FileType c,cc,cpp nnoremap <leader>log mqoprintf("%s\n", <c-r>");<esc>`q
+        autocmd FileType coffee nnoremap <leader>log mqoconsole.log(<c-r>")<esc>`q
 
         " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
         "           let g:go_fmt_command = "goimports"
         " is set (it is).
-        autocmd FileType go nnoremap <leader>l o<cr>fmt.Println()<cr>fmt.Println("<c-r>"", <c-r>")<cr>fmt.Println()<cr><esc>
+        autocmd FileType go nnoremap <leader>l mqo<cr>fmt.Println()<cr>fmt.Println("<c-r>"", <c-r>")<cr>fmt.Println()<cr><esc>`q
 
-        autocmd FileType html,javascript,typescript nnoremap <leader>l oconsole.log('<c-r>"', <c-r>");<esc>
-        autocmd FileType php nnoremap <leader>l ovar_dump(<c-r>");<esc>
-        autocmd FileType python nnoremap <leader>l oprint(<c-r>")<esc>
-        autocmd FileType sh nnoremap <leader>l oecho "$<c-r>""<esc>
+        autocmd FileType html,javascript,typescript nnoremap <leader>l mqoconsole.log('<c-r>"', <c-r>");<esc>`q
+        autocmd FileType php nnoremap <leader>l mqovar_dump(<c-r>");<esc>`q
+        autocmd FileType python nnoremap <leader>l mqoprint(<c-r>")<esc>`q
+        autocmd FileType sh nnoremap <leader>l mqoecho "$<c-r>""<esc>`q
     augroup END
 
     augroup MISC

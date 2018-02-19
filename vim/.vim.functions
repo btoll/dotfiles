@@ -1,3 +1,4 @@
+" Opens the current file.
 function! G(...)
     let file = a:0 ? a:1 : expand('%')
     let blame = (a:0 && a:2 == 1) ? ' --blame' : ''
@@ -15,8 +16,7 @@ function! Gblame(...)
     call G('%', 1, l:branch)
 endfunction
 
-" This allows specifying a different branch for the current file with an
-" optional a:blame argument.
+" This allows specifying a different branch for the current file with an optional a:blame argument.
 function! Gbranch(...)
     let branch = a:0 ? a:1 : ''
     let blame = a:0 > 1 ? a:2 : 0
@@ -24,9 +24,8 @@ function! Gbranch(...)
     call G('%', l:blame, l:branch)
 endfunction
 
-" Highlight a visual range for the current file. a:blame and a:branch are
-" optional arguments.
-function! Grange(...) range
+" Highlight a visual range for the current file. a:blame and a:branch are optional arguments.
+function! Grange(...)
     let range = 'L' . a:firstline . '-L' . a:lastline
     let blame = a:0 ? a:1 : 0
     let branch = a:0 > 1 ? a:2 : ''
@@ -39,17 +38,6 @@ nnoremap <leader>gb :call Gblame()<cr>
 
 vnoremap <leader>gbr :call Grange(1)<cr>
 vnoremap <leader>gr :call Grange()<cr>
-
-"-----------------------------------------------------------------------"
-"-----------------------------------------------------------------------"
-
-"function! Node(...)
-"    execute '!clear && node %'
-"    redraw!
-"endfunction
-
-"-----------------------------------------------------------------------"
-"-----------------------------------------------------------------------"
 
 " Run :GoBuild or :GoTestCompile based on the go file.
 " We'll also trigger this with a macro in .vim.autocmd
