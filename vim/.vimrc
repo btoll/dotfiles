@@ -25,12 +25,8 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 "   2. Install https://github.com/mattn/webapi-vim in ~/.vim/bundle (assuming Pathogen) to resolve errors.
 "   3. Enter github password when prompted when creating gist (saves oAuth token in ~/.gist-vim).
 
-Plug 'maksimr/vim-jsbeautify'
-" https://github.com/maksimr/vim-jsbeautify
-map <c-f>:call JsBeautify()<cr>
-
-Plug 'scrooloose/syntastic'
 " https://github.com/scrooloose/syntastic
+Plug 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -41,8 +37,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 
-Plug 'kien/ctrlp.vim'
 " https://github.com/kien/ctrlp.vim
+Plug 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " Opens ctrlp in buffer mode.
 let g:ctrlp_cmd = 'CtrlPBuffer'
@@ -64,33 +60,30 @@ Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 let g:tern_map_keys=1
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 
-Plug 'tpope/vim-surround'
-" Text Objects
 " https://github.com/tpope/vim-surround
-" https://github.com/vim-scripts/argtextobj.vim
+Plug 'tpope/vim-surround'
 
-Plug 'bitc/vim-bad-whitespace'
-" bad-whitespace
+" https://github.com/tpope/vim-repeat
+Plug 'tpope/vim-repeat'
+
 " https://github.com/bitc/vim-bad-whitespace
+Plug 'bitc/vim-bad-whitespace'
 
 " gundo
 " http://sjl.bitbucket.org/gundo.vim/
-let g:gundo_preview_bottom = 1
+" let g:gundo_preview_bottom = 1
 
-Plug 'flazz/vim-colorschemes'
-" vim-colorschemes
 " https://github.com/flazz/vim-colorschemes
+Plug 'flazz/vim-colorschemes'
 
-Plug 'ap/vim-css-color'
-" vim-css-color
 " https://github.com/ap/vim-css-color
+Plug 'ap/vim-css-color'
 
 " vim-eunuch
 " git@github.com:tpope/vim-eunuch.git
 
-Plug 'easymotion/vim-easymotion'
-" vim-easymotion
 " https://github.com/easymotion/vim-easymotion
+Plug 'easymotion/vim-easymotion'
 
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
@@ -98,11 +91,7 @@ Plug 'easymotion/vim-easymotion'
 "let g:ycm_confirm_extra_conf = 0
 " TODO: https://github.com/rdnetto/YCM-Generator
 
-"Plug 'tpope/vim-repeat.git'
-Plug 'kchmck/vim-coffee-script'
 Plug 'rking/ag.vim'
-Plug 'mileszs/ack.vim'
-Plug 'leafgarland/typescript-vim'
 
 " https://github.com/fatih/vim-go
 " https://github.com/fatih/vim-go-tutorial
@@ -140,6 +129,9 @@ let g:elm_browser_command = ""
 let g:elm_detailed_complete = 0
 let g:elm_format_autosave = 1
 let g:elm_format_fail_silently = 0
+
+" https://github.com/vim-scripts/SearchComplete
+Plug 'vim-scripts/SearchComplete'
 
 " Add plugins to &runtimepath
 call plug#end()
