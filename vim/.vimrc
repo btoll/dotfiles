@@ -37,6 +37,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 
+" https://github.com/scrooloose/nerdtree
+Plug 'scrooloose/nerdtree'
+
 " https://github.com/kien/ctrlp.vim
 Plug 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim

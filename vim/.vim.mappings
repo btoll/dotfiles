@@ -32,8 +32,9 @@ nnoremap <leader>v :e $myvimrc<cr>
 " search! (ag vim plugin https://github.com/ggreer/the_silver_searcher)
 nnoremap <leader>ag :ag <c-r><c-w><cr>
 
-" list the cwd in a vertically-split window.
-nnoremap <leader>ll :vex<cr>
+" Open NERDTree in a vertically-split window.
+nnoremap <leader>ll :NERDTree<cr>
+nnoremap <leader>ls :NERDTree<cr>
 
 " auto-indent blocks.
 nnoremap <leader>i v$%>
