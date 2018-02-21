@@ -10,11 +10,6 @@ type alias Model
     = Int
 
 
-model : Model
-model =
-    {}
-
-
 
 -- UPDATE
 
@@ -34,12 +29,17 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [] []
+    div []
+        [ model
+            |> toString
+            |> (++) "The initial value of the model is "
+            |> text
+        ]
 
 
 init : ( Model, Cmd Msg )
 init =
-    { {} } ! []
+    5 ! []
 
 
 main : Program Never Model Msg
@@ -50,5 +50,4 @@ main =
         , view = view
         , subscriptions = always Sub.none
         }
-
 

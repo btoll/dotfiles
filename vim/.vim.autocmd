@@ -6,30 +6,31 @@ set filetype=vim
 
 if has("autocmd")
     augroup ABBREVIATIONS
-        " Bash boilerplate (also used in `bp` bash function).
+        "
+        " Note: `bp` must be defined in .bash_functions to use these abbreviations from the cli!
+        " I'm debating if these should even be in here...
+        "
+
+        " Bash boilerplate.
         autocmd FileType sh inoreabbrev bp #!/bin/bash<cr><cr>
 
-        " C boilerplate (also used in `bp` bash function).
+        " C boilerplate.
         autocmd FileType c inoreabbrev bp #include <stdio.h><cr><cr>int main(int argc, char **argv) {<cr><cr>return 0;<cr>}<cr>
 
-        " C++ boilerplate (also used in `bp` bash function).
+        " C++ boilerplate.
         autocmd FileType cc,cpp inoreabbrev bp #include <iostream><cr><cr>using namespace std;<cr><cr>int main() {<cr><cr>return 0;<cr>}<cr>
 
-        " Elm boilerplate (also used in `bp` bash function).
-        " TODO
+        " Elm boilerplate (only in .bash_functions).
 
-        " Go boilerplate (also used in `bp` bash function).
+        " Go boilerplate.
         " Note that the `bp` abbreviation is unnecessary if vim-go plugin is installed.
         "autocmd FileType go inoreabbrev bp package main<cr><cr>func main() {<cr>}<cr>
         autocmd FileType go inoreabbrev goerr if err != nil {<cr>fmt.Println(err)<cr>}
-
-        " Go error block.
         autocmd FileType go inoreabbrev iferr if err != nil {<cr>fmt.Println(err)<cr>}
 
-        " HTML boilerplate (also used in `bp` bash function).
-        autocmd FileType html inoreabbrev bp <!DOCTYPE html><cr><html><cr><head><cr><meta charset="utf-8"><cr><title></title><cr><style><cr></style><cr><script><cr></script><cr></head><cr><cr><body><cr></body><cr></html><cr>
+        " HTML boilerplate (only in .bash_functions).
 
-        " Python boilerplate (also used in `bp` bash function).
+        " Python boilerplate.
         autocmd FileType python inoreabbrev bp def main():<cr>''' TODO '''<cr><esc>O<cr>if __name__ == '__main__':<cr>main()
 
         " CSS and JavaScript resources.

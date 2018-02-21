@@ -35,26 +35,33 @@ bgrep() {
     fi
 }
 
-# Deprecating this in favor of https://github.com/btoll/dump_describes node module.
-#dump_describes() {
-#    sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
-#}
-
 # Setup script boilerplate.
 bp() {
     if [ "$#" -eq 0 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bp <filename>"
     else
+
+        # Let's not overwrite an existing file. `stat` and test the process exit code.
         stat "$1" &> /dev/null
 
         if [ $? -eq 1 ]; then
-            vim -c ":normal ibp" "$1"
+            case "$1" in
+                *.elm)  vim -c ":read ~/templates/elm.txt" "$1" ;;
+                *.html) vim -c ":read ~/templates/html.txt" "$1" ;;
+                *)      vim -c ":normal ibp" "$1" ;;
+            esac
         else
             echo "$(tput setaf 3)[WARN]$(tput sgr0) File exists, aborting."
         fi
     fi
 }
+
+# Deprecating this in favor of https://github.com/btoll/dump_describes node module.
+# I'm leaving it here just for an example of a `sed` command.
+#dump_describes() {
+#    sed -n -E 's/^[[:space:]]{1,7}describe\('\(.*\)'/\1/p' "$1" | cut -d, -f1
+#}
 
 falloc() {
     if [ "$#" -lt 2 ]; then
