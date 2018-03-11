@@ -136,6 +136,9 @@ let g:elm_format_fail_silently = 0
 " https://github.com/vim-scripts/SearchComplete
 Plug 'vim-scripts/SearchComplete'
 
+" https://github.com/vim-scripts/YankRing.vim
+"Plug 'vim-scripts/YankRing.vim'
+
 " Add plugins to &runtimepath
 call plug#end()
 
