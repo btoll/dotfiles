@@ -57,6 +57,14 @@ bp() {
     fi
 }
 
+cpy() {
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: cpy <text_to_copy_to_clipboard>"
+    else
+        echo "$1" | xsel -b
+    fi
+}
+
 # Deprecating this in favor of https://github.com/btoll/dump_describes node module.
 # I'm leaving it here just for an example of a `sed` command.
 #dump_describes() {
@@ -176,10 +184,6 @@ intersect() {
         REGEXP=${3:-'\w* ?: ?((function)|(Ext.emptyFn)|(Ext.identityFn))'}
         sort <(egrep -o "$REGEXP" "$1" | cut -d: -f1 | sort | uniq) <(egrep -o "$REGEXP" "$2" | cut -d: -f1 | sort | uniq) | uniq -d
     fi
-}
-
-jirafy() {
-    open "https://sencha.jira.com/browse/$1"
 }
 
 mcd() {
