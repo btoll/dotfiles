@@ -1,0 +1,5 @@
+xterm*font:-*-*-*-*-*-*-18-*-*-*-*-*-*-*
+xterm*loginShell: true
+xterm*background: rgb:00/00/00
+xterm*foreground: rgb:aa/aa/aa
+
