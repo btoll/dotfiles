@@ -1,1 +1,2 @@
-stow -t $HOME/.i3 i3
+mkdir $HOME/.config/i3
+stow -t $HOME/.config/i3 i3

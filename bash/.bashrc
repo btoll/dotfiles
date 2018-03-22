@@ -11,15 +11,15 @@ if [ -f ~/.cdargs-bash.sh ]; then
     . ~/.cdargs-bash.sh
 fi
 
+# Map Caps Lock to Ctrl.
+if [ -f ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
+
 # Turn on git bash completion.
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
 if [ -f ~/git-completion.bash ]; then
     . ~/git-completion.bash
-fi
-
-# https://github.com/ingydotnet/git-subrepo
-if [ -f /usr/local/src/git/git-subrepo/.rc ]; then
-    . /usr/local/src/git/git-subrepo/.rc
 fi
 
 # xterm color settings.

@@ -1,8 +1,7 @@
 alias g="git"
 alias gpg="gpg2"
-alias v="vi"
-alias vi="vi"
-alias vim="vi"
+alias v="vim"
+alias vi="vim"
 
 alias l="less"
 alias ll="ls -lhF"
