@@ -11,22 +11,20 @@ if [ -f ~/.cdargs-bash.sh ]; then
     . ~/.cdargs-bash.sh
 fi
 
-# Map Caps Lock to Ctrl.
-if [ -f ~/.Xmodmap ]; then
-    xmodmap ~/.Xmodmap
-fi
-
 # Turn on git bash completion.
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
 if [ -f ~/git-completion.bash ]; then
     . ~/git-completion.bash
 fi
 
-# xterm color settings.
-# Note, this should be in .xinitrc to be read when the startx wrapper in invoked by xinit, but it no worky.
 if [ -f ~/.Xresources ]; then
     xrdb -merge ~/.Xresources
 fi
+
+# Map Caps Lock to Ctrl.
+#if [ -f ~/.Xmodmap ]; then
+#    xmodmap ~/.Xmodmap
+#fi
 
 # If a fortune program is installed.
 if which fortune > /dev/null; then
@@ -78,7 +76,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # Set caps lock to ctrl key.
-#setxkbmap -option ctrl:nocaps
+setxkbmap -option caps:ctrl_modifier
 
 # Uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window

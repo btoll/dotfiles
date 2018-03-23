@@ -8,7 +8,7 @@ export HISTSIZE=500000
 export HISTFILESIZE=100000
 
 # Let's ignore some commands.
-export HISTIGNORE="&:[ ]*:exit:\:q:\:x:ls:la:ll:bg:fg:history:clear:jobs:stymie"
+export HISTIGNORE="&:[ ]*:exit:\:q:\:x:ls:la:ll:bg:fg:history:clear:jobs:whereis:whatis:which:stymie:stymie-go"
 
 # \033[36m = Begin cyan coloring (foreground).
 # \033[m   = End coloring.
@@ -22,12 +22,11 @@ export PYTHONPATH=$PYTHONPATH:/usr/local/bin
 # Use vim as default editor instead of nano.
 export EDITOR=vim
 
-export NODE_PATH=/usr/local/lib/jsctags:${NODE_PATH}
-export GOPATH="$HOME/sandbox/go"
+export GOPATH="$HOME/go"
 export GOROOT=/usr/local/src/go
-export GOROOT_BOOTSTRAP=/usr/local/src/go1.4
+#export GOROOT_BOOTSTRAP=/usr/local/src/go
 #export PATH="$GOPATH/bin:$HOME/npm/bin:/usr/local/go/bin:$PATH"
-export PATH="/usr/local/src/go/bin:$GOPATH/bin:$HOME/bin:$HOME/npm/bin:$PATH"
+export PATH="$GOROOT:$GOPATH/bin:$HOME/bin:/usr/local/src/node/bin:$PATH"
 export GITHOOKS=/usr/local/src/git/git/hooks
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
