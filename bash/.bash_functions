@@ -41,11 +41,12 @@ bp() {
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bp <filename>"
     else
-
         # Let's not overwrite an existing file. `stat` and test the process exit code.
         stat "$1" &> /dev/null
 
-        if [ $? -eq 1 ]; then
+	# Check exit code of `stat` call before proceeding.
+	# An error (return value of 1 in this case) means that the file does not exist.
+        if [ "$?" -eq 1 ]; then
             case "$1" in
                 *.elm)  vim -c ":read ~/templates/elm.txt" "$1" ;;
                 *.html) vim -c ":read ~/templates/html.txt" "$1" ;;

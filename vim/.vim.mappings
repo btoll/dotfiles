@@ -49,3 +49,7 @@ nnoremap <leader>cwd :cd %:p:h<cr>
 " http://stackoverflow.com/questions/7845671/executing-base64-decode-on-a-selection-in-vim
 " http://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript#6271254
 
+" manpage viewer: See :help Man
+runtime ftplugin/man.vim
+nnoremap K <leader>K
+

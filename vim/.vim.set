@@ -63,3 +63,6 @@ set fileformat=unix
 " Vim has a setting called `autowrite` that writes the content of the file automatically if you call :make.
 set autowrite
 
+" `ctags` will recursively search up the dir tree to find a `tags` file.
+set tags=tags;/
+

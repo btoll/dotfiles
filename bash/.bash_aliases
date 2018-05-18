@@ -32,13 +32,13 @@ alias gdb="gdb -q"
 alias brm="rm -rf"
 
 alias xkcd="open http://c.xkcd.com/random/comic/"
+
 alias irc="irssi"
+alias tor-browser="( cd /usr/local/src/tor-browser && ./start-tor-browser.desktop )"
 
 # Git
 alias bootstrap="git bootstrap"
 alias dirty="git dirty"
-
-alias remove_debugger="/usr/local/src/git/tools/bash/remove_debugger.sh"
 
 alias ..="cd .."
 alias ..1="cd .."
