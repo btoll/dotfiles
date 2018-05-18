@@ -94,6 +94,10 @@ get_code_point() {
     fi
 }
 
+git_bootstrap() {
+    cp $HOME/git_init/{COPYING,README.md} $(pwd)
+}
+
 git_clone() {
     URL="$1"
     ALIAS="$2"
@@ -152,7 +156,8 @@ git_hooks_install() {
 
 git_init() {
     git init
-    git_hooks_install
+#    git_hooks_install
+    git_bootstrap
 }
 
 go_tmux() {
