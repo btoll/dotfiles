@@ -139,6 +139,8 @@ Plug 'vim-scripts/SearchComplete'
 " https://github.com/vim-scripts/YankRing.vim
 "Plug 'vim-scripts/YankRing.vim'
 
+Plug 'pangloss/vim-javascript'
+
 " Add plugins to &runtimepath
 call plug#end()
 

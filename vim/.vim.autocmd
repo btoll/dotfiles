@@ -148,7 +148,7 @@ if has("autocmd")
         " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
         "           let g:go_fmt_command = "goimports"
         " is set (it is).
-        autocmd FileType go nnoremap <leader>l mqo<cr>fmt.Println()<cr>fmt.Println("<c-r>"", <c-r>")<cr>fmt.Println()<cr><esc>`q
+        autocmd FileType go nnoremap <leader>l mqofmt.Println("<c-r>"", <c-r>")<esc>`q
 
         autocmd FileType html,javascript,typescript nnoremap <leader>l mqoconsole.log('<c-r>"', <c-r>");<esc>`q
         autocmd FileType php nnoremap <leader>l mqovar_dump(<c-r>");<esc>`q

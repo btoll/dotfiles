@@ -8,10 +8,10 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" disable the <esc> key in insert mode and map it to 'jk' or 'jk'.
+" disable the <esc> key in insert mode and map it to 'jk' or 'JK'.
 " inoremap <buffer> <esc> <nop>
 inoremap jk <esc>
-inoremap jk <esc>
+inoremap JK <esc>
 
 " toggle between the last opened buffer.
 " note changed from ctrl-t to avoid conflict with vim-go (:godefpop).
