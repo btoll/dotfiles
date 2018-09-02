@@ -177,6 +177,7 @@ go_tmux() {
 hexbits() {
     if [ "$#" -eq 0 ]; then
         echo "Usage: hexbits <hexadecimal> [number of display bytes]"
+        echo "For example: hexbits 0x646f67 2"
     else
         asbits `htoi "$1"` ${2:-4}
     fi

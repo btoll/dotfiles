@@ -76,6 +76,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # Set caps lock to ctrl key.
+# https://askubuntu.com/questions/53038/how-do-i-remap-the-caps-lock-key
 setxkbmap -option caps:ctrl_modifier
 
 # Uncomment for a colored prompt, if the terminal has the capability; turned
@@ -106,7 +107,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-# Allows to clear screen when vi is set as my cli editor (not necessary if vi is not set).
+# Allows to clear screen when vi is set as my command-line editor (not necessary if vi is not set).
 bind -m vi-insert "\C-l":clear-screen
 
 # Enable history expansion with [[space]].
