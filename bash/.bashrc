@@ -2,9 +2,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Function definitions.
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
+fi
+
+if [ -f ~/.bash_options ]; then
+    . ~/.bash_options
 fi
 
 if [ -f ~/.cdargs-bash.sh ]; then
@@ -35,38 +38,6 @@ if which fortune > /dev/null; then
     fi
 fi
 
-# Disable <CTRL-d> which is used to logout of a login shell
-# (local or remote login session over ssh).
-set -o ignoreeof
-
-# Prevent file overwrite on stdout redirection.
-# Use '>|' to force redirection to an existing file.
-set -o noclobber
-
-set -o vi
-#shopt -s cdspell
-
-# By setting the bell length to 0, all console beeps are
-# disabled while running from the shell.
-if [ -z $XTERM_SHELL ]; then
-    setterm -blength 0
-fi
-
-# Append to the history file, don't overwrite it.
-shopt -s histappend
-
-# Check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# Turn on recursive globbing.
-if [ "${BASH_VERSINFO}" -ge 4 ]; then
-    shopt -s globstar
-fi
-
-# Prepend cd to directory names automatically.
-shopt -s autocd 2> /dev/null
-
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -74,10 +45,6 @@ shopt -s autocd 2> /dev/null
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-# Set caps lock to ctrl key.
-# https://askubuntu.com/questions/53038/how-do-i-remap-the-caps-lock-key
-setxkbmap -option caps:ctrl_modifier
 
 # Uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window

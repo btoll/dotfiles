@@ -1,0 +1,42 @@
+# Disable <CTRL-d> which is used to logout of a login shell
+# (local or remote login session over ssh).
+set -o ignoreeof
+
+# Prevent file overwrite on stdout redirection.
+# Use '>|' to force redirection to an existing file.
+set -o noclobber
+
+set -o vi
+#shopt -s cdspell
+
+# Append to the history file, don't overwrite it.
+shopt -s histappend
+
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Prepend cd to directory names automatically.
+shopt -s autocd 2> /dev/null
+
+if [ "${BASH_VERSINFO}" -ge 4 ]; then
+    # Lists the status of any stopped and running jobs before exiting an interactive shell.
+    shopt -s checkjobs
+
+    # Turn on recursive globbing.
+    shopt -s globstar
+fi
+
+# Prepend cd to directory names automatically.
+shopt -s autocd 2> /dev/null
+
+# Set caps lock to ctrl key.
+# https://askubuntu.com/questions/53038/how-do-i-remap-the-caps-lock-key
+setxkbmap -option caps:ctrl_modifier
+
+# By setting the bell length to 0, all console beeps are
+# disabled while running from the shell.
+if [ -z $XTERM_SHELL ]; then
+    setterm -blength 0
+fi
+
