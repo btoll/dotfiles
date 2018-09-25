@@ -359,11 +359,11 @@ vimp() {
 #}
 
 wifi_connect() {
-    sudo iw dev wlan0 connect -w "$1" &> /dev/null
-    sudo dhclient wlan0
+    sudo iw dev wlp3s0 connect -w "$1" &> /dev/null
+    sudo dhclient wlp3s0
 }
 
 wifi_scan() {
-    sudo iw dev wlan0 scan | ag SSID
+    sudo iw dev wlp3s0 scan | ag SSID
 }
 

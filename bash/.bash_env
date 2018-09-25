@@ -8,7 +8,7 @@ export HISTSIZE=500000
 export HISTFILESIZE=100000
 
 # Let's ignore some commands.
-export HISTIGNORE="&:[ ]*:exit:\:q:\:x:ls:la:ll:bg:fg:history:clear:jobs:whereis:whatis:which:stymie:stymie-go:cpy"
+export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:fg:history:clear:jobs:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
 
 # \033[36m = Begin cyan coloring (foreground).
 # \033[m   = End coloring.
