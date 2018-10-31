@@ -58,6 +58,10 @@ bp() {
     fi
 }
 
+change_backlight() {
+    echo "$1" >| /sys/class/backlight/intel_backlight/brightness
+}
+
 cpy() {
     if [ "$#" -eq 0 ]; then
         echo "Usage: cpy <text_to_copy_to_clipboard>"
@@ -147,7 +151,7 @@ git_hooks_install() {
     fi
 
     (
-        cd .git/hooks > /dev/null
+        cd .git/hooks
         rm -rf pre-commit pre-commit.d
         cp -r "$GITHOOKS"/* .
     )
@@ -157,7 +161,7 @@ git_hooks_install() {
 
 git_init() {
     git init
-#    git_hooks_install
+    git_hooks_install
     git_bootstrap
 }
 

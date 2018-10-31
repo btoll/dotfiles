@@ -26,8 +26,8 @@ export GOPATH="$HOME/go"
 export GOROOT=/usr/local/src/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
 #export PATH="$GOPATH/bin:$HOME/npm/bin:/usr/local/go/bin:$PATH"
-export PATH="$GOROOT:$GOPATH/bin:$HOME/bin:/usr/local/src/node/bin:$PATH"
-export GITHOOKS=/usr/local/src/git/git/hooks
+export PATH="$GOROOT:$GOPATH/bin:$HOME/bin:/usr/local/src/node/bin:/opt/mssql-tools/bin:$PATH"
+export GITHOOKS="$HOME/projects/git-init/hooks"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
 # in ~/.gnupg/gpg.conf.
