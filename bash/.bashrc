@@ -87,3 +87,8 @@ bind Space:magic-space
 #    tmux attach-session -t "$USER" || tmux new-session -s "$USER"
 #fi
 
+# To make use of gpg-agent when not using X, uncomment `use-agent`
+# in ~/.gnupg/gpg.conf.
+eval "$(gpg-agent --daemon)"
+export GPG_TTY=$(tty)
+
