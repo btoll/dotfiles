@@ -197,6 +197,15 @@ intersect() {
     fi
 }
 
+list_targets() {
+    if [ "$#" -lt 1 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: list_targets <Makefile>"
+    else
+        sed -n 's/\(^[a-zA-Z-]*:\)/\1/p' "$1"
+    fi
+}
+
 mcd() {
     mkdir -p "$1" && cd "$1"
 }

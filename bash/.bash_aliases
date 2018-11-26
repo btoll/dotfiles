@@ -40,6 +40,9 @@ alias tor-browser="( cd /usr/local/src/tor-browser && ./start-tor-browser.deskto
 alias bootstrap="git bootstrap"
 alias dirty="git dirty"
 
+alias hibernate="systemctl hibernate"
+alias suspend="systemctl suspend"
+
 alias ..="cd .."
 alias ..1="cd .."
 alias ..2="cd ../.."
