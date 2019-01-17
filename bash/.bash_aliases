@@ -34,7 +34,7 @@ alias brm="rm -rf"
 alias xkcd="open http://c.xkcd.com/random/comic/"
 
 alias irc="irssi"
-alias tor-browser="( cd /usr/local/src/tor-browser && ./start-tor-browser.desktop )"
+alias tor-browser="( cd /opt/tor-browser-linux64-8.0.4_en-US/tor-browser_en-US && ./start-tor-browser.desktop )"
 
 # Git
 alias bootstrap="git bootstrap"
