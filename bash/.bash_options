@@ -36,7 +36,7 @@ setxkbmap -option caps:ctrl_modifier
 
 # By setting the bell length to 0, all console beeps are
 # disabled while running from the shell.
-if [ -z $XTERM_SHELL ]; then
-    setterm -blength 0
-fi
+#if [ -z $XTERM_SHELL ]; then
+    #setterm -blength 0
+#fi
 

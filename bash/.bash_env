@@ -10,16 +10,16 @@ export HISTFILESIZE=100000
 # Let's ignore some commands.
 export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:fg:history:clear:jobs:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
 
-export PS1='\[$(tput bold)\]\[$(tput setaf 6)\]\w\[$(tput sgr0)\]:\[$(tput bold)\]\[$(tput setaf 2)\]$(git branch 2> /dev/null | grep "^*" | colrm 1 2)\[$(tput sgr0)\]$ '
+export PS1='\[$(tput bold)\]\[$(tput setaf 4)\]\w\[$(tput sgr0)\]:\[$(tput bold)\]\[$(tput setaf 8)\]$(git branch 2> /dev/null | grep "^*" | colrm 1 2)\[$(tput sgr0)\]$ '
 
 # Use vim as default editor instead of nano.
 export EDITOR=vim
 
 export GOPATH="$HOME/go"
-export GOROOT=/usr/local/src/go
+export GOROOT=/opt/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
 #export PATH="$GOPATH/bin:$HOME/npm/bin:/usr/local/go/bin:$PATH"
-export PATH="$GOROOT:$GOPATH/bin:$HOME/bin:/opt/node/bin:/opt/mssql-tools/bin:$PATH"
+export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/bin:/opt/node/bin:/opt/mssql-tools/bin:$PATH"
 export GITHOOKS="$HOME/projects/git-init/hooks"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
