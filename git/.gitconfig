@@ -5,7 +5,8 @@
 	name = Benjamin Toll
 	email = benjam72@yahoo.com
 	# https://security.stackexchange.com/questions/153579/is-it-safe-to-share-your-gitconfigs-user-signingkey-value-with-the-world
-	signingkey = 654393158F58DA280E861C692B41DAB10B2E3DC0
+	#signingkey = 654393158F58DA280E861C692B41DAB10B2E3DC0
+	signingkey = 2115501386989E7F30C951E40ACC1C193894528A
 [alias]
 	br = branch
 	# -S = GPG-sign commit.
@@ -23,7 +24,7 @@
 	s = status --short --branch
 	st = status --short --branch
 [core]
-	editor = /usr/local/bin/vim
+	editor = /usr/bin/vim
 	# FX = Have the pager automatically exit if all the diff text fits on the screen.
 	pager = less -RFX
 	# No tabs!
@@ -50,3 +51,7 @@
 	hook = debugger.sh
 #	hook = eslint.sh
 
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
