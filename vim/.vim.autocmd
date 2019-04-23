@@ -11,11 +11,14 @@ if has("autocmd")
         " I'm debating if these should even be in here...
         "
 
+        " Assembly boilerplate.
+        autocmd FileType asm inoreabbrev bp global _start<cr><cr>;section .data<cr><cr>section .text<cr>_start:<cr>
+
         " Bash boilerplate.
         autocmd FileType sh inoreabbrev bp #!/bin/bash<cr><cr>
 
         " C boilerplate.
-        autocmd FileType c inoreabbrev bp #include <stdlib.h><cr><cr>int main(int argc, char **argv) {<cr><cr>return 0;<cr>}<cr>
+        autocmd FileType c inoreabbrev bp #include <stdlib.h><cr>#include <stdio.h><cr><cr>void main(int argc, char **argv) {<cr>}<cr>
 
         " C++ boilerplate.
         autocmd FileType cc,cpp inoreabbrev bp #include <iostream><cr><cr>using namespace std;<cr><cr>int main() {<cr><cr>return 0;<cr>}<cr>
@@ -41,17 +44,13 @@ if has("autocmd")
         autocmd FileType conf,text,txt inoreabbrev filetype /* vim: set filetype=text : */
     augroup END
 
-    augroup DEBUGGING
-        " Save typing 'debugger' all the time!
-        autocmd FileType coffee nnoremap <leader>d odebugger<esc>
-        autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
-
-        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
-        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
-    augroup END
-
     augroup COMMENTING
         autocmd!
+        autocmd FileType asm nnoremap <leader>c mq0i;<esc>`q
+        autocmd FileType asm nnoremap <leader>C 0x
+        autocmd FileType asm vnoremap <leader>c :s_^_;_g<cr>:noh<cr>
+        autocmd FileType asm vnoremap <leader>C :s_^;__g<cr>:noh<cr>
+
         autocmd FileType css nnoremap <leader>c 0i/*<esc>A*/<esc>
         autocmd FileType css nnoremap <leader>C 02x$xx
 
@@ -85,12 +84,24 @@ if has("autocmd")
         " From top/down (Start with your cursor anywhere on the first line)...
         autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cb mqO/*<esc>jf{%o*/<esc>`q
         " ...and from bottom/up (cursor must be on the closing bracket).
-        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>Cb mqo*/<esc>k%O/*<esc>`q
+        " NOTE added `h` to back up one char in case it's an arrow function
+        " (the `%` won't go up to the opening bracket b/c it's on the
+        " semi-colon.
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>Cb mqo*/<esc>hk%O/*<esc>`q
         " Uncomment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
         autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cB kddf{%jdd<cr>
         " ...and from bottom/up (cursor must be on the closing bracket).
         autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>CB jddk%kdd<cr>
+    augroup END
+
+    augroup DEBUGGING
+        " Save typing 'debugger' all the time!
+        autocmd FileType coffee nnoremap <leader>d odebugger<esc>
+        autocmd FileType coffee nnoremap <leader>D Odebugger<esc>
+
+        autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
+        autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
     augroup END
 
     augroup DOCS
