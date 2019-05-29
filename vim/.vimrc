@@ -110,6 +110,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 " I got the following error doing a vimdiff:
 "
 " vim-go requires Vim 7.4.1689 or Neovim, but you're using an older version.
