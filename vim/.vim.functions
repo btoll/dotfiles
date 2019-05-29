@@ -25,7 +25,7 @@ function! Gbranch(...)
 endfunction
 
 " Highlight a visual range for the current file. a:blame and a:branch are optional arguments.
-function! Grange(...)
+function! Grange(...) range
     let range = 'L' . a:firstline . '-L' . a:lastline
     let blame = a:0 ? a:1 : 0
     let branch = a:0 > 1 ? a:2 : ''
@@ -36,8 +36,8 @@ endfunction
 nnoremap <leader>g :call G()<cr>
 nnoremap <leader>gb :call Gblame()<cr>
 
-vnoremap <leader>gbr :call Grange(1)<cr>
 vnoremap <leader>gr :call Grange()<cr>
+vnoremap <leader>gbr :call Grange(1)<cr>
 
 " Run :GoBuild or :GoTestCompile based on the go file.
 " We'll also trigger this with a macro in .vim.autocmd
