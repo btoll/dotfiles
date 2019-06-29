@@ -47,9 +47,9 @@
 [pull]
 	rebase = true
 [hooks "pre-commit"]
-	hook = EOF.sh
-	hook = debugger.sh
-#	hook = eslint.sh
+	hook = debugger.bash
+	hook = eslint.bash
+	hook = EOF.bash
 
 [commit]
 	gpgsign = true
