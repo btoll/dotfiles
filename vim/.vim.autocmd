@@ -82,7 +82,7 @@ if has("autocmd")
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
-        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cb mqO/*<esc>jf{%o*/<esc>`q
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cb mqO/*<esc>j$%o*/<esc>`q
         " ...and from bottom/up (cursor must be on the closing bracket).
         " NOTE added `h` to back up one char in case it's an arrow function
         " (the `%` won't go up to the opening bracket b/c it's on the
@@ -90,9 +90,9 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>Cb mqo*/<esc>hk%O/*<esc>`q
         " Uncomment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
-        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cB kddf{%jdd<cr>
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>cB mqkdd$%jdd<cr>`q
         " ...and from bottom/up (cursor must be on the closing bracket).
-        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>CB jddk%kdd<cr>
+        autocmd FileType c,cc,cpp,go,html,javascript,php,typescript nnoremap <leader>CB mqjddk%kdd<cr>`q
     augroup END
 
     augroup DEBUGGING
@@ -112,7 +112,7 @@ if has("autocmd")
     augroup GOT_HERE
         autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
         autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
-        autocmd FileType elm nnoremap <leader>gh ogh = "got here"<cr>ghh = (Debug.log "DEBUG" gh)<esc>
+        autocmd FileType elm nnoremap <leader>gh ogh = (Debug.log "DEBUG" "got here")<esc>
         autocmd FileType go nnoremap <leader>gh ofmt.Println("got here")<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
         autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
