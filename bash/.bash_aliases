@@ -1,3 +1,9 @@
+# Fixes "-bash: cd: gen: No such file or directory" error.
+# If the value of an alias ends in a blank, then bash tries
+# to do alias substitution on the next word in the command
+# line. - Learning the Bash Shell, 2nd edition, page 62.
+alias cd="cd "
+
 alias g="git"
 alias gpg="gpg2"
 alias v="vim"

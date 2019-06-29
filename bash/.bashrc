@@ -1,32 +1,32 @@
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
 
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+if [ -f $HOME/.bash_functions ]; then
+    . $HOME/.bash_functions
 fi
 
-if [ -f ~/.bash_options ]; then
-    . ~/.bash_options
+if [ -f $HOME/.bash_options ]; then
+    . $HOME/.bash_options
 fi
 
-if [ -f ~/.cdargs-bash.sh ]; then
-    . ~/.cdargs-bash.sh
+if [ -f $HOME/bin/cdargs-bash.sh ]; then
+    . $HOME/bin/cdargs-bash.sh
 fi
 
 # Turn on git bash completion.
 # http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
-if [ -f ~/git-completion.bash ]; then
-    . ~/git-completion.bash
+if [ -f $HOME/bin/git-completion.bash ]; then
+    . $HOME/bin/git-completion.bash
 fi
 
-if [ -f ~/.Xresources ]; then
-    xrdb -merge ~/.Xresources
+if [ -f $HOME/.Xresources ]; then
+    xrdb -merge $HOME/.Xresources
 fi
 
 # Map Caps Lock to Ctrl.
-#if [ -f ~/.Xmodmap ]; then
-#    xmodmap ~/.Xmodmap
+#if [ -f $HOME/.Xmodmap ]; then
+#    xmodmap $HOME/.Xmodmap
 #fi
 
 # If a fortune program is installed.
@@ -88,7 +88,7 @@ bind Space:magic-space
 #fi
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
-# in ~/.gnupg/gpg.conf.
+# in $HOME/.gnupg/gpg.conf.
 #eval "$(gpg-agent --daemon)"
 #export GPG_TTY=$(tty)
 

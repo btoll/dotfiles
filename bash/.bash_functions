@@ -206,6 +206,15 @@ list_targets() {
     fi
 }
 
+ls_scripts() {
+    stat package.json &> /dev/null
+    if [ "$?" -eq 1 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Directory does not contain \`package.json\`, aborting..."
+    else
+        awk '/"scripts": {/{flag=1; next} /}/{flag=0} flag' package.json | cut -d: -f1
+    fi
+}
+
 mcd() {
     mkdir -p "$1" && cd "$1"
 }
