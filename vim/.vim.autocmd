@@ -18,7 +18,7 @@ if has("autocmd")
         autocmd FileType sh inoreabbrev bp #!/bin/bash<cr><cr>
 
         " C boilerplate.
-        autocmd FileType c inoreabbrev bp #include <stdlib.h><cr>#include <stdio.h><cr><cr>void main(int argc, char **argv) {<cr>}<cr>
+        autocmd FileType c inoreabbrev bp #include <stdlib.h><cr>#include <stdio.h><cr><cr>int main(int argc, char **argv) {<cr>return 0;<cr>}<cr>
 
         " C++ boilerplate.
         autocmd FileType cc,cpp inoreabbrev bp #include <iostream><cr><cr>using namespace std;<cr><cr>int main() {<cr><cr>return 0;<cr>}<cr>
@@ -233,7 +233,7 @@ if has("autocmd")
             autocmd FileType c nnoremap <leader>r :!clear && gcc % && ./a.out<cr>
             autocmd FileType cc,cpp nnoremap <leader>r :!clear && g++ % && ./a.out<cr>
 
-            autocmd FileType go nmap <leader>r <Plug>(go-run)
+            autocmd FileType go nmap <leader>r :!clear<cr><Plug>(go-run)
 
             autocmd FileType javascript nnoremap <leader>r :!clear && node %<cr>
             autocmd FileType javascript vnoremap <leader>r y:echo system('node ', @")<cr>

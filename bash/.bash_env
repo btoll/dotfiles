@@ -19,7 +19,7 @@ export GOPATH="$HOME/go"
 export GOROOT=/opt/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
 #export PATH="$GOPATH/bin:$HOME/npm/bin:/usr/local/go/bin:$PATH"
-export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/bin:/opt/node/bin:/opt/elm-0.18:$PATH"
+export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/bin:$HOME/algorand/node/bin:/opt/node/bin:/opt/elm-0.18:$PATH"
 export GITHOOKS="$HOME/projects/git-init/hooks"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`

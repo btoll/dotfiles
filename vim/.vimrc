@@ -100,7 +100,6 @@ Plug 'rking/ag.vim'
 " https://github.com/fatih/vim-go-tutorial
 " To update, :GoUpdateBinaries
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" `goimports` is a replacement for `gofmt` and will add any missing package names.
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -112,14 +111,6 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-" I got the following error doing a vimdiff:
-"
-" vim-go requires Vim 7.4.1689 or Neovim, but you're using an older version.
-" Please update your Vim for the best vim-go experience.
-" If you really want to continue you can set this to make the error go away:
-"     Note that some features may error out or behave incorrectly.
-"     Please do not report bugs unless you're using Vim 7.4.1689 or newer.
-let g:go_version_warning = 0
 
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
 Plug 'AndrewRadev/splitjoin.vim'

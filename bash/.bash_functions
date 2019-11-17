@@ -363,7 +363,8 @@ take_screenshot() {
         SECONDS=${2:-5}
 
         sleep "$SECONDS"
-        xwd -root | xwdtopnm | pnmtopng > "$1"
+        xwd -root | convert - "$1"
+        #xwd -root | xwdtopnm | pnmtopng > "$1"
     fi
 }
 
