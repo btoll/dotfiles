@@ -1,3 +1,5 @@
 xterm*background: black
 xterm*foreground: lightgray
 
+Xft.dpi: 144
+
