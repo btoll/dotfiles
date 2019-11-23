@@ -368,6 +368,12 @@ take_screenshot() {
     fi
 }
 
+toggle_sound() {
+    amixer sset Master unmute
+    amixer sset Headphone unmute
+    amixer sset Speaker unmute
+}
+
 # Open vim and immediately invoke CtrlP plugin.
 vimp() {
     vim -c ":CtrlP"

@@ -40,7 +40,9 @@ alias brm="rm -rf"
 alias xkcd="open http://c.xkcd.com/random/comic/"
 
 alias irc="irssi"
-alias tor-browser="( cd /opt/tor-browser-linux64-8.0.4_en-US/tor-browser_en-US && ./start-tor-browser.desktop )"
+alias tor-browser="( cd /opt/tor-browser_en-US && ./start-tor-browser.desktop )"
+alias simple-server="python -m SimpleHTTPServer 8000"
+alias chrome-browser-disable-security="/usr/bin/google-chrome-stable --disable-web-security --user-data-dir=/tmp/chrome-disable-web-security"
 
 # Git
 alias bootstrap="git bootstrap"
