@@ -112,6 +112,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_version_warning = 0
 
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
 Plug 'AndrewRadev/splitjoin.vim'
