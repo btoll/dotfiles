@@ -285,6 +285,20 @@ rmi() {
     fi
 }
 
+rmi_images() {
+    for image in $(docker images | tail -n +2 | awk '{print $3}')
+    do
+        docker rmi -f "$image"
+    done
+}
+
+rm_containers() {
+    for container in $(docker ps -a | tail -n +2 | awk '{print $1}')
+    do
+        docker rm -f "$container"
+    done
+}
+
 secure_browse() {
     # http://www.catonmat.net/blog/linux-socks5-proxy/
     #
