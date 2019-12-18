@@ -75,10 +75,10 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-        autocmd FileType coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
-        autocmd FileType coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
-        autocmd FileType coffee,conf,gitconfig,make,python,sh,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
-        autocmd FileType coffee,conf,gitconfig,make,python,sh,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
+        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
+        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
@@ -255,7 +255,7 @@ if has("autocmd")
         " tabstop = Number of spaces that a <Tab> in the file counts for.
         autocmd!
 
-        autocmd FileType c,conf,cpp,elm,javascript,go,haskell,html,json,markdown,python,php,sh,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
+        autocmd FileType c,conf,cpp,dockerfile,elm,javascript,go,haskell,html,json,markdown,python,php,sh,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
         " Remember no spaces in Makefiles!
         autocmd FileType make setlocal autoindent shiftwidth=4 tabstop=4 fileformat=unix
         autocmd FileType coffee,css setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
