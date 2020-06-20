@@ -272,6 +272,12 @@ moby_dick() {
     sleep 1
 }
 
+parse_aws_creds() {
+    CREDS=$(cat ~/accessKeys.csv | tail -1)
+    echo "export AWS_ACCESS_KEY_ID="$(echo $CREDS | awk -F, '{ print $1 }')
+    echo "export AWS_SECRET_ACCESS_KEY="$(echo $CREDS | awk -F, '{ print $2 }')
+}
+
 # Remove by inode.
 rmi() {
     if [ "$#" -eq 0 ]; then
@@ -370,6 +376,13 @@ take_a_break() {
 
 # Specify the number of seconds to sleep before taking the screenshot.
 # Increase the default of 5 seconds if more time is needed to prepare the screenshot.
+# If imagemagick doesn't work, see this https://how-2-take-a-screenshot.com/ubuntu-linux/.
+#
+# The following takes a partial screenshot.  After invoking it, go to the window and drag
+# the mouse to get the desired screenshot.
+#
+#       import filename.png
+#
 take_screenshot() {
     if [ "$#" -eq 0 ]; then
         echo "Usage: take_screenshot outfile [sleep=5]"
@@ -402,11 +415,11 @@ vimp() {
 #}
 
 wifi_connect() {
-    sudo iw dev wlp3s0 connect -w "$1" &> /dev/null
-    sudo dhclient wlp3s0
+    sudo iw dev wlp2s0 connect -w "$1" &> /dev/null
+    sudo dhclient wlp2s0
 }
 
 wifi_scan() {
-    sudo iw dev wlp3s0 scan | ag SSID
+    sudo iw dev wlp2s0 scan | ag SSID
 }
 

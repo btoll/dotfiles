@@ -89,6 +89,6 @@ bind Space:magic-space
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
 # in $HOME/.gnupg/gpg.conf.
-#eval "$(gpg-agent --daemon)"
-#export GPG_TTY=$(tty)
+eval "$(gpg-agent --daemon)"
+export GPG_TTY=$(tty)
 

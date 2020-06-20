@@ -5,7 +5,7 @@
 alias cd="cd "
 
 alias g="git"
-alias gpg="gpg2"
+#alias gpg="gpg2"
 alias v="vim"
 alias vi="vim"
 
@@ -37,6 +37,7 @@ alias gdb="gdb -q"
 
 alias brm="rm -rf"
 
+alias open="xdg-open"
 alias xkcd="open http://c.xkcd.com/random/comic/"
 
 alias irc="irssi"
