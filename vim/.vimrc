@@ -91,8 +91,8 @@ Plug 'easymotion/vim-easymotion'
 
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
-"Plug 'Valloric/YouCompleteMe'
-"let g:ycm_confirm_extra_conf = 0
+Plug 'Valloric/YouCompleteMe'
+let g:ycm_confirm_extra_conf = 0
 " TODO: https://github.com/rdnetto/YCM-Generator
 
 Plug 'rking/ag.vim'
@@ -131,10 +131,27 @@ let g:elm_format_fail_silently = 0
 " https://github.com/vim-scripts/SearchComplete
 Plug 'vim-scripts/SearchComplete'
 
+"python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"  project_base_dir = os.environ['VIRTUAL_ENV']
+"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"      execfile(activate_this, dict(__file__=activate_this))
+"      EOF
+
 " https://github.com/vim-scripts/YankRing.vim
 "Plug 'vim-scripts/YankRing.vim'
 
 Plug 'pangloss/vim-javascript'
+
+"Plug 'vim-scripts/indentpython.vim'
+
+" Add PEP 8 support.
+Plug 'nvie/vim-flake8'
+let python_highlight_all=1
+syntax on
 
 " Add plugins to &runtimepath
 call plug#end()
