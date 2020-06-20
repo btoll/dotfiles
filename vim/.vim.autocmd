@@ -70,10 +70,10 @@ if has("autocmd")
         autocmd FileType elm,haskell,sql vnoremap <leader>c :s_^_--_g<cr>:noh<cr>
         autocmd FileType elm,haskell,sql vnoremap <leader>C :s_^--__g<cr>:noh<cr>
 
-        autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>c mq0i//<esc>`q
-        autocmd FileType c,cc,cpp,go,javascript,php,typescript nnoremap <leader>C 02x
-        autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
-        autocmd FileType c,cc,cpp,go,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
+        autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript nnoremap <leader>c mq0i//<esc>`q
+        autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript nnoremap <leader>C 02x
+        autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
+        autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
         autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
         autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
@@ -102,6 +102,9 @@ if has("autocmd")
 
         autocmd FileType html,javascript nnoremap <leader>d odebugger;<esc>
         autocmd FileType html,javascript nnoremap <leader>D Odebugger;<esc>
+
+        autocmd FileType python nnoremap <leader>d oipdb.set_trace()<esc>
+        autocmd FileType python nnoremap <leader>D Oipdb.set_trace()<esc>
     augroup END
 
     augroup DOCS
@@ -116,7 +119,7 @@ if has("autocmd")
         autocmd FileType go nnoremap <leader>gh ofmt.Println("got here")<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
         autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
-        autocmd FileType python nnoremap <leader>gh oprint('got here')<esc>
+        autocmd FileType groovy,python nnoremap <leader>gh oprint('got here')<esc>
         autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
     augroup END
 
@@ -153,8 +156,8 @@ if has("autocmd")
         autocmd FileType elm nnoremap <leader>L mqF(d2f Ex`q
 
         " It will paste as the argument(s) whatever is in the default register.
-        autocmd FileType c,cc,cpp nnoremap <leader>log mqoprintf("%s\n", <c-r>");<esc>`q
-        autocmd FileType coffee nnoremap <leader>log mqoconsole.log(<c-r>")<esc>`q
+        autocmd FileType c,cc,cpp nnoremap <leader>l mqoprintf("%s\n", <c-r>");<esc>`q
+        autocmd FileType coffee nnoremap <leader>l mqoconsole.log(<c-r>")<esc>`q
 
         " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
         "           let g:go_fmt_command = "goimports"
@@ -163,7 +166,7 @@ if has("autocmd")
 
         autocmd FileType html,javascript,typescript nnoremap <leader>l mqoconsole.log('<c-r>"', <c-r>");<esc>`q
         autocmd FileType php nnoremap <leader>l mqovar_dump(<c-r>");<esc>`q
-        autocmd FileType python nnoremap <leader>l mqoprint(<c-r>")<esc>`q
+        autocmd FileType groovy,python nnoremap <leader>l mqoprint(<c-r>")<esc>`q
         autocmd FileType sh nnoremap <leader>l mqoecho "$<c-r>""<esc>`q
     augroup END
 
@@ -255,10 +258,10 @@ if has("autocmd")
         " tabstop = Number of spaces that a <Tab> in the file counts for.
         autocmd!
 
-        autocmd FileType c,conf,cpp,dockerfile,elm,javascript,go,haskell,html,json,markdown,python,php,sh,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
+        autocmd FileType c,coffee,conf,cpp,css,dockerfile,elm,javascript,go,groovy,haskell,html,json,markdown,php,python,sh,text,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
         " Remember no spaces in Makefiles!
         autocmd FileType make setlocal autoindent shiftwidth=4 tabstop=4 fileformat=unix
-        autocmd FileType coffee,css setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
+        autocmd FileType yaml setlocal autoindent shiftwidth=2 tabstop=2 fileformat=unix
 
         " Set default syntax for files with no extension.
         autocmd BufNewFile,BufRead * if &filetype == '' | set filetype=sh | endif
