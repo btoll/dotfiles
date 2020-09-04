@@ -38,6 +38,9 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 let g:syntastic_sh_checkers = ['shellcheck']
 
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['python']
+
 " https://github.com/scrooloose/nerdtree
 Plug 'scrooloose/nerdtree'
 

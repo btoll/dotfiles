@@ -272,6 +272,17 @@ moby_dick() {
     sleep 1
 }
 
+mule_run_jobs() {
+    if [ "$#" -eq 0 ]; then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: mule_run_jobs mule.yaml"
+    else
+        for job in $(mule -f $1 --list-jobs)
+            do mule -f $1 $job
+        done
+    fi
+}
+
 parse_aws_creds() {
     CREDS=$(cat ~/accessKeys.csv | tail -1)
     echo "export AWS_ACCESS_KEY_ID="$(echo $CREDS | awk -F, '{ print $1 }')
@@ -406,13 +417,13 @@ vimp() {
     vim -c ":CtrlP"
 }
 
-#web_start() {
-#    sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
-#}
-#
-#web_stop() {
-#    ps ax | ag "[p|P]ython3? -m http.server" | sudo kill -9 $(cut -d" " -f2)
-#}
+web_start() {
+    sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
+}
+
+web_stop() {
+    ps ax | ag "[p|P]ython3? -m http.server" | sudo kill -9 $(cut -d" " -f2)
+}
 
 wifi_connect() {
     sudo iw dev wlp2s0 connect -w "$1" &> /dev/null

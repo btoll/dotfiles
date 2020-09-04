@@ -30,3 +30,5 @@ export GITHOOKS="$HOME/projects/git-init/hooks"
 # https://duckduckgo.com/?q=GREP_OPTIONS+is+deprecated%3B+please+use+an+alias+or+script
 unset GREP_OPTIONS
 
+export ALGORAND_DATA=/var/lib/algorand
+

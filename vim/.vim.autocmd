@@ -75,10 +75,10 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
-        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
-        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
-        autocmd FileType dockerfile,coffee,conf,gitconfig,make,python,sh,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+        autocmd FileType coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
+        autocmd FileType coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
+        autocmd FileType coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType coffee,conf,dockerfile,gitconfig,make,python,sh,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
@@ -116,10 +116,11 @@ if has("autocmd")
         autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
         autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
         autocmd FileType elm nnoremap <leader>gh ogh = (Debug.log "DEBUG" "got here")<esc>
+        autocmd FileType expect nnoremap <leader>gh oputs "got here"<esc>
         autocmd FileType go nnoremap <leader>gh ofmt.Println("got here")<esc>
+        autocmd FileType groovy,python nnoremap <leader>gh oprint('got here')<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
         autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
-        autocmd FileType groovy,python nnoremap <leader>gh oprint('got here')<esc>
         autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
     augroup END
 
@@ -258,7 +259,7 @@ if has("autocmd")
         " tabstop = Number of spaces that a <Tab> in the file counts for.
         autocmd!
 
-        autocmd FileType c,coffee,conf,cpp,css,dockerfile,elm,javascript,go,groovy,haskell,html,json,markdown,php,python,sh,text,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
+        autocmd FileType c,coffee,conf,cpp,css,dockerfile,elm,expect,javascript,go,groovy,haskell,html,json,markdown,php,python,sh,text,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
         " Remember no spaces in Makefiles!
         autocmd FileType make setlocal autoindent shiftwidth=4 tabstop=4 fileformat=unix
         autocmd FileType yaml setlocal autoindent shiftwidth=2 tabstop=2 fileformat=unix
