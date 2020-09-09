@@ -42,6 +42,7 @@ set timeoutlen=750
 
 "set foldmethod=indent "Auto-fold when opening.
 "set foldtext=""
+set foldmethod=marker
 
 " List of file names, separated by commas, that are used to lookup words for keyword completion commands |i_CTRL-X_CTRL-K|.
 set dictionary+=/usr/share/dict/words
@@ -65,6 +66,4 @@ set autowrite
 
 " `ctags` will recursively search up the dir tree to find a `tags` file.
 set tags=tags;/
-
-set foldmethod=marker
 
