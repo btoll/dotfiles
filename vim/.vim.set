@@ -66,3 +66,5 @@ set autowrite
 " `ctags` will recursively search up the dir tree to find a `tags` file.
 set tags=tags;/
 
+set foldmethod=marker
+
