@@ -20,6 +20,12 @@ if [ -f $HOME/bin/git-completion.bash ]; then
     . $HOME/bin/git-completion.bash
 fi
 
+if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
+    source "$HOME/.local/bin/virtualenvwrapper.sh"
+    export WORKON_HOME="$HOME/projects/venv"
+    export PROJECT_HOME="$HOME/projects"
+fi
+
 if [ -f $HOME/.Xresources ]; then
     xrdb -merge $HOME/.Xresources
 fi

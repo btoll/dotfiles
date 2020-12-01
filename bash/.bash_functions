@@ -99,6 +99,10 @@ get_code_point() {
     fi
 }
 
+get_jenkins_creds() {
+    cat $HOME/.ssh/jenkins_creds
+}
+
 git_bootstrap() {
     cp $HOME/git_init/{COPYING,README.md} $(pwd)
 }
@@ -184,6 +188,15 @@ hexbits() {
         echo "For example: hexbits 0x646f67 2"
     else
         asbits `htoi "$1"` ${2:-4}
+    fi
+}
+
+h() {
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: h <search_string>"
+        echo "For example: h foobar"
+    else
+        history | ag "$1"
     fi
 }
 
@@ -310,10 +323,7 @@ rmi_images() {
 }
 
 rm_containers() {
-    for container in $(docker ps -a | tail -n +2 | awk '{print $1}')
-    do
-        docker rm -f "$container"
-    done
+    docker container rm -f $(docker container ls -aq)
 }
 
 secure_browse() {

@@ -5,6 +5,7 @@
 alias cd="cd "
 
 alias g="git"
+alias gi="git"
 #alias gpg="gpg2"
 alias v="vim"
 alias vi="vim"
@@ -32,12 +33,13 @@ alias f="fg"
 alias b="bg"
 
 alias gdb="gdb -q"
+alias pip3="python3 -m pip"
 
 #alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
 
 alias brm="rm -rf"
 
-alias open="xdg-open"
+alias open="x-www-browser"
 alias xkcd="open http://c.xkcd.com/random/comic/"
 
 alias irc="irssi"
