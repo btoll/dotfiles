@@ -118,7 +118,7 @@ if has("autocmd")
         autocmd FileType elm nnoremap <leader>gh ogh = (Debug.log "DEBUG" "got here")<esc>
         autocmd FileType expect nnoremap <leader>gh oputs "got here"<esc>
         autocmd FileType go nnoremap <leader>gh ofmt.Println("got here")<esc>
-        autocmd FileType groovy,python nnoremap <leader>gh oprint('got here')<esc>
+        autocmd FileType groovy,python nnoremap <leader>gh oprint("got here")<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
         autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
         autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>

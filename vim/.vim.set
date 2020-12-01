@@ -67,3 +67,7 @@ set autowrite
 " `ctags` will recursively search up the dir tree to find a `tags` file.
 set tags=tags;/
 
+" Effects tab completion when searching for files in :ex mode, similar to
+" bash.
+set wildmode=longest,list
+
