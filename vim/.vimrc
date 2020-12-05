@@ -94,8 +94,8 @@ Plug 'easymotion/vim-easymotion'
 
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_confirm_extra_conf = 0
+"Plug 'Valloric/YouCompleteMe'
+"let g:ycm_confirm_extra_conf = 0
 " TODO: https://github.com/rdnetto/YCM-Generator
 
 Plug 'rking/ag.vim'
@@ -149,14 +149,6 @@ Plug 'vim-scripts/SearchComplete'
 
 Plug 'pangloss/vim-javascript'
 
-"Plug 'vim-scripts/indentpython.vim'
-
-" Add PEP 8 support.
-Plug 'nvie/vim-flake8'
-let python_highlight_all=1
-syntax on
-
-" Add plugins to &runtimepath
 call plug#end()
 
 if filereadable($HOME . "/.vim.functions")
