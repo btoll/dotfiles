@@ -62,43 +62,16 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" https://github.com/marijnh/tern_for_vim
-"Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-"let g:tern_map_keys=1
-"autocmd FileType javascript setlocal omnifunc=tern#Complete
-
-" https://github.com/tpope/vim-surround
-Plug 'tpope/vim-surround'
-
-" https://github.com/tpope/vim-repeat
-Plug 'tpope/vim-repeat'
+Plug 'rking/ag.vim'
 
 " https://github.com/bitc/vim-bad-whitespace
 Plug 'bitc/vim-bad-whitespace'
-
-" gundo
-" http://sjl.bitbucket.org/gundo.vim/
-" let g:gundo_preview_bottom = 1
 
 " https://github.com/flazz/vim-colorschemes
 Plug 'flazz/vim-colorschemes'
 
 " https://github.com/ap/vim-css-color
 Plug 'ap/vim-css-color'
-
-" vim-eunuch
-" git@github.com:tpope/vim-eunuch.git
-
-" https://github.com/easymotion/vim-easymotion
-Plug 'easymotion/vim-easymotion'
-
-" YouCompleteMe
-" https://github.com/Valloric/YouCompleteMe
-"Plug 'Valloric/YouCompleteMe'
-"let g:ycm_confirm_extra_conf = 0
-" TODO: https://github.com/rdnetto/YCM-Generator
-
-Plug 'rking/ag.vim'
 
 " https://github.com/fatih/vim-go
 " https://github.com/fatih/vim-go-tutorial
@@ -120,34 +93,18 @@ let g:go_version_warning = 0
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
 Plug 'AndrewRadev/splitjoin.vim'
 
-Plug 'elmcast/elm-vim'
-let g:elm_syntastic_show_warnings = 1
-let g:elm_setup_keybindings = 0
-let g:elm_jump_to_error = 0
-let g:elm_make_output_file = "elm.js"
-let g:elm_make_show_warnings = 0
-let g:elm_browser_command = ""
-let g:elm_detailed_complete = 0
-let g:elm_format_autosave = 1
-let g:elm_format_fail_silently = 0
+"Plug 'elmcast/elm-vim'
+"let g:elm_syntastic_show_warnings = 1
+"let g:elm_setup_keybindings = 0
+"let g:elm_jump_to_error = 0
+"let g:elm_make_output_file = "elm.js"
+"let g:elm_make_show_warnings = 0
+"let g:elm_browser_command = ""
+"let g:elm_detailed_complete = 0
+"let g:elm_format_autosave = 1
+"let g:elm_format_fail_silently = 0
 
-" https://github.com/vim-scripts/SearchComplete
-Plug 'vim-scripts/SearchComplete'
-
-"python with virtualenv support
-"py << EOF
-"import os
-"import sys
-"if 'VIRTUAL_ENV' in os.environ:
-"  project_base_dir = os.environ['VIRTUAL_ENV']
-"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"      execfile(activate_this, dict(__file__=activate_this))
-"      EOF
-
-" https://github.com/vim-scripts/YankRing.vim
-"Plug 'vim-scripts/YankRing.vim'
-
-Plug 'pangloss/vim-javascript'
+"Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
