@@ -10,20 +10,8 @@ if [ -f $HOME/.bash_options ]; then
     . $HOME/.bash_options
 fi
 
-if [ -f $HOME/bin/cdargs-bash.sh ]; then
-    . $HOME/bin/cdargs-bash.sh
-fi
-
-# Turn on git bash completion.
-# http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
-if [ -f $HOME/bin/git-completion.bash ]; then
-    . $HOME/bin/git-completion.bash
-fi
-
-if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
-    source "$HOME/.local/bin/virtualenvwrapper.sh"
-    export WORKON_HOME="$HOME/projects/venv"
-    export PROJECT_HOME="$HOME/projects"
+if [ -f $HOME/.bash_vendor ]; then
+    . $HOME/.bash_vendor
 fi
 
 if [ -f $HOME/.Xresources ]; then
