@@ -12,6 +12,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 " Make sure to escape the spaces in the name properly.
 set guifont=Source\ Code\ Pro\ for\ Powerline
 
