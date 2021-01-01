@@ -3,7 +3,7 @@ if [ -f $HOME/bin/cdargs-bash.sh ]; then
 fi
 
 # Turn on git bash completion.
-# http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
+# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 if [ -f $HOME/bin/git-completion.bash ]; then
     . $HOME/bin/git-completion.bash
 fi

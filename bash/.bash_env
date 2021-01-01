@@ -24,7 +24,7 @@ export GITHOOKS="$HOME/projects/git-init/hooks"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
 # in ~/.gnupg/gpg.conf.
-eval "$(gpg-agent --daemon)"
+eval "$(gpg-agent --daemon 2> /dev/null)"
 export GPG_TTY=$(tty)
 
 # https://duckduckgo.com/?q=GREP_OPTIONS+is+deprecated%3B+please+use+an+alias+or+script
