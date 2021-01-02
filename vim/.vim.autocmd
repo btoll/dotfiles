@@ -15,7 +15,7 @@ if has("autocmd")
         autocmd FileType asm inoreabbrev bp global _start<cr><cr>;section .data<cr><cr>section .text<cr>_start:<cr>
 
         " Bash boilerplate.
-        autocmd FileType sh inoreabbrev bp #!/bin/bash<cr><cr>
+        autocmd FileType bash,sh inoreabbrev bp #!/bin/bash<cr><cr>
 
         " C boilerplate.
         autocmd FileType c inoreabbrev bp #include <stdlib.h><cr>#include <stdio.h><cr><cr>int main(int argc, char **argv) {<cr>return 0;<cr>}<cr>
@@ -75,10 +75,10 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-        autocmd FileType coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
-        autocmd FileType coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
-        autocmd FileType coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
-        autocmd FileType coffee,conf,dockerfile,gitconfig,make,python,sh,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,gitconfig,make,python,sh,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
@@ -121,7 +121,7 @@ if has("autocmd")
         autocmd FileType groovy,python nnoremap <leader>gh oprint("got here")<esc>
         autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
         autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
-        autocmd FileType sh nnoremap <leader>gh oecho "got here"<esc>
+        autocmd FileType bash,sh nnoremap <leader>gh oecho "got here"<esc>
     augroup END
 
     augroup HIGHLIGHTING
@@ -168,7 +168,7 @@ if has("autocmd")
         autocmd FileType html,javascript,typescript nnoremap <leader>l mqoconsole.log('<c-r>"', <c-r>");<esc>`q
         autocmd FileType php nnoremap <leader>l mqovar_dump(<c-r>");<esc>`q
         autocmd FileType groovy,python nnoremap <leader>l mqoprint(<c-r>")<esc>`q
-        autocmd FileType sh nnoremap <leader>l mqoecho "$<c-r>""<esc>`q
+        autocmd FileType bash,sh nnoremap <leader>l mqoecho "$<c-r>""<esc>`q
     augroup END
 
     augroup MISC
@@ -216,7 +216,7 @@ if has("autocmd")
         autocmd FileType elm nnoremap <leader>line i-<esc>yl59p<esc>
         autocmd FileType go,javascript nnoremap <leader>line i/* -<esc>yl59pi */<esc>
         autocmd FileType txt,text,vim nnoremap <leader>line i-<esc>yl59p<esc>
-        autocmd FileType sh nnoremap <leader>line i#<esc>yl59p<esc>
+        autocmd FileType bash,sh nnoremap <leader>line i#<esc>yl59p<esc>
     augroup END
 
     augroup TOOLING

@@ -1,11 +1,14 @@
-if [ -f $HOME/bin/cdargs-bash.sh ]; then
-    . $HOME/bin/cdargs-bash.sh
+if [ -f $HOME/cdargs-bash.sh ]; then
+    . $HOME/cdargs-bash.sh
 fi
 
-# Turn on git bash completion.
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-if [ -f $HOME/bin/git-completion.bash ]; then
-    . $HOME/bin/git-completion.bash
+if [ -f $HOME/git-completion.bash ]; then
+    . $HOME/git-completion.bash
+fi
+
+if [ -f $HOME/mule-completion.bash ]; then
+    . $HOME/mule-completion.bash
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
