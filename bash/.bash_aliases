@@ -2,11 +2,10 @@
 # If the value of an alias ends in a blank, then bash tries
 # to do alias substitution on the next word in the command
 # line. - Learning the Bash Shell, 2nd edition, page 62.
-alias cd="cd "
+#alias cd="cd "
 
 alias g="git"
 alias gi="git"
-#alias gpg="gpg2"
 alias v="vim"
 alias vi="vim"
 
@@ -33,18 +32,13 @@ alias f="fg"
 alias b="bg"
 
 alias gdb="gdb -q"
-alias pip3="python3 -m pip"
-
-#alias cp="cp -p" #Cause cp to preserve the following attributes of each source file in the copy: modification time, access time, file flags, file mode, user ID, and group ID, as allowed by permissions.
-
 alias brm="rm -rf"
 
 alias open="x-www-browser"
-alias xkcd="open http://c.xkcd.com/random/comic/"
+alias xkcd="open https://c.xkcd.com/random/comic/"
 
-alias irc="irssi"
 alias tor-browser="( cd /opt/tor-browser_en-US && ./start-tor-browser.desktop )"
-alias simple-server="python -m SimpleHTTPServer 8000"
+alias simple-server="python3 -m http.server"
 alias chrome-browser-disable-security="/usr/bin/google-chrome-stable --disable-web-security --user-data-dir=/tmp/chrome-disable-web-security"
 
 # Git
