@@ -5,7 +5,9 @@
 	name = Benjamin Toll
 	email = benjam72@yahoo.com
 	# https://security.stackexchange.com/questions/153579/is-it-safe-to-share-your-gitconfigs-user-signingkey-value-with-the-world
-	signingkey = 98E06D9C78F1B1F6
+	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key
+	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/associating-an-email-with-your-gpg-key
+	signingkey = 324292454E82F40B
 [alias]
 	br = branch
 	# -S = GPG-sign commit.
@@ -52,6 +54,24 @@
 
 #[commit]
 	gpgsign = true
+	hook = EOF.bash
+	hook = debugger.bash
+	hook = eslint.bash
+	hook = EOF.bash
+	hook = debugger.bash
+	hook = eslint.bash
+	hook = EOF.bash
+	hook = debugger.bash
+	hook = eslint.bash
+	hook = EOF.bash
+	hook = debugger.bash
+	hook = eslint.bash
+	hook = EOF.bash
+	hook = debugger.bash
+	hook = eslint.bash
+	hook = EOF.bash
+	hook = debugger.bash
+	hook = eslint.bash
 [gpg]
 	program = gpg
 

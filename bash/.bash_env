@@ -32,9 +32,3 @@ unset GREP_OPTIONS
 
 export ALGORAND_DATA=/var/lib/algorand
 
-if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
-    source "$HOME/.local/bin/virtualenvwrapper.sh"
-    export WORKON_HOME="$HOME/projects/venv"
-    export PROJECT_HOME="$HOME/projects"
-fi
-
