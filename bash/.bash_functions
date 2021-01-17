@@ -296,6 +296,10 @@ mule_run_jobs() {
     fi
 }
 
+load_aws_creds() {
+    eval $(parse_aws_creds)
+}
+
 parse_aws_creds() {
     CREDS=$(cat ~/accessKeys.csv | tail -1)
     echo "export AWS_ACCESS_KEY_ID="$(echo $CREDS | awk -F, '{ print $1 }')
