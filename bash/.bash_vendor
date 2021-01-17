@@ -30,6 +30,10 @@ if which kubectl > /dev/null; then
     complete -F __start_kubectl k
 fi
 
+if which helm > /dev/null; then
+    source <(helm completion bash)
+fi
+
 if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
     source "$HOME/.local/bin/virtualenvwrapper.sh"
     export WORKON_HOME="$HOME/projects/venv"
