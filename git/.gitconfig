@@ -7,13 +7,14 @@
 	# https://security.stackexchange.com/questions/153579/is-it-safe-to-share-your-gitconfigs-user-signingkey-value-with-the-world
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/associating-an-email-with-your-gpg-key
-	signingkey = 324292454E82F40B
+	signingkey = E9B789D0D4EC1043
 [alias]
 	br = branch
 	# -S = GPG-sign commit.
 	ci = commit -S
 	ca = commit -S --amend
 	co = checkout
+	tag = tag -s
 	d = diff
 	dirty = ls --dirty -e
 	get-hash = rev-parse
@@ -47,31 +48,6 @@
 
 [pull]
 	rebase = true
-[hooks "pre-commit"]
-	hook = debugger.bash
-	hook = eslint.bash
-	hook = EOF.bash
-
-#[commit]
-	gpgsign = true
-	hook = EOF.bash
-	hook = debugger.bash
-	hook = eslint.bash
-	hook = EOF.bash
-	hook = debugger.bash
-	hook = eslint.bash
-	hook = EOF.bash
-	hook = debugger.bash
-	hook = eslint.bash
-	hook = EOF.bash
-	hook = debugger.bash
-	hook = eslint.bash
-	hook = EOF.bash
-	hook = debugger.bash
-	hook = eslint.bash
-	hook = EOF.bash
-	hook = debugger.bash
-	hook = eslint.bash
 [gpg]
 	program = gpg
 
