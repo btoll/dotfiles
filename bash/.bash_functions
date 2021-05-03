@@ -327,7 +327,11 @@ rmi_images() {
 }
 
 rm_containers() {
-    docker container rm -f $(docker container ls -aq)
+    docker container rm $(docker container ls -aq)
+}
+
+rm_volumes() {
+    docker volume rm $(docker volume ls --quiet)
 }
 
 secure_browse() {
@@ -350,6 +354,10 @@ secure_browse() {
             firefox &> /dev/null &
         fi
     fi
+}
+
+shaq() {
+    echo -e "It's supposed to be 1-2-3, not 1-2 back to 1.\nhttps://www.youtube.com/watch?v=y44DaWQH8-0"
 }
 
 sshp() {

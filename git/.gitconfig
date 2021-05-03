@@ -51,3 +51,7 @@
 [gpg]
 	program = gpg
 
+[hooks "pre-commit"]
+	saddle = pytest.sh
+	saddle = pycodestyle.sh
+	foobar = pycodestyle.sh

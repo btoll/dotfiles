@@ -114,12 +114,12 @@ if has("autocmd")
 
     augroup GOT_HERE
         autocmd FileType c,cc,cpp nnoremap <leader>gh oprintf("got here\n");<esc>
-        autocmd FileType coffee nnoremap <leader>gh oconsole.log('got here')<esc>
+        autocmd FileType coffee nnoremap <leader>gh oconsole.log("got here")<esc>
         autocmd FileType elm nnoremap <leader>gh ogh = (Debug.log "DEBUG" "got here")<esc>
         autocmd FileType expect nnoremap <leader>gh oputs "got here"<esc>
         autocmd FileType go nnoremap <leader>gh ofmt.Println("got here")<esc>
         autocmd FileType groovy,python nnoremap <leader>gh oprint("got here")<esc>
-        autocmd FileType html,javascript nnoremap <leader>gh oconsole.log('got here');<esc>
+        autocmd FileType html,javascript nnoremap <leader>gh oconsole.log("got here");<esc>
         autocmd FileType php nnoremap <leader>gh oecho("got here");<esc>
         autocmd FileType bash,sh nnoremap <leader>gh oecho "got here"<esc>
     augroup END
@@ -165,9 +165,9 @@ if has("autocmd")
         " is set (it is).
         autocmd FileType go nnoremap <leader>l mqofmt.Println("<c-r>"", <c-r>")<esc>`q
 
-        autocmd FileType html,javascript,typescript nnoremap <leader>l mqoconsole.log('<c-r>"', <c-r>");<esc>`q
+        autocmd FileType html,javascript,typescript nnoremap <leader>l mqoconsole.log("<c-r>"", <c-r>");<esc>`q
         autocmd FileType php nnoremap <leader>l mqovar_dump(<c-r>");<esc>`q
-        autocmd FileType groovy,python nnoremap <leader>l mqoprint(<c-r>")<esc>`q
+        autocmd FileType groovy,python nnoremap <leader>l mqoprint("<c-r>"", <c-r>")<esc>`q
         autocmd FileType bash,sh nnoremap <leader>l mqoecho "$<c-r>""<esc>`q
     augroup END
 

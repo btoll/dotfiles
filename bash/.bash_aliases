@@ -18,8 +18,10 @@ alias lsa="lss -a"
 alias gzip="gzip -9"
 alias bzip2="bzip2 -9"
 alias cp="cp -i"
+alias ln="ln -i"
 alias mv="mv -i"
 alias c="cd"
+alias ping="ping -c 4"
 
 # Always enable colored `grep` output.
 alias grep="grep --color=auto"
@@ -27,7 +29,7 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 # Job Control
-alias j="jobs"
+alias j="jobs -l"
 alias f="fg"
 alias b="bg"
 
@@ -59,6 +61,7 @@ alias ..7="cd ../../../../../../.."
 alias ..8="cd ../../../../../../../.."
 alias ..9="cd ../../../../../../../../.."
 alias ..l="ll .."
+
 alias :q="exit"
 alias :x="exit"
 
