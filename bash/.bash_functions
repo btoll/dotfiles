@@ -42,11 +42,10 @@ bp() {
         echo "Usage: bp <filename>"
     else
         # Let's not overwrite an existing file. `stat` and test the process exit code.
-        stat "$1" &> /dev/null
-
-	# Check exit code of `stat` call before proceeding.
-	# An error (return value of 1 in this case) means that the file does not exist.
-        if [ "$?" -eq 1 ]; then
+        # Check exit code of `stat` call before proceeding.
+        # An error (return value of 1 in this case) means that the file does not exist.
+        if ! stat "$1" &> /dev/null
+        then
             case "$1" in
                 *.elm)  vim -c ":read ~/templates/elm.txt" "$1" ;;
                 *.html) vim -c ":read ~/templates/html.txt" "$1" ;;
@@ -67,6 +66,16 @@ cpy() {
         echo "Usage: cpy <text_to_copy_to_clipboard>"
     else
         echo "$1" | xsel -b
+    fi
+}
+
+dim_screen() {
+    # Run `xrandr` to get attached screens.
+
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: dim_screen [0 <= value <= 1]"
+    else
+        xrandr --output eDP-1 --brightness "$1"
     fi
 }
 
@@ -304,6 +313,12 @@ parse_aws_creds() {
     CREDS=$(cat ~/accessKeys.csv | tail -1)
     echo "export AWS_ACCESS_KEY_ID="$(echo $CREDS | awk -F, '{ print $1 }')
     echo "export AWS_SECRET_ACCESS_KEY="$(echo $CREDS | awk -F, '{ print $2 }')
+}
+
+parse_jfrog_creds() {
+    CREDS=$(cat ~/jfrog.csv | tail -1)
+    echo "export JFROG_USERNAME="$(echo $CREDS | awk -F, '{ print $1 }')
+    echo "export JFROG_PASSWORD="$(echo $CREDS | awk -F, '{ print $2 }')
 }
 
 # Remove by inode.
