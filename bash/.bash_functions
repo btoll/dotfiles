@@ -181,13 +181,12 @@ git_init() {
 go_tmux() {
     SESSION=$(basename `pwd`)
 
-    tmux has-session -t $SESSION 2> /dev/null
-
-    if [ "$?" -eq 1 ]; then
-        tmux new-session -s $SESSION -d
+    if ! tmux has-session -t "$SESSION" 2> /dev/null
+    then
+        tmux new-session -s "$SESSION" -d
     fi
 
-    tmux attach -t $SESSION
+    tmux attach -t "$SESSION"
     clear
 }
 
