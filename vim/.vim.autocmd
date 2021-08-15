@@ -15,7 +15,7 @@ if has("autocmd")
         autocmd FileType asm inoreabbrev bp global _start<cr><cr>;section .data<cr><cr>section .text<cr>_start:<cr>
 
         " Bash boilerplate.
-        autocmd FileType bash,sh inoreabbrev bp #!/bin/bash<cr><cr>set -eo pipefail<cr><cr>
+        autocmd FileType bash,sh inoreabbrev bp #!/bin/bash<cr><cr>set -euo pipefail<cr><cr>
 
         " C boilerplate.
         autocmd FileType c inoreabbrev bp #include <stdlib.h><cr>#include <stdio.h><cr><cr>int main(int argc, char **argv) {<cr>return 0;<cr>}<cr>
