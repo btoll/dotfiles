@@ -75,10 +75,10 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>c mq0i#<esc>`q
-        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml nnoremap <leader>C 0x<cr>
-        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
-        autocmd FileType bash,coffee,conf,dockerfile,gitconfig,make,python,sh,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tmux,yaml nnoremap <leader>c mq0i#<esc>`q
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tmux,yaml nnoremap <leader>C 0x<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tmux,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,gitconfig,make,python,sh,tmux,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
