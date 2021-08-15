@@ -30,8 +30,6 @@ export GPG_TTY=$(tty)
 # https://duckduckgo.com/?q=GREP_OPTIONS+is+deprecated%3B+please+use+an+alias+or+script
 unset GREP_OPTIONS
 
-export ALGORAND_DATA=/var/lib/algorand
-
 # Setting this will be picked up by `tmux`, as well.
 export LC_ALL=en_IN.UTF-8
 export LANG=en_IN.UTF-8
