@@ -20,7 +20,8 @@ Highlight a visual range for the current file. `a:blame` and `a:branch` are opti
 
 Invoke using `<leader>gbr`.
 
->In addition, it's possible to call each function specifying a branch other than the current one.
->Refer to the code in [.vim.functions].
+> In addition, it's possible to call each function specifying a branch other than the current one.
+> Refer to the code in [.vim.functions].
 
 [.vim.functions]: /vim/.vim.functions
+
