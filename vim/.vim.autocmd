@@ -34,6 +34,7 @@ if has("autocmd")
 
         " Python boilerplate.
         autocmd FileType python inoreabbrev bp def main():<cr>""" derp """<cr>pass<cr><esc>O<cr><cr>if __name__ == "__main__":<cr>main()
+"        autocmd FileType python inoreabbrev bp def two_sum():<cr>pass<cr><esc>O<cr><cr>print(two_sum())
 
         " CSS and JavaScript resources.
         autocmd FileType html inoreabbrev doctype <!DOCTYPE html>
@@ -75,10 +76,10 @@ if has("autocmd")
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>c :s_^_//_g<cr>:noh<cr>
         autocmd FileType c,cc,cpp,go,groovy,javascript,php,typescript vnoremap <leader>C :s_^//__g<cr>:noh<cr>
 
-        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tmux,yaml nnoremap <leader>c mq0i#<esc>`q
-        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tmux,yaml nnoremap <leader>C 0x<cr>
-        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tmux,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
-        autocmd FileType bash,coffee,conf,dockerfile,gitconfig,make,python,sh,tmux,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tf,tmux,yaml nnoremap <leader>c mq0i#<esc>`q
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tf,tmux,yaml nnoremap <leader>C 0x<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,expect,gitconfig,make,python,sh,tf,tmux,yaml vnoremap <leader>c :s_^_#_g<cr>:noh<cr>
+        autocmd FileType bash,coffee,conf,dockerfile,gitconfig,make,python,sh,tf,tmux,yaml vnoremap <leader>C :s_^#__g<cr>:noh<cr>
 
         " Comment out the block, c-style.
         " From top/down (Start with your cursor anywhere on the first line)...
@@ -259,7 +260,7 @@ if has("autocmd")
         " tabstop = Number of spaces that a <Tab> in the file counts for.
         autocmd!
 
-        autocmd FileType c,cfg,coffee,conf,cpp,css,dockerfile,elm,expect,javascript,go,groovy,haskell,html,json,markdown,php,python,sh,text,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
+        autocmd FileType c,cfg,coffee,conf,cpp,css,dockerfile,elm,expect,javascript,go,groovy,haskell,html,json,markdown,php,python,sh,text,tf,typescript,vim setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
         " Remember no spaces in Makefiles!
         autocmd FileType make setlocal autoindent shiftwidth=4 tabstop=4 fileformat=unix
         autocmd FileType yaml setlocal autoindent shiftwidth=2 tabstop=2 fileformat=unix
