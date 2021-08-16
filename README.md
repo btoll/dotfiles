@@ -4,7 +4,7 @@
 
     ./install.sh
 
-## Install individually
+## Or, install individually
 
 Install to the `$HOME` directory using [GNU Stow]:
 
