@@ -1,26 +1,28 @@
-if [ -f $HOME/.bash_aliases ]
+# shellcheck disable=1090,2034
+
+if [ -f "$HOME/.bash_aliases" ]
 then
-    . $HOME/.bash_aliases
+    . "$HOME/.bash_aliases"
 fi
 
-if [ -f $HOME/.bash_functions ]
+if [ -f "$HOME/.bash_functions" ]
 then
-    . $HOME/.bash_functions
+    . "$HOME/.bash_functions"
 fi
 
-if [ -f $HOME/.bash_options ]
+if [ -f "$HOME/.bash_options" ]
 then
-    . $HOME/.bash_options
+    . "$HOME/.bash_options"
 fi
 
-if [ -f $HOME/.bash_vendor ]
+if [ -f "$HOME/.bash_vendor" ]
 then
-    . $HOME/.bash_vendor
+    . "$HOME/.bash_vendor"
 fi
 
-if [ -f $HOME/.Xresources ]
+if [ -f "$HOME/.Xresources" ]
 then
-    xrdb -merge $HOME/.Xresources
+    xrdb -merge "$HOME/.Xresources"
 fi
 
 # Map Caps Lock to Ctrl.
@@ -68,7 +70,7 @@ fi
 # Enable color support of ls and also add handy aliases.
 if [ -x /usr/bin/dircolors ]
 then
-    eval "`dircolors -b`"
+    eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
