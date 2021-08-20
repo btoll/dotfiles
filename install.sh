@@ -25,6 +25,7 @@ PACKAGES=(
     tmux
     # Install the `setxkbmap` binary needed by `.bash_options` (sets caps lock to ctrl key).
     x11-xkb-utils
+    xsel
 )
 
 for package in "${PACKAGES[@]}"
@@ -32,8 +33,9 @@ do
     install_package "$package"
 done
 
-# Remove the default bash files.
+# Remove the default bash and vim files.
 rm -f "$HOME/.bash"*
+rm -rf "$HOME/.vim"*
 
 TOOLS=(
     bash
