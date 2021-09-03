@@ -71,11 +71,12 @@ cpy() {
 
 dim_screen() {
     # Run `xrandr` to get attached screens.
-
-    if [ "$#" -eq 0 ]; then
-        echo "Usage: dim_screen [0 <= value <= 1]"
+    local value="$1"
+    if [ "$#" -eq 0 ]
+    then
+        echo "Usage: dim_screen [0 < value <= 1]"
     else
-        xrandr --output eDP-1 --brightness "$1"
+        xrandr --output eDP-1 --brightness "$value"
     fi
 }
 
