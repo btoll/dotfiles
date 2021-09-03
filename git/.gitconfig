@@ -55,3 +55,9 @@
 	saddle = pytest.sh
 	saddle = pycodestyle.sh
 	foobar = pycodestyle.sh
+
+# https://stackoverflow.com/questions/59797272/receiving-fatal-could-not-read-username-for-https-github-com-terminal-prom
+# Fixes errors when `go get ./...`.
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
