@@ -1,5 +1,4 @@
 #!/bin/bash
-#shellcheck disable=1090
 
 set -euo pipefail
 
@@ -72,14 +71,20 @@ done
 #   vim-plug
 
 # https://github.com/junegunn/fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
-"$HOME/.fzf/install" --completion --key-bindings --no-update-rc
-echo "$SUCCESS Installed \`fzf\`."
+if [ ! -d "$HOME/.fzf" ]
+then
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+    "$HOME/.fzf/install" --completion --key-bindings --no-update-rc
+    echo "$SUCCESS Installed \`fzf\`."
+fi
 
-# https://github.com/junegunn/vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-echo "$SUCCESS Installed \`vim-plug\`."
+if [ ! -d "$HOME/.vim/autoload" ] || [ ! -f "$HOME/.vim/autoload/plug.vim" ]
+then
+    # https://github.com/junegunn/vim-plug
+    curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo "$SUCCESS Installed \`vim-plug\`."
+fi
 
 # Install vim plugins.
 # + is just a shorthand notation of -c.
