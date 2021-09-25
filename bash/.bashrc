@@ -31,9 +31,9 @@ fi
 #fi
 
 # If a fortune program is installed.
-if which fortune > /dev/null
+if command -v fortune > /dev/null
 then
-    if which cowsay > /dev/null
+    if command -v cowsay > /dev/null
     then
         fortune -e | cowsay -W 60 -f stegosaurus
     else

@@ -40,9 +40,11 @@ alias brm="rm -rf"
 
 alias open="x-www-browser"
 alias xkcd="open https://c.xkcd.com/random/comic/"
+alias little-bobby-tables="open https://xkcd.com/327/"
 
 # https://github.com/jessfraz/dockerfiles/issues/329
-alias tor-browser="xhost -si:localuser:root && docker run --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY=unix$DISPLAY -e TOR_VERSION=10.5.5 btoll/tor-browser:latest"
+# xhost +local:root
+alias tor-browser="docker run --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY=unix$DISPLAY -e TOR_VERSION=10.5.6 --name tor-browser jessfraz/tor-browser:latest &> /dev/null &"
 alias simple-server="python3 -m http.server"
 alias chrome-browser-disable-security="/usr/bin/google-chrome-stable --disable-web-security --user-data-dir=/tmp/chrome-disable-web-security"
 

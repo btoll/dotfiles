@@ -1,42 +1,30 @@
-if [ -f $HOME/cdargs-bash.sh ]; then
-    . $HOME/cdargs-bash.sh
-fi
+COMPLETION_SCRIPTS=(
+    .bazel/bin/bazel-complete.bash
+    .fzf.bash
+    .local/bin/virtualenvwrapper.sh
+    cdargs-bash.sh
+    # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+    git-completion.bash
+)
 
-# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-if [ -f $HOME/git-completion.bash ]; then
-    . $HOME/git-completion.bash
-fi
+for script in "${arrayName[@]}"
+do
+    [ -f "$HOME/$script" ] && source "$HOME/$script"
+done
 
-if [ -f $HOME/mule-completion.bash ]; then
-    . $HOME/mule-completion.bash
+if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
+    export WORKON_HOME="$HOME/projects/venv"
+    export PROJECT_HOME="$HOME/projects"
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "/opt/google-cloud-sdk/path.bash.inc" ]; then
-    . "/opt/google-cloud-sdk/path.bash.inc"
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "/opt/google-cloud-sdk/completion.bash.inc" ]; then
-    . "/opt/google-cloud-sdk/completion.bash.inc"
-fi
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/#bash
-if which kubectl > /dev/null; then
+if command -v kubectl > /dev/null; then
     source <(kubectl completion bash)
     alias k="kubectl"
     complete -F __start_kubectl k
 fi
 
-if which helm > /dev/null; then
+if command -v helm > /dev/null; then
     source <(helm completion bash)
-fi
-
-if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
-    source "$HOME/.local/bin/virtualenvwrapper.sh"
-    export WORKON_HOME="$HOME/projects/venv"
-    export PROJECT_HOME="$HOME/projects"
 fi
 
