@@ -7,7 +7,7 @@ COMPLETION_SCRIPTS=(
     git-completion.bash
 )
 
-for script in "${arrayName[@]}"
+for script in "${COMPLETION_SCRIPTS[@]}"
 do
     [ -f "$HOME/$script" ] && source "$HOME/$script"
 done

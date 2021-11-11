@@ -25,6 +25,11 @@ then
     xrdb -merge "$HOME/.Xresources"
 fi
 
+if declare -f dim_screen > /dev/null
+then
+    dim_screen .7
+fi
+
 # Map Caps Lock to Ctrl.
 #if [ -f $HOME/.Xmodmap ]; then
 #    xmodmap $HOME/.Xmodmap

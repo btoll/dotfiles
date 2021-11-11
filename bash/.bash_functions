@@ -21,7 +21,7 @@ bfind() {
         #    using often is using find to generate lists of files that I then edit in
         #    vertically split Vim windows"
         #
-        find ${STARTSEARCH:="."} -type f -name "$1" -exec vim {} +
+        find ${STARTSEARCH:="."} -type f -name "$1" -exec vim {} + 2> /dev/null
     fi
 }
 
@@ -305,20 +305,27 @@ mule_run_jobs() {
     fi
 }
 
-load_aws_creds() {
-    eval $(parse_aws_creds)
-}
-
+# First and only argument is the profile, defaults to "default".
 parse_aws_creds() {
-    CREDS=$(cat ~/accessKeys.csv | tail -1)
-    echo "export AWS_ACCESS_KEY_ID="$(echo $CREDS | awk -F, '{ print $1 }')
-    echo "export AWS_SECRET_ACCESS_KEY="$(echo $CREDS | awk -F, '{ print $2 }')
+    local creds
+    local account="${1:-default}"
+    local profile_dir="$HOME/aws-access-keys/$account"
+
+    if [ ! -d  "$profile_dir" ]
+    then
+        echo "[ERROR] Profile \`$account\` does not exist!"
+    else
+        creds=$(< "$profile_dir/accessKeys.csv" tail -1)
+        echo "export AWS_ACCESS_KEY_ID="$(echo $creds | awk -F, '{ print $1 }')
+        echo "export AWS_SECRET_ACCESS_KEY="$(echo $creds | awk -F, '{ print $2 }')
+    fi
 }
 
 parse_jfrog_creds() {
-    CREDS=$(cat ~/jfrog.csv | tail -1)
-    echo "export JFROG_USERNAME="$(echo $CREDS | awk -F, '{ print $1 }')
-    echo "export JFROG_PASSWORD="$(echo $CREDS | awk -F, '{ print $2 }')
+    local creds
+    creds=$(< "$HOME/jfrog.csv" tail -1)
+    echo "export JFROG_USERNAME="$(echo $creds | awk -F, '{ print $1 }')
+    echo "export JFROG_PASSWORD="$(echo $creds | awk -F, '{ print $2 }')
 }
 
 # Remove by inode.
