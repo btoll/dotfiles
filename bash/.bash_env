@@ -8,7 +8,7 @@ export HISTSIZE=500000
 export HISTFILESIZE=100000
 
 # Let's ignore some commands.
-export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:fg:history:clear:jobs:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
+export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
 
 # TODO: Use /etc/bash_completion.d/git-prompt?
 export PS1='$(tput bold)$(tput setaf 4)\h $(tput setaf 3)~~>$(tput sgr0) \[$(tput bold)\]\[$(tput setaf 6)\]\w\[$(tput sgr0)\]:\[$(tput bold)\]\[$(tput setaf 8)\]$(git branch 2> /dev/null | grep "^*" | colrm 1 2)\[$(tput sgr0)\]\n$ '
