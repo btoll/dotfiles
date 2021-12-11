@@ -3,6 +3,8 @@
 "
 let mapleader=','
 
+filetype plugin indent on
+
 " https://github.com/junegunn/vim-plug/wiki/faq
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -124,12 +126,29 @@ endif
 
 " Vim needs to have been compiled with the autocmd flag. Do vim --version and verify +autocmd.
 if has("autocmd")
-    if filereadable($HOME . "/.vim.autocmd")
-      source ~/.vim.autocmd
-    endif
-
     if filereadable($HOME . "/cscope_maps.vim")
       source ~/cscope_maps.vim
     endif
+endif
+
+if has("autocmd")
+	" Highlight word (all filetypes).
+	nnoremap <space> viw
+
+	" Immediately apply any changes to .vimrc after writing.
+	autocmd BufWritePost .vimrc source $MYVIMRC
+
+	" Add the main function that restores the cursor position and its autocmd so that it gets triggered:
+	function! ResCur()
+	    if line("'\"") <= line("$")
+		normal! g`"
+		return 1
+	    endif
+	endfunction
+
+	autocmd BufWinEnter * call ResCur()
+
+	" Set default syntax for files with no extension.
+	autocmd BufNewFile,BufRead * if &filetype == '' | set filetype=conf | endif
 endif
 

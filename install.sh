@@ -52,14 +52,19 @@ for tool in "${TOOLS[@]}"
 do
     case "$tool" in
         i3)
-            mkdir -p "$HOME/.config/i3"
-            stow -t "$HOME/.config/i3" "$tool"
+            mkdir -p "$HOME/.config/$tool"
+            stow --target "$HOME/.config/$tool" "$tool"
             ;;
         templates)
             cp -r "$tool" "$HOME"
             ;;
+        vim)
+            stow --target "$HOME" "$tool"
+            mkdir -p "$HOME/.$tool/ftplugin"
+            stow --target "$HOME/.$tool/ftplugin" --dir "$tool" ftplugin
+            ;;
         *)
-            stow -t "$HOME" "$tool"
+            stow --target "$HOME" "$tool"
             ;;
     esac
 
