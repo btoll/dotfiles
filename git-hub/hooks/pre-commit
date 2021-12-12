@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ $# -eq 1 ]
+then
+    echo "[ERROR] You must specify a PROJECT name."
+    exit 1
+fi
+
+# Try for local hooks first.
+HOOKS=$(git config --local --get-all hooks.pre-commit)
+
+if [ -z "$HOOKS" ]
+then
+    HOOKS=$(git config --global --get-all hooks.pre-commit."$PROJECT")
+fi
+
+if [ -n "$HOOKS" ]
+then
+    for HOOK in $HOOKS
+    do
+        if ! bash "./.git/hooks/pre-commit.d/$HOOK"
+        then
+            exit 1
+        else
+            # Separate the hooks by an empty line.
+            echo
+        fi
+    done
+fi
+

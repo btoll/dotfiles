@@ -40,6 +40,7 @@ TOOLS=(
     bash
     gdb
     git
+    git-hub
     gnupg
     i3
     templates
@@ -51,6 +52,11 @@ TOOLS=(
 for tool in "${TOOLS[@]}"
 do
     case "$tool" in
+        git-hub)
+            mkdir -p "$HOME/bin"
+            stow --target "$HOME/bin" --dir "$tool" bin
+            sudo stow --target /usr/share/man/man1/ --dir "$tool" man
+            ;;
         i3)
             mkdir -p "$HOME/.config/$tool"
             stow --target "$HOME/.config/$tool" "$tool"
