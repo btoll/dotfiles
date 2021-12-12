@@ -1,3 +1,5 @@
+" vim: set ft=vim:
+
 " Opens the current file.
 function! G(...)
     let file = a:0 ? a:1 : expand('%')
@@ -40,7 +42,7 @@ vnoremap <leader>gr :call Grange()<cr>
 vnoremap <leader>gbr :call Grange(1)<cr>
 
 " Run :GoBuild or :GoTestCompile based on the go file.
-" We'll also trigger this with a macro in .vim.autocmd
+" We'll also trigger this with a macro in `$HOME/.vim/ftplugin/go.vim`.
 function! Build_go_files()
     let l:file = expand('%')
     if l:file =~# '^\f\+_test\.go$'

@@ -1,3 +1,5 @@
+" vim: set ft=vim:
+
 set cryptmethod=blowfish
 
 " http://stelfox.net/blog/2013/11/using-vim-as-your-password-manager/
@@ -73,4 +75,13 @@ set wildmode=longest,list
 
 " https://stackoverflow.com/questions/7103173/vim-how-to-change-the-highlight-color-for-search-hits-and-quickfix-selection
 hi Search term=reverse ctermfg=15 ctermbg=8
+
+" This allows for the use of Vim modelines
+" https://vim.fandom.com/wiki/Modeline_magic
+" Setting `modelines` only allows Vim to only enable this
+" feature for the first line of a file.
+" NOTE to activate this, the first character MUST be the
+" comment character for the file type!
+set modeline
+set modelines=1
 
