@@ -30,5 +30,9 @@ nnoremap <leader>line i/* -<esc>yl59pi */<esc>
 
 vnoremap <leader>r y:echo system('node ', @")<cr>
 
-setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
+setlocal autoindent
+setlocal expandtab
+setlocal shiftwidth=4
+setlocal tabstop=400
+setlocal fileformat=unix
 
