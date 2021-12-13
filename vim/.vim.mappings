@@ -44,6 +44,7 @@ nnoremap <leader>i v$%<
 
 " change all instances of " to ' in a line and clear search highlighting.
 nnoremap <leader>' v:s/"/'/g<cr>:noh<cr>
+nnoremap <leader>" v:s/'/"/g<cr>:noh<cr>
 
 " change to directory of the current file.
 nnoremap <leader>cwd :cd %:p:h<cr>
