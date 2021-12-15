@@ -18,12 +18,12 @@ export EDITOR=vim
 
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
-export GOROOT=/usr/local/go
+#export GOROOT=/usr/local/go
 export GOOS=linux
 export GOARCH=amd64
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
 
-export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="/usr/local/go/bin:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 export GITHOOKS="$HOME/projects/git-init/hooks"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
