@@ -13,6 +13,7 @@ PATTERN=
 PREV_IFS=
 TMP_FILE=
 GITHUB_URL=
+URL=
 
 usage() {
     echo "GIT-INTRODUCED"
@@ -97,14 +98,13 @@ do
     read -r -a ARR <<<"$LINE"
 
     # We need to grab the hash to properly build the URL.
-    local url
-    url="$GITHUB_URL/commit/${ARR[0]}"
+    URL="$GITHUB_URL/commit/${ARR[0]}"
 
     # Add the search pattern.
     FIELDS[5]="$(tput bold)Search pattern$(tput sgr0)  ->  $PATTERN"
 
     # We can only now add the last array element now that we have the SHA from each search result.
-    FIELDS[6]="$(tput bold)URL$(tput sgr0)             ->  $url"
+    FIELDS[6]="$(tput bold)URL$(tput sgr0)             ->  $URL"
 
     # For formatting between search results.
     echo
@@ -118,7 +118,7 @@ do
 
     if $WEB
     then
-        xdg-open "$url"
+        xdg-open "$URL"
     fi
 done < "$TMP_FILE"
 
