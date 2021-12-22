@@ -22,7 +22,6 @@ pushd bin
 ln -s "$PWD"/git-bootstrap "$HOME/bin/git-bootstrap"
 ln -s "$PWD"/git-cleanup "$HOME/bin/git-cleanup"
 ln -s "$PWD"/git-hub "$HOME/bin/git-hub"
-ln -s "$PWD"/git-introduced "$HOME/bin/git-introduced"
 ln -s "$PWD"/git-ls "$HOME/bin/git-ls"
 popd
 

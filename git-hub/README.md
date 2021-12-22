@@ -246,6 +246,8 @@ It's best to show what this tool can do through examples.
 
 ### git-introduced
 
+    !!! This is deprecated. Use git-ls instead. !!!
+
 Find the commit(s) that introduced or removed a method or other search pattern.
 
 Example usages:
