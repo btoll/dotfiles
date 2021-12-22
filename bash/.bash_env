@@ -38,3 +38,5 @@ unset GREP_OPTIONS
 export LC_ALL="en_IN.UTF-8"
 export LANG="en_IN.UTF-8"
 
+export PROMPT_COMMAND="history -a"
+

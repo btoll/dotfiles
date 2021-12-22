@@ -38,7 +38,7 @@ alias b="bg"
 alias gdb="gdb -q"
 alias brm="rm -rf"
 
-alias open="x-www-browser"
+alias open="xdg-open"
 alias xkcd="open https://c.xkcd.com/random/comic/"
 alias little-bobby-tables="open https://xkcd.com/327/"
 
