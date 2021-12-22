@@ -8,11 +8,11 @@ FIELDS=("$(tput bold)Hash (short)$(tput sgr0)    -> " "$(tput bold)Author name$(
 FILE=
 FORMAT=
 DELETE_FILE=true
-OPEN_IN_BROWSER=false
+WEB=false
 PATTERN=
 PREV_IFS=
 TMP_FILE=
-URL=
+GITHUB_URL=
 
 usage() {
     echo "GIT-INTRODUCED"
@@ -20,44 +20,45 @@ usage() {
     echo "Usage: $0 [args]"
     echo
     echo "Args:"
-    echo "--format                  The format passed to internally to git log --pretty."
+    echo "--format                  The format passed internally to git log --pretty."
     echo "                          Defaults to '%h %an %ae %s %cd'."
     echo
     echo "--file, -file, -f         The location of the file or directory to search. Note that the"
-    echo "                          more specific the location the faster the lookup. Default to the
-    echo "                          current working directory.
+    echo "                          more specific the location the faster the lookup. Default to the"
+    echo "                          current working directory."
     echo
-    echo "--no-delete-file          The default is to delete the temporary CSV file used by the tool."
+    echo "--no-delete               The default is to delete the temporary CSV file used by the tool."
     echo "                          Use this flag to override."
-    echo
-    echo "--open-in-browser         Ope the commit on GitHub using the default browser."
-    echo "                          Currently only supported on OS X."
     echo
     echo "--pattern, -pattern, -p   Specify a pattern (method) that will be the basis of the log:"
     echo "                          history search."
     echo
+    echo "--web, -w                 Open the commit on GitHub using the default browser."
+    echo
 }
 
-setGitHubUrl() {
-    GITHUB_URL=$(git ls-remote --get-url)
+set_github_url() {
+    local url
+    url=$(git ls-remote --get-url)
 
     # If $GITHUB_URL begins with "git", i.e., git@github.com:btoll/utley
-    if [[ "$GITHUB_URL" == git* ]]; then
+    if [[ "$url" == git* ]]; then
         # Replaces first match of ":" with "/".
-        URL=${GITHUB_URL/://}
+        GITHUB_URL=${url/://}
 
         # Replaces first match of "git@" with "https://".
-        URL=${URL/git@/https://}
+        GITHUB_URL=${GITHUB_URL/git@/https://}
     fi
 
-    # If $URL ends with ".git", i.e., btoll/stymie.git
-    if [[ "$URL" == *.git ]]; then
+    # If $GITHUB_URL ends with ".git", i.e., btoll/stymie.git
+    if [[ "$GITHUB_URL" == *.git ]]; then
         # Cut ".git"
-        URL=${URL%.git}
+        GITHUB_URL=${GITHUB_URL%.git}
     fi
 }
 
-if [ $# -eq 0 ]; then
+if [ $# -eq 0 ]
+then
     usage
     exit 0
 fi
@@ -69,8 +70,8 @@ while [ "$#" -gt 0 ]; do
         --format) shift; FORMAT=$1 ;;
         -help|-h) usage; exit 0 ;;
         --file|-file|-f) shift; FILE=$1 ;;
-        --no-delete-file) DELETE_FILE=false ;;
-        --open-in-browser) OPEN_IN_BROWSER=true ;;
+        --no-delete) DELETE_FILE=false ;;
+        --web|-w) WEB=true ;;
         --pattern|-pattern|-p) shift; PATTERN=$1 ;;
     esac
     shift
@@ -88,7 +89,7 @@ wait
 PREV_IFS="$IFS"
 IFS="$DELIMITER"
 
-setGitHubUrl
+set_github_url
 
 while read -r LINE
 do
@@ -96,13 +97,14 @@ do
     read -r -a ARR <<<"$LINE"
 
     # We need to grab the hash to properly build the URL.
-    URL="$URL/commit/${ARR[0]}"
+    local url
+    url="$GITHUB_URL/commit/${ARR[0]}"
 
     # Add the search pattern.
     FIELDS[5]="$(tput bold)Search pattern$(tput sgr0)  ->  $PATTERN"
 
     # We can only now add the last array element now that we have the SHA from each search result.
-    FIELDS[6]="$(tput bold)URL$(tput sgr0)             ->  $URL"
+    FIELDS[6]="$(tput bold)URL$(tput sgr0)             ->  $url"
 
     # For formatting between search results.
     echo
@@ -114,8 +116,9 @@ do
         printf "%s\n" "${FIELDS[n]} ${ARR[n]}"
     done
 
-    if $OPEN_IN_BROWSER; then
-        open "$URL"
+    if $WEB
+    then
+        xdg-open "$url"
     fi
 done < "$TMP_FILE"
 
@@ -125,7 +128,8 @@ IFS="$PREV_IFS"
 # Add a final blank line for formatting, i.e., a blank line before the prompt.
 echo
 
-if $DELETE_FILE; then
+if $DELETE_FILE
+then
     rm "$TMP_FILE"
 fi
 
