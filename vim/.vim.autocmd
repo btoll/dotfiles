@@ -1,0 +1,25 @@
+" vim: set ft=vim:
+
+if filereadable($HOME . "/cscope_maps.vim")
+  source ~/cscope_maps.vim
+endif
+
+" Highlight word (all filetypes).
+nnoremap <space> viw
+
+" Immediately apply any changes to .vimrc after writing.
+autocmd BufWritePost .vimrc source $MYVIMRC
+
+" Add the main function that restores the cursor position and its autocmd so that it gets triggered:
+function! ResCur()
+    if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+    endif
+endfunction
+
+autocmd BufWinEnter * call ResCur()
+
+" Set default syntax to `conf` for files with no extension.
+autocmd BufNewFile,BufRead * if &filetype == '' | set filetype=conf | endif
+
