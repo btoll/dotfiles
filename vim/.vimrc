@@ -64,7 +64,6 @@ endif
 
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'ap/vim-css-color'
 Plug 'bitc/vim-bad-whitespace'
 Plug 'flazz/vim-colorschemes'
 Plug 'rking/ag.vim'
