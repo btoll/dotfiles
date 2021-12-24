@@ -29,7 +29,6 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 "   2. Install https://github.com/mattn/webapi-vim in ~/.vim/bundle (assuming Pathogen) to resolve errors.
 "   3. Enter github password when prompted when creating gist (saves oAuth token in ~/.gist-vim).
 
-" https://github.com/scrooloose/syntastic
 Plug 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -44,9 +43,6 @@ let g:syntastic_sh_checkers = ['shellcheck']
 
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['python']
-
-" https://github.com/scrooloose/nerdtree
-Plug 'scrooloose/nerdtree'
 
 " https://github.com/kien/ctrlp.vim
 Plug 'kien/ctrlp.vim'
@@ -66,16 +62,16 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-Plug 'rking/ag.vim'
-
-" https://github.com/bitc/vim-bad-whitespace
-Plug 'bitc/vim-bad-whitespace'
-
-" https://github.com/flazz/vim-colorschemes
-Plug 'flazz/vim-colorschemes'
-
-" https://github.com/ap/vim-css-color
+" https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ap/vim-css-color'
+Plug 'bitc/vim-bad-whitespace'
+Plug 'flazz/vim-colorschemes'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree'
+" Install instructions:
+" https://github.com/ycm-core/YouCompleteMe#linux-64-bit
+Plug 'ycm-core/YouCompleteMe'
 
 " https://github.com/fatih/vim-go
 " https://github.com/fatih/vim-go-tutorial
@@ -93,22 +89,6 @@ let g:go_highlight_generate_tags = 1
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_version_warning = 0
-
-" https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
-Plug 'AndrewRadev/splitjoin.vim'
-
-"Plug 'elmcast/elm-vim'
-"let g:elm_syntastic_show_warnings = 1
-"let g:elm_setup_keybindings = 0
-"let g:elm_jump_to_error = 0
-"let g:elm_make_output_file = "elm.js"
-"let g:elm_make_show_warnings = 0
-"let g:elm_browser_command = ""
-"let g:elm_detailed_complete = 0
-"let g:elm_format_autosave = 1
-"let g:elm_format_fail_silently = 0
-
-"Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
