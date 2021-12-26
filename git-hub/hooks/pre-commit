@@ -1,16 +1,17 @@
 #!/bin/bash
 
-if [ $# -eq 1 ]
-then
-    echo "[ERROR] You must specify a PROJECT name."
-    exit 1
-fi
-
 # Try for local hooks first.
-HOOKS=$(git config --local --get-all hooks.pre-commit)
+HOOKS=$(git config --local --get-all hooks.pre-commit.hook)
 
 if [ -z "$HOOKS" ]
 then
+    if [ -z "$PROJECT" ]
+    then
+        echo "[ERROR] No PROJECT name environment variable."
+        echo "This is needed to fetch the requisite global pre-commit hook."
+        exit 1
+    fi
+
     HOOKS=$(git config --global --get-all hooks.pre-commit."$PROJECT")
 fi
 
