@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -uo pipefail
+
 EXIT_CODE=0
 FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | ag -l --vimgrep "^\s*debugger;?")
 

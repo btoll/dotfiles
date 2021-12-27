@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -uo pipefail
+
 ESLINT=
 EXIT_CODE=0
 FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep ".js\b")

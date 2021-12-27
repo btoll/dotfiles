@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipfail
+set -euo pipefail
 
 if [ $EUID -ne 0 ]; then
 echo -e "$(tput setaf 1)[ERROR]$(tput sgr0) This script must be run as root!" 1>&2

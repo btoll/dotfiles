@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -uo pipefail
+
 if ! command -v pycodestyle > /dev/null
 then
     echo "$(tput setab 7)$(tput setaf 4)[INFO]$(tput sgr0) $(tput bold)pycodestyle$(tput sgr0) is not present on the system..."
