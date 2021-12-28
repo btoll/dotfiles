@@ -13,8 +13,8 @@ git config --global alias.goto '!sh -c '"'git rev-parse \$0 | xargs git checkout
 #git config --global --add hooks.pre-commit.hook "EOF.bash"
 #git config --global --add hooks.pre-commit.hook "debugger.bash"
 #git config --global --add hooks.pre-commit.hook "eslint.bash"
-#git config --local --add hooks.pre-commit.mule "pycodestyle.sh"
-#git config --local --add hooks.pre-commit.mule "pytest.sh"
+#git config --local --add hooks.pre-commit.hook "pycodestyle.sh"
+#git config --local --add hooks.pre-commit.hook "pytest.sh"
 
 echo "$(tput setaf 2)[INFO]$(tput sgr0) Installing git extensions..."
 echo
