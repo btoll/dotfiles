@@ -57,18 +57,6 @@ bp() {
     fi
 }
 
-change_backlight() {
-    echo "$1" >| /sys/class/backlight/intel_backlight/brightness
-}
-
-cpy() {
-    if [ "$#" -eq 0 ]; then
-        echo "Usage: cpy <text_to_copy_to_clipboard>"
-    else
-        echo "$1" | xsel -b
-    fi
-}
-
 dim_screen() {
     # Run `xrandr` to get attached screens.
     local value="$1"
@@ -109,26 +97,22 @@ get_code_point() {
     fi
 }
 
-get_jenkins_creds() {
-    cat $HOME/.ssh/jenkins_creds
-}
-
 git_bootstrap() {
     cp $HOME/git_init/{COPYING,README.md} $(pwd)
 }
 
 git_clone() {
-    URL="$1"
-    ALIAS="$2"
+    GIT_URL="$1"
+    GIT_ALIAS="$2"
     BASE=
 
-    if [ -z "$URL" ]; then
-        echo "Usage: git_clone <REPO> [<ALIAS>]"
+    if [ -z "$GIT_URL" ]; then
+        echo "Usage: git_clone <REPO> [<GIT_ALIAS>]"
     else
-        if [ -z "$ALIAS" ]; then
-            git clone "$URL"
+        if [ -z "$GIT_ALIAS" ]; then
+            git clone "$GIT_URL"
         else
-            git clone "$URL" "$ALIAS"
+            git clone "$GIT_URL" "$GIT_ALIAS"
         fi
 
         if [ $? -eq 0 ]; then
@@ -141,16 +125,16 @@ git_clone() {
             #       git+https://github.com/btoll/dotfiles
             #
             # and capture only `dotfiles`.
-            if [ -z "$ALIAS" ]; then
-                BASE=$([[ "$URL" = *.* ]] && basename "$URL" || echo "")
+            if [ -z "$GIT_ALIAS" ]; then
+                BASE=$([[ "$GIT_URL" = *.* ]] && basename "$GIT_URL" || echo "")
                 # Remove the `.git` extension.
-                ALIAS=${BASE%.git}
+                GIT_ALIAS=${BASE%.git}
             fi
 
-            echo "$(tput setaf 2)[INFO]$(tput sgr0) Cloned into ./$ALIAS/"
+            echo "$(tput setaf 2)[INFO]$(tput sgr0) Cloned into ./$GIT_ALIAS/"
 
             (
-                cd "$ALIAS" > /dev/null
+                cd "$GIT_ALIAS" > /dev/null
                 git_hooks_install
             )
         fi
@@ -228,15 +212,6 @@ list_targets() {
     fi
 }
 
-ls_scripts() {
-    stat package.json &> /dev/null
-    if [ "$?" -eq 1 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Directory does not contain \`package.json\`, aborting..."
-    else
-        awk '/"scripts": {/{flag=1; next} /}/{flag=0} flag' package.json | cut -d: -f1
-    fi
-}
-
 mcd() {
     mkdir -p "$1" && cd "$1"
 }
@@ -292,17 +267,6 @@ moby_dick() {
     tput bel
 
     sleep 1
-}
-
-mule_run_jobs() {
-    if [ "$#" -eq 0 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: mule_run_jobs mule.yaml"
-    else
-        for job in $(mule -f $1 --list-jobs)
-            do mule -f $1 $job
-        done
-    fi
 }
 
 # First and only argument is the profile, defaults to "default".
@@ -382,15 +346,6 @@ shaq() {
     echo -e "It's supposed to be 1-2-3, not 1-2 back to 1.\nhttps://www.youtube.com/watch?v=y44DaWQH8-0"
 }
 
-sshp() {
-    if [ "$#" -eq 0 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: sshp domain"
-    else
-        ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no "$1"
-    fi
-}
-
 # Background a job to interrupt you, you hard worker!
 take_a_break() {
     MINS="$1"
@@ -462,11 +417,11 @@ vimp() {
 }
 
 web_start() {
-    sudo python3 -m http.server 80 --cgi --bind 127.0.0.1
+    sudo python -m http.server 80 --cgi --bind 127.0.0.1
 }
 
 web_stop() {
-    ps ax | ag "[p|P]ython3? -m http.server" | sudo kill -9 $(cut -d" " -f2)
+    ps ax | ag "[p|P]ython? -m http.server" | sudo kill -9 $(cut -d" " -f2)
 }
 
 wifi_connect() {
