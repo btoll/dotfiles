@@ -8,6 +8,15 @@ bag() {
     fi
 }
 
+beep() {
+    local pid
+    (
+        ( speaker-test -t sine -f 1000 )& pid=$! \
+        && sleep 0.1s \
+        && kill -9 "$pid"
+    ) > /dev/null
+}
+
 bfind() {
     if [ "$#" -eq 0 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
@@ -241,30 +250,33 @@ moby_dick() {
     #
     # Let's ring the bell (BEL)!
     # `tput bel` or `echo -e "\a"` or `echo $'\a'` are all (mostly) equivalent.
+    # After much fiddling around because I couldn't get the beep to work,
+    # I'm using the `speaker-test` binary that is part of `alsa`:
+    # https://unix.stackexchange.com/a/163716
 
-    tput bel
+    beep
     sleep .2
-    tput bel
+    beep
     sleep .2
-    tput bel
+    beep
     sleep .2
-    tput bel
-
-    sleep .4
-    tput bel
-    sleep .4
-    tput bel
-    sleep .4
-    tput bel
+    beep
 
     sleep .4
-    tput bel
+    beep
+    sleep .4
+    beep
+    sleep .4
+    beep
+
+    sleep .4
+    beep
     sleep .2
-    tput bel
+    beep
     sleep .2
-    tput bel
+    beep
     sleep .2
-    tput bel
+    beep
 
     sleep 1
 }
@@ -348,39 +360,41 @@ shaq() {
 
 # Background a job to interrupt you, you hard worker!
 take_a_break() {
-    MINS="$1"
-    s=
+    local mins="$1"
+    local s="s"
 
-    if [ -z $MINS ]; then
-        MINS=30
+    if [ -z "$mins" ]
+    then
+        mins=30
     fi
 
-    if [ $MINS -ne 1 ]; then
-        s=s
+    if [ "$mins" -eq 1 ]
+    then
+        s=
     fi
 
-    echo "You're going to do something different in $MINS minute$s!"
+    echo "You're going to do something different in $mins minute$s!"
 
     # Note that Bash shells must run the commands in a subshell!
     (
         # http://www.tldp.org/LDP/abs/html/arithexp.html
-        sleep $((MINS * 60)) ;
+        sleep "$((mins * 60))" ;
 
         # If in an XSession use `xset`, else use `setterm` when in terminal.
-        if [ -z $XTERM_SHELL ]; then
-            setterm -blength 100 &> /dev/null ;
-        else
-            xset b on
-        fi
+#        if [ -z $XTERM_SHELL ]; then
+#            setterm -blength 100 &> /dev/null ;
+#        else
+#            xset b on
+#        fi
 
         moby_dick ;
 
         # TODO: Set value of `b` back to what it was before rather than just turning it off.
-        if [ -z $XTERM_SHELL ]; then
-            setterm -blength 0
-        else
-            xset b off
-        fi
+#        if [ -z $XTERM_SHELL ]; then
+#            setterm -blength 0
+#        else
+#            xset b off
+#        fi
     )&
 }
 
