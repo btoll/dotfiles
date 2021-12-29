@@ -106,70 +106,100 @@ get_code_point() {
     fi
 }
 
-git_bootstrap() {
-    cp $HOME/git_init/{COPYING,README.md} $(pwd)
-}
-
 git_clone() {
-    GIT_URL="$1"
-    GIT_ALIAS="$2"
-    BASE=
+    local git_repo="$1"
+    local git_alias="$2"
+    local base
+    local should_install
 
-    if [ -z "$GIT_URL" ]; then
-        echo "Usage: git_clone <REPO> [<GIT_ALIAS>]"
+    if [ -z "$git_repo" ]
+    then
+        echo "Usage: git_clone <git_repo> [ <git_alias> ]"
     else
-        if [ -z "$GIT_ALIAS" ]; then
-            git clone "$GIT_URL"
-        else
-            git clone "$GIT_URL" "$GIT_ALIAS"
-        fi
-
-        if [ $? -eq 0 ]; then
-            # Will match:
+        if [ -z "$git_alias" ]
+        then
+            # This will match:
             #
-            #       https://github.com/btoll/dotfiles.git
-            #       or
-            #       git@github.com:btoll/dotfiles.git
-            #       or
-            #       git+https://github.com/btoll/dotfiles
+            #    https://github.com/btoll/dotfiles.git
+            #    or
+            #    git@github.com:btoll/dotfiles.git
+            #    or
+            #    git+https://github.com/btoll/dotfiles
             #
             # and capture only `dotfiles`.
-            if [ -z "$GIT_ALIAS" ]; then
-                BASE=$([[ "$GIT_URL" = *.* ]] && basename "$GIT_URL" || echo "")
-                # Remove the `.git` extension.
-                GIT_ALIAS=${BASE%.git}
+            base=$([[ "$git_repo" = *.* ]] && basename "$git_repo" || echo "")
+            # Remove the `.git` extension.
+            git_alias="${base%.git}"
+        fi
+
+        if git clone "$git_repo" "$git_alias" 2> /dev/null
+        then
+            echo "$(tput setaf 2)[INFO]$(tput sgr0) Cloned into ./$git_alias/"
+
+            read -p "Install git hooks? [y|N]: " should_install
+
+            if [ "$should_install" = y ] || [ "$should_install" = Y ]
+            then
+                # Don't change into another dir w/o user permission!
+                # Do this in a subshell for now.
+                (
+                    cd "$git_alias" ;
+                    git_hooks_install
+                )
+            else
+                echo "[INFO] Git hooks not installed."
             fi
-
-            echo "$(tput setaf 2)[INFO]$(tput sgr0) Cloned into ./$GIT_ALIAS/"
-
-            (
-                cd "$GIT_ALIAS" > /dev/null
-                git_hooks_install
-            )
+        else
+            echo "$(tput setaf 1)[ERROR]$(tput sgr0) The \`$git_repo\` repository could not be cloned."
         fi
     fi
 }
 
 git_hooks_install() {
-    if [ -z "$GITHOOKS" ]; then
-        read -p "Location of git hooks (skip this step by exporting a \$GITHOOKS env var): " LOCATION
+    local location
+    local githooks="$GITHOOKS"
 
-        GITHOOKS="$LOCATION"
+    if [ -z "$githooks" ]
+    then
+        read -p "Location of git hooks (skip this step by exporting a \$GITHOOKS env var) [$HOME/dotfiles/git-hub/hooks]: " location
+
+        # Capture ENTER key.
+        if [ "$location" = "" ]
+        then
+            location="$HOME/dotfiles/git-hub/hooks"
+        fi
+
+        githooks="$location"
     fi
 
-    (
-        cd .git/hooks
-        rm -rf pre-commit pre-commit.d
-        cp -r "$GITHOOKS"/* .
-    )
+    rm -rf .git/hooks/pre-commit*
 
-    echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed git hooks."
+    if cp -r "$githooks"/* .git/hooks 2> /dev/null
+    then
+        echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed Git hooks into \`./git/hooks\`."
+    else
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install Git hooks."
+    fi
 }
 
 git_init() {
+    local project_name="$1"
+    local should_install
+
     git init
+
+    if cp "$HOME"/dotfiles/bootstrap/{COPYING,README.md} . 2> /dev/null
+    then
+        echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed bootstrap files into project root."
+        if [ -n "$project_name" ]
+        then
+            sed -i 's/PROJECT_NAME/'"$project_name"'/' README.md
+        fi
+    else
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install bootstrap files."
+    fi
+
     git_hooks_install
-    git_bootstrap
 }
 
 go_tmux() {
