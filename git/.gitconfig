@@ -10,17 +10,17 @@
 	signingkey = E9B789D0D4EC1043
 [alias]
 	br = branch
-	# -S = GPG-sign commit.
+	# -S|-s = GPG-sign commit.
 	ci = commit -S
 	ca = commit -S --amend
-	co = checkout
 	tag = tag -s
+	co = checkout
 	d = diff
 	dirty = ls --dirty -e
 	get-hash = rev-parse
 	goto = !sh -c 'git rev-parse $0 | xargs git checkout'
 	last = log -1 HEAD
-	l  = log --pretty='%Cred%h%Creset | %C(yellow)%d%Creset %s %Cgreen(%cI)%Creset %C(cyan)[%an]%Creset'
+	l  = log --graph --decorate --oneline
 	# Show changes inline and display 10 lines before changes.
 	prose = diff --word-diff --unified=10
 	s = status --short --branch
