@@ -8,7 +8,7 @@ export HISTSIZE=500000
 export HISTFILESIZE=100000
 
 # Let's ignore some commands.
-export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
+export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:p:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
 
 # TODO: Use /etc/bash_completion.d/git-prompt?
 export PS1='$(tput bold)$(tput setaf 4)\h $(tput setaf 3)~~>$(tput sgr0) \[$(tput bold)\]\[$(tput setaf 6)\]\w\[$(tput sgr0)\]:\[$(tput bold)\]\[$(tput setaf 8)\]$(git branch 2> /dev/null | grep "^*" | colrm 1 2)\[$(tput sgr0)\]\n$ '
@@ -16,7 +16,7 @@ export PS1='$(tput bold)$(tput setaf 4)\h $(tput setaf 3)~~>$(tput sgr0) \[$(tpu
 # Use vim as default editor instead of nano.
 export EDITOR=vim
 
-export GOPATH="$HOME/go"
+export GOPATH="/srv/go"
 export GOBIN="$GOPATH/bin"
 #export GOROOT=/usr/local/go
 export GOOS=linux
@@ -39,4 +39,8 @@ export LC_ALL="en_IN.UTF-8"
 export LANG="en_IN.UTF-8"
 
 export PROMPT_COMMAND="history -a"
+
+# For Vagrant.
+# https://www.vagrantup.com/docs/other/environmental-variables
+export VAGRANT_HOME=/srv/projects/vagrant-cache
 

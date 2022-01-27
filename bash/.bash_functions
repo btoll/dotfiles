@@ -77,6 +77,30 @@ dim_screen() {
     fi
 }
 
+dpkg_search() {
+    local package="$1"
+    local state="$2"
+
+    if [ -z "$package" ] || [ -z "$state" ]
+    then
+        echo "[Usage] dpkg_search PACKAGE STATE"
+    else
+        for log in $(ls /var/log/dpkg*)
+        do
+            local re='\b'"$state"'\b.*'"$package"''
+            local res="$(zgrep -E $re $log)"
+
+            if [ "$res" = "" ]
+            then
+                echo "$(tput setaf 1)[No match]$(tput sgr0) $log"
+            else
+                echo "$(tput setaf 2)[Match]$(tput sgr0) $log"
+                echo "$res"
+            fi
+        done
+    fi
+}
+
 # Deprecating this in favor of https://github.com/btoll/dump_describes node module.
 # I'm leaving it here just for an example of a `sed` command.
 #dump_describes() {
@@ -96,6 +120,14 @@ falloc() {
     fi
 }
 
+# `ff` for "fuzzy find"!
+ff() {
+    local projects_dir
+    projects_dir=${1:-/srv/projects}
+    dir=$(find "$projects_dir" -type d -not -path '*/\.*' -maxdepth 10 2> /dev/null | fzf)
+    cd $dir
+}
+
 get_code_point() {
     if [ -z "$1" ]; then
         echo "Usage: get_code_point <char>"
@@ -103,6 +135,21 @@ get_code_point() {
         # -A = Specify the input address base (n == no address)
         # -t = Specify the output format (d == signed decimal, 4 == four bytes)
         printf "$1" | od -A n -t d4
+    fi
+}
+
+git_bootstrap() {
+    local project_name="$1"
+
+    if cp "$HOME"/dotfiles/bootstrap/{COPYING,README.md} . 2> /dev/null
+    then
+        echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed bootstrap files into project root."
+        if [ -n "$" ]
+        then
+            sed -i 's/PROJECT_NAME/'"$project_name"'/' README.md
+        fi
+    else
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install bootstrap files."
     fi
 }
 
@@ -183,22 +230,8 @@ git_hooks_install() {
 }
 
 git_init() {
-    local project_name="$1"
-    local should_install
-
     git init
-
-    if cp "$HOME"/dotfiles/bootstrap/{COPYING,README.md} . 2> /dev/null
-    then
-        echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed bootstrap files into project root."
-        if [ -n "$project_name" ]
-        then
-            sed -i 's/PROJECT_NAME/'"$project_name"'/' README.md
-        fi
-    else
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install bootstrap files."
-    fi
-
+    git_bootstrap "$1"
     git_hooks_install
 }
 
@@ -327,13 +360,6 @@ parse_aws_creds() {
     fi
 }
 
-parse_jfrog_creds() {
-    local creds
-    creds=$(< "$HOME/jfrog.csv" tail -1)
-    echo "export JFROG_USERNAME="$(echo $creds | awk -F, '{ print $1 }')
-    echo "export JFROG_PASSWORD="$(echo $creds | awk -F, '{ print $2 }')
-}
-
 # Remove by inode.
 rmi() {
     if [ "$#" -eq 0 ]; then
@@ -352,6 +378,19 @@ rmi_images() {
     do
         docker rmi -f "$image"
     done
+}
+
+rmi_images_by_name() {
+    local name
+    name="$1"
+
+    if [ -z "$name" ]
+    then
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+        echo "Usage: rmi_images_by_name name"
+    fi
+
+    docker images -a | ag "$name" | awk '{print $3}' | xargs docker rmi
 }
 
 rm_containers() {
@@ -458,14 +497,6 @@ toggle_sound() {
 # Open vim and immediately invoke CtrlP plugin.
 vimp() {
     vim -c ":CtrlP"
-}
-
-web_start() {
-    sudo python -m http.server 80 --cgi --bind 127.0.0.1
-}
-
-web_stop() {
-    ps ax | ag "[p|P]ython? -m http.server" | sudo kill -9 $(cut -d" " -f2)
 }
 
 wifi_connect() {
