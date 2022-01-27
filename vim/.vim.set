@@ -85,3 +85,8 @@ hi Search term=reverse ctermfg=15 ctermbg=8
 set modeline
 set modelines=1
 
+set autoread
+
+set cursorcolumn
+set cursorline
+
