@@ -169,7 +169,7 @@ bindsym $mod+shift+x exec i3lock
 
 # Set background image.
 # sudo apt-get install feh
-exec_always feh --bg-scale /home/btoll/wallpaper.jpeg
+exec_always feh --bg-scale /home/btoll/wallpaper.jpg
 
 # xprop to find the window class
 # For example:
@@ -185,5 +185,5 @@ exec_always feh --bg-scale /home/btoll/wallpaper.jpeg
 # They will be put into their designated workspaces
 # (see the `assign` commands above).
 exec $editor
-exec chromium
+exec firefox
 
