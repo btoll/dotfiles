@@ -7,7 +7,7 @@
 	# https://security.stackexchange.com/questions/153579/is-it-safe-to-share-your-gitconfigs-user-signingkey-value-with-the-world
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/associating-an-email-with-your-gpg-key
-	signingkey = E9B789D0D4EC1043
+	signingkey = D56F3F6BE3EE5A1E
 [alias]
 	br = branch
 	# -S|-s = GPG-sign commit.
@@ -25,14 +25,14 @@
 	prose = diff --word-diff --unified=10
 	s = status --short --branch
 	st = status --short --branch
+[commit]
+	gpgsign = true
 [core]
 	editor = /usr/bin/vim
 	# FX = Have the pager automatically exit if all the diff text fits on the screen.
 	pager = less -RFX
 	# No tabs!
 	whitespace = tab-in-indent
-[github]
-	user = btoll
 [diff]
 	# Group diff changes more accurately for better readability.
 	algorithm = histogram
@@ -40,17 +40,17 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[github]
+	user = btoll
 [merge]
 	conflictstyle = diff3
 	renamelimit = 9220
 [rerere]
 	enabled = true
-
 [pull]
 	rebase = true
 [gpg]
 	program = gpg
-
 # https://stackoverflow.com/questions/59797272/receiving-fatal-could-not-read-username-for-https-github-com-terminal-prom
 # Fixes errors when `go get ./...`.
 [url "ssh://git@github.com/"]
