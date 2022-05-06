@@ -128,17 +128,17 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "GIT-INTRODUCED 1"
-.TH GIT-INTRODUCED 1 "2018-10-31" "perl v5.24.1" "User Contributed Perl Documentation"
+.IX Title "GIT-LOG-GREP 1"
+.TH GIT-LOG-GREP 1 "2018-10-31" "perl v5.24.1" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
 .nh
 .SH "NAME"
-git\-introduced \- Find the commit(s) that introduced or removed a method or other search pattern.
+git\-grep \- Find the commit(s) that introduced or removed a method or other search pattern.
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-git introduced [ \-p pattern ] [ \-f file ] [ \-\-format format ] [ \-\-open\-in\-browser ] [ \-\-no\-delete\-file ]
+git grep [ \-p pattern ] [ \-f file ] [ \-\-format format ] [ \-\-open\-in\-browser ] [ \-\-no\-delete\-file ]
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
 It is basically a wrapper for ```git log \-S``` and return the same results, however there are several advantages to it:
@@ -164,13 +164,13 @@ The found matches will be in the following format (to \s-1STDOUT\s0):
 \&\- Will keep the auto-generated \s-1CSV\s0 file on disk by passing the ```\-\-no\-delete\-file``` flag.
 .SH "EXAMPLES"
 .IX Header "EXAMPLES"
-git introduced \-\-pattern onGridDestroy
+git grep \-\-pattern onGridDestroy
 .PP
-git introduced \-p injectLockable \-\-open\-in\-browser
+git grep \-p injectLockable \-\-open\-in\-browser
 .PP
-git introduced \-pattern onDestroy \-file ext/src/grid \-\-no\-delete\-file
+git grep \-pattern onDestroy \-file ext/src/grid \-\-no\-delete\-file
 .PP
-git introduced \-p getDragData \-l dd | tee my_search_results
+git grep \-p getDragData \-l dd | tee my_search_results
 .SH "AUTHOR"
 .IX Header "AUTHOR"
 Benjamin Toll <benjam72@yahoo.com>

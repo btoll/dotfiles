@@ -1,10 +1,10 @@
 =head1 NAME
 
-git-introduced - Find the commit(s) that introduced or removed a method or other search pattern.
+git-log-grep - Find the commit(s) that introduced or removed a method or other search pattern.
 
 =head1 SYNOPSIS
 
-git introduced [ -p pattern ] [ -f file ] [ --format format ] [ --open-in-browser ] [ --no-delete-file ]
+git grep [ -p pattern ] [ -f file ] [ --format format ] [ --open-in-browser ] [ --no-delete-file ]
 
 =head1 DESCRIPTION
 
@@ -30,13 +30,13 @@ The found matches will be in the following format (to STDOUT):
 
 =head1 EXAMPLES
 
-git introduced --pattern onGridDestroy
+git grep --pattern onGridDestroy
 
-git introduced -p injectLockable --open-in-browser
+git grep -p injectLockable --open-in-browser
 
-git introduced -pattern onDestroy -file ext/src/grid --no-delete-file
+git grep -pattern onDestroy -file ext/src/grid --no-delete-file
 
-git introduced -p getDragData -l dd | tee my_search_results
+git grep -p getDragData -l dd | tee my_search_results
 
 =head1 AUTHOR
 

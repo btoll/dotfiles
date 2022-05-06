@@ -46,7 +46,7 @@ git pre-commit hooks
 - <a href="#git-get-hash">git-get-hash</a>
 - <a href="#git-goto">git-goto</a>
 - <a href="#git-hub">git-hub</a>
-- <a href="#git-introduced">git-introduced</a>
+- <a href="#git-log-grep">git-log-grep</a>
 - <a href="#git-ls">git-ls</a>
 - <a href="#git-review">git-review</a>
 
@@ -244,7 +244,7 @@ It's best to show what this tool can do through examples.
 
     `git hub --get-hash extjs5.1.0`
 
-### git-introduced
+### git-log-grep
 
     !!! This is deprecated. Use git-ls instead. !!!
 
@@ -252,10 +252,10 @@ Find the commit(s) that introduced or removed a method or other search pattern.
 
 Example usages:
 
-    git introduced --pattern onGridDestroy
-    git introduced -p injectLockable --open-in-browser
-    git introduced -pattern onDestroy -file ext/src/grid --no-delete-file
-    git introduced -p getDragData -l dd | tee my_search_results
+    git grep --pattern onGridDestroy
+    git grep -p injectLockable --open-in-browser
+    git grep -pattern onDestroy -file ext/src/grid --no-delete-file
+    git grep -p getDragData -l dd | tee my_search_results
 
 It is basically a wrapper for ```git log -S``` and returns the same results, however there are several advantages to it:
 
