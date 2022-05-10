@@ -112,7 +112,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Just do dmenu -> i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -169,7 +169,7 @@ bindsym $mod+shift+x exec i3lock
 
 # Set background image.
 # sudo apt-get install feh
-exec_always feh --bg-scale /home/btoll/wallpaper.jpg
+exec_always feh --bg-scale /home/btoll/wallpapers/hobbiton.jpg
 
 # xprop to find the window class
 # For example:
