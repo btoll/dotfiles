@@ -93,6 +93,13 @@ bind -m vi-insert "\C-l":clear-screen
 # No more appending `:p` to do a dry-run of the expansion!!
 bind Space:magic-space
 
+# Allow access control for localhost with Xorg.
+# Especially needed for browsers (like tor) running in containers.
+if [ -n "$DISPLAY" ]
+then
+    xhost +local:sulla
+fi
+
 # Default to opening or creating a new tmux session when opening a terminal.
 #if [[ "$TERM" != "screen-256color" ]]; then
 #    tmux attach-session -t "$USER" || tmux new-session -s "$USER"

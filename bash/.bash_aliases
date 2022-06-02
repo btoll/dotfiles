@@ -42,8 +42,6 @@ alias open="xdg-open"
 alias xkcd="open https://c.xkcd.com/random/comic/"
 alias little-bobby-tables="open https://xkcd.com/327/"
 
-# https://github.com/jessfraz/dockerfiles/issues/329
-# xhost +local:root
 alias firefox-browser="docker run --init --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY=unix$DISPLAY --name firefox jessfraz/firefox:latest &> /dev/null &"
 
 # To specify port, just add it at the end of the python command.
