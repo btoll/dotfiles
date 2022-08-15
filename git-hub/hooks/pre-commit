@@ -21,6 +21,7 @@ then
     do
         if ! bash "./.git/hooks/pre-commit.d/$HOOK"
         then
+            echo -e "\n---\nTo skip all tests, do \`git commit --no-verify\`."
             exit 1
         else
             # Separate the hooks by an empty line.
