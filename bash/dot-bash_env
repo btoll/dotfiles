@@ -42,5 +42,5 @@ export PROMPT_COMMAND="history -a"
 
 # For Vagrant.
 # https://www.vagrantup.com/docs/other/environmental-variables
-export VAGRANT_HOME=/srv/projects/vagrant-cache
+export VAGRANT_HOME="$HOME/projects/vagrant-cache"
 

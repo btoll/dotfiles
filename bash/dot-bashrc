@@ -40,7 +40,7 @@ if command -v fortune > /dev/null
 then
     if command -v cowsay > /dev/null
     then
-        fortune -e | cowsay -W 60 -f stegosaurus
+        fortune -e | cowsay -W 60 -f bud-frogs
     else
         fortune -e
     fi

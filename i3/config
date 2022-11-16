@@ -168,8 +168,8 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym $mod+shift+x exec i3lock
 
 # Set background image.
-# sudo apt-get install feh
-exec_always feh --bg-scale /home/btoll/wallpapers/hobbiton.jpg
+# sudo apt-get install feh -y
+exec_always feh --bg-scale /home/btoll/the_lobsterman.jpg
 
 # xprop to find the window class
 # For example:

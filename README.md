@@ -10,8 +10,8 @@ Install to the `$HOME` directory using [GNU Stow]:
 
     cd dotfiles
 
-    stow -t $HOME bash
-    stow -t $HOME vim
+    stow --dotfiles -t $HOME bash
+    stow --dotfiles -t $HOME vim
     ...
 
 Note that the default behavior is to symlink the files to the parent directory.
@@ -23,6 +23,12 @@ Uninstall:
     stow -D -t $HOME bash
     stow -D -t $HOME vim
     ...
+
+## FAQ
+
+Q. Why do all of the hidden files start with `dot-` instead of `.`?
+
+A. This is a `stow` feature that allows the `dot-` replaced with `.` when doing the symlinking.  The reason for this feature is so you can view all of the files to be symlinked without having to add the `-a` switch when listing a directory.
 
 ---
 

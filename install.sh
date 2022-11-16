@@ -20,6 +20,9 @@ PACKAGES=(
     cowsay
     curl
     fortune
+    i3
+    konsole
+    silversearcher-ag
     stow
     tmux
     # Install the `setxkbmap` binary needed by `.bash_options` (sets caps lock to ctrl key).
@@ -35,6 +38,7 @@ done
 # Remove the default bash and vim files.
 rm -f "$HOME/.bash"*
 rm -rf "$HOME/.vim"*
+rm -f "$HOME/.gitconfig"
 
 TOOLS=(
     bash
@@ -54,23 +58,23 @@ do
     case "$tool" in
         git-hub)
             mkdir -p "$HOME/bin"
-            stow --target "$HOME/bin" --dir "$tool" bin
+            stow --dotfiles --target "$HOME/bin" --dir "$tool" bin
             sudo stow --target /usr/share/man/man1/ --dir "$tool" man
             ;;
         i3)
             mkdir -p "$HOME/.config/$tool"
-            stow --target "$HOME/.config/$tool" "$tool"
+            stow --dotfiles --target "$HOME/.config/$tool" "$tool"
             ;;
         templates)
             cp -r "$tool" "$HOME"
             ;;
         vim)
-            stow --target "$HOME" "$tool"
+            stow --dotfiles --target "$HOME" "$tool"
             mkdir -p "$HOME/.$tool/ftplugin"
             stow --target "$HOME/.$tool/ftplugin" --dir "$tool" ftplugin
             ;;
         *)
-            stow --target "$HOME" "$tool"
+            stow --dotfiles --target "$HOME" "$tool"
             ;;
     esac
 

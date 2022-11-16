@@ -10,11 +10,12 @@ git config --global alias.get-hash rev-parse
 git config --global alias.goto '!sh -c '"'git rev-parse \$0 | xargs git checkout'"
 
 #echo "$(tput setaf 2)[INFO]$(tput sgr0) Adding local pre-commit hooks to .git/config..."
-#git config --global --add hooks.pre-commit.hook "EOF.bash"
-#git config --global --add hooks.pre-commit.hook "debugger.bash"
-#git config --global --add hooks.pre-commit.hook "eslint.bash"
+#git config --local --add hooks.pre-commit.hook "EOF.bash"
+#git config --local --add hooks.pre-commit.hook "debugger.bash"
+#git config --local --add hooks.pre-commit.hook "eslint.bash"
 #git config --local --add hooks.pre-commit.hook "pycodestyle.sh"
 #git config --local --add hooks.pre-commit.hook "pytest.sh"
+#git config --local --add hooks.pre-commit.hook "link-scanner.sh"
 
 echo "$(tput setaf 2)[INFO]$(tput sgr0) Installing git extensions..."
 echo
