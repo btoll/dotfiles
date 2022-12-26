@@ -19,6 +19,7 @@ SUCCESS="$(tput setaf 5)[$0] $(tput setaf 2)[SUCCESS]$(tput sgr0)"
 PACKAGES=(
     cowsay
     curl
+    feh
     fortune
     i3
     konsole
@@ -91,6 +92,12 @@ then
     git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --completion --key-bindings --no-update-rc
     echo "$SUCCESS Installed \`fzf\`."
+fi
+
+# https://github.com/tmux-plugins/tpm
+if [ ! -d "$HOME/.tmux" ]
+then
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
 if [ ! -d "$HOME/.vim/autoload" ] || [ ! -f "$HOME/.vim/autoload/plug.vim" ]
