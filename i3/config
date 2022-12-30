@@ -80,7 +80,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 set $workspace1 "1 tmux"
-set $workspace2 "2 tor"
+set $workspace2 "2 Tor browser"
 set $workspace3 "3 web"
 
 # switch to workspace
