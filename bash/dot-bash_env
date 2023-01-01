@@ -16,6 +16,9 @@ export PS1='$(tput bold)$(tput setaf 4)\h $(tput setaf 3)~~>$(tput sgr0) \[$(tpu
 # Use vim as default editor instead of nano.
 export EDITOR=vim
 
+# Used by i3's /usr/bin/i3-sensible-terminal script (and other scripts?).
+export TERMINAL=konsole
+
 export GOARCH=amd64
 export GOOS=linux
 export GOPATH="$HOME/go"
