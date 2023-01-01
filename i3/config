@@ -9,8 +9,20 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+###############################
+# NOTE about `--no-startup-id`:
+###############################
+#
+# The --no-startup-id parameter disables startup-notification support for this particular exec command. With startup-notification, i3 can make sure that a window appears on the workspace on which you used the exec command. Also, it will change the X11 cursor to watch (a clock) while the application is launching. So, if an application is not startup-notification aware (most GTK and Qt using applications seem to be, though), you will end up with a watch cursor for 60 seconds.
+#
+# https://i3wm.org/docs/userguide.html#exec
+#
+# In other words, it will display the cursor instead of the spinner, which is especially noticeable
+# when setting a desktop background using `feh` and then going to an empty workspace.
+
 set $mod Mod1
 set $editor konsole
+set $browser firefox
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -29,13 +41,13 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec $editor
+bindsym $mod+Return exec --no-startup-id $editor
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -54,10 +66,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Ctrl+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Ctrl+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -80,13 +92,12 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 set $workspace1 "1 tmux"
-set $workspace2 "2 Tor browser"
-set $workspace3 "3 web"
+set $workspace2 "2 web"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
+bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -98,7 +109,7 @@ bindsym $mod+0 workspace 10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
@@ -150,6 +161,8 @@ bar {
 #               CUSTOM               #
 ######################################
 
+focus_follows_mouse no
+
 # Make the currently focused window a scratchpad
 #
 # Note: To toggle floating mode for the scratchpad, i.e. "remove the scratchpad":
@@ -160,30 +173,51 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # https://faq.i3wm.org/question/125/how-to-change-the-systems-volume.1.html
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 
 # Lock screen.
-bindsym $mod+shift+x exec i3lock
+# Only `png` files are supported.
+set $i3lockwall i3lock -i $HOME/bulldog.png
+bindsym $mod+shift+x exec --no-startup-id $i3lockwall
 
 # Set background image.
 # sudo apt-get install feh -y
-exec_always feh --bg-scale /home/btoll/the_lobsterman.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/st_peters.jpg
 
-# xprop to find the window class
+# Use xprop to find the window class.
+# xprop (1) - property displayer for X
+# `xprop` and then click on the window.
 # For example:
 #   WM_CLASS(STRING) = "konsole", "konsole"
 #   WM_CLASS(STRING) = "chromium", "Chromium"
-# The first string is the instance, the second the class.
-# "instance
-# xprop (1)            - property displayer for X
-#assign [class=$editor] $workspace1
-#assign [class="Chromium"] $workspace3
+# The first string is the instance, the second the class (case sensitive).
+# Or, `xprop | ag WM_CLASS`.
+assign [class=$editor] $workspace1
+assign [class=$browser] $workspace2
 
 # Execute the following programs on login.
 # They will be put into their designated workspaces
 # (see the `assign` commands above).
-exec $editor
-exec firefox
+exec --no-startup-id $editor
+exec --no-startup-id $browser
+
+# shutdown / restart / suspend...
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $i3lockwall, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+BackSpace mode "$mode_system"
 
