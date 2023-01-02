@@ -1,7 +1,7 @@
 " Instructions to compile with Python2.7 support:
 " http://stackoverflow.com/a/5293524
 "
-let mapleader=','
+let mapleader=","
 
 if filereadable($HOME . "/.vim.functions")
   source ~/.vim.functions
