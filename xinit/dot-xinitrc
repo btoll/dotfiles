@@ -1,3 +1,6 @@
-i3
-#gnome-session
+command -v i3 > /dev/null && i3
+
+#command -v xrandr > /dev/null && \
+#    xrandr --output eDP-1 --mode 1920x1080 --rate 60.02 \
+#    --output HDMI-1 --mode 1920x1080 --rate 60.00 --left-of eDP-1
 
