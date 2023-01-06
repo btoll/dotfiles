@@ -265,16 +265,6 @@ h() {
     fi
 }
 
-intersect() {
-    # http://askubuntu.com/a/472280
-    if [ "$#" -eq 0 ]; then
-        echo "Usage: intersect FILE1 FILE2 [ REGEXP ]"
-    else
-        REGEXP=${3:-'\w* ?: ?((function)|(Ext.emptyFn)|(Ext.identityFn))'}
-        sort <(egrep -o "$REGEXP" "$1" | cut -d: -f1 | sort | uniq) <(egrep -o "$REGEXP" "$2" | cut -d: -f1 | sort | uniq) | uniq -d
-    fi
-}
-
 list_targets() {
     if [ "$#" -lt 1 ]; then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
@@ -423,6 +413,27 @@ secure_browse() {
     fi
 }
 
+set_displays() {
+    # This will only be the second display name if only one external display is connected.
+    # The first display is the internal display, usually `eDP-1`.
+    second_display_name=$(xrandr | awk '/\<connected\>/ {print $1}' | tail -1)
+
+    # If we don't do this check, then it will turn off the only connected display, the internal display.
+    # I found this out the hard way.
+    if [ "$second_display_name" = "eDP-1" ]
+    then
+        echo "$(tput setaf 3)[WARN]$(tput sgr0) Internal display is the only current connection, aborting..."
+    else
+        if [ "$1" = off ]
+        then
+            xrandr --output "$second_display_name" --off
+        else
+            local location=${1:-left}
+            xrandr --output eDP-1 --primary --auto --output "$second_display_name" --auto "--${location}-of" eDP-1
+        fi
+    fi
+}
+
 shaq() {
     echo -e "It's supposed to be 1-2-3, not 1-2 back to 1.\nhttps://www.youtube.com/watch?v=y44DaWQH8-0"
 }
@@ -492,11 +503,6 @@ toggle_sound() {
     amixer sset Master unmute
     amixer sset Headphone unmute
     amixer sset Speaker unmute
-}
-
-# Open vim and immediately invoke CtrlP plugin.
-vimp() {
-    vim -c ":CtrlP"
 }
 
 wifi_connect() {

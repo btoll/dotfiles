@@ -46,8 +46,6 @@ alias little-bobby-tables="open https://xkcd.com/327/"
 # To specify port, just add it at the end of the python command.
 alias serve="python -m http.server"
 
-alias set-displays="xrandr --output eDP-1 --primary --mode 1920x1080 --rate 60.01 --output HDMI-2 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
-
 # Git
 alias g="git"
 alias gi="git"
