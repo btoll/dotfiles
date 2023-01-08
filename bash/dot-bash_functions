@@ -414,22 +414,21 @@ secure_browse() {
 }
 
 set_displays() {
-    # This will only be the second display name if only one external display is connected.
-    # The first display is the internal display, usually `eDP-1`.
-    second_display_name=$(xrandr | awk '/\<connected\>/ {print $1}' | tail -1)
+    local display_names=$(xrandr | awk '/\<connected\>/ {print $1}')
 
     # If we don't do this check, then it will turn off the only connected display, the internal display.
     # I found this out the hard way.
-    if [ "$second_display_name" = "eDP-1" ]
+    if [[ "${#display_names[@]}" == 1 ]]
     then
         echo "$(tput setaf 3)[WARN]$(tput sgr0) Internal display is the only current connection, aborting..."
     else
         if [ "$1" = off ]
         then
-            xrandr --output "$second_display_name" --off
+            xrandr --output "${display_names[1]}" --off
         else
             local location=${1:-left}
-            xrandr --output eDP-1 --primary --auto --output "$second_display_name" --auto "--${location}-of" eDP-1
+            # The first display is the internal display, usually eDP-1.
+            xrandr --output "${display_names[0]}" --primary --auto --output "${display_names[1]}" --auto "--${location}-of" "${display_names[0]}"
         fi
     fi
 }
