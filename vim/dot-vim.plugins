@@ -19,6 +19,8 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 "<------------------------------------------------------------->
 " Plugins
 "<------------------------------------------------------------->
+Plug 'koalaman/shellcheck'
+
 "Plug 'mattn/gist-vim.git'
 " https://github.com/mattn/gist-vim.git
 " Instructions
@@ -67,7 +69,7 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 " Install instructions:
 " https://github.com/ycm-core/YouCompleteMe#linux-64-bit
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 
 " https://github.com/fatih/vim-go
 " https://github.com/fatih/vim-go-tutorial
