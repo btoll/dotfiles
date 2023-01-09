@@ -414,7 +414,7 @@ secure_browse() {
 }
 
 set_displays() {
-    local display_names=$(xrandr | awk '/\<connected\>/ {print $1}')
+    local display_names=($(xrandr | awk '/\<connected\>/ {print $1}'))
 
     # If we don't do this check, then it will turn off the only connected display, the internal display.
     # I found this out the hard way.
