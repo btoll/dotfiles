@@ -21,7 +21,8 @@
 # when setting a desktop background using `feh` and then going to an empty workspace.
 
 set $mod Mod1
-set $editor konsole
+
+set $editor kitty
 set $browser firefox
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -78,12 +79,6 @@ bindsym $mod+f fullscreen
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -174,6 +169,10 @@ workspace_auto_back_and_forth yes
 #
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
 
 # https://faq.i3wm.org/question/125/how-to-change-the-systems-volume.1.html
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 2dB+ unmute
@@ -187,24 +186,7 @@ bindsym $mod+shift+x exec --no-startup-id $i3lockwall
 
 # Set background image.
 # sudo apt-get install feh -y
-exec_always --no-startup-id feh --bg-fill $HOME/st_peters.jpg
-
-# Use xprop to find the window class.
-# xprop (1) - property displayer for X
-# `xprop` and then click on the window.
-# For example:
-#   WM_CLASS(STRING) = "konsole", "konsole"
-#   WM_CLASS(STRING) = "chromium", "Chromium"
-# The first string is the instance, the second the class (case sensitive).
-# Or, `xprop | ag WM_CLASS`.
-assign [class=$editor] $workspace1
-assign [class=$browser] $workspace2
-
-# Execute the following programs on login.
-# They will be put into their designated workspaces
-# (see the `assign` commands above).
-exec --no-startup-id $editor
-exec --no-startup-id $browser
+exec_always --no-startup-id feh --bg-fill $HOME/berlin_cathedral.jpg
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
@@ -223,4 +205,44 @@ mode "$mode_system" {
 }
 
 bindsym $mod+BackSpace mode "$mode_system"
+
+#################
+# ON i3 STARTUP #
+#################
+
+# Use xprop to find the window class.
+# xprop (1) - property displayer for X
+# `xprop` and then click on the window.
+# For example:
+#   WM_CLASS(STRING) = "konsole", "konsole"
+#   WM_CLASS(STRING) = "chromium", "Chromium"
+# The first string is the instance, the second the class (case sensitive).
+# Or, `xprop | ag WM_CLASS`.
+assign [class=$editor] $workspace1
+assign [class="Firefox-esr"] $workspace2
+#assign [class="Pavucontrol"] $workspace3
+
+# Execute the following programs on login.
+# They will be put into their designated workspaces
+# (see the `assign` commands above).
+exec --no-startup-id $editor tmux attach -t default
+exec --no-startup-id $browser
+
+# Is there a better way to do this?
+#for_window [class="Pavucontrol"] move window to scratchpad, scratchpad show
+#exec --no-startup-id pavucontrol
+
+# Note that we're targeting the `alsamixer` program running in the `kitty`
+# terminal because if we do `[class="kitty"]` it will move the editor and
+# every window that's running `kitty` to the scratchpad, which is not good.
+for_window [title="alsamixer"] move window to scratchpad, scratchpad show
+for_window [title="irssi"] move window to scratchpad, scratchpad show
+# WM_CLASS(STRING) = "Mail", "thunderbird-default"
+for_window [class="thunderbird-default"] move window to scratchpad, scratchpad show
+for_window [class="Proton Mail Bridge"] move window to scratchpad, scratchpad show
+
+exec --no-startup-id $editor --title=alsamixer alsamixer
+exec --no-startup-id $editor --title=irssi irssi
+exec --no-startup-id thunderbird
+exec --no-startup-id protonmail-bridge
 
