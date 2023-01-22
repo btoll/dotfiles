@@ -11,11 +11,16 @@ alias vi="vim"
 
 alias :q="exit"
 alias :x="exit"
-alias bzip2="bzip2 -9"
-alias gzip="gzip -9"
+alias bzip2="bzip2 -v -9"
+alias bunzip2="bunzip2 -v"
+alias gzip="gzip -v -9"
+alias gunzip="gunzip -v"
+alias xz="xz -v -9"
+alias unxz="unxz -v -9"
 alias brm="rm -rf"
 alias c="cd"
 alias cp="cp -i"
+alias diff="diff --report-identical-files"
 alias gdb="gdb -q"
 alias l="less"
 alias la="ls -liAhF"
@@ -32,7 +37,8 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 # Job Control
-alias j="jobs -l"
+alias jobs="jobs -l"
+alias j="jobs"
 alias f="fg"
 alias b="bg"
 
@@ -44,7 +50,7 @@ alias xkcd="open https://c.xkcd.com/random/comic/"
 alias little-bobby-tables="open https://xkcd.com/327/"
 
 # To specify port, just add it at the end of the python command.
-alias serve="python -m http.server"
+alias serve="( cd $HOME/projects/benjamintoll.com/public/ ; python -m http.server &> /dev/null & )"
 
 # Git
 alias g="git"
