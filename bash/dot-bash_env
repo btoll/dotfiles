@@ -17,7 +17,7 @@ export PS1='$(tput bold)$(tput setaf 4)\h $(tput setaf 3)~~>$(tput sgr0) \[$(tpu
 export EDITOR=vim
 
 # Used by i3's /usr/bin/i3-sensible-terminal script (and other scripts?).
-export TERMINAL=konsole
+export TERMINAL=kitty
 
 export GOARCH=amd64
 export GOOS=linux
@@ -49,4 +49,6 @@ export VAGRANT_HOME="$HOME/projects/vagrant-cache"
 
 # For ProtonVPN (others?).
 export $(dbus-launch)
+
+export I3_CONFIG=.config/i3/config
 
