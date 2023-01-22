@@ -1,3 +1,16 @@
+#SESSION=${1:-$(pwd)}
+SESSION=default
+
+if command -v tmux
+then
+    if ! tmux has-session -t "$SESSION" 2> /dev/null
+    then
+        tmux new-session -s "$SESSION" -d
+    fi
+fi
+
+setxkbmap -option caps:ctrl_modifier
+
 command -v i3 > /dev/null && i3
 
 #command -v xrandr > /dev/null && \
