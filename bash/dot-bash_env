@@ -38,8 +38,10 @@ export GPG_TTY=$(tty)
 unset GREP_OPTIONS
 
 # Setting this will be picked up by `tmux`, as well.
-export LC_ALL="en_IN.UTF-8"
-export LANG="en_IN.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+# Use `tzselect` to generate this variable.
+export TZ="America/New_York"
 
 export PROMPT_COMMAND="history -a"
 

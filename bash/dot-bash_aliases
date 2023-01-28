@@ -50,7 +50,7 @@ alias xkcd="open https://c.xkcd.com/random/comic/"
 alias little-bobby-tables="open https://xkcd.com/327/"
 
 # To specify port, just add it at the end of the python command.
-alias serve="( cd $HOME/projects/benjamintoll.com/public/ ; python -m http.server &> /dev/null & )"
+alias serve="( cd $HOME/projects/benjamintoll.com/public/ ; python -m http.server &> /dev/null & ) ; echo 'Server running on http://127.0.0.1:8000/'"
 
 # Git
 alias g="git"

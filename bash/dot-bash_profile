@@ -1,5 +1,8 @@
 # shellcheck disable=1090
 
+# If not running interactively, don't do anything.
+[ -z "$PS1" ] && return
+
 if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
 fi
@@ -11,7 +14,4 @@ fi
 if [ -f "$HOME/.bash_env" ]; then
     . "$HOME/.bash_env"
 fi
-
-# If not running interactively, don't do anything.
-[ -z "$PS1" ] && return
 
