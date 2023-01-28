@@ -3,8 +3,8 @@ bag() {
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bag <pattern> [<search_dir>]"
     else
-        STARTSEARCH="$2"
-        vim "+/$1" $(ag -ilw "$1" ${STARTSEARCH:="."} | uniq)
+        local startsearch="$2"
+        vim "+/$1" $(ag -ilw "$1" ${startsearch:="."} | uniq)
     fi
 }
 
@@ -22,7 +22,7 @@ bfind() {
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bfind <pattern> [<search_dir>]"
     else
-        STARTSEARCH="$2"
+        local startsearch="$2"
         # http://blog.sanctum.geek.nz/unix-as-ide-files/
         #
         #   "You can use + as the terminating character instead if you want to put all
@@ -30,7 +30,7 @@ bfind() {
         #    using often is using find to generate lists of files that I then edit in
         #    vertically split Vim windows"
         #
-        find ${STARTSEARCH:="."} -type f -name "$1" -exec vim {} + 2> /dev/null
+        find ${startsearch:="."} -type f -name "$1" -exec vim {} + 2> /dev/null
     fi
 }
 
@@ -39,8 +39,8 @@ bgrep() {
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bgrep <pattern> [<root_dir>]"
     else
-        STARTSEARCH="$2"
-        vim "+/$1" $(grep -riIl "$1" ${STARTSEARCH:="."} | uniq)
+        local startsearch="$2"
+        vim "+/$1" $(grep -riIl "$1" ${startsearch:="."} | uniq)
     fi
 }
 
@@ -69,6 +69,7 @@ bp() {
 dim_screen() {
     # Run `xrandr` to get attached screens.
     local value="$1"
+
     if [ "$#" -eq 0 ]
     then
         echo "Usage: dim_screen [0 < value <= 1]"
@@ -122,8 +123,7 @@ falloc() {
 
 # `ff` for "fuzzy find"!
 ff() {
-    local projects_dir
-    projects_dir=${1:-/srv/projects}
+    local projects_dir=${1:-"$HOME/projects"}
     dir=$(find "$projects_dir" -type d -not -path '*/\.*' -maxdepth 10 2> /dev/null | fzf)
     cd $dir
 }
@@ -357,8 +357,8 @@ rmi() {
         echo "Usage: rmi file [file ...]"
     else
         for FILE in "$@"; do
-            INODE=$(ls -i "$FILE" | cut -f1 -d" ")
-            find . -inum $INODE -exec rm -rf {} \; 2> /dev/null
+            local inode=$(ls -i "$FILE" | cut -f1 -d" ")
+            find . -inum "$inode" -exec rm -rf {} \; 2> /dev/null
         done
     fi
 }
@@ -490,9 +490,9 @@ take_screenshot() {
     if [ "$#" -eq 0 ]; then
         echo "Usage: take_screenshot outfile [sleep=5]"
     else
-        SECONDS=${2:-5}
+        local seconds=${2:-5}
 
-        sleep "$SECONDS"
+        sleep "$seconds"
         xwd -root | convert - "$1"
         #xwd -root | xwdtopnm | pnmtopng > "$1"
     fi
