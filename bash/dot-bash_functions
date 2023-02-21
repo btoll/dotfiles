@@ -334,6 +334,14 @@ moby_dick() {
     sleep 1
 }
 
+# Use `fzf` to create a list of all machines in `/var/lib/machines` and
+# have the selection automatically create and run the container.
+nspawn() {
+    sudo systemd-nspawn --machine \
+        $(machinectl list-images --no-legend | awk '{ print $1 }' | fzf --border-label="systemd-nspawn machines") \
+        --quiet
+}
+
 # First and only argument is the profile, defaults to "default".
 parse_aws_creds() {
     local creds

@@ -53,4 +53,5 @@ export VAGRANT_HOME="$HOME/projects/vagrant-cache"
 export $(dbus-launch)
 
 export I3_CONFIG=.config/i3/config
+export FZF_DEFAULT_OPTS="--multi --height=50% --margin=10% --border=rounded --border-label-pos=-5 --prompt='~~> ' --pointer='→' --marker='♡' --header='CTRL-c or ESC to quit' --header-first --reverse --color='dark,fg:magenta'"
 

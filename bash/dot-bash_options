@@ -27,9 +27,6 @@ if [ "${BASH_VERSINFO}" -ge 4 ]; then
     shopt -s globstar
 fi
 
-# Prepend cd to directory names automatically.
-shopt -s autocd 2> /dev/null
-
 # Set caps lock to ctrl key.
 # https://askubuntu.com/questions/53038/how-do-i-remap-the-caps-lock-key
 setxkbmap -option caps:ctrl_modifier
