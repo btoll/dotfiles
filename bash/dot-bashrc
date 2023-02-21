@@ -25,6 +25,9 @@ then
     xrdb -merge "$HOME/.Xresources"
 fi
 
+# Let's set a more secure umask.
+umask 077
+
 #if declare -f dim_screen > /dev/null
 #then
 #    dim_screen .7
