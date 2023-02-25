@@ -1,53 +1,55 @@
 # shellcheck disable=1090,2034
 
-if [ -f "$HOME/.bash_aliases" ]
+# Checking for the prompt var is a hack to avoid `scp` from
+# trying to allocate a tty for noninteractive bash sessions.
+# It's happening because there are commands in the scripts
+# below that were cause bash to try and allocate a tty.
+# It's more feasible to wrap this in a conditional than to
+# move them to `.bash_profile`.
+# https://unix.stackexchange.com/a/557670
+#
+# Note that not preventing this scripts from running in a
+# non-interactive bash session was having unintended side
+# effects such as `scp` not being able to copy to a remote
+# server.
+if [ "$PS1" ]
 then
-    . "$HOME/.bash_aliases"
-fi
+    [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
+    [ -f "$HOME/.bash_functions" ] && source "$HOME/.bash_functions"
+    [ -f "$HOME/.bash_options" ] && source "$HOME/.bash_options"
+    [ -f "$HOME/.bash_vendor" ] && source "$HOME/.bash_vendor"
+    [ -f "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
+    [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 
-if [ -f "$HOME/.bash_functions" ]
-then
-    . "$HOME/.bash_functions"
-fi
+    # Allows to clear screen when vi is set as my command-line editor (not necessary if vi is not set).
+    bind -m vi-insert "\C-l":clear-screen
 
-if [ -f "$HOME/.bash_options" ]
-then
-    . "$HOME/.bash_options"
-fi
+    # Enable history expansion with [[space]].
+    # E.g., typing !![[space]] will replace the !! with your last command!
+    # No more appending `:p` to do a dry-run of the expansion!!
+    bind Space:magic-space
 
-if [ -f "$HOME/.bash_vendor" ]
-then
-    . "$HOME/.bash_vendor"
-fi
-
-if [ -f "$HOME/.Xresources" ]
-then
-    xrdb -merge "$HOME/.Xresources"
+    # If a fortune program is installed.
+    if command -v fortune > /dev/null
+    then
+        if command -v cowsay > /dev/null
+        then
+            fortune -e | cowsay -W 60 -f bud-frogs
+        else
+            fortune -e
+        fi
+    fi
 fi
 
 # Let's set a more secure umask.
-umask 077
-
-#if declare -f dim_screen > /dev/null
-#then
-#    dim_screen .7
-#fi
+umask 0077
 
 # Map Caps Lock to Ctrl.
+# Note that I'm now doing this system-wide in `/etc/default/keyboard`:
+#   XKBOPTIONS="ctrl:nocaps"
 #if [ -f $HOME/.Xmodmap ]; then
 #    xmodmap $HOME/.Xmodmap
 #fi
-
-# If a fortune program is installed.
-if command -v fortune > /dev/null
-then
-    if command -v cowsay > /dev/null
-    then
-        fortune -e | cowsay -W 60 -f bud-frogs
-    else
-        fortune -e
-    fi
-fi
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -88,26 +90,10 @@ then
     #alias egrep='egrep --color=auto'
 fi
 
-# Allows to clear screen when vi is set as my command-line editor (not necessary if vi is not set).
-bind -m vi-insert "\C-l":clear-screen
-
-# Enable history expansion with [[space]].
-# E.g., typing !![[space]] will replace the !! with your last command!
-# No more appending `:p` to do a dry-run of the expansion!!
-bind Space:magic-space
-
 # Allow access control for localhost with Xorg.
 # Especially needed for browsers (like tor) running in containers.
 #if [ -n "$DISPLAY" ]
 #then
 #    xhost +local:sulla
 #fi
-
-# Default to opening or creating a new tmux session when opening a terminal.
-#if [[ "$TERM" != "screen-256color" ]]; then
-#    tmux attach-session -t "$USER" || tmux new-session -s "$USER"
-#fi
-
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
