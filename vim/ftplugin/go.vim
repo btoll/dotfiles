@@ -15,6 +15,9 @@ nnoremap <leader>Cb mqo*/<esc>hk%O/*<esc>`q
 nnoremap <leader>cB mqkdd$%jdd<cr>`q
 nnoremap <leader>CB mqjddk%kdd<cr>`q
 
+nnoremap <leader>d oruntime.Breakpoint()<esc>
+nnoremap <leader>D Oruntime.Breakpoint()<esc>
+
 nnoremap <leader>gh ofmt.Println("got here")<esc>
 nnoremap f<space> :normal [[V$%<cr>
 
@@ -29,6 +32,7 @@ nnoremap <leader>line i/* -<esc>yl59pi */<esc>
 
 nmap <leader>b :<C-u>call Build_go_files()<cr>
 nmap <Leader>cov <Plug>(go-coverage-toggle)
-nmap <leader>r :!clear<cr><Plug>(go-run)
+"nmap <leader>r :!clear<cr><Plug>(go-run)
+nnoremap <leader>r :!clear && go run %<cr>
 nmap <leader>t <Plug>(go-test)
 

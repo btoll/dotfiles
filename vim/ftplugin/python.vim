@@ -1,4 +1,4 @@
-inoreabbrev bp def main():<cr>""" derp """<cr>pass<cr><esc>O<cr><cr>if __name__ == "__main__":<cr>main()
+inoreabbrev bp import ipdb<cr><cr><cr>def main():<cr>""" derp """<cr>pass<cr><esc>O<cr><cr>if __name__ == "__main__":<cr>main()
 
 nnoremap <leader>c mq0i#<esc>`q
 nnoremap <leader>C 0x<cr>
