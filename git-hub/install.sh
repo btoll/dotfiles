@@ -13,6 +13,7 @@ git config --global alias.goto '!sh -c '"'git rev-parse \$0 | xargs git checkout
 #git config --local --add hooks.pre-commit.hook "EOF.bash"
 #git config --local --add hooks.pre-commit.hook "debugger.bash"
 #git config --local --add hooks.pre-commit.hook "eslint.bash"
+#git config --local --add hooks.pre-commit.hook "gitguardian.sh"
 #git config --local --add hooks.pre-commit.hook "pycodestyle.sh"
 #git config --local --add hooks.pre-commit.hook "pytest.sh"
 #git config --local --add hooks.pre-commit.hook "link-scanner.sh"
