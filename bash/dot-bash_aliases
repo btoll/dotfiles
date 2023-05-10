@@ -53,7 +53,9 @@ alias xkcd="open https://c.xkcd.com/random/comic/"
 alias little-bobby-tables="open https://xkcd.com/327/"
 
 # To specify port, just add it at the end of the python command.
-alias serve="( cd $HOME/projects/benjamintoll.com/public/ ; python -m http.server &> /dev/null & ) ; echo 'Server running on http://127.0.0.1:8000/'"
+# Note that this is now enabled as a systemd service:
+# sudo systemctl start benjamintoll.com
+#alias serve="( cd $HOME/projects/benjamintoll.com/public/ ; python -m http.server &> /dev/null & ) ; echo 'Server running on http://127.0.0.1:8000/'"
 
 # Git
 alias g="git"
@@ -72,4 +74,6 @@ alias ..7="cd ../../../../../../.."
 alias ..8="cd ../../../../../../../.."
 alias ..9="cd ../../../../../../../../.."
 alias ..l="ll .."
+
+alias sb="sudo systemd-nspawn --quiet --machine scale-buddy scale_buddy"
 

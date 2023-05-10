@@ -46,7 +46,8 @@ bgrep() {
 
 # Setup script boilerplate.
 bp() {
-    if [ "$#" -eq 0 ]; then
+    if [ "$#" -eq 0 ]
+    then
         echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
         echo "Usage: bp <filename>"
     else
