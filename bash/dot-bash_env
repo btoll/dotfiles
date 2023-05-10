@@ -11,7 +11,10 @@ export HISTFILESIZE=100000
 export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:p:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
 
 # TODO: Use /etc/bash_completion.d/git-prompt?
-export PS1='$(tput bold)$(tput setaf 4)\h $(tput setaf 3)~~>$(tput sgr0) \[$(tput bold)\]\[$(tput setaf 6)\]\w\[$(tput sgr0)\]:\[$(tput bold)\]\[$(tput setaf 8)\]$(git branch 2> /dev/null | grep "^*" | colrm 1 2)\[$(tput sgr0)\]\n$ '
+# the `|$SHLVL:$0|` bits are the number of shell levels and the type
+# of the current shell (if prepended by a hyphen (-bash), it's a
+# login shell.
+export PS1='$(tput bold)$(tput setaf 4)\h $(tput setaf 2)$(tput setaf 2)$SHLVL:$0 $(tput setaf 3)~~> \[$(tput bold)\]\[$(tput setaf 6)\]\w\[\]:\[$(tput bold)\]\[$(tput setaf 8)\]$(git branch 2> /dev/null | grep "^*" | colrm 1 2)\[$(tput sgr0)\]\n$ '
 
 # Use vim as default editor instead of nano.
 export EDITOR=vim
