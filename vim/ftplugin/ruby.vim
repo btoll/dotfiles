@@ -11,3 +11,5 @@ nnoremap <leader>gh op "got here"<esc>
 nnoremap <leader>l mqop <c-r><esc>`q
 nnoremap <leader>line i#<esc>yl59p<esc>
 
+setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
+
