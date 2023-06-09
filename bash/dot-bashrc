@@ -1,5 +1,8 @@
 # shellcheck disable=1090,2034
 
+# https://www.shellcheck.net/wiki/SC1090
+# shellcheck source=/dev/null
+
 # Checking for the prompt var is a hack to avoid `scp` from
 # trying to allocate a tty for noninteractive bash sessions.
 # It's happening because there are commands in the scripts
@@ -16,12 +19,12 @@ if [ "$PS1" ]
 then
     [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
     [ -f "$HOME/.bash_env" ] && source "$HOME/.bash_env"
-
     [ -f "$HOME/.bash_functions" ] && source "$HOME/.bash_functions"
     [ -f "$HOME/.bash_options" ] && source "$HOME/.bash_options"
     [ -f "$HOME/.bash_vendor" ] && source "$HOME/.bash_vendor"
+    # https://www.howtoforge.com/how-to-add-bash-completion-in-debian
+    [ -f /etc/bash_completion ] && source /etc/bash_completion
     [ -f "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
-    [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 
     # Allows to clear screen when vi is set as my command-line editor (not necessary if vi is not set).
     bind -m vi-insert "\C-l":clear-screen

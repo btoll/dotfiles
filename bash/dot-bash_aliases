@@ -42,7 +42,9 @@ alias egrep="egrep --color=auto"
 # Job Control
 alias jobs="jobs -l"
 alias j="jobs"
+alias fg="fg 2> /dev/null"
 alias f="fg"
+alias bg="bg 2> /dev/null"
 alias b="bg"
 
 alias hibernate="systemctl hibernate"
