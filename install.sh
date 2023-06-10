@@ -22,7 +22,7 @@ PACKAGES=(
     feh
     fortune
     i3
-    konsole
+    kitty
     silversearcher-ag
     stow
     tmux
