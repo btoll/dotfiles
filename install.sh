@@ -67,7 +67,8 @@ do
             stow --dotfiles --target "$HOME/.config/$tool" "$tool"
             ;;
         templates)
-            cp -r "$tool" "$HOME"
+            mkdir -p "$HOME/$tool"
+            stow --target "$HOME/$tool" "$tool"
             ;;
         vim)
             stow --dotfiles --target "$HOME" "$tool"
