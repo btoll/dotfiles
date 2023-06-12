@@ -90,7 +90,7 @@ done
 # https://github.com/junegunn/fzf
 if [ ! -d "$HOME/.fzf" ]
 then
-    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+    git clone --depth 1 git@github.com:junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --completion --key-bindings --no-update-rc
     echo "$SUCCESS Installed \`fzf\`."
 fi
@@ -98,7 +98,7 @@ fi
 # https://github.com/tmux-plugins/tpm
 if [ ! -d "$HOME/.tmux" ]
 then
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+    git clone git@github.com:tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
 if [ ! -d "$HOME/.vim/autoload" ] || [ ! -f "$HOME/.vim/autoload/plug.vim" ]
