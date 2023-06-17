@@ -60,13 +60,13 @@ do
         git-hub)
             mkdir -p "$HOME/bin"
             stow --dotfiles --target "$HOME/bin" --dir "$tool" bin
-            sudo stow --target /usr/share/man/man1/ --dir "$tool" man
+            stow --target /usr/share/man/man1/ --dir "$tool" man
             ;;
         i3)
             mkdir -p "$HOME/.config/$tool"
             stow --dotfiles --target "$HOME/.config/$tool" "$tool"
             ;;
-        templates)
+        gnupg|templates)
             mkdir -p "$HOME/$tool"
             stow --target "$HOME/$tool" "$tool"
             ;;
