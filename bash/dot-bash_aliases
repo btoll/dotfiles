@@ -6,33 +6,40 @@
 # line. - Learning the Bash Shell, 2nd edition, page 62.
 #alias cd="cd "
 
+alias :q="exit"
+alias :x="exit"
+alias brm="rm -rf"
+alias bunzip2="bunzip2 -v"
+alias bzip2="bzip2 -v -9"
+alias c="cd"
+alias diff="diff --report-identical-files"
+alias gdb="gdb -q"
+alias gunzip="gunzip -v"
+alias gzip="gzip -v -9"
+alias l="less"
+alias ls="ls -F"
+alias ping="ping -c 4"
+alias suod="sudo"
+alias unxz="unxz -v -9"
+alias xz="xz -v -9"
 alias v="vim"
 alias vi="vim"
 # Use single quotes so the command substitution isn't performed
 # until the command is executed.
 alias vimf='vim $(fzf --border-label="i like dogs")'
 
-alias :q="exit"
-alias :x="exit"
-alias bzip2="bzip2 -v -9"
-alias bunzip2="bunzip2 -v"
-alias gzip="gzip -v -9"
-alias gunzip="gunzip -v"
-alias xz="xz -v -9"
-alias unxz="unxz -v -9"
-alias brm="rm -rf"
-alias c="cd"
-alias cp="cp -i"
-alias diff="diff --report-identical-files"
-alias gdb="gdb -q"
-alias l="less"
+# Human readable.
+alias df="df -h"
+alias du="du -h"
+alias free="free -h"
 alias la="ls -liAhF"
 alias ll="ls -lihF"
+alias sar="sar -h"
+
+# Interactive (prompt before removal/replacement).
+alias cp="cp -i"
 alias ln="ln -i"
-alias ls="ls -F"
 alias mv="mv -i"
-alias ping="ping -c 4"
-alias suod=sudo
 
 # Always enable colored `grep` output.
 alias grep="grep --color=auto"
@@ -76,6 +83,4 @@ alias ..7="cd ../../../../../../.."
 alias ..8="cd ../../../../../../../.."
 alias ..9="cd ../../../../../../../../.."
 alias ..l="ll .."
-
-alias sb="sudo systemd-nspawn --quiet --machine scale-buddy scale_buddy"
 
