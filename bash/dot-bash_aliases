@@ -1,5 +1,10 @@
 # shellcheck disable=2139
 
+# `-Wall -Wextra`   = output all warnings
+# `-pedantic`       = be picky about the standard
+# `-std=c2x`        = latest standard version
+alias gcc="gcc -Wall -Wextra -std=c2x -pedantic"
+
 # Fixes "-bash: cd: gen: No such file or directory" error.
 # If the value of an alias ends in a blank, then bash tries
 # to do alias substitution on the next word in the command
@@ -32,6 +37,7 @@ alias vimf='vim $(fzf --border-label="i like dogs")'
 alias df="df -h"
 alias du="du -h"
 alias free="free -h"
+alias ip="ip -h"
 alias la="ls -liAhF"
 alias ll="ls -lihF"
 alias sar="sar -h"
