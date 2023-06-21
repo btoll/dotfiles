@@ -12,7 +12,7 @@ nnoremap <leader>CB mqjddk%kdd<cr>`q
 
 nnoremap <leader>gh oprintf("got here\n");<esc>
 nnoremap <leader>l mqoprintf("%s\n", <c-r>");<esc>`q
-nnoremap <leader>r :!clear && gcc % && ./a.out<cr>
+nnoremap <leader>r :!clear && gcc % && ./a.out && rm a.out<cr>
 
 setlocal autoindent expandtab shiftwidth=4 tabstop=4 fileformat=unix
 
