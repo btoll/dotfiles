@@ -1,0 +1,9 @@
+[Unit]
+Description="Monitor package build directory for new entries to release"
+
+[Path]
+PathModified=/home/btoll/projects/reprepro/packages
+Unit=releasing.service
+
+[Install]
+WantedBy=multi-user.target

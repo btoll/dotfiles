@@ -1,0 +1,16 @@
+# https://www.putorius.net/systemd-path-units.html
+#
+# I received both of the following errors:
+#	Failed with result 'start-limit-hit'.
+#	Failed with result 'unit-start-limit-hit'.
+# The fix for both was to add the following Unit section option:
+#	StartLimitIntervalSec=0
+# See man 5 systemd.unit
+#
+# To tail the logs: sudo journalctl -ef
+[Unit]
+Description="Release packages when they are added to this directory"
+StartLimitIntervalSec=0
+
+[Service]
+ExecStart=/home/btoll/projects/reprepro/release.sh
