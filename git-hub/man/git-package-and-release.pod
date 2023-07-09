@@ -1,0 +1,51 @@
+=head1 NAME
+
+git-package-and-release - Create a package and release on GitHub from a tag name.
+
+=head1 SYNOPSIS
+
+git package-and-release [ -t, --tag TAG_NAME ] [ -c, --create ]
+
+=head1 DESCRIPTION
+
+This will initiate a number of automated processes which culminates with
+a release and its assets being programmatically created on GitHub.
+
+Here are the steps:
+
+1. Run this script:
+   `git package-and-release --tag 1.0.0`
+
+2. A container (systemd-nspawn) will clone the project and then build
+   and sign the packages (see /etc/systemd/nspawn) and the
+   {deb,rpm}-packaging machines on my GitHub.
+
+3. The packaging build scripts executed in the container(s) will place
+   the signed package assets in /root/build in the container which is
+   bind mounted to ~/projects/reprepro/packages on the host.
+
+4. A systemd service is monitoring this host directory, and when it
+   detects that there has been a modification (i.e., a new package dir),
+   it will run the /home/btoll/projects/reprepro/release.sh shell script
+   which will determine the path of the new dir and from its bits call the
+   github-release Go module.
+
+5. This Go module will create a new release in the respective repository
+   on GitHub and upload its package build assets from the new subdirectory
+   on the host at ~/projects/reprepro/packages.
+
+See also:
+   - /lib/systemd/system/releasing.path
+   - /lib/systemd/system/releasing.service
+   - ~/projects/reprepro/release.sh
+
+=head1 EXAMPLES
+
+git package-and-release --tag 1.0.0
+
+git package-and-release --tag 2.0.1 --create
+
+=head1 AUTHOR
+
+Benjamin Toll <ben@benjamintoll.com>
+

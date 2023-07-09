@@ -48,6 +48,7 @@ git pre-commit hooks
 - <a href="#git-hub">git-hub</a>
 - <a href="#git-log-grep">git-log-grep</a>
 - <a href="#git-ls">git-ls</a>
+- <a href="#git-package-and-release">git-package-and-release</a>
 - <a href="#git-review">git-review</a>
 
 ### git-bootstrap
@@ -310,6 +311,38 @@ List the files that are staged and modifed or that make up any given commit and 
 - Opens all listed files for the specified hash (cf457b6) that match that specified regular expression in horizontally-split windows.
 
     `git ls -c cf457b6 --pattern debugger -e h`
+
+### git-package-and-release
+
+This will initiate a number of automated processes which culminates with a release and its assets being programmatically created on GitHub.
+
+Here are the steps:
+
+1. Run this script:
+   `git package-and-release 1.0.0`
+
+1. A container (systemd-nspawn) will clone the project and then build
+   and sign the packages (see /etc/systemd/nspawn) and the
+   {deb,rpm}-packaging machines on my GitHub.
+
+1. The packaging build scripts executed in the container(s) will place
+   the signed package assets in /root/build in the container which is
+   bind mounted to ~/projects/reprepro/packages on the host.
+
+1. A systemd service is monitoring this host directory, and when it
+   detects that there has been a modification (i.e., a new package dir),
+   it will run the /home/btoll/projects/reprepro/release.sh shell script
+   which will determine the path of the new dir and from its bits call the
+   github-release Go module.
+
+1. This Go module will create a new release in the respective repository
+   on GitHub and upload its package build assets from the new subdirectory
+   on the host at ~/projects/reprepro/packages.
+
+See also:
+- /lib/systemd/system/releasing.path
+- /lib/systemd/system/releasing.service
+- ~/projects/reprepro/release.sh
 
 ### git-review
 

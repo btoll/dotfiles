@@ -1,0 +1,67 @@
+#!/bin/bash
+
+TAG=
+CREATE=
+
+usage() {
+    echo "git-package-and-release"
+    echo
+    echo "Usage: git package-and-release TAG_NAME"
+    echo
+    echo "Args:"
+    echo "--create, -c   Create the tag specified by \`--tag\`."
+    echo "--help, -h     Help."
+    echo "--tag, -t      The tag name.  Will do a \`git checkout\` on it, followed by"
+    echo "               packaging the state of the repo and releasing it to GitHub."
+    echo "               If \`--create\` is specified, will first create the new tag."
+}
+
+if [ "$#" -gt 0 ]; then
+    while [ "$#" -gt 0 ]; do
+        OPT="$1"
+        case "$OPT" in
+            --create|-c) CREATE=1 ;;
+            --help|-h) usage; exit 0 ;;
+            --tag|-t) shift; TAG="$1" ;;
+        esac
+        shift
+    done
+fi
+
+if [ -z "$TAG" ]
+then
+    echo "[ERROR] Must specify a tag name, exiting."
+    usage
+    exit 1
+fi
+
+if [ -n "$CREATE" ]
+then
+    if ! git tag "$TAG" 2> /dev/null
+    then
+        echo "[WARNING] Tag \`$TAG\` already exists."
+    fi
+fi
+
+if ! git checkout "$TAG" 2> /dev/null
+then
+    echo "[FATAL] Cannot check out \`$TAG\`, aborting..."
+fi
+
+# Show the absolute path of the top-level directory of the working tree.
+REPO_LOCATION="$(git rev-parse --show-toplevel)"
+REPO_NAME=$(basename "$REPO_LOCATION")
+
+#sudo systemctl start releasing.path
+sudo systemd-nspawn \
+    --machine deb-packaging \
+    --setenv PACKAGE_NAME="$REPO_NAME" \
+    --setenv PACKAGE_VERSION="$TAG" \
+    --setenv USER=1000 \
+    --setenv LOCAL=1 \
+    --bind-ro "$REPO_LOCATION":/clone \
+    --bind /home/btoll/projects/reprepro/packages:/build \
+    --bind /run/user/1000/gnupg/S.gpg-agent:/root/.gnupg/S.gpg-agent \
+    --quiet
+#sudo systemctl stop releasing.path
+
