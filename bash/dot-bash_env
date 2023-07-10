@@ -32,7 +32,7 @@ export GOROOT=/usr/local/go
 export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$HOME/.local/bin:$PATH"
 
 # This is used in the `git_init` bash function.
-export GITHOOKS="$HOME/dotfiles/git-hub/hooks"
+export GITHOOKS="$HOME/dotfiles/git-tools/hooks"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
 # in ~/.gnupg/gpg.conf.

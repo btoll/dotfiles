@@ -211,12 +211,12 @@ git_hooks_install() {
 
     if [ -z "$githooks" ]
     then
-        read -p "Location of git hooks (skip this step by exporting a \$GITHOOKS env var) [$HOME/dotfiles/git-hub/hooks]: " location
+        read -p "Location of git hooks (skip this step by exporting a \$GITHOOKS env var) [$HOME/dotfiles/git-tools/hooks]: " location
 
         # Capture ENTER key.
         if [ "$location" = "" ]
         then
-            location="$HOME/dotfiles/git-hub/hooks"
+            location="$HOME/dotfiles/git-tools/hooks"
         fi
 
         githooks="$location"

@@ -11,7 +11,7 @@ echo "$(tput setaf 2)[INFO]$(tput sgr0) Removing symbolic links for git extensio
 echo
 rm "$HOME/bin/git-bootstrap"
 rm "$HOME/bin/git-cleanup"
-rm "$HOME/bin/git-hub"
+rm "$HOME/bin/git-tools"
 rm "$HOME/bin/git-ls"
 rm "$HOME/bin/git-package-and-install"
 
