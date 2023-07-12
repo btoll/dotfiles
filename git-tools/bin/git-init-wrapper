@@ -1,0 +1,111 @@
+#!/bin/bash
+# shellcheck disable=2153
+
+set -eo pipefail
+
+HOOKS=
+GIT_DIR=
+
+usage() {
+    echo "git-init-wrapper"
+    echo
+    echo "Usage: git init-wrapper [args]"
+    echo
+    echo "Args:"
+    echo "--dir,   -d   If provided, the directory in which git will be initiated."
+    echo "--help,  -h   Help."
+    echo "--hooks, -t   Comma-separated string of directory names that hold the"
+    echo "              hooks to be installed."
+}
+
+if [ "$#" -gt 0 ]; then
+    while [ "$#" -gt 0 ]; do
+        OPT="$1"
+        case "$OPT" in
+            --dir|-d) shift; GIT_DIR="$1" ;;
+            --hooks|-t) shift; HOOKS="$1" ;;
+            --help|-h) usage; exit 0 ;;
+            *) echo "[ERROR] Unrecognized option \`$OPT\`."; usage; exit 1 ;;
+        esac
+        shift
+    done
+fi
+
+PROJECT_DIR="${GIT_DIR:-$(pwd)}"
+if [ ! -d "$PROJECT_DIR" ]
+then
+    mkdir -p "$PROJECT_DIR"
+fi
+
+# Install all files in `$HOME/dotfiles/bootstrap/`.
+git_bootstrap() {
+    if cp "$HOME"/dotfiles/bootstrap/{LICENSE,README.md} "$PROJECT_DIR" 2> /dev/null
+    then
+        echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed bootstrap files into project root."
+        if [ -n "$PROJECT_DIR" ]
+        then
+            sed -i 's/PROJECT_NAME/'"$(basename "$PROJECT_DIR")"'/' "$PROJECT_DIR/README.md"
+            echo "$(tput setaf 2)[INFO]$(tput sgr0) Updated project name in README.md to \`$PROJECT_DIR\`."
+        fi
+    else
+        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install bootstrap files."
+    fi
+}
+
+# This will copy all hooks found within the directories given by the `--hook` options.
+# The installation refers to adding them to the git config.  The user will be queried
+# for each one (yes or no).
+git_hooks_install() {
+    local location
+    local git_hooks="$GIT_HOOKS"
+    local includes
+
+    if [ -z "$git_hooks" ]
+    then
+        read -rp "Location of git hooks (export \$GIT_HOOKS to skip this step) [$HOME/dotfiles/git-tools/hooks]: " location
+        # Capture ENTER key.
+        if [ "$location" = "" ]
+        then
+            location="$HOME/dotfiles/git-tools/hooks"
+        fi
+
+        git_hooks="$location"
+    fi
+
+    rm -rf "$PROJECT_DIR"/.git/hooks/pre-commit*
+    mkdir -p "$PROJECT_DIR/.git/hooks/pre-commit.d"
+
+    cd "$PROJECT_DIR"
+
+    IFS="," read -ra includes <<< "$HOOKS"
+    for extension in "${includes[@]}"
+    do
+        if cp -r "$git_hooks/$extension"/* .git/hooks/pre-commit.d 2> /dev/null
+        then
+            for hook in "$git_hooks/$extension"/*
+            do
+                hook_name="$(basename "$hook")"
+                read -rp "Install $hook_name [Y/n]: " key
+                if [ "$key" = "" ] || [ "$key" = "Y" ] || [ "$key" = "y" ]
+                then
+                    location="$HOME/dotfiles/git-tools/hooks"
+                    git config --local --add hooks.pre-commit.hook "$hook_name"
+                fi
+            done
+        else
+            echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install Git hooks."
+        fi
+    done
+}
+
+git init "$PROJECT_DIR"
+
+# These functions depend on global vars.
+git_bootstrap
+if [ -n "$HOOKS" ]
+then
+    git_hooks_install
+else
+    echo "[INFO] No git hooks installed."
+fi
+
