@@ -45,7 +45,7 @@ TOOLS=(
     bash
     gdb
     git
-    git-hub
+    git-tools
     gnupg
     i3
     templates
