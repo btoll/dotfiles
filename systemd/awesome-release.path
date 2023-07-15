@@ -2,8 +2,8 @@
 Description="Monitor package build directory for new entries to release"
 
 [Path]
-PathModified=/home/btoll/projects/reprepro/packages
-Unit=releasing.service
+PathModified=/srv/packages/deb
+Unit=awesome-release.service
 
 [Install]
 WantedBy=multi-user.target

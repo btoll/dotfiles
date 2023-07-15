@@ -60,8 +60,9 @@ sudo systemd-nspawn \
     --setenv USER=1000 \
     --setenv LOCAL=1 \
     --bind-ro "$REPO_LOCATION":/clone \
-    --bind /home/btoll/projects/reprepro/packages:/build \
+    --bind /srv/packages/deb:/build \
     --bind /run/user/1000/gnupg/S.gpg-agent:/root/.gnupg/S.gpg-agent \
     --quiet
 #sudo systemctl stop releasing.path
+git checkout master
 

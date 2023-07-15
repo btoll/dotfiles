@@ -13,4 +13,4 @@ Description="Release packages when they are added to this directory"
 StartLimitIntervalSec=0
 
 [Service]
-ExecStart=/home/btoll/projects/reprepro/release.sh
+ExecStart=/srv/packages/release.sh
