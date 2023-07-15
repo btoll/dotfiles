@@ -1,9 +1,13 @@
+# To list all global configs:
+#
+# 	git config --global --list
+#
 # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
 # https://stackoverflow.com/questions/26243145/git-aliases-operate-in-the-wrong-directory
 # https://osdir.com/ml/git/2009-01/msg00298.html
 [user]
 	name = Benjamin Toll
-	email = benjam72@yahoo.com
+	email = ben@benjamintoll.com
 	# https://security.stackexchange.com/questions/153579/is-it-safe-to-share-your-gitconfigs-user-signingkey-value-with-the-world
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/associating-an-email-with-your-gpg-key
