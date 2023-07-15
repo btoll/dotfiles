@@ -57,10 +57,11 @@ bp() {
         if ! stat "$1" &> /dev/null
         then
             case "$1" in
-                Dockerfile)     vim -c ":read ~/templates/dockerfile.txt" "$1" ;;
-                *.elm)          vim -c ":read ~/templates/elm.txt" "$1" ;;
-                *.html)         vim -c ":read ~/templates/html.txt" "$1" ;;
-                *)              vim -c ":normal ibp" "$1" ;;
+                Dockerfile)      vim -c ":read ~/templates/dockerfile.txt" "$1" ;;
+                Vagrantfile)     vim -c ":read ~/templates/Vagrantfile.txt" "$1" ;;
+                *.elm)           vim -c ":read ~/templates/elm.txt" "$1" ;;
+                *.html)          vim -c ":read ~/templates/html.txt" "$1" ;;
+                *)               vim -c ":normal ibp" "$1" ;;
             esac
         else
             echo "$(tput setaf 3)[WARN]$(tput sgr0) File exists, aborting."
