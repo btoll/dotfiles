@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GIT-PACKAGE-AND-RELEASE 1"
-.TH GIT-PACKAGE-AND-RELEASE 1 "2023-07-10" "perl v5.32.1" "User Contributed Perl Documentation"
+.TH GIT-PACKAGE-AND-RELEASE 1 "2023-07-16" "perl v5.32.1" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -142,7 +142,7 @@
 git\-package\-and\-release \- Create a package and release on GitHub from a tag name.
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-git package-and-release [ \-t, \-\-tag \s-1TAG_NAME\s0 ] [ \-c, \-\-create ]
+git package-and-release [ \-t, \-\-tag \s-1TAG_NAME\s0 ] [ \-c, \-\-create ] [ \-m, \-\-message \s-1MESSAGE\s0 ] [ \-\-no\-sign ] [ \-\-no\-release ]
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
 This will initiate a number of automated processes which culminates with
@@ -159,27 +159,35 @@ Here are the steps:
 .PP
 3. The packaging build scripts executed in the container(s) will place
    the signed package assets in /root/build in the container which is
-   bind mounted to ~/projects/reprepro/packages on the host.
+   bind mounted to /srv/packages on the host.
 .PP
 4. A systemd service is monitoring this host directory, and when it
    detects that there has been a modification (i.e., a new package dir),
-   it will run the /home/btoll/projects/reprepro/release.sh shell script
-   which will determine the path of the new dir and from its bits call the
+   it will run the /srv/packages/release.sh shell script which will
+   determine the path of the new directory and from its bits call the
    github-release Go module.
 .PP
 5. This Go module will create a new release in the respective repository
    on GitHub and upload its package build assets from the new subdirectory
-   on the host at ~/projects/reprepro/packages.
+   on the host at /srv/packages.
 .PP
 See also:
-   \- /lib/systemd/system/releasing.path
-   \- /lib/systemd/system/releasing.service
-   \- ~/projects/reprepro/release.sh
+   \- /lib/systemd/system/awesome\-release.path
+   \- /lib/systemd/system/awesome\-release.service
+   \- /srv/packages/release.sh
 .SH "EXAMPLES"
 .IX Header "EXAMPLES"
 git package-and-release \-\-tag 1.0.0
 .PP
 git package-and-release \-\-tag 2.0.1 \-\-create
+	\- This will prompt for a message and create a signed tag.
+.PP
+git package-and-release \-\-tag 2.0.1 \-\-create \-\-message \*(L"I am a little foo\*(R"
+	\- This will not prompt for a message, instead using the passed message
+	  to create a signed tag.
+.PP
+git package-and-release \-\-tag 2.0.1 \-\-create \-\-no\-sign
+	\- This will not create a signed tag.
 .SH "AUTHOR"
 .IX Header "AUTHOR"
 Benjamin Toll <ben@benjamintoll.com>

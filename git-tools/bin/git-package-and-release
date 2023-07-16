@@ -1,7 +1,11 @@
 #!/bin/bash
 
+CREATE=0
+FAILED=0
+MESSAGE=
+NO_RELEASE=0
+NO_SIGN=0
 TAG=
-CREATE=
 
 usage() {
     echo "git-package-and-release"
@@ -9,11 +13,17 @@ usage() {
     echo "Usage: git package-and-release TAG_NAME"
     echo
     echo "Args:"
-    echo "--create, -c   Create the tag specified by \`--tag\`."
-    echo "--help, -h     Help."
-    echo "--tag, -t      The tag name.  Will do a \`git checkout\` on it, followed by"
-    echo "               packaging the state of the repo and releasing it to GitHub."
-    echo "               If \`--create\` is specified, will first create the new tag."
+    echo "--create, -c    Create the tag specified by \`--tag\`."
+    echo "--help, -h      Help."
+    echo "--message, -m   The message for the signed tag.  Set this when automating"
+    echo "                otherwise it will prompt on STDIN."
+    echo "--no-release    Package but don't release.  If running, this will turn off"
+    echo "                the service that is watching the /srv/packages/ directory."
+    echo "--no-sign       Do not sign the tag when creating (will sign by default)."
+    echo "--tag, -t       The tag name.  Will do a \`git checkout\` on it, followed by"
+    echo "                packaging the state of the repo and releasing it to GitHub."
+    echo "                If \`--create\` is specified, will first create the signed"
+    echo "                new tag (unless \`--no-sign\` is given)."
 }
 
 if [ "$#" -gt 0 ]; then
@@ -22,6 +32,9 @@ if [ "$#" -gt 0 ]; then
         case "$OPT" in
             --create|-c) CREATE=1 ;;
             --help|-h) usage; exit 0 ;;
+            --message|-m) shift; MESSAGE="$1" ;;
+            --no-release) NO_RELEASE=1 ;;
+            --no-sign) NO_SIGN=1 ;;
             --tag|-t) shift; TAG="$1" ;;
         esac
         shift
@@ -35,24 +48,57 @@ then
     exit 1
 fi
 
-if [ -n "$CREATE" ]
+if [ "$CREATE" -eq 1 ]
 then
-    if ! git tag "$TAG" 2> /dev/null
+    if [ "$NO_SIGN" -eq 1 ]
     then
-        echo "[WARNING] Tag \`$TAG\` already exists."
+        # Need to add --no-sign which overrides `tag.gpgSign`, in case it's set.
+        if ! git tag --no-sign "$TAG" 2> /dev/null
+        then
+            FAILED=1
+        fi
+    else
+        echo "[INFO] Enter message for the signed tag and then press Ctrl-D (EOF):"
+        if [ -n "$MESSAGE" ]
+        then
+            if ! git tag --sign "$TAG" --message "$MESSAGE" 2> /dev/null
+            then
+                FAILED=1
+            fi
+        else
+            if ! git tag --sign "$TAG" --file - 2> /dev/null
+            then
+                FAILED=1
+            fi
+        fi
     fi
+    # TODO: If the user sends SIGINT when asked to sign they will get this error message, which
+    # clearly is wrong.  Should check the exit code and then display an appropriate error message.
+    if [ "$FAILED" -eq 1 ]
+    then
+        echo "[ERROR] Cowardly refusing to create tag \`$TAG\`, it already exists.  Aborting..."
+        exit 1
+    fi
+elif [ "$CREATE" -eq 0 ] && [ "$NO_SIGN" -eq 1 ]
+then
+    echo "[INFO] Option \`--no-sign\` is meaningless when not creating a tag."
 fi
 
 if ! git checkout "$TAG" 2> /dev/null
 then
     echo "[FATAL] Cannot check out \`$TAG\`, aborting..."
+    exit 1
 fi
 
 # Show the absolute path of the top-level directory of the working tree.
 REPO_LOCATION="$(git rev-parse --show-toplevel)"
 REPO_NAME=$(basename "$REPO_LOCATION")
 
-#sudo systemctl start releasing.path
+if [ "$NO_RELEASE" -eq 1 ]
+then
+    sudo systemctl stop awesome-release.path
+fi
+
 sudo systemd-nspawn \
     --machine deb-packaging \
     --setenv PACKAGE_NAME="$REPO_NAME" \
@@ -63,6 +109,20 @@ sudo systemd-nspawn \
     --bind /srv/packages/deb:/build \
     --bind /run/user/1000/gnupg/S.gpg-agent:/root/.gnupg/S.gpg-agent \
     --quiet
-#sudo systemctl stop releasing.path
-git checkout master
+
+# The service should always be on, because it was enabled.
+sudo systemctl restart awesome-release.path
+
+# TODO: Should this script get the branch name before checking out the tag
+# name and then restore it when the operation is complete?
+# The following command will get the name of the current branch (empty when
+# in detached HEAD state):
+#
+#       git branch --show-current
+#
+# The old way (prior to 2.22) was:
+#
+#       git rev-parse --abbrev-ref HEAD
+#
+#git checkout master
 

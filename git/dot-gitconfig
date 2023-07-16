@@ -17,7 +17,6 @@
 	# -S|-s = GPG-sign commit.
 	ci = commit -S
 	ca = commit -S --amend
-	tag = tag -s
 	co = checkout
 	d = diff
 	dirty = ls --dirty -e
@@ -66,4 +65,6 @@
 	required = true
 [init]
 	defaultBranch = master
+[tag]
+	gpgsign = true
 

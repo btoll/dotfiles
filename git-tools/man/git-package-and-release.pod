@@ -4,7 +4,7 @@ git-package-and-release - Create a package and release on GitHub from a tag name
 
 =head1 SYNOPSIS
 
-git package-and-release [ -t, --tag TAG_NAME ] [ -c, --create ]
+git package-and-release [ -t, --tag TAG_NAME ] [ -c, --create ] [ -m, --message MESSAGE ] [ --no-sign ] [ --no-release ]
 
 =head1 DESCRIPTION
 
@@ -22,28 +22,36 @@ Here are the steps:
 
 3. The packaging build scripts executed in the container(s) will place
    the signed package assets in /root/build in the container which is
-   bind mounted to ~/projects/reprepro/packages on the host.
+   bind mounted to /srv/packages on the host.
 
 4. A systemd service is monitoring this host directory, and when it
    detects that there has been a modification (i.e., a new package dir),
-   it will run the /home/btoll/projects/reprepro/release.sh shell script
-   which will determine the path of the new dir and from its bits call the
+   it will run the /srv/packages/release.sh shell script which will
+   determine the path of the new directory and from its bits call the
    github-release Go module.
 
 5. This Go module will create a new release in the respective repository
    on GitHub and upload its package build assets from the new subdirectory
-   on the host at ~/projects/reprepro/packages.
+   on the host at /srv/packages.
 
 See also:
-   - /lib/systemd/system/releasing.path
-   - /lib/systemd/system/releasing.service
-   - ~/projects/reprepro/release.sh
+   - /lib/systemd/system/awesome-release.path
+   - /lib/systemd/system/awesome-release.service
+   - /srv/packages/release.sh
 
 =head1 EXAMPLES
 
 git package-and-release --tag 1.0.0
 
 git package-and-release --tag 2.0.1 --create
+	- This will prompt for a message and create a signed tag.
+
+git package-and-release --tag 2.0.1 --create --message "I am a little foo"
+	- This will not prompt for a message, instead using the passed message
+	  to create a signed tag.
+
+git package-and-release --tag 2.0.1 --create --no-sign
+	- This will not create a signed tag.
 
 =head1 AUTHOR
 
