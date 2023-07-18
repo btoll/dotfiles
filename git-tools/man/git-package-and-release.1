@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GIT-PACKAGE-AND-RELEASE 1"
-.TH GIT-PACKAGE-AND-RELEASE 1 "2023-07-16" "perl v5.32.1" "User Contributed Perl Documentation"
+.TH GIT-PACKAGE-AND-RELEASE 1 "2023-07-18" "perl v5.32.1" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -142,7 +142,7 @@
 git\-package\-and\-release \- Create a package and release on GitHub from a tag name.
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-git package-and-release [ \-t, \-\-tag \s-1TAG_NAME\s0 ] [ \-c, \-\-create ] [ \-m, \-\-message \s-1MESSAGE\s0 ] [ \-\-no\-sign ] [ \-\-no\-release ]
+git package-and-release [ \-t, \-\-tag \s-1TAG_NAME\s0 ] [ \-c, \-\-create ] [ \-\-no\-sign ] [ \-\-no\-release ]
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
 This will initiate a number of automated processes which culminates with
@@ -174,20 +174,29 @@ Here are the steps:
 See also:
    \- /lib/systemd/system/awesome\-release.path
    \- /lib/systemd/system/awesome\-release.service
+   \- /srv/packages/deb/
    \- /srv/packages/release.sh
 .SH "EXAMPLES"
 .IX Header "EXAMPLES"
 git package-and-release \-\-tag 1.0.0
 .PP
 git package-and-release \-\-tag 2.0.1 \-\-create
-	\- This will prompt for a message and create a signed tag.
+	\- This will use the tag as the signed tag message.
 .PP
-git package-and-release \-\-tag 2.0.1 \-\-create \-\-message \*(L"I am a little foo\*(R"
-	\- This will not prompt for a message, instead using the passed message
-	  to create a signed tag.
+MESSAGE=\*(L"I am a little foo\*(R" git package-and-release \-\-tag 2.0.1 \-\-create
+	\- This will use the \s-1MESSAGE\s0 variable value as the signed tag message.
+.PP
+export MESSAGE=\*(L"I am a little foo\*(R"
+git package-and-release \-\-tag 2.0.1 \-\-create
+	\- This will use the \s-1MESSAGE\s0 variable value as the signed tag message.
 .PP
 git package-and-release \-\-tag 2.0.1 \-\-create \-\-no\-sign
 	\- This will not create a signed tag.
+.PP
+All of the following examples will also release the packages to GitHub by default.
+To \s-1NOT\s0 release, use the \-\-no\-release option:
+.PP
+git package-and-release \-\-tag 2.0.1 \-\-create \-\-no\-release
 .SH "AUTHOR"
 .IX Header "AUTHOR"
 Benjamin Toll <ben@benjamintoll.com>

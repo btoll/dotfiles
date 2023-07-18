@@ -4,7 +4,7 @@ git-package-and-release - Create a package and release on GitHub from a tag name
 
 =head1 SYNOPSIS
 
-git package-and-release [ -t, --tag TAG_NAME ] [ -c, --create ] [ -m, --message MESSAGE ] [ --no-sign ] [ --no-release ]
+git package-and-release [ -t, --tag TAG_NAME ] [ -c, --create ] [ --no-sign ] [ --no-release ]
 
 =head1 DESCRIPTION
 
@@ -37,6 +37,7 @@ Here are the steps:
 See also:
    - /lib/systemd/system/awesome-release.path
    - /lib/systemd/system/awesome-release.service
+   - /srv/packages/deb/
    - /srv/packages/release.sh
 
 =head1 EXAMPLES
@@ -44,14 +45,22 @@ See also:
 git package-and-release --tag 1.0.0
 
 git package-and-release --tag 2.0.1 --create
-	- This will prompt for a message and create a signed tag.
+	- This will use the tag as the signed tag message.
 
-git package-and-release --tag 2.0.1 --create --message "I am a little foo"
-	- This will not prompt for a message, instead using the passed message
-	  to create a signed tag.
+MESSAGE="I am a little foo" git package-and-release --tag 2.0.1 --create
+	- This will use the MESSAGE variable value as the signed tag message.
+
+export MESSAGE="I am a little foo"
+git package-and-release --tag 2.0.1 --create
+	- This will use the MESSAGE variable value as the signed tag message.
 
 git package-and-release --tag 2.0.1 --create --no-sign
 	- This will not create a signed tag.
+
+All of the following examples will also release the packages to GitHub by default.
+To NOT release, use the --no-release option:
+
+git package-and-release --tag 2.0.1 --create --no-release
 
 =head1 AUTHOR
 
