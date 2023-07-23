@@ -21,6 +21,7 @@ PACKAGES=(
     curl
     feh
     fortune
+    git
     i3
     kitty
     silversearcher-ag
@@ -29,6 +30,7 @@ PACKAGES=(
     # Install the `setxkbmap` binary needed by `.bash_options` (sets caps lock to ctrl key).
     x11-xkb-utils
     xsel
+    vim
 )
 
 for package in "${PACKAGES[@]}"
