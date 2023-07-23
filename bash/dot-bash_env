@@ -71,3 +71,10 @@ else
     export DEB_VENDOR="debian"
 fi
 
+if [ -f "$HOME/.kube/config" ]
+then
+    export KUBECONFIG="$HOME/.kube/config"
+    #KUBE_API_SERVER=$(ag server <(kubectl config view) | cut -d" " -f6)
+    export KUBE_APISERVER=$(sed -En 's/^\s*server: (https:\/\/[0-9.:]*)$/\1/p' "$HOME/.kube/config")
+fi
+
