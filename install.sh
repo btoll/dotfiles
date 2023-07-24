@@ -59,21 +59,32 @@ TOOLS=(
 for tool in "${TOOLS[@]}"
 do
     case "$tool" in
-        git-hub)
+        git-tools)
             mkdir -p "$HOME/bin"
             stow --dotfiles --target "$HOME/bin" --dir "$tool" bin
-            stow --target /usr/share/man/man1/ --dir "$tool" man
+            #stow --target /usr/share/man/man1/ --dir "$tool" man
+            ;;
+        gnupg)
+            mkdir -p "$HOME/.$tool"
+            stow --target "$HOME/.$tool" "$tool"
             ;;
         i3)
             mkdir -p "$HOME/.config/$tool"
             stow --dotfiles --target "$HOME/.config/$tool" "$tool"
             ;;
-        gnupg|templates)
+        templates)
             mkdir -p "$HOME/$tool"
             stow --target "$HOME/$tool" "$tool"
             ;;
         vim)
             stow --dotfiles --target "$HOME" "$tool"
+            # This is a kludge.  The `ftplugin` dir will be installed to
+            # the home dir, so remove it and then put it in its proper
+            # location.
+            # Note that we're removing it rather than moving it to `.vim/`
+            # because the files aren't linked (they will be below).
+            rm -rf "$HOME/ftplugin"
+            # Now, put `ftplugin` in its right spot and link them.
             mkdir -p "$HOME/.$tool/ftplugin"
             stow --target "$HOME/.$tool/ftplugin" --dir "$tool" ftplugin
             ;;
