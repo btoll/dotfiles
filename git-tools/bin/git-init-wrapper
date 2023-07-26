@@ -74,6 +74,7 @@ git_hooks_install() {
 
     rm -rf "$PROJECT_DIR"/.git/hooks/pre-commit*
     mkdir -p "$PROJECT_DIR/.git/hooks/pre-commit.d"
+    cp "$git_hooks/pre-commit" "$PROJECT_DIR/.git/hooks/"
 
     cd "$PROJECT_DIR"
 
