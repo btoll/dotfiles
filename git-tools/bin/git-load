@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get up and running quickly with the versioned files that make up a commit.
-# If not given any arguments, `git-bootstrap` will assume the last commit.
+# If not given any arguments, `git-load` will assume the last commit.
 
 # Note the dependency on the `git-ls` extension:
 # https://github.com/btoll/git/blob/master/bin/git-ls
@@ -18,7 +18,7 @@ RECURSE="0"
 VIM="b"
 
 usage() {
-    echo "git-bootstrap"
+    echo "git-load"
     echo
     echo "Usage: $0 [args]"
     echo

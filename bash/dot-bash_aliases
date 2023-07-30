@@ -77,7 +77,7 @@ alias little-bobby-tables="open https://xkcd.com/327/"
 # Git
 alias g="git"
 alias gi="git"
-alias bootstrap="git bootstrap"
+alias load="git load"
 alias dirty="git dirty"
 
 alias ..="cd .."

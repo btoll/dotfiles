@@ -41,7 +41,7 @@ git pre-commit hooks
 
 > **NOTE** Any commands that open files will use Vim as the editor.
 
-- <a href="#git-bootstrap">git-bootstrap</a>
+- <a href="#git-load">git-load</a>
 - <a href="#git-cleanup">git-cleanup</a>
 - <a href="#git-get-hash">git-get-hash</a>
 - <a href="#git-goto">git-goto</a>
@@ -51,15 +51,15 @@ git pre-commit hooks
 - <a href="#git-package-and-release">git-package-and-release</a>
 - <a href="#git-review">git-review</a>
 
-### git-bootstrap
+### git-load
 
 Get up and running quickly with the versioned files that make up a commit.
 
 In other words, all files from the specified commit will be automatically opened in Vim.  This is very handy when wanting to resume where you left off from your last editing session.
 
-> `git-bootstrap` differs from the `git-dirty` alias!  The former opens committed files, while the latter opens staged and modified files.
+> `git-load` differs from the `git-dirty` alias!  The former opens committed files, while the latter opens staged and modified files.
 
-If not given any arguments, `git-bootstrap` will assume the last commit.
+If not given any arguments, `git-load` will assume the last commit.
 
 Usage:
 
