@@ -37,21 +37,6 @@ then
     mkdir -p "$PROJECT_DIR"
 fi
 
-# Install all files in `$HOME/dotfiles/bootstrap/`.
-git_bootstrap() {
-    if cp "$HOME"/dotfiles/bootstrap/{LICENSE,README.md} "$PROJECT_DIR" 2> /dev/null
-    then
-        echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed bootstrap files into project root."
-        if [ -n "$PROJECT_DIR" ]
-        then
-            sed -i 's/PROJECT_NAME/'"$(basename "$PROJECT_DIR")"'/' "$PROJECT_DIR/README.md"
-            echo "$(tput setaf 2)[INFO]$(tput sgr0) Updated project name in README.md to \`$PROJECT_DIR\`."
-        fi
-    else
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install bootstrap files."
-    fi
-}
-
 # This will copy all hooks found within the directories given by the `--hook` options.
 # The installation refers to adding them to the git config.  The user will be queried
 # for each one (yes or no).
@@ -100,11 +85,11 @@ git_hooks_install() {
 }
 
 git init "$PROJECT_DIR"
+git bootstrap --dir "$PROJECT_DIR"
 
-# These functions depend on global vars.
-git_bootstrap
 if [ -n "$HOOKS" ]
 then
+    # This function depends on global vars.
     git_hooks_install
 else
     echo "[INFO] No git hooks installed."
