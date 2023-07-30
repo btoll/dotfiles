@@ -37,60 +37,15 @@ then
     mkdir -p "$PROJECT_DIR"
 fi
 
-# This will copy all hooks found within the directories given by the `--hook` options.
-# The installation refers to adding them to the git config.  The user will be queried
-# for each one (yes or no).
-git_hooks_install() {
-    local location
-    local git_hooks="$GIT_HOOKS"
-    local includes
-
-    if [ -z "$git_hooks" ]
-    then
-        read -rp "Location of git hooks (export \$GIT_HOOKS to skip this step) [$HOME/dotfiles/git-tools/hooks]: " location
-        # Capture ENTER key.
-        if [ "$location" = "" ]
-        then
-            location="$HOME/dotfiles/git-tools/hooks"
-        fi
-
-        git_hooks="$location"
-    fi
-
-    rm -rf "$PROJECT_DIR"/.git/hooks/pre-commit*
-    mkdir -p "$PROJECT_DIR/.git/hooks/pre-commit.d"
-    cp "$git_hooks/pre-commit" "$PROJECT_DIR/.git/hooks/"
-
-    cd "$PROJECT_DIR"
-
-    IFS="," read -ra includes <<< "$HOOKS"
-    for extension in "${includes[@]}"
-    do
-        if cp -r "$git_hooks/$extension"/* .git/hooks/pre-commit.d 2> /dev/null
-        then
-            for hook in "$git_hooks/$extension"/*
-            do
-                hook_name="$(basename "$hook")"
-                read -rp "Install $hook_name [Y/n]: " key
-                if [ "$key" = "" ] || [ "$key" = "Y" ] || [ "$key" = "y" ]
-                then
-                    location="$HOME/dotfiles/git-tools/hooks"
-                    git config --local --add hooks.pre-commit.hook "$hook_name"
-                fi
-            done
-        else
-            echo "$(tput setaf 1)[ERROR]$(tput sgr0) Could not install Git hooks."
-        fi
-    done
-}
-
 git init "$PROJECT_DIR"
 git bootstrap --dir "$PROJECT_DIR"
 
 if [ -n "$HOOKS" ]
 then
-    # This function depends on global vars.
-    git_hooks_install
+    # `git-hooks` expects to be run from the root of the project dir.
+    pushd "$PROJECT_DIR" > /dev/null
+    git hooks --type "$HOOKS"
+    popd > /dev/null
 else
     echo "[INFO] No git hooks installed."
 fi
