@@ -10,6 +10,8 @@ REPO_LOCATION=
 REPO_NAME=
 TAG=
 
+ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
+
 usage() {
     echo "git-package-and-release"
     echo
@@ -78,13 +80,13 @@ create_tag() {
 
 if ! git diff --exit-code --quiet
 then
-    echo "[ERROR] Git repository is dirty, aborting..."
+    echo "$ERROR Git repository is dirty, aborting..."
     exit 1
 fi
 
 if [ -z "$TAG" ]
 then
-    echo "[ERROR] Must specify a tag name, exiting."
+    echo "$ERROR Must specify a tag name, exiting."
     usage
     exit 1
 fi
