@@ -3,7 +3,7 @@
 set -o pipefail
 
 if [ "$#" -eq 0 ]; then
-    echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
+    echo "$ERROR Not enough arguments."
     echo "Usage: git remove-pattern <pattern>"
 else
     # First, check for dependencies.
@@ -17,18 +17,16 @@ else
     }
 
     if [ -n "$FAILED_DEPENDENCIES" ]; then
-        echo -e "$(tput setaf 3)[WARNING]$(tput sgr0) git-pattern depends on the following packages which don't seem to be installed on your system: $FAILED_DEPENDENCIES"
+        echo -e "$WARN git-pattern depends on the following packages which don't seem to be installed on your system: $FAILED_DEPENDENCIES"
         echo -e "\nHave a nice day!"
         exit 1
     fi
 
     PATTERN="$1"
-    INFO="$(tput setaf 6)[INFO]$(tput sgr0)"
-    SUCCESS="$(tput setaf 2)[SUCCESS]$(tput sgr0)"
     FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null)
 
     echo "---------"
-    echo "$(tput setaf 1)[WARNING]$(tput sgr0) This utility modifies the files in-place, so make sure that you know what you are doing!"
+    echo "$WARN This utility modifies the files in-place, so make sure that you know what you are doing!"
     echo "---------"
 
     if [ -n "$FILES" ]; then

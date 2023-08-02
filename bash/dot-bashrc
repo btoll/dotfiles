@@ -18,6 +18,7 @@
 if [ "$PS1" ]
 then
     [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
+    [ -f "$HOME/.bash_colors" ] && source "$HOME/.bash_colors"
     [ -f "$HOME/.bash_env" ] && source "$HOME/.bash_env"
     [ -f "$HOME/.bash_functions" ] && source "$HOME/.bash_functions"
     [ -f "$HOME/.bash_options" ] && source "$HOME/.bash_options"

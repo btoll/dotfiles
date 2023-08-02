@@ -10,8 +10,6 @@ REPO_LOCATION=
 REPO_NAME=
 TAG=
 
-ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
-
 usage() {
     echo "git-package-and-release"
     echo

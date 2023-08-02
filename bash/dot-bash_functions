@@ -1,7 +1,7 @@
 bag() {
     if [ "$#" -eq 0 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: bag <pattern> [<search_dir>]"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: bag <pattern> [<search_dir>]\n"
     else
         local startsearch="$2"
         vim "+/$1" $(ag -ilw "$1" ${startsearch:="."} | uniq)
@@ -19,8 +19,8 @@ beep() {
 
 bfind() {
     if [ "$#" -eq 0 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: bfind <pattern> [<search_dir>]"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: bfind <pattern> [<search_dir>]\n"
     else
         local startsearch="$2"
         # http://blog.sanctum.geek.nz/unix-as-ide-files/
@@ -36,8 +36,8 @@ bfind() {
 
 bgrep() {
     if [ "$#" -eq 0 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: bgrep <pattern> [<root_dir>]"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: bgrep <pattern> [<root_dir>]\n"
     else
         local startsearch="$2"
         vim "+/$1" $(grep -riIl "$1" ${startsearch:="."} | uniq)
@@ -48,8 +48,8 @@ bgrep() {
 bp() {
     if [ "$#" -eq 0 ]
     then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: bp <filename>"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: bp <filename>\n"
     else
         # Let's not overwrite an existing file. `stat` and test the process exit code.
         # Check exit code of `stat` call before proceeding.
@@ -65,7 +65,7 @@ bp() {
                 *)               vim -c ":normal ibp" "$1" ;;
             esac
         else
-            echo "$(tput setaf 3)[WARN]$(tput sgr0) File exists, aborting."
+            printf "%b File exists, aborting.\n" "$WARN"
         fi
     fi
 }
@@ -76,7 +76,7 @@ dim_screen() {
 
     if [ "$#" -eq 0 ]
     then
-        echo "Usage: dim_screen [0 < value <= 1]"
+        printf "Usage: dim_screen [0 < value <= 1]\n"
     else
         xrandr --output eDP-1 --brightness "$value"
     fi
@@ -88,7 +88,7 @@ dpkg_search() {
 
     if [ -z "$package" ] || [ -z "$state" ]
     then
-        echo "[Usage] dpkg_search PACKAGE STATE"
+        printf "Usage: dpkg_search PACKAGE STATE\n"
     else
         for log in $(ls /var/log/dpkg*)
         do
@@ -97,10 +97,10 @@ dpkg_search() {
 
             if [ "$res" = "" ]
             then
-                echo "$(tput setaf 1)[No match]$(tput sgr0) $log"
+                printf "%b %s\n" "$NO_MATCH" "$log"
             else
-                echo "$(tput setaf 2)[Match]$(tput sgr0) $log"
-                echo "$res"
+                printf "%b %s\n" "$MATCH" "$log"
+                printf "%s\n" "$res"
             fi
         done
     fi
@@ -114,8 +114,8 @@ dpkg_search() {
 
 falloc() {
     if [ "$#" -lt 2 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: falloc <name> <size (ex. 1GB, 500MB)>"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: falloc <name> <size (ex. 1GB, 500MB)>\n"
     else
         NAME="$1"
         SIZE="$2"
@@ -134,7 +134,7 @@ ff() {
 
 get_code_point() {
     if [ -z "$1" ]; then
-        echo "Usage: get_code_point <char>"
+        printf "Usage: get_code_point <char>\n"
     else
         # -A = Specify the input address base (n == no address)
         # -t = Specify the output format (d == signed decimal, 4 == four bytes)
@@ -150,7 +150,7 @@ git_clone() {
 
     if [ -z "$git_repo" ]
     then
-        echo "Usage: git_clone <git_repo> [ <git_alias> ]"
+        printf "Usage: git_clone <git_repo> [ <git_alias> ]\n"
     else
         if [ -z "$git_alias" ]
         then
@@ -163,14 +163,14 @@ git_clone() {
             #    git+https://github.com/btoll/dotfiles
             #
             # and capture only `dotfiles`.
-            base=$([[ "$git_repo" = *.* ]] && basename "$git_repo" || echo "")
+            base=$([[ "$git_repo" = *.* ]] && basename "$git_repo" || printf "\n")
             # Remove the `.git` extension.
             git_alias="${base%.git}"
         fi
 
         if git clone "$git_repo" "$git_alias" 2> /dev/null
         then
-            echo "$(tput setaf 2)[INFO]$(tput sgr0) Cloned into ./$git_alias/"
+            printf "%b Cloned into ./$git_alias/\n" "$INFO"
 
             read -p "Install git hooks? [y|N]: " should_install
 
@@ -183,10 +183,10 @@ git_clone() {
                     git_hooks_install
                 )
             else
-                echo "[INFO] Git hooks not installed."
+                printf "%b Git hooks not installed.\n" "$INFO"
             fi
         else
-            echo "$(tput setaf 1)[ERROR]$(tput sgr0) The \`$git_repo\` repository could not be cloned."
+            printf "%b The \`$git_repo\` repository could not be cloned.\n" "$ERROR"
         fi
     fi
 }
@@ -205,8 +205,8 @@ go_tmux() {
 
 hexbits() {
     if [ "$#" -eq 0 ]; then
-        echo "Usage: hexbits <hexadecimal> [number of display bytes]"
-        echo "For example: hexbits 0x646f67 2"
+        printf "Usage: hexbits <hexadecimal> [number of display bytes]\n"
+        printf "For example: hexbits 0x646f67 2\n"
     else
         asbits `htoi "$1"` ${2:-4}
     fi
@@ -214,8 +214,8 @@ hexbits() {
 
 h() {
     if [ "$#" -eq 0 ]; then
-        echo "Usage: h <search_string>"
-        echo "For example: h foobar"
+        printf "Usage: h <search_string>\n"
+        printf "For example: h foobar\n"
     else
         history | ag "$1"
     fi
@@ -223,8 +223,8 @@ h() {
 
 list_targets() {
     if [ "$#" -lt 1 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: list_targets <Makefile>"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: list_targets <Makefile>\n"
     else
         sed -n 's/\(^[a-zA-Z-]*:\)/\1/p' "$1"
     fi
@@ -236,8 +236,8 @@ mcd() {
 
 mnt_me() {
     if [ "$#" -lt 2 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: mnt_me <name> <mount point>"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: mnt_me <name> <mount point>\n"
     else
         NAME="$1"
         MNT="$2"
@@ -302,23 +302,27 @@ nspawn() {
 parse_aws_creds() {
     local creds
     local account="${1:-default}"
-    local profile_dir="$HOME/aws-access-keys/$account"
+    local access_keys="$HOME/aws-access-keys/${account}.csv"
 
-    if [ ! -d  "$profile_dir" ]
+    if [ ! -f  "$access_keys" ]
     then
-        echo "[ERROR] Profile \`$account\` does not exist!"
+        printf "%b Access keys for profile \`$account\` do not exist!\n" "[ERROR]"
     else
-        creds=$(< "$profile_dir/accessKeys.csv" tail -1)
-        echo "export AWS_ACCESS_KEY_ID="$(echo $creds | awk -F, '{ print $1 }')
-        echo "export AWS_SECRET_ACCESS_KEY="$(echo $creds | awk -F, '{ print $2 }')
+        creds=$(< "$access_keys" tail -1)
+        a=$(echo $creds | awk -F, '{ print $1 }')
+        b=$(echo $creds | awk -F, '{ print $2 }')
+
+        printf "export AWS_DEFAULT_REGION=us-east-2\n"
+        printf "export AWS_ACCESS_KEY_ID=%s\n" $(printf "%s\n" $a)
+        printf "export AWS_SECRET_ACCESS_KEY=\"%s\"\n" $(printf "%s\n" $b)
     fi
 }
 
 # Remove by inode.
 rmi() {
     if [ "$#" -eq 0 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: rmi file [file ...]"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: rmi file [file ...]\n"
     else
         for FILE in "$@"; do
             local inode=$(ls -i "$FILE" | cut -f1 -d" ")
@@ -340,8 +344,8 @@ rmi_images_by_name() {
 
     if [ -z "$name" ]
     then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: rmi_images_by_name name"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: rmi_images_by_name name\n"
     fi
 
     docker images -a | ag "$name" | awk '{print $3}' | xargs docker rmi
@@ -364,13 +368,13 @@ secure_browse() {
     #
     # Also, in FF make sure to set network.proxy.socks_remote_dns to true so DNS queries aren't leaked to the ISP.
     if [ $# -eq 0 ]; then
-        echo "$(tput setaf 1)[ERROR]$(tput sgr0) Not enough arguments."
-        echo "Usage: secure_browse <website_to_tunnel_traffic>"
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: secure_browse <website_to_tunnel_traffic>\n"
     else
         ssh -f -N -D 1080 "$1"
 
         if [ $? -ne 0 ]; then
-            echo "$(tput setaf 3)[WARN]$(tput sgr0) Could not establish tunnel"
+            printf "%b Could not establish tunnel\n" "$WARN"
         else
             firefox &> /dev/null &
         fi
@@ -384,7 +388,7 @@ set_displays() {
     # I found this out the hard way.
     if [[ "${#display_names[@]}" == 1 ]]
     then
-        echo "$(tput setaf 3)[WARN]$(tput sgr0) Internal display is the only current connection, aborting..."
+        printf "%b Internal display is the only current connection, aborting...\n" "$WARN"
     else
         if [ "$1" = off ]
         then
@@ -416,7 +420,7 @@ take_a_break() {
         s=
     fi
 
-    echo "You're going to do something different in $mins minute$s!"
+    printf "You're going to do something different in $mins minute%s!\n" "$s"
 
     # Note that Bash shells must run the commands in a subshell!
     (
@@ -452,7 +456,7 @@ take_a_break() {
 #
 take_screenshot() {
     if [ "$#" -eq 0 ]; then
-        echo "Usage: take_screenshot outfile [sleep=5]"
+        printf "Usage: take_screenshot outfile [sleep=5]\n"
     else
         local seconds=${2:-5}
 

@@ -28,7 +28,7 @@ if [ "$#" -gt 0 ]; then
         case "$OPT" in
             --dir|-d) shift; PROJECT_DIR="$1" ;;
             --help) usage; exit 0 ;;
-            *) echo "$(tput setaf 1)[ERROR]$(tput sgr0) Unknown option."; usage; exit 1 ;;
+            *) echo "$ERROR Unknown option."; usage; exit 1 ;;
         esac
         shift
     done
@@ -48,5 +48,5 @@ do
     fi
 done
 
-echo "$(tput setaf 2)[INFO]$(tput sgr0) Installed bootstrap files into $PROJECT_DIR."
+echo "$INFO Installed bootstrap files into $PROJECT_DIR."
 

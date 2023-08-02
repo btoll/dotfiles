@@ -4,7 +4,7 @@ set -o pipefail
 
 # Delimiter.
 DELIMITER='|'
-FIELDS=("$(tput bold)Hash (short)$(tput sgr0)    -> " "$(tput bold)Author name$(tput sgr0)     -> " "$(tput bold)Author email$(tput sgr0)    -> " "$(tput bold)Commit message$(tput sgr0)  -> " "$(tput bold)Merge date$(tput sgr0)      -> ")
+FIELDS=("${BOLD}Hash (short)${OFF}    -> " "${BOLD}Author name${OFF}     -> " "${BOLD}Author email${OFF}    -> " "${BOLD}Commit message${OFF}  -> " "${BOLD}Merge date${OFF}      -> ")
 FILE=
 FORMAT=
 DELETE_FILE=true
@@ -101,10 +101,10 @@ do
     URL="$GITHUB_URL/commit/${ARR[0]}"
 
     # Add the search pattern.
-    FIELDS[5]="$(tput bold)Search pattern$(tput sgr0)  ->  $PATTERN"
+    FIELDS[5]="${BOLD}Search pattern${OFF}  ->  $PATTERN"
 
     # We can only now add the last array element now that we have the SHA from each search result.
-    FIELDS[6]="$(tput bold)URL$(tput sgr0)             ->  $URL"
+    FIELDS[6]="${BOLD}URL${OFF}             ->  $URL"
 
     # For formatting between search results.
     echo

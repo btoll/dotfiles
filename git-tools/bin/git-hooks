@@ -7,8 +7,6 @@
 
 set -eo pipefail
 
-ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
-
 usage() {
     echo "git-hooks"
     echo
