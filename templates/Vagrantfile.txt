@@ -6,8 +6,8 @@ Vagrant.configure("2") do |config|
     config.vm.hostname = "vagrant-kilgoretrout"
 
 #    config.vm.network "forwarded_port", guest: 80, host: 8080
-#    config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 #    config.vm.network "private_network", ip: "192.168.33.10"
+#    config.vm.network "public_network", ip: "192.168.1.53", bridge: "wlp3s0"
 
     config.vm.synced_folder ".", "/vagrant"
     config.vm.synced_folder "/home/btoll/dotfiles", "/vagrant/dotfiles"
@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
     config.vm.provider "virtualbox" do |vb|
         vb.cpus = 4
         vb.gui = false
-        vb.memory = "8192"
+        vb.memory = 8192
         vb.name = "kilgoretrout"
     end
 
