@@ -7,7 +7,7 @@ install_package() {
     if ! command -v "$package" > /dev/null
     then
         sudo apt-get install --no-install-recommends --yes "$package"
-        echo "$SUCCESS Installed package \`$package\`."
+        printf "%b Installed package \`%s\`.\n" "$SUCCESS" "$package"
     fi
 }
 
@@ -93,7 +93,7 @@ do
             ;;
     esac
 
-    echo "$SUCCESS Installed \`$tool\` dotfile(s)."
+    printf "%b Installed \`%s\` dotfile(s).\n" "$SUCCESS" "$tool"
 done
 
 # Download other dev dependencies.
@@ -105,7 +105,7 @@ if [ ! -d "$HOME/.fzf" ]
 then
     git clone --depth 1 git@github.com:junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --completion --key-bindings --no-update-rc
-    echo "$SUCCESS Installed \`fzf\`."
+    printf "%b Installed \`fzf\`.\n" "$SUCCESS"
 fi
 
 # https://github.com/tmux-plugins/tpm
@@ -119,17 +119,17 @@ then
     # https://github.com/junegunn/vim-plug
     curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    echo "$SUCCESS Installed \`vim-plug\`."
+    printf "%b Installed \`vim-plug\`.\n" "$SUCCESS"
 fi
 
 # Install vim plugins.
 # + is just a shorthand notation of -c.
 # +qa = quit all
 vim +'PlugInstall --sync' +qa
-echo "$SUCCESS Installed vim plugins."
+printf "%b Installed vim plugins.\n" "$SUCCESS"
 
 #source "$HOME/.fzf.bash"
 #source "$HOME/.bash_profile"
 
-echo "$SUCCESS The dotfiles and dev dependencies have been succesfully installed!"
+printf "%b The dotfiles and dev dependencies have been succesfully installed!\n" "$SUCCESS"
 

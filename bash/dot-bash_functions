@@ -402,7 +402,7 @@ set_displays() {
 }
 
 shaq() {
-    echo -e "It's supposed to be 1-2-3, not 1-2 back to 1.\nhttps://www.youtube.com/watch?v=y44DaWQH8-0"
+    printf "It's supposed to be 1-2-3, not 1-2 back to 1.\nhttps://www.youtube.com/watch?v=y44DaWQH8-0\n"
 }
 
 # Background a job to interrupt you, you hard worker!

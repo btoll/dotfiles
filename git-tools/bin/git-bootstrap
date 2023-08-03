@@ -11,15 +11,15 @@ set -eo pipefail
 PROJECT_DIR=
 
 usage() {
-    echo "git-bootstrap"
-    echo
-    echo "Usage: $0 [args]"
-    echo
-    echo "Args:"
-    echo "--dir, -d   The git directory into which the files will be copied."
-    echo "--help      Help."
-    echo
-    echo "Truthfully, this doesn't use any \`git\` commands.  Oh well."
+    printf "git-bootstrap
+
+Usage: %s [args]
+
+Args:
+--dir, -d   The git directory into which the files will be copied.
+--help      Help.
+
+Truthfully, this doesn't use any \`git\` commands.  Oh well.\n" "$0"
 }
 
 if [ "$#" -gt 0 ]; then
@@ -28,7 +28,7 @@ if [ "$#" -gt 0 ]; then
         case "$OPT" in
             --dir|-d) shift; PROJECT_DIR="$1" ;;
             --help) usage; exit 0 ;;
-            *) echo "$ERROR Unknown option."; usage; exit 1 ;;
+            *) printf "%b Unknown option.\n" "$ERROR"; usage; exit 1 ;;
         esac
         shift
     done
@@ -48,5 +48,5 @@ do
     fi
 done
 
-echo "$INFO Installed bootstrap files into $PROJECT_DIR."
+printf "%b Installed bootstrap files into %s.\n" "$INFO" "$PROJECT_DIR"
 

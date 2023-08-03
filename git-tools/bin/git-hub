@@ -25,32 +25,31 @@ TOKEN=
 GITHUB_URL=
 
 usage() {
-    echo "GIT-HUB"
-    echo
-    echo "Usage: $0 [args]"
-    echo
-    echo "Args:"
-    echo "--blame        If given will open the branch in the Blame view."
-    echo "               Not applicable if given a topic branch or hash."
-    echo
-    echo "--branch, -b   The branch to use as the base lookup branch on GitHub."
-    echo
-    echo "--file, -f     The file to lookup on GitHub. Accepts relative paths."
-    echo
-    echo "--get-hash     A branch name can be given instead of a hash. If so,"
-    echo "               this flag will get the hash of the branch, tag, etc."
-    echo "               For example:"
-    echo
-    echo "                   git hub --get-hash MY_COOL_TOPIC_BRANCH"
-    echo "                   git hub --get-hash MY_TAG"
-    echo
-    echo "--hash         The commit hash to lookup on GitHub."
-    echo
-    echo "-h             Help."
-    echo
-    echo "--range        Specify in the format 'L10-L20' to highlight a visual range"
-    echo "               on GitHub."
-    echo
+    printf "GIT-HUB
+
+Usage: %s [args]
+
+Args:
+--blame        If given will open the branch in the Blame view.
+               Not applicable if given a topic branch or hash.
+
+--branch, -b   The branch to use as the base lookup branch on GitHub.
+
+--file, -f     The file to lookup on GitHub. Accepts relative paths.
+
+--get-hash     A branch name can be given instead of a hash. If so,
+               this flag will get the hash of the branch, tag, etc.
+               For example:
+
+                   git hub --get-hash MY_COOL_TOPIC_BRANCH
+                   git hub --get-hash MY_TAG
+
+--hash         The commit hash to lookup on GitHub.
+
+-h             Help.
+
+--range        Specify in the format 'L10-L20' to highlight a visual range
+               on GitHub.\n" "$0"
 }
 
 set_github_url() {
@@ -92,7 +91,7 @@ done
 pushd "$(dirname "$FILE")" > /dev/null
 
 if [ "$(git rev-parse --is-inside-work-tree)" = false ]; then
-    echo "[ERROR]: Object is not under version control, exiting..."
+    printf "%b Object is not under version control, exiting...\n" "$ERROR"
     exit 1
 fi
 

@@ -16,26 +16,25 @@ GITHUB_URL=
 URL=
 
 usage() {
-    echo "GIT-LOG-GREP"
-    echo
-    echo "Usage: $0 [args]"
-    echo
-    echo "Args:"
-    echo "--format                  The format passed internally to git log --pretty."
-    echo "                          Defaults to '%h %an %ae %s %cd'."
-    echo
-    echo "--file, -file, -f         The location of the file or directory to search. Note that the"
-    echo "                          more specific the location the faster the lookup. Default to the"
-    echo "                          current working directory."
-    echo
-    echo "--no-delete               The default is to delete the temporary CSV file used by the tool."
-    echo "                          Use this flag to override."
-    echo
-    echo "--pattern, -pattern, -p   Specify a pattern (method) that will be the basis of the log:"
-    echo "                          history search."
-    echo
-    echo "--web, -w                 Open the commit on GitHub using the default browser."
-    echo
+    printf "git-log-grep
+
+Usage: %s [args]
+
+Args:
+--format                  The format passed internally to git log --pretty.
+                          Defaults to '%h %an %ae %s %cd'.
+
+--file, -file, -f         The location of the file or directory to search. Note that the
+                          more specific the location the faster the lookup. Default to the
+                          current working directory.
+
+--no-delete               The default is to delete the temporary CSV file used by the tool.
+                          Use this flag to override.
+
+--pattern, -pattern, -p   Specify a pattern (method) that will be the basis of the log:
+                          history search.
+
+--web, -w                 Open the commit on GitHub using the default browser.\n" "$0"
 }
 
 set_github_url() {
@@ -107,7 +106,7 @@ do
     FIELDS[6]="${BOLD}URL${OFF}             ->  $URL"
 
     # For formatting between search results.
-    echo
+    printf "\n"
 
     # Get the index for each field to lookup the values in each array.
     # http://www.linuxjournal.com/content/bash-arrays
@@ -126,7 +125,7 @@ done < "$TMP_FILE"
 IFS="$PREV_IFS"
 
 # Add a final blank line for formatting, i.e., a blank line before the prompt.
-echo
+printf "\n"
 
 if $DELETE_FILE
 then

@@ -11,23 +11,23 @@ REPO_NAME=
 TAG=
 
 usage() {
-    echo "git-package-and-release"
-    echo
-    echo "Usage: git package-and-release TAG_NAME"
-    echo
-    echo "Args:"
-    echo "--create, -c    Create the tag specified by \`--tag\`."
-    echo "--help, -h      Help."
-    echo "--no-release    Package but don't release.  If running, this will turn off"
-    echo "                the service that is watching the /srv/packages/ directory."
-    echo "--no-sign       Do not sign the tag when creating (signs by default)."
-    echo "--tag, -t       The tag name.  Will do a \`git checkout\` on it, followed by"
-    echo "                packaging the state of the repo and releasing it to GitHub."
-    echo "                If \`--create\` is specified, will first create the signed"
-    echo "                new tag (unless \`--no-sign\` is given)."
-    echo
-    echo "Note that if signing the tags that the branch name will be used unless"
-    echo "MESSAGE is not null."
+    printf "git-package-and-release
+
+Usage: git package-and-release TAG_NAME
+
+Args:
+--create, -c    Create the tag specified by \`--tag\`.
+--help, -h      Help.
+--no-release    Package but don't release.  If running, this will turn off
+                the service that is watching the /srv/packages/ directory.
+--no-sign       Do not sign the tag when creating (signs by default).
+--tag, -t       The tag name.  Will do a \`git checkout\` on it, followed by
+                packaging the state of the repo and releasing it to GitHub.
+                If \`--create\` is specified, will first create the signed
+                new tag (unless \`--no-sign\` is given).
+
+Note that if signing the tags that the branch name will be used unless
+MESSAGE is not null.\n"
 }
 
 if [ "$#" -gt 0 ]; then
@@ -68,23 +68,23 @@ create_tag() {
         # clearly is wrong.  Should check the exit code and then display an appropriate error message.
         if [ "$failed" -eq 1 ]
         then
-            echo "[INFO] Cowardly refusing to create tag \`$new_tag\`, it already exists."
+            printf "%b Cowardly refusing to create tag \`%s\`, it already exists.\n" "$INFO" "$new_tag"
         fi
     elif [ "$CREATE" -eq 0 ] && [ "$NO_SIGN" -eq 1 ]
     then
-        echo "[INFO] Option \`--no-sign\` is meaningless when not creating a tag."
+        printf "%b Option \`--no-sign\` is meaningless when not creating a tag.\n" "$INFO"
     fi
 }
 
 if ! git diff --exit-code --quiet
 then
-    echo "$ERROR Git repository is dirty, aborting..."
+    printf "%b Git repository is dirty, aborting...\n" "$ERROR"
     exit 1
 fi
 
 if [ -z "$TAG" ]
 then
-    echo "$ERROR Must specify a tag name, exiting."
+    printf "%b Must specify a tag name, exiting.\n" "$ERROR"
     usage
     exit 1
 fi
@@ -94,7 +94,7 @@ fi
 #   2. Use TAG, if MESSAGE isn't set.
 if [ "$NO_SIGN" -eq 0 ] && [ -z "$MESSAGE" ]
 then
-    echo "[INFO] MESSAGE is null, using TAG for tag signing."
+    printf "%b MESSAGE is null, using TAG for tag signing.\n" "$INFO"
 fi
 
 # First, checkout the master branch, because we need to tag the release.
@@ -120,7 +120,7 @@ if [ "$NO_RELEASE" -eq 1 ]
 then
     if ! sudo systemctl stop awesome-release.path
     then
-        echo "do something here"
+        printf "do something here\n"
     fi
 fi
 
@@ -141,13 +141,13 @@ if ! sudo systemd-nspawn \
     --bind /run/user/1000/gnupg/S.gpg-agent:/root/.gnupg/S.gpg-agent \
     --quiet
 then
-    echo "do something here"
+    printf "do something here\n"
 fi
 
 # The service should always be on, because it was enabled.
 if ! sudo systemctl restart awesome-release.path
 then
-    echo "do something here"
+    printf "do something here\n"
 fi
 
 # TODO: Should this script get the branch name before checking out the tag

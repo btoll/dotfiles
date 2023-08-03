@@ -8,16 +8,16 @@
 set -eo pipefail
 
 usage() {
-    echo "git-hooks"
-    echo
-    echo "Usage: git hooks --hooks TYPES"
-    echo
-    echo "Args:"
-    echo "--clean       Before installing any hooks, delete .git/hooks/pre-commit*"
-    echo "--help,  -h   Help."
-    echo "--type,  -t   Comma-separated string of directory names that hold the"
-    echo "              hooks to be installed."
-    echo "              Types: go, js, py, _ (misc)"
+    printf "git-hooks
+
+Usage: git hooks --hooks TYPES
+
+Args:
+--clean       Before installing any hooks, delete .git/hooks/pre-commit*
+--help,  -h   Help.
+--type,  -t   Comma-separated string of directory names that hold the
+              hooks to be installed.
+              Types: go, js, py, _ (misc)\n"
 }
 
 if [ "$#" -gt 0 ]; then
@@ -27,7 +27,7 @@ if [ "$#" -gt 0 ]; then
             --clean) CLEAN=1 ;;
             --help|-h) usage; exit 0 ;;
             --type|-t) shift; HOOKS="$1" ;;
-            *) echo "$ERROR Unrecognized option \`$OPT\`."; usage; exit 1 ;;
+            *) printf "%b Unrecognized option \`%s\`.\n" "$ERROR" "$OPT"; usage; exit 1 ;;
         esac
         shift
     done
@@ -35,7 +35,7 @@ fi
 
 if [ -z "$HOOKS" ]
 then
-    echo "$ERROR No hooks given."
+    printf "%b No hooks given.\n" "$ERROR"
     usage
     exit 1
 fi
@@ -77,7 +77,7 @@ do
             fi
         done
     else
-        echo "$ERROR Could not install Git hooks."
+        printf "%b Could not install Git hooks.\n" "$ERROR"
     fi
 done
 

@@ -7,8 +7,8 @@ FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null)
 
 echo "$INFO Running ${BOLD}EOF${OFF} pre-commit hook..."
 
-for F in $FILES; do
-    MIMETYPE=$(file --mime-type -b "$F")
+for file in $FILES; do
+    MIMETYPE=$(file --mime-type -b "$file")
 
     if [[
         ( "$MIMETYPE" == image/gif ) ||
@@ -19,8 +19,8 @@ for F in $FILES; do
         continue
     fi
 
-    if [[ $(awk 'END{print ($0=="")}' "$F" 2> /dev/null) == 0 ]]; then
-        echo "$ERROR The script $F does not end with a blank line."
+    if [[ $(awk 'END{print ($0=="")}' "$file" 2> /dev/null) == 0 ]]; then
+        echo "$ERROR The script $file does not end with a blank line."
         EXIT_CODE=1
     fi
 done
