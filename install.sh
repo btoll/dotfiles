@@ -17,6 +17,7 @@ install_package tput
 SUCCESS="$(tput setaf 5)[$0] $(tput setaf 2)[SUCCESS]$(tput sgr0)"
 
 PACKAGES=(
+    bash-completion
     cowsay
     curl
     feh
