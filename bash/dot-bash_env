@@ -29,7 +29,7 @@ export GOBIN="$GOPATH/bin"
 export GOROOT=/usr/local/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
 
-export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$GOBIN:$GOROOT/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # This is used in the `git_init` script.
 export GIT_HOOKS="$HOME/dotfiles/git-tools/hooks"
