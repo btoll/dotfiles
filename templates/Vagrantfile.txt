@@ -30,6 +30,10 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "shell", inline: <<-SHELL
         apt-get update
+
+        # Fixes the "-bash: warning: setlocale: LC_ALL: cannot change locale (en_IN.UTF-8)" warning.
+        # Also, fixes the same warnings for Perl.
+        localedef -i en_US -f UTF-8 en_US.UTF-8
     SHELL
 end
 
