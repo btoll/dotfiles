@@ -102,11 +102,11 @@ done
 #   vim-plug
 
 # https://github.com/junegunn/fzf
+# `~/.fzf/bin` is appended to `PATH` when `~/.fzf.bash` is sourced in `.bash_vendor`.
 if [ ! -d "$HOME/.fzf" ]
 then
     git clone --depth 1 git@github.com:junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --completion --key-bindings --no-update-rc
-    sudo cp "$HOME/.fzf/bin/fzf*" /usr/local/bin
     printf "%b Installed \`fzf\`.\n" "$SUCCESS"
 fi
 
