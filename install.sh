@@ -101,6 +101,10 @@ done
 #   fzf
 #   vim-plug
 
+# We could go through contortions to determine if the pubkey is already in
+# known_hosts, but it's not worth it just to prevent a possible duplicate.
+ssh-keyscan github.com >> "$HOME/.ssh/known_hosts"
+
 # https://github.com/junegunn/fzf
 # `~/.fzf/bin` is appended to `PATH` when `~/.fzf.bash` is sourced in `.bash_vendor`.
 if [ ! -d "$HOME/.fzf" ]
