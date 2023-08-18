@@ -39,6 +39,7 @@ if [ "$#" -gt 0 ]; then
             --no-release) NO_RELEASE=1 ;;
             --no-sign) NO_SIGN=1 ;;
             --tag|-t) shift; TAG="$1" ;;
+            *) printf "%b Unknown option \`%s\`.\n" "$ERROR" "$OPT"; usage; exit 1 ;;
         esac
         shift
     done
