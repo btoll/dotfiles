@@ -57,11 +57,11 @@ bp() {
         if ! stat "$1" &> /dev/null
         then
             case "$1" in
-                Dockerfile)      vim -c ":read ~/templates/dockerfile.txt" "$1" ;;
-                Makefile)        vim -c ":read ~/templates/Makefile.txt" "$1" ;;
-                Vagrantfile)     vim -c ":read ~/templates/Vagrantfile.txt" "$1" ;;
-                *.elm)           vim -c ":read ~/templates/elm.txt" "$1" ;;
-                *.html)          vim -c ":read ~/templates/html.txt" "$1" ;;
+                Dockerfile)      vim -c ":read ~/templates/Dockerfile" "$1" ;;
+                Makefile)        vim -c ":read ~/templates/Makefile" "$1" ;;
+                Vagrantfile)     vim -c ":read ~/templates/vagrant/Vagrantfile" "$1" ;;
+                *.elm)           vim -c ":read ~/templates/elm" "$1" ;;
+                *.html)          vim -c ":read ~/templates/html" "$1" ;;
                 *)               vim -c ":normal ibp" "$1" ;;
             esac
         else
@@ -470,6 +470,15 @@ toggle_sound() {
     amixer sset Master unmute
     amixer sset Headphone unmute
     amixer sset Speaker unmute
+}
+
+vagrant_init() {
+    if [ -n "$1" ]
+    then
+        mkdir -p "$1" && cd "$_"
+    fi
+
+    cp -r "$HOME/templates/vagrant" $(pwd)
 }
 
 wifi_connect() {
