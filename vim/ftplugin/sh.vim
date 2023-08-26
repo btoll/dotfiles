@@ -1,4 +1,4 @@
-inoreabbrev bp #!/bin/bash<cr><cr>set -euo pipefail<cr><cr>umask 0022<cr><cr>
+inoreabbrev bp #!/bin/bash<cr><cr>set -euo pipefail<cr><cr>LANG=C<cr>umask 0022<cr><cr>
 
 nnoremap <leader>c mq0i#<esc>`q
 nnoremap <leader>C 0x<cr>

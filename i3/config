@@ -186,7 +186,7 @@ bindsym $mod+shift+x exec --no-startup-id $i3lockwall
 
 # Set background image.
 # sudo apt-get install feh -y
-exec_always --no-startup-id feh --bg-fill $HOME/berlin_cathedral.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/millersburg_ferry.png
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
