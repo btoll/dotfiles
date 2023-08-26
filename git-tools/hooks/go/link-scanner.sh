@@ -4,7 +4,7 @@ set -uo pipefail
 
 if ! command -v link-scanner > /dev/null
 then
-    echo "$INFO ${BOLD}link-scanner${OFF} is not present on the system..."
+    echo -e "$INFO ${BOLD}link-scanner${OFF} is not present on the system..."
     exit 0
 fi
 
@@ -13,7 +13,7 @@ FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep ".md\b")
 
 if [ -n "$FILES" ]
 then
-    echo "$INFO Running ${BOLD}link-scanner${OFF} pre-commit hook..."
+    echo -e "$INFO Running ${BOLD}link-scanner${OFF} pre-commit hook..."
 
     for file in $FILES
     do
@@ -25,7 +25,7 @@ then
 
     if [ $EXIT_CODE -eq 0 ]
     then
-        echo "$INFO Completed successfully."
+        echo -e "$INFO Completed successfully."
     fi
 fi
 

@@ -70,7 +70,7 @@ do
         for hook in "$GIT_HOOKS/$extension/"*
         do
             hook_name="$(basename "$hook")"
-            read -rp "Install $hook_name [Y/n]: " key
+            read -rp "Install $hook_name? [Y/n]: " key
             if [ "$key" = "" ] || [ "$key" = "Y" ] || [ "$key" = "y" ]
             then
                 git config --local --add hooks.pre-commit.hook "$hook_name"

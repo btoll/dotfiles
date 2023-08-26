@@ -7,12 +7,12 @@ EXIT_CODE=0
 FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep ".js\b")
 
 if [ -z "$FILES" ]; then
-    echo "$INFO There is nothing to lint!"
+    echo -e "$INFO There is nothing to lint!"
 else
     # Find the local version and use rather than the global one.
     ESLINT=$(npm bin)/eslint
 
-    echo "$INFO Running ${BOLD}ESLint${OFF} pre-commit hook..."
+    echo -e "$INFO Running ${BOLD}ESLint${OFF} pre-commit hook..."
 
     for F in $FILES; do
         "$ESLINT" "$F" 2> /dev/null
@@ -24,7 +24,7 @@ else
     done
 
     if [ $EXIT_CODE -eq 0 ]; then
-        echo "$INFO Completed successfully."
+        echo -e "$INFO Completed successfully."
     fi
 fi
 

@@ -5,7 +5,7 @@ set -uo pipefail
 EXIT_CODE=0
 FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null)
 
-echo "$INFO Running ${BOLD}EOF${OFF} pre-commit hook..."
+echo -e "$INFO Running ${BOLD}EOF${OFF} pre-commit hook..."
 
 for file in $FILES; do
     MIMETYPE=$(file --mime-type -b "$file")
@@ -20,13 +20,13 @@ for file in $FILES; do
     fi
 
     if [[ $(awk 'END{print ($0=="")}' "$file" 2> /dev/null) == 0 ]]; then
-        echo "$ERROR The script $file does not end with a blank line."
+        echo -e "$ERROR The script $file does not end with a blank line."
         EXIT_CODE=1
     fi
 done
 
 if [ $EXIT_CODE -eq 0 ]; then
-    echo "$INFO Completed successfully."
+    echo -e "$INFO Completed successfully."
 fi
 
 exit $EXIT_CODE
