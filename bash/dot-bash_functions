@@ -478,7 +478,7 @@ vagrant_init() {
         mkdir -p "$1" && cd "$_"
     fi
 
-    cp -ir "$HOME/templates/vagrant" $(pwd)
+    cp -ir "$HOME/templates/vagrant/"* $(pwd)
 }
 
 wifi_connect() {
