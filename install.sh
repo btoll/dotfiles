@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Note this script is to be run on Debian.
+# It will fail on other distros, even Debian-derivatives like Ubuntu.
+# ( For example, Ubuntu doesn't have `kitty`, and it downloads an older
+# version of `stow` that doesn't support the `--dotfiles` option.
+# There could be more. )
+# Deal with it.
+
 set -euo pipefail
 
 install_package() {
@@ -20,10 +27,12 @@ PACKAGES=(
     bash-completion
     cowsay
     curl
+    dmenu
     feh
     fortune
     git
     i3
+    i3status
     kitty
     silversearcher-ag
     stow
@@ -51,6 +60,7 @@ TOOLS=(
     git-tools
     gnupg
     i3
+    systemd
     templates
     tmux
     vim
@@ -72,6 +82,9 @@ do
         i3)
             mkdir -p "$HOME/.config/$tool"
             stow --dotfiles --target "$HOME/.config/$tool" "$tool"
+            ;;
+        systemd)
+            sudo cp "$tool"/* "/lib/systemd/system"
             ;;
         templates)
             mkdir -p "$HOME/$tool"
