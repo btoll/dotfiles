@@ -11,7 +11,7 @@
 	# https://security.stackexchange.com/questions/153579/is-it-safe-to-share-your-gitconfigs-user-signingkey-value-with-the-world
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key
 	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/associating-an-email-with-your-gpg-key
-	signingkey = 58636E4043326E8C
+	signingkey = F55F0DBA9BE2F652
 [alias]
 	br = branch
 	# -S|-s = GPG-sign commit.

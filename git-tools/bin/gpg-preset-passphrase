@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # This will target the signing subkey.
-KEYGRIP=$(gpg --list-secret-keys --with-keygrip Debian \
+KEYGRIP=$(gpg --list-secret-keys --with-keygrip ben@benjamintoll.com \
     | grep -A1 "[S]" \
     | tail -1 \
     | awk '{print $3}')

@@ -238,7 +238,7 @@ exec --no-startup-id $browser
 for_window [title="alsamixer"] move window to scratchpad, scratchpad show
 for_window [title="irssi"] move window to scratchpad, scratchpad show
 # WM_CLASS(STRING) = "Mail", "thunderbird-default"
-for_window [class="thunderbird-default"] move window to scratchpad, scratchpad show
+for_window [class="thunderbird"] move window to scratchpad, scratchpad show
 for_window [class="Proton Mail Bridge"] move window to scratchpad, scratchpad show
 
 exec --no-startup-id $editor --title=alsamixer alsamixer
