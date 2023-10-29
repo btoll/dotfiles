@@ -51,6 +51,8 @@ export GIT_HOOKS="$HOME/dotfiles/git-tools/hooks"
 eval "$(gpg-agent --daemon 2> /dev/null)"
 export GPG_TTY=$(tty)
 
+#eval "$(ssh-agent -s)"
+
 # https://duckduckgo.com/?q=GREP_OPTIONS+is+deprecated%3B+please+use+an+alias+or+script
 unset GREP_OPTIONS
 

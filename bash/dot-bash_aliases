@@ -34,6 +34,7 @@ alias vi="vim"
 # Use single quotes so the command substitution isn't performed
 # until the command is executed.
 alias vimf='vim $(fzf --border-label="i like dogs")'
+alias who="who --heading --all" # same as -b -d --login -p -r -t -T -u
 
 # Human readable.
 alias df="df -h"
