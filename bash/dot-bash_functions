@@ -473,12 +473,21 @@ toggle_sound() {
 }
 
 vagrant_init() {
+    local hostname
+
     if [ -n "$1" ]
     then
         mkdir -p "$1" && cd "$_"
+        hostname="$1"
+    else
+        hostname="$(basename $(pwd))"
+        echo $hostname
     fi
 
     cp -ir "$HOME/templates/vagrant/"* $(pwd)
+    # Set hostname in Vagrantfiles:
+    # config.vm.hostname = "vagrant-HOSTNAME"
+    sed -i "s/HOSTNAME/$hostname/" $(pwd)/Vagrantfile*
 }
 
 wifi_connect() {
