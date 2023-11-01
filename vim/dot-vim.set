@@ -56,6 +56,8 @@ set thesaurus+=/usr/share/thesaurus/mthesaur.txt
 " Turn on line numbers.
 set number
 
+set relativenumber
+
 " Turn off error sounds and screen flashing (visual bell).
 set vb t_vb=
 
