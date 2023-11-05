@@ -66,11 +66,13 @@ if executable('ag')
 endif
 
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
-Plug 'AndrewRadev/splitjoin.vim'
+"Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bitc/vim-bad-whitespace'
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
 Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdtree'
+
+"Plug 'scrooloose/nerdtree'
+"
 " Install instructions:
 " https://github.com/ycm-core/YouCompleteMe#linux-64-bit
 "Plug 'ycm-core/YouCompleteMe'
@@ -94,7 +96,16 @@ let g:go_version_warning = 0
 
 "Plug 'aquasecurity/vim-trivy'
 
-Plug 'hashivim/vim-terraform.git'
+"Plug 'hashivim/vim-terraform.git'
+
+" The default netrw plugin.
+let g:netrw_banner=0
+let g:netrw_browse_split=4 " open in prior window
+let g:netrw_altv=1         " open splits to the right
+let g:netrw_liststyle=3    " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+' " this is also hiding hidden files
+let g:netrw_winsize = 25
 
 call plug#end()
 

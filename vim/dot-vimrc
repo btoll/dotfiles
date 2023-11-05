@@ -23,3 +23,6 @@ if has("autocmd")
     endif
 endif
 
+" Create ctags jumping.
+command! MakeTags !ctags -R .
+

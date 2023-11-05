@@ -28,6 +28,7 @@ PACKAGES=(
     cowsay
     curl
     dmenu
+    exuberant-ctags
     feh
     fortune
     git
