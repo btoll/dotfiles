@@ -24,7 +24,7 @@ inoremap <c-l> <esc>:b#<cr>
 nnoremap <leader><space> :noh<cr>
 
 """ toggle!
-nnoremap <leader>n :setlocal number!<cr>
+nnoremap <leader>n :setlocal number! relativenumber!<cr>
 nnoremap <leader>p :setlocal paste!<cr>
 nnoremap <leader>s :setlocal spell!<cr>
 

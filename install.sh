@@ -33,6 +33,7 @@ PACKAGES=(
     fortune
     git
     i3
+    i3lock
     i3status
     kitty
     silversearcher-ag
@@ -82,7 +83,7 @@ do
             ;;
         i3)
             mkdir -p "$HOME/.config/$tool"
-            stow --dotfiles --target "$HOME/.config/$tool" "$tool"
+            stow --target "$HOME/.config/$tool" "$tool"
             ;;
         systemd)
             sudo cp "$tool"/* "/lib/systemd/system"

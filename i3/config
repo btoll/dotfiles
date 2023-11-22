@@ -29,7 +29,7 @@ set $browser firefox
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 12
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -148,8 +148,11 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# Maybe check out:
+# https://github.com/tobi-wan-kenobi/bumblebee-status
 bar {
-        status_command i3status
+        status_command i3status --conf $HOME/.config/i3/i3status.conf
+        position bottom
 }
 
 ######################################
@@ -181,12 +184,12 @@ bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 
 # Lock screen.
 # Only `png` files are supported.
-set $i3lockwall i3lock -i $HOME/bulldog.png
+set $i3lockwall i3lock -i $HOME/pictures/bulldog.png
 bindsym $mod+shift+x exec --no-startup-id $i3lockwall
 
 # Set background image.
 # sudo apt-get install feh -y
-exec_always --no-startup-id feh --bg-fill $HOME/millersburg_ferry.png
+exec_always --no-startup-id feh --bg-fill $HOME/pictures/rory_gallagher.jpg
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
@@ -235,14 +238,21 @@ exec --no-startup-id $browser
 # Note that we're targeting the `alsamixer` program running in the `kitty`
 # terminal because if we do `[class="kitty"]` it will move the editor and
 # every window that's running `kitty` to the scratchpad, which is not good.
-for_window [title="alsamixer"] move window to scratchpad, scratchpad show
-for_window [title="irssi"] move window to scratchpad, scratchpad show
+#for_window [title="alsamixer"] move window to scratchpad, scratchpad show
+#for_window [title="irssi"] move window to scratchpad, scratchpad show
 # WM_CLASS(STRING) = "Mail", "thunderbird-default"
 for_window [class="thunderbird"] move window to scratchpad, scratchpad show
-for_window [class="Proton Mail Bridge"] move window to scratchpad, scratchpad show
+#for_window [class="Proton Mail Bridge"] move window to scratchpad, scratchpad show
 
-exec --no-startup-id $editor --title=alsamixer alsamixer
-exec --no-startup-id $editor --title=irssi irssi
+#exec --no-startup-id $editor --title=alsamixer alsamixer
+#exec --no-startup-id $editor --title=irssi irssi
 exec --no-startup-id thunderbird
-exec --no-startup-id protonmail-bridge
+#exec --no-startup-id protonmail-bridge
+
+# Hide side borders when there's only one window.
+hide_edge_borders smart
+
+#gaps inner 8
+#gaps outer 8
+#smart_gaps on
 

@@ -48,7 +48,7 @@ then
 fi
 
 # Let's set a more secure umask.
-umask 0077
+#umask 0077
 
 # Map Caps Lock to Ctrl.
 # Note that I'm now doing this system-wide in `/etc/default/keyboard`:
