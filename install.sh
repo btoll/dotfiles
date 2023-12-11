@@ -25,17 +25,21 @@ SUCCESS="$(tput setaf 5)[$0] $(tput setaf 2)[SUCCESS]$(tput sgr0)"
 
 PACKAGES=(
     bash-completion
+    bsdmainutils
     cowsay
     curl
     dmenu
     exuberant-ctags
     feh
     fortune
+    gdb
     git
     i3
     i3lock
     i3status
     kitty
+    python3
+    python3-pip
     silversearcher-ag
     stow
     tmux
