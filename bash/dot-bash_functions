@@ -208,14 +208,13 @@ hexbits() {
         printf "Usage: hexbits <hexadecimal> [number of display bytes]\n"
         printf "For example: hexbits 0x646f67 2\n"
     else
-        asbits `htoi "$1"` ${2:-4}
+        asbits $(htoi "$1") ${2:-4}
     fi
 }
 
 h() {
     if [ "$#" -eq 0 ]; then
-        printf "Usage: h <search_string>\n"
-        printf "For example: h foobar\n"
+        printf "Usage: h SEARCH_STRING\n"
     else
         history | ag "$1"
     fi
