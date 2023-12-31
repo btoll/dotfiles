@@ -6,5 +6,5 @@
 
 ## Author
 
-Benjamin Toll
+[Benjamin Toll](https://benjamintoll.com)
 

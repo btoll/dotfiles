@@ -25,12 +25,14 @@ SUCCESS="$(tput setaf 5)[$0] $(tput setaf 2)[SUCCESS]$(tput sgr0)"
 
 PACKAGES=(
     bash-completion
+    bc
     bsdmainutils
     cowsay
     curl
     dmenu
     exuberant-ctags
     feh
+    fonts-noto
     fortune
     gdb
     git

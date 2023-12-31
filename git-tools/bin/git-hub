@@ -53,27 +53,31 @@ Args:
 }
 
 set_github_url() {
-    local url
-    url=$(git ls-remote --get-url)
+    # If the url begins with `https://`, leave it be (except if it has the `.git` "extension").
+    # Else, if it's a `git` url, we need to change it to an `https://` scheme.
+    GITHUB_URL=$(git ls-remote --get-url)
 
     # If $GITHUB_URL begins with "git", i.e., git@github.com:btoll/utley
-    if [[ "$url" == git* ]]; then
+    if [[ "$GITHUB_URL" == git* ]]
+    then
         # Replaces first match of ":" with "/".
-        GITHUB_URL=${url/://}
+        GITHUB_URL=${GITHUB_URL/://}
 
         # Replaces first match of "git@" with "https://".
         GITHUB_URL=${GITHUB_URL/git@/https://}
     fi
 
     # If $GITHUB_URL ends with ".git", i.e., btoll/stymie.git
-    if [[ "$GITHUB_URL" == *.git ]]; then
+    if [[ "$GITHUB_URL" == *.git ]]
+    then
         # Cut ".git"
         GITHUB_URL=${GITHUB_URL%.git}
     fi
 }
 
 # Swap out for user-provided options if given.
-while [ "$#" -gt 0 ]; do
+while [ "$#" -gt 0 ]
+do
     case "$1" in
         --blame) BLAME=true ;;
         --branch|-b) shift; REMOTE_BRANCH=$1 ;;
@@ -99,39 +103,47 @@ set_github_url
 
 # Get the path of the cwd relative to the top-level dir.
 REL_PATH=$(git rev-parse --show-prefix)
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
+#BRANCH=$(git rev-parse --abbrev-ref HEAD)
+BRANCH=$(git branch --show-current)
 
 popd > /dev/null
 
-if [[ ( -n "$HASH" ) || ( -n "$GET_HASH" ) ]]; then
+if [[ ( -n "$HASH" ) || ( -n "$GET_HASH" ) ]]
+then
     # If given a branch name or tag, simply get its hash.
-    if [[ -n "$GET_HASH" ]]; then
+    if [[ -n "$GET_HASH" ]]
+    then
         HASH=$(git rev-parse "$GET_HASH")
     fi
 
     GITHUB_URL+="/commit/$HASH"
 else
-    if [ -n "$FILE" ]; then
+    if [ -n "$FILE" ]
+    then
         REL_PATH+=$(basename "$FILE")
     fi
 
-    if [[ -n "$REMOTE_BRANCH" ]]; then
+    if [[ -n "$REMOTE_BRANCH" ]]
+    then
         BRANCH="$REMOTE_BRANCH"
     fi
 
     # If the relative path is empty, then we know that it's the top-level dir.
     # In this case, don't futz with the url and skip this conditional.
-    if [ -n "$REL_PATH" ]; then
+    if [ -n "$REL_PATH" ]
+    then
         TOKEN=$($BLAME && echo "blame" || echo "blob")
         GITHUB_URL+="/$TOKEN/$BRANCH/$REL_PATH"
     fi
 fi
 
-if [ -n "$RANGE" ]; then
+if [ -n "$RANGE" ]
+then
     GITHUB_URL+="#$RANGE"
 fi
 
-if [ "$ARCH" == "Linux" ]; then
+if [ "$ARCH" == "Linux" ]
+then
     xdg-open "$GITHUB_URL" 2> /dev/null
 else
     open "$GITHUB_URL" 2> /dev/null

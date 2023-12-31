@@ -39,6 +39,7 @@ then
     PROJECT_DIR=$(pwd)
 fi
 
+# TODO: This isn't including hidden files like `.gitignore`.
 for file in "$HOME/dotfiles/bootstrap/"*
 do
     cp -i "$file" "$PROJECT_DIR"
