@@ -85,6 +85,9 @@ export DEBFULLNAME="Benjamin Toll"
 #    export DEB_VENDOR="debian"
 #fi
 
+# https://github.com/sharkdp/bat#man
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+
 if [ -f "$HOME/.kube/config" ]
 then
     export KUBECONFIG="$HOME/.kube/config"
