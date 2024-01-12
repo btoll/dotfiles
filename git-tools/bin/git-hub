@@ -54,7 +54,7 @@ Args:
 
 set_github_url() {
     # If the url begins with `https://`, leave it be (except if it has the `.git` "extension").
-    # Else, if it's a `git` url, we need to change it to an `https://` scheme.
+    # Else, if it's a `git` or `ssh` url, we need to change it to an `https://` scheme.
     GITHUB_URL=$(git ls-remote --get-url)
 
     # If $GITHUB_URL begins with "git", i.e., git@github.com:btoll/utley
@@ -67,7 +67,21 @@ set_github_url() {
         GITHUB_URL=${GITHUB_URL/git@/https://}
     fi
 
-    # If $GITHUB_URL ends with ".git", i.e., btoll/stymie.git
+    # If the url scheme has been rewritten by a git config key, such as:
+    #
+    # [url "ssh://git@github.com/"]
+	#         insteadOf = https://github.com/
+    #
+    # The result will look like this:
+    #    ssh://git@github.com/schacon/ticgit
+    #
+    # We need to change this, too.
+    if [[ "$GITHUB_URL" == ssh* ]]
+    then
+        GITHUB_URL=${GITHUB_URL/ssh:\/\/git@/https://}
+    fi
+
+    # Lastly, if $GITHUB_URL ends with ".git", i.e., btoll/stymie.git
     if [[ "$GITHUB_URL" == *.git ]]
     then
         # Cut ".git"
