@@ -25,6 +25,7 @@ SUCCESS="$(tput setaf 5)[$0] $(tput setaf 2)[SUCCESS]$(tput sgr0)"
 
 PACKAGES=(
     bash-completion
+    bat
     bc
     bsdmainutils
     cowsay
