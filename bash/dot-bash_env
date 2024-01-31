@@ -8,7 +8,7 @@ export HISTSIZE=500000
 export HISTFILESIZE=100000
 
 # Let's ignore some commands.
-export HISTIGNORE="&:[ ]*:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:p:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
+export HISTIGNORE="&:[ ]*:\.\.:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:p:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
 
 # TODO: Use /etc/bash_completion.d/git-prompt?
 # the `|$SHLVL:$0|` bits are the number of shell levels and the type
@@ -26,6 +26,8 @@ export PS1='$(tput bold)$(tput setaf 4)\u${ANIMALS[$INDEX]}\h $(tput setaf 2)$(t
 # Use vim as default editor instead of nano.
 export EDITOR=vim
 
+export KUBE_EDITOR=$EDITOR
+
 # Used by i3's /usr/bin/i3-sensible-terminal script (and other scripts?).
 export TERMINAL=kitty
 
@@ -36,7 +38,8 @@ export GOBIN="$GOPATH/bin"
 export GOROOT=/usr/local/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
 
-export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# https://krew.sigs.k8s.io/
+export PATH="$HOME/.krew/bin:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 if [ -d "$GOROOT" ]
 then
