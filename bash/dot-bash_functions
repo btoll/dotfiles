@@ -4,7 +4,7 @@ bag() {
         printf "Usage: bag <pattern> [<search_dir>]\n"
     else
         local startsearch="$2"
-        vim "+/$1" $(ag -ilw "$1" ${startsearch:="."} | uniq)
+        vim "+/$1" $(ag -il "$1" ${startsearch:="."} | uniq)
     fi
 }
 

@@ -15,7 +15,7 @@ export HISTIGNORE="&:[ ]*:\.\.:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:p:wh
 # of the current shell (if prepended by a hyphen (-bash), it's a
 # login shell.
 # https://www.piliapp.com/symbol/animals/
-ANIMALS=( 🐧 🐷 🐝 🐶 🦜 🐢 🐑 )
+ANIMALS=( 🐧 🐔 🐝 🐶 🦜 🐢 🐑 )
 # Let's rotate a different animal depending on the day of the week.
 # %u = day of week (1..7); 1 is Monday (from `man date`)
 WEEKDAY=$(date +%u)

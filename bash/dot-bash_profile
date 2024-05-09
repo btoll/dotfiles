@@ -7,3 +7,5 @@ if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
 fi
 
+export GOPATH=/home/btoll/projects/veriforce/pecteam/devops/terraform-compliancepro/_go_src
+export GOBIN=/home/btoll/projects/veriforce/pecteam/devops/terraform-compliancepro/_go_bin

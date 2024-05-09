@@ -82,6 +82,8 @@ alias g="git"
 alias gi="git"
 alias load="git load"
 alias dirty="git dirty"
+alias bootstrap="git bs"
+alias bs="git bs"
 
 alias ..="cd .."
 alias ..1="cd .."
