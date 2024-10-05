@@ -17,6 +17,10 @@
 	# -S|-s = GPG-sign commit.
 	ci = commit -S
 	ca = commit -S --amend
+	tag = tag -s
+	ci = commit
+	ca = commit --amend
+	tag = tag -s
 	co = checkout
 	d = diff
 	dirty = ls --dirty -e
@@ -29,7 +33,8 @@
 	s = status --short --branch
 	st = status --short --branch
 [commit]
-	gpgsign = true
+#	gpgsign = true
+	gpgsign = false
 [core]
 	editor = /usr/bin/vim
 	# FX = Have the pager automatically exit if all the diff text fits on the screen.
