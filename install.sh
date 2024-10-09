@@ -46,10 +46,12 @@ PACKAGES=(
     silversearcher-ag
     stow
     tmux
+    tree
     # Install the `setxkbmap` binary needed by `.bash_options` (sets caps lock to ctrl key).
     x11-xkb-utils
     xsel
     vim
+    wget
 )
 
 for package in "${PACKAGES[@]}"
@@ -126,20 +128,22 @@ done
 # We could go through contortions to determine if the pubkey is already in
 # known_hosts, but it's not worth it just to prevent a possible duplicate.
 ssh-keyscan github.com >> "$HOME/.ssh/known_hosts"
+ssh-keyscan gitlab.com >> "$HOME/.ssh/known_hosts"
 
 # https://github.com/junegunn/fzf
 # `~/.fzf/bin` is appended to `PATH` when `~/.fzf.bash` is sourced in `.bash_vendor`.
 if [ ! -d "$HOME/.fzf" ]
 then
-    git clone --depth 1 git@github.com:junegunn/fzf.git "$HOME/.fzf"
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --completion --key-bindings --no-update-rc
     printf "%b Installed \`fzf\`.\n" "$SUCCESS"
 fi
 
-# https://github.com/tmux-plugins/tpm
-if [ ! -d "$HOME/.tmux" ]
+# This is needed to auto-install any tmux plugins.
+# See `$HOME/.tmux.conf`.
+if [ -d "$HOME/.tmux" ]
 then
-    git clone git@github.com:tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
 if [ ! -d "$HOME/.vim/autoload" ] || [ ! -f "$HOME/.vim/autoload/plug.vim" ]
@@ -156,8 +160,10 @@ fi
 vim +'PlugInstall --sync' +qa
 printf "%b Installed vim plugins.\n" "$SUCCESS"
 
-#source "$HOME/.fzf.bash"
-#source "$HOME/.bash_profile"
+source "$HOME/.fzf.bash"
+source "$HOME/.bash_profile"
 
 printf "%b The dotfiles and dev dependencies have been succesfully installed!\n" "$SUCCESS"
+
+#. install.d/
 

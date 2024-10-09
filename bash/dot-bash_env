@@ -39,7 +39,7 @@ export GOROOT=/usr/local/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
 
 # https://krew.sigs.k8s.io/
-export PATH="$HOME/.krew/bin:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="$HOME/.krew/bin:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
 
 if [ -d "$GOROOT" ]
 then
