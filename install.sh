@@ -30,6 +30,7 @@ PACKAGES=(
     bsdmainutils
     cowsay
     curl
+    debootstrap
     dmenu
     exuberant-ctags
     feh
@@ -41,6 +42,7 @@ PACKAGES=(
     i3lock
     i3status
     kitty
+    podman
     python3
     python3-pip
     silversearcher-ag
@@ -166,4 +168,5 @@ source "$HOME/.bash_profile"
 printf "%b The dotfiles and dev dependencies have been succesfully installed!\n" "$SUCCESS"
 
 #. install.d/
+#vagrant plugin install vagrant-libvirt
 

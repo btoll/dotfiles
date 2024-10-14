@@ -58,6 +58,7 @@ set thesaurus+=/usr/share/thesaurus/mthesaur.txt
 " Turn on line numbers.
 set number
 
+" Set the number of lines to jump forwards or backwards relative to the current cursor position.
 set relativenumber
 
 " Turn off error sounds and screen flashing (visual bell).
@@ -87,7 +88,10 @@ set modelines=1
 
 set autoread
 
+" Highlights the current column.
 set cursorcolumn
+
+" Highlights the current line.
 set cursorline
 
 " Search down into subfolders.

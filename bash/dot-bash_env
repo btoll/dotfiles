@@ -69,7 +69,12 @@ export PROMPT_COMMAND="history -a"
 
 # For Vagrant.
 # https://www.vagrantup.com/docs/other/environmental-variables
-export VAGRANT_HOME="$HOME/projects/vagrant-cache"
+if command -v vagrant > /dev/null
+then
+    export VAGRANT_HOME="$HOME/.vagrant"
+    export VAGRANT_DEFAULT_PROVIDER=libvirt
+fi
+
 
 # For ProtonVPN (others?).
 #export $(dbus-launch)
