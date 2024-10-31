@@ -1,5 +1,3 @@
-# shellcheck disable=2139
-
 # `-Wall -Wextra`   = output all warnings
 # `-pedantic`       = be picky about the standard
 # `-std=c2x`        = latest standard version

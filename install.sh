@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=1091
 
 # Note this script is to be run on Debian.
 # It will fail on other distros, even Debian-derivatives like Ubuntu.
@@ -7,7 +8,7 @@
 # There could be more. )
 # Deal with it.
 
-set -euo pipefail
+set -eo pipefail
 
 install_package() {
     local package="$1"
