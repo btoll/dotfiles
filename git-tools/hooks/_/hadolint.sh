@@ -6,7 +6,7 @@ BIN=hadolint
 
 if ! command -v $BIN > /dev/null
 then
-    echo -e "$INFO ${BOLD}link-scanner${OFF} is not present on the system..."
+    echo -e "$INFO ${BOLD}${BIN}${OFF} is not present on the system..."
     exit 0
 fi
 

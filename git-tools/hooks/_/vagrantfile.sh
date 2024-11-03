@@ -1,9 +1,8 @@
 #!/bin/bash
-# shellcheck disable=2063
 
 set -uo pipefail
 
-BIN=shellcheck
+BIN=vagrant
 
 if ! command -v $BIN > /dev/null
 then
@@ -12,15 +11,15 @@ then
 fi
 
 EXIT_CODE=0
-FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep -E "*.[bash|sh]")
+FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep -i Vagrantfile)
 
 if [ -n "$FILES" ]
 then
-    echo -e "$INFO Running ${BOLD}${BIN}${OFF} pre-commit hook..."
+    echo -e "$INFO Running ${BOLD}$BIN${OFF} pre-commit hook..."
 
     for file in $FILES
     do
-        if ! $BIN --shell bash "$file"
+        if ! $BIN validate "$file"
         then
             EXIT_CODE=1
         fi
