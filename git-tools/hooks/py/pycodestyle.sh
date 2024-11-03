@@ -23,11 +23,11 @@ then
         fi
     done
 
-    if [ $EXIT_CODE -eq 0 ]
+    if [ "$EXIT_CODE" -eq 0 ]
     then
         echo -e "$INFO Completed successfully."
     fi
 fi
 
-exit $EXIT_CODE
+exit "$EXIT_CODE"
 

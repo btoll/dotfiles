@@ -1,9 +1,18 @@
 #!/bin/bash
 # shellcheck disable=2153
 
-# This will copy all hooks found within the directories given by the `--hook` options.
-# The installation refers to adding them to the git config.  The user will be queried
-# for each one (yes or no).
+# This will copy all selected hooks found within the directories given by the `--hook`
+# options.  The installation refers to adding them to the git config.  The user will
+# be queried for each one (yes or no).
+
+# TODO:
+# Currently, `--clean` will still leave `.git/config` untouched.
+# For example, after `git-hooks --clean`:
+# [hooks "pre-commit"]
+#       hook = shellcheck.sh
+#       hook = trivy.sh
+#       hook = vagrantfile.sh
+#       hook = link-scanner.sh
 
 set -eo pipefail
 
@@ -33,7 +42,7 @@ if [ "$#" -gt 0 ]; then
     done
 fi
 
-if [ -z "$HOOKS" ]
+if [ -z "$HOOKS" ] && [ -z "$CLEAN" ]
 then
     printf "%b No hooks given.\n" "$ERROR"
     usage
@@ -52,32 +61,35 @@ then
     GIT_HOOKS="$location"
 fi
 
-# In addition to cleaning out a pre-installed pre-commit.d/, we also
-# need to check if this is the first time the script has been run.
-if [ -n "$CLEAN" ] || [ ! -d .git/hooks/pre-commit.d ]
+PRE_COMMIT_D=.git/hooks/pre-commit.d
+
+# Don't remove `pre-commit.sample`.
+if [ -n "$CLEAN" ]
 then
-    rm -rf .git/hooks/pre-commit*
-    mkdir -p .git/hooks/pre-commit.d
+    # TODO: This only allows deletion from root of project.
+    rm -rf .git/hooks/pre-commit{,.d}
+    exit 0
+fi
+
+# This is (possibly) the first time the script has been run.
+if [ ! -d "$PRE_COMMIT_D" ]
+then
+    mkdir -p "$PRE_COMMIT_D"
     cp "$GIT_HOOKS/pre-commit" .git/hooks/
 fi
 
 IFS="," read -ra INCLUDES <<< "$HOOKS"
 for extension in "${INCLUDES[@]}"
 do
-    # Don't overwrite a pre-existing hook file.
-    if cp -ir "$GIT_HOOKS/$extension/"* .git/hooks/pre-commit.d
-    then
-        for hook in "$GIT_HOOKS/$extension/"*
-        do
-            hook_name="$(basename "$hook")"
-            read -rp "Install $hook_name? [Y/n]: " key
-            if [ "$key" = "" ] || [ "$key" = "Y" ] || [ "$key" = "y" ]
-            then
-                git config --local --add hooks.pre-commit.hook "$hook_name"
-            fi
-        done
-    else
-        printf "%b Could not install Git hooks.\n" "$ERROR"
-    fi
+    for hook in "$GIT_HOOKS/$extension/"*
+    do
+        hook_name="$(basename "$hook")"
+        read -rp "Install $hook_name? [Y/n]: " key
+        if [ "$key" = "" ] || [ "$key" = "Y" ] || [ "$key" = "y" ]
+        then
+            cp "$hook" "$PRE_COMMIT_D"
+            git config --local --add hooks.pre-commit.hook "$hook_name"
+        fi
+    done
 done
 

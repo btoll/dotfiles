@@ -4,7 +4,7 @@ set -uo pipefail
 
 BIN=ggshield
 
-if ! command -v "$BIN" > /dev/null
+if ! command -v $BIN > /dev/null
 then
     echo -e "$INFO ${BOLD}${BIN}${OFF} is not present on the system..."
     exit 0
