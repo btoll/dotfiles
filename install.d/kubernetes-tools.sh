@@ -36,7 +36,7 @@ curl -fsSL "https://pkgs.k8s.io/core:/stable:/$MAJOR_MINOR_VERSION/deb/Release.k
     | gpg --dearmor -o /usr/share/keyrings/kubernetes-apt-keyring.gpg && \
     chmod 644 /usr/share/keyrings/kubernetes-apt-keyring.gpg
 
-echo deb [signed-by=/usr/share/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ / \
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" \
     | tee /etc/apt/sources.list.d/kubernetes.list && \
     chmod 644 /etc/apt/sources.list.d/kubernetes.list
 
