@@ -2,9 +2,11 @@
 
 set -uo pipefail
 
+BIN=pytest
+
 if ! command -v pytest > /dev/null
 then
-    echo -e "$INFO ${BOLD}pytest${OFF} is not present on the system..."
+    echo -e "$INFO ${BOLD}${BIN}${OFF} is not present on the system..."
     exit 0
 fi
 
@@ -12,10 +14,10 @@ FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep ".py\b")
 
 if [ -n "$FILES" ]
 then
-    echo -e "$INFO Running ${BOLD}pytest${OFF} pre-commit hook..."
+    echo -e "$INFO Running ${BOLD}${BIN}${OFF} pre-commit hook..."
 
     cd tests || exit
-    pytest -v
+    $BIN -v
     EXIT_CODE="$?"
 
     if [ $EXIT_CODE -eq 0 ]

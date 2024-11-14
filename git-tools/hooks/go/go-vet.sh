@@ -2,7 +2,7 @@
 
 set -uo pipefail
 
-BIN=hadolint
+BIN=go
 
 if ! command -v $BIN > /dev/null
 then
@@ -11,15 +11,15 @@ then
 fi
 
 EXIT_CODE=0
-FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep -i "Dockerfile.*")
+FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep ".go\b")
 
 if [ -n "$FILES" ]
 then
-    echo -e "$INFO Running ${BOLD}${BIN}${OFF} pre-commit hook..."
+    echo -e "$INFO Running ${BOLD}${BIN}-vet${OFF} pre-commit hook..."
 
     for file in $FILES
     do
-        if ! $BIN "$file"
+        if ! $BIN vet "$file"
         then
             EXIT_CODE=1
         fi

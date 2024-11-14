@@ -41,8 +41,9 @@ nnoremap <leader>gb :call Gblame()<cr>
 vnoremap <leader>gr :call Grange()<cr>
 vnoremap <leader>gbr :call Grange(1)<cr>
 
-" Run :GoBuild or :GoTestCompile based on the go file.
-" We'll also trigger this with a macro in `$HOME/.vim/ftplugin/go.vim`.
+" Run :GoBuild or :GoTestCompile based on the go file (i.e., `main.go` or `main_test.go`).
+" This is mapped in `$HOME/.vim/ftplugin/go.vim`.
+" https://github.com/fatih/vim-go/wiki/Tutorial#vimrc-improvements-1
 function! Build_go_files()
     let l:file = expand('%')
     if l:file =~# '^\f\+_test\.go$'

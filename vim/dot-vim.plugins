@@ -75,13 +75,14 @@ Plug 'rking/ag.vim'
 "
 " Install instructions:
 " https://github.com/ycm-core/YouCompleteMe#linux-64-bit
-"Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe'
 
 " https://github.com/fatih/vim-go
 " https://github.com/fatih/vim-go-tutorial
 " To update, :GoUpdateBinaries
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-let g:go_fmt_command = "goimports"
+let g:go_def_mode='gopls'
+let g:go_fmt_command = 'goimports'
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -90,8 +91,11 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+let g:go_info_mode='gopls'
+let g:go_list_type = 'quickfix' " ONLY have quickfix lists (no location lists).
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_test_timeout = '10s'
 let g:go_version_warning = 0
 
 "Plug 'aquasecurity/vim-trivy'

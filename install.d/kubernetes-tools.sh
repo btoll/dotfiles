@@ -40,6 +40,8 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-apt-keyring.gpg] https://pkg
     | tee /etc/apt/sources.list.d/kubernetes.list && \
     chmod 644 /etc/apt/sources.list.d/kubernetes.list
 
+apt-get update
+
 apt-get install -y \
     kubeadm \
     kubectl \

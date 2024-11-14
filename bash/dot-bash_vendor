@@ -1,13 +1,13 @@
-COMPLETION_SCRIPTS=(
+# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+AUTOCOMPLETION_SCRIPTS=(
     .bazel/bin/bazel-complete.bash
     .fzf.bash
     .local/bin/virtualenvwrapper.sh
     cdargs-bash.sh
-    # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     git-completion.bash
 )
 
-for script in "${COMPLETION_SCRIPTS[@]}"
+for script in "${AUTOCOMPLETION_SCRIPTS[@]}"
 do
     [ -f "$HOME/$script" ] && source "$HOME/$script"
 done
@@ -29,5 +29,13 @@ fi
 if command -v helm > /dev/null
 then
     source <(helm completion bash)
+fi
+
+# https://www.vagrantup.com/docs/other/environmental-variables
+if command -v vagrant > /dev/null
+then
+    export VAGRANT_HOME="$HOME/.vagrant"
+    export VAGRANT_DEFAULT_PROVIDER=libvirt
+    source /opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/bash/completion.sh
 fi
 

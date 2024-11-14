@@ -36,7 +36,9 @@
 #	gpgsign = true
 	gpgsign = false
 [core]
-	editor = /usr/bin/vim
+	# Note that I compiled my own Vim binary to have support for Python3 for YouCompleteMe,
+	# so this will have a different path than the usual (non-custom) Vim binary.
+	editor = /usr/local/bin/vim
 	# FX = Have the pager automatically exit if all the diff text fits on the screen.
 	pager = less -RFX
 	# No tabs!

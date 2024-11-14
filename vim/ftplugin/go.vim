@@ -32,7 +32,7 @@ nnoremap <leader>line i/* -<esc>yl59pi */<esc>
 
 nmap <leader>b :<C-u>call Build_go_files()<cr>
 nmap <Leader>cov <Plug>(go-coverage-toggle)
-"nmap <leader>r :!clear<cr><Plug>(go-run)
-nnoremap <leader>r :!clear && go run %<cr>
+nmap <leader>r :!clear<cr><Plug>(go-run)
+"nnoremap <leader>r :!clear && go run %<cr>
 nmap <leader>t <Plug>(go-test)
 

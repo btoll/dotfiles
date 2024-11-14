@@ -12,7 +12,7 @@ fi
 
 echo -e "$INFO Running ${BOLD}${BIN}${OFF} pre-commit hook..."
 
-if ! "$BIN" secret scan pre-commit
+if ! $BIN secret scan pre-commit
 then
     exit 1
 else
