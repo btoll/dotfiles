@@ -6,11 +6,11 @@ BIN=pytest
 
 if ! command -v pytest > /dev/null
 then
-    echo -e "$INFO ${BOLD}${BIN}${OFF} is not present on the system..."
+    echo -e "$WARN ${BOLD}${BIN}${OFF} is not present on the system..."
     exit 0
 fi
 
-FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep ".py\b")
+FILES=$(git diff --diff-filter=d --cached --name-only HEAD 2> /dev/null | grep ".py\b" || true)
 
 if [ -n "$FILES" ]
 then
@@ -22,7 +22,7 @@ then
 
     if [ $EXIT_CODE -eq 0 ]
     then
-        echo -e "$INFO Completed successfully."
+        echo -e "$SUCCESS Completed successfully."
     fi
 fi
 

@@ -163,3 +163,5 @@ else
     open "$GITHUB_URL" 2> /dev/null
 fi
 
+echo "$GITHUB_URL"
+

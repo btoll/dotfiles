@@ -1,30 +1,37 @@
 #!/bin/bash
+# shellcheck disable=1091
+
+. colors.sh
 
 set -euo pipefail
 
-echo "$INFO Unsetting global git aliases..."
-echo
+echo -e "$INFO Unsetting global git aliases..."
+git config --global --unset alias.get-dirty
 git config --global --unset alias.get-hash
 git config --global --unset alias.goto
 
-echo "$INFO Removing symbolic links for git extensions..."
-echo
-rm "$HOME/bin/git-bootstrap"
-rm "$HOME/bin/git-cleanup"
-rm "$HOME/bin/git-init-wrapper"
-rm "$HOME/bin/git-tools"
-rm "$HOME/bin/git-ls"
-rm "$HOME/bin/git-package-and-install"
+BINDIR="$HOME/.local/bin/git-tools"
+echo -e "$INFO Removing symbolic links for git extensions..."
+rm "$BINDIR/git-bootstrap"
+rm "$BINDIR/git-cleanup"
+rm "$BINDIR/git-hooks"
+rm "$BINDIR/git-init-wrapper"
+rm "$BINDIR/git-ls"
+rm "$BINDIR/git-package-and-install"
 
-echo "$INFO Removing git man pages..."
-echo
-rm /usr/local/share/man/man1/git-bootstrap.1
-rm /usr/local/share/man/man1/git-cleanup.1
-rm /usr/local/share/man/man1/git-init-wrapper.1
-rm /usr/local/share/man/man1/git-hub.1
-rm /usr/local/share/man/man1/git-ls.1
-rm /usr/local/share/man/man1/git-package-and-install.1
+SHAREDIR="$HOME/.local/share/git-tools"
+echo -e "$INFO Removing symbolic links for git bootstrap files..."
+rm "$SHAREDIR/LICENSE"
+rm "$SHAREDIR/README.md"
 
-echo
-echo "$INFO Uninstall complete."
+MANDIR=/usr/share/man/man1
+echo -e "$INFO Removing git man pages..."
+rm "$MANDIR/git-bootstrap.1"
+rm "$MANDIR/git-cleanup.1"
+rm "$MANDIR/git-init-wrapper.1"
+rm "$MANDIR/git-hub.1"
+rm "$MANDIR/git-ls.1"
+rm "$MANDIR/git-package-and-install.1"
+
+echo -e "$SUCCESS Uninstall complete."
 

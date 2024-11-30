@@ -63,7 +63,7 @@ while [ "$#" -gt 0 ]; do
     case $OPT in
         --file|-f) shift;
             if [ -z "$1" ]; then
-                echo "$ERROR No file given."
+                echo -e "$ERROR No file given."
                 exit 1
             fi
 
@@ -80,7 +80,7 @@ while [ "$#" -gt 0 ]; do
         --no-remote-delete) NO_REMOTE_DELETE=1 ;;
         --pattern|-p) shift;
             if [ -z "$1" ]; then
-                echo "$ERROR No pattern given."
+                echo -e "$ERROR No pattern given."
                 exit 1
             fi
 
@@ -144,7 +144,7 @@ if [ -z "$DRY_RUN" ] && [ -n "$FILE" ]; then
     printf "%s\n" "${BUFFER[@]}" >> "$FILE"
     # ..and make it executable.
     chmod 701 "$FILE"
-    echo "$SUCCESS Results written to $FILE."
+    echo -e "$SUCCESS Results written to $FILE."
     exit 0
 fi
 
