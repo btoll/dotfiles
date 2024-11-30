@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Will copy every file in $HOME/dotfiles/bootstrap into either the cwd
+# Will copy every file from $HOME/.local/share/git-tools/bootstrap/ into either the cwd
 # or, if given, the location pointed to be `--dir`.
 # Files copied will be `LICENSE`, `README.md`, et al.
 #
@@ -40,7 +40,7 @@ then
 fi
 
 # TODO: This isn't including hidden files like `.gitignore`.
-for file in "$HOME/dotfiles/bootstrap/"*
+for file in "$HOME/.local/share/git-tools/bootstrap/"*
 do
     cp -i "$file" "$PROJECT_DIR"
     if [[ "$file" =~ README ]]
@@ -49,5 +49,5 @@ do
     fi
 done
 
-printf "%b Installed bootstrap files into %s.\n" "$INFO" "$PROJECT_DIR"
+printf "%b Installed bootstrap files into %s.\n" "$SUCCESS" "$PROJECT_DIR"
 

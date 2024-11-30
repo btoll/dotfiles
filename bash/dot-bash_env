@@ -37,7 +37,6 @@ export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export GOROOT=/usr/local/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
-
 # https://krew.sigs.k8s.io/
 export PATH="$HOME/.krew/bin:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
 
@@ -45,9 +44,6 @@ if [ -d "$GOROOT" ]
 then
     export PATH="$GOROOT/bin:$GOBIN:$PATH"
 fi
-
-# This is used in the `git_init` script.
-export GIT_HOOKS="$HOME/dotfiles/git-tools/hooks"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
 # in ~/.gnupg/gpg.conf.

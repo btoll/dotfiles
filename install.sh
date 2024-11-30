@@ -71,7 +71,7 @@ TOOLS=(
     bash
     gdb
     git
-    git-tools
+#    git-tools
     gnupg
     i3
     systemd
@@ -84,11 +84,11 @@ TOOLS=(
 for tool in "${TOOLS[@]}"
 do
     case "$tool" in
-        git-tools)
-            mkdir -p "$HOME/bin"
-            stow --dotfiles --target "$HOME/bin" --dir "$tool" bin
-            #stow --target /usr/share/man/man1/ --dir "$tool" man
-            ;;
+#        git-tools)
+#            mkdir -p "$HOME/bin"
+#            stow --dotfiles --target "$HOME/bin" --dir "$tool" bin
+#             stow --target /usr/share/man/man1/ --dir "$tool" man
+#            ;;
         gnupg)
             mkdir -p "$HOME/.$tool"
             stow --target "$HOME/.$tool" "$tool"

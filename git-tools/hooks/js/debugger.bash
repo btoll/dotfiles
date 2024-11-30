@@ -15,7 +15,7 @@ if [ -n "$FILES" ]; then
 fi
 
 if [ $EXIT_CODE -eq 0 ]; then
-    echo -e "$INFO Completed successfully."
+    echo -e "$SUCCESS Completed successfully."
 fi
 
 exit $EXIT_CODE

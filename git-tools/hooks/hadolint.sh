@@ -9,6 +9,6 @@ umask 0022
 # 1 = program
 # 2 = regex to get changed files
 # 3 = subcommand (if different from program)
-# Note that pycodestyle's error messages are verbose enough that we don't need to have our own.
-verify pycodestyle py
+verify hadolint "Dockerfile.*"
+#FILES=$(git diff-index --cached --name-only HEAD 2> /dev/null | grep -i "Dockerfile.*")
 
