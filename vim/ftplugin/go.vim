@@ -30,9 +30,14 @@ nnoremap <leader>l mqofmt.Println("<c-r>"", <c-r>")<esc>`q
 nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
 nnoremap <leader>line i/* -<esc>yl59pi */<esc>
 
-nmap <leader>b :<C-u>call Build_go_files()<cr>
-nmap <Leader>cov <Plug>(go-coverage-toggle)
-nmap <leader>r :!clear<cr><Plug>(go-run)
+" https://github.com/fatih/vim-go/wiki/Tutorial#vimrc-improvements-1
+nnoremap <leader>b :<C-u>call Build_go_files()<cr>
+nnoremap <Leader>co <Plug>(go-coverage-toggle)
+nnoremap <Leader>cob <Plug>(go-coverage-browser)
+nnoremap <Leader>i <Plug>(go-info)
+nnoremap <leader>r :!clear<cr><Plug>(go-run)
 "nnoremap <leader>r :!clear && go run %<cr>
-nmap <leader>t <Plug>(go-test)
+nnoremap <leader>t <Plug>(go-test)
+nnoremap <leader>tc <Plug>(go-test-compile) " Compiles but does not test!
+nnoremap <leader>tf <Plug>(go-test-func) " Only test the function under the cursor.
 
