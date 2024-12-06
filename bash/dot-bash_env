@@ -40,6 +40,9 @@ export GOROOT=/usr/local/go
 # https://krew.sigs.k8s.io/
 export PATH="$HOME/.krew/bin:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
 
+# This should be temporary.
+export PATH="$PATH:~/.local/bin/backplane/latest"
+
 if [ -d "$GOROOT" ]
 then
     export PATH="$GOROOT/bin:$GOBIN:$PATH"
