@@ -189,7 +189,7 @@ bindsym $mod+shift+x exec --no-startup-id $i3lockwall
 
 # Set background image.
 # sudo apt-get install feh -y
-exec_always --no-startup-id feh --bg-fill $HOME/pictures/rory_gallagher.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/pictures/peanuts.png
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
@@ -222,7 +222,7 @@ bindsym $mod+BackSpace mode "$mode_system"
 # The first string is the instance, the second the class (case sensitive).
 # Or, `xprop | ag WM_CLASS`.
 assign [class=$editor] $workspace1
-assign [class="Firefox-esr"] $workspace2
+assign [class="firefox-esr"] $workspace2
 #assign [class="Pavucontrol"] $workspace3
 
 # Execute the following programs on login.
@@ -242,12 +242,12 @@ exec --no-startup-id $browser
 #for_window [title="irssi"] move window to scratchpad, scratchpad show
 # WM_CLASS(STRING) = "Mail", "thunderbird-default"
 for_window [class="thunderbird"] move window to scratchpad, scratchpad show
-#for_window [class="Proton Mail Bridge"] move window to scratchpad, scratchpad show
+for_window [class="Proton Mail Bridge"] move window to scratchpad, scratchpad show
 
 #exec --no-startup-id $editor --title=alsamixer alsamixer
 #exec --no-startup-id $editor --title=irssi irssi
 exec --no-startup-id thunderbird
-#exec --no-startup-id protonmail-bridge
+exec --no-startup-id protonmail-bridge
 
 # Hide side borders when there's only one window.
 hide_edge_borders smart
