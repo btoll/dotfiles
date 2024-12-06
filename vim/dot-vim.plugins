@@ -38,16 +38,15 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
-let g:syntastic_sh_checkers = ['shellcheck']
-
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_checkers = ['pycodestyle']
-
 " https://github.com/vim-syntastic/syntastic/blob/master/syntax_checkers/dockerfile/hadolint.vim
 let g:syntastic_dockerfile_checkers = ['hadolint']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['pycodestyle']
+let g:syntastic_sh_checkers = ['shellcheck']
 
-" https://github.com/kien/ctrlp.vim
+" This also enables the vim-go commands :GoDecls and :GoDeclsDir.
+" https://github.com/fatih/vim-go/wiki/Tutorial#move-between-functions
 Plug 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " Opens ctrlp in buffer mode.
@@ -66,9 +65,16 @@ if executable('ag')
 endif
 
 " https://github.com/fatih/vim-go-tutorial#struct-split-and-join (for golang)
-"Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bitc/vim-bad-whitespace'
-"Plug 'flazz/vim-colorschemes'
+
+Plug 'sirver/ultisnips'
+" https://stackoverflow.com/a/17388948
+let g:UltiSnipsExpandTrigger="<c-j>"
+
+Plug 'flazz/vim-colorschemes'
+Plug 'sainnhe/sonokai'
+
 Plug 'rking/ag.vim'
 
 "Plug 'scrooloose/nerdtree'
@@ -77,12 +83,21 @@ Plug 'rking/ag.vim'
 " https://github.com/ycm-core/YouCompleteMe#linux-64-bit
 Plug 'ycm-core/YouCompleteMe'
 
+Plug 'fatih/molokai'
+let g:rehash256 = 1
+let g:molokai_original = 1
+
 " https://github.com/fatih/vim-go
-" https://github.com/fatih/vim-go-tutorial
+" https://github.com/fatih/vim-go/wiki/Tutorial
 " To update, :GoUpdateBinaries
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-let g:go_def_mode='gopls'
+"let g:go_auto_sameids = 1 " Highlight same identifiers in file.
+let g:go_auto_type_info = 1 " Automatically show function signature of symbol under cursor.
+"set updatetime=800 // Default time to show function signature in status line (800ms).
+let g:go_decls_includes = 'func,type'
+let g:go_def_mode = 'gopls'
 let g:go_fmt_command = 'goimports'
+let g:go_fmt_fail_silently = 1 " Don't show errors in quickfix window when file is saved (not working).
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -91,11 +106,16 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
-let g:go_info_mode='gopls'
+let g:go_info_mode = 'gopls'
 let g:go_list_type = 'quickfix' " ONLY have quickfix lists (no location lists).
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_autosave = 1 " Calls `GoMetaLinter` when the file is saved.
+let g:go_metalinter_autosave_enabled = ['vet', 'golint'] " Don't call the whole list when saving to make it faster.
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_deadline = '5s'
+"let g:go_play_browser_command = 'chrome' " When xdg-open misdetecting the browser.
+let g:go_play_open_browser = 1
 let g:go_test_timeout = '10s'
+let g:go_textobj_include_function_doc = 1
 let g:go_version_warning = 0
 
 "Plug 'aquasecurity/vim-trivy'

@@ -19,7 +19,10 @@ set cryptmethod=blowfish
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
 syntax on
-colors desert
+
+" This cannot be defined within the plugins block:
+" https://stackoverflow.com/a/64178519
+colorscheme sonokai
 
 " Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position
 " of the displayed text in the file is shown on the far right.
@@ -69,6 +72,7 @@ set hidden
 set fileformat=unix
 
 " Vim has a setting called `autowrite` that writes the content of the file automatically if you call :make.
+" https://github.com/fatih/vim-go/wiki/Tutorial#fix-it
 set autowrite
 
 " `ctags` will recursively search up the dir tree to find a `tags` file.
@@ -104,4 +108,10 @@ set wildmenu
 " Effects tab completion when searching for files in :ex mode, similar to
 " bash.
 set wildmode=longest,list
+
+" This prevents the scratch window from appearing at the top when
+" autocompleting.
+" https://github.com/fatih/vim-go/issues/415
+" https://vi.stackexchange.com/questions/11310/what-is-a-scratch-window
+set completeopt-=preview
 
