@@ -8,6 +8,8 @@
 # There could be more. )
 # Deal with it.
 
+# TODO: Add a path for RHEL.
+
 set -eo pipefail
 
 install_package() {

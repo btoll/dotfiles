@@ -15,9 +15,9 @@
 [alias]
 	br = branch
 	# -S|-s = GPG-sign commit.
-	ci = commit -S
-	ca = commit -S --amend
-	tag = tag -s
+#	ci = commit -S
+#	ca = commit -S --amend
+#	tag = tag -s
 	ci = commit
 	ca = commit --amend
 	tag = tag -s

@@ -44,3 +44,13 @@ then
     alias kubectl=oc
 fi
 
+if command -v gh > /dev/null
+then
+    source <(gh completion -s bash)
+fi
+
+if type -p glab > /dev/null
+then
+    source <(glab completion)
+fi
+
