@@ -54,3 +54,8 @@ then
     source <(glab completion)
 fi
 
+if type -p trivy > /dev/null
+then
+    source <(trivy completion bash)
+fi
+
