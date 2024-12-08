@@ -1,4 +1,6 @@
 #!/bin/bash
+# shellcheck disable=2174
+
 #https://developer.hashicorp.com/vagrant/install
 #https://vagrant-libvirt.github.io/vagrant-libvirt/installation.html#ubuntu--debian
 
@@ -12,6 +14,7 @@ echo -e "$ERROR This script must be run as root!" 1>&2
     exit 1
 fi
 
+mkdir -p -m 755 /etc/apt/keyrings
 wget -O- https://apt.releases.hashicorp.com/gpg \
     | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 
