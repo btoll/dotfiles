@@ -18,7 +18,7 @@ apt-get install -y \
     curl \
     software-properties-common
 
-mkdir -p -m 755 /etc/apt/keyrings
+mkdir -p -m 755 /usr/share/keyrings
 curl -fSsL https://packages.microsoft.com/keys/microsoft.asc \
     | gpg --dearmor \
     | tee /usr/share/keyrings/microsoft-edge.gpg > /dev/null

@@ -14,7 +14,10 @@ echo -e "$ERROR This script must be run as root!" 1>&2
     exit 1
 fi
 
-mkdir -p -m 755 /etc/apt/keyrings
+apt-get update
+apt-get install wget gnupg -y
+
+mkdir -p -m 755 /usr/share/keyrings
 wget -O- https://apt.releases.hashicorp.com/gpg \
     | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 

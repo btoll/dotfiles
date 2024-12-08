@@ -33,7 +33,7 @@ RELEASE=$(curl -L -s https://dl.k8s.io/release/stable.txt)
 # Just need `v1.31` here.
 MAJOR_MINOR_VERSION=$(echo "$RELEASE" | awk -F. '{print $1"."$2}')
 
-mkdir -p -m 755 /etc/apt/keyrings
+mkdir -p -m 755 /usr/share/keyrings
 curl -fsSL "https://pkgs.k8s.io/core:/stable:/$MAJOR_MINOR_VERSION/deb/Release.key" \
     | gpg --dearmor -o /usr/share/keyrings/kubernetes-apt-keyring.gpg && \
     chmod 644 /usr/share/keyrings/kubernetes-apt-keyring.gpg
