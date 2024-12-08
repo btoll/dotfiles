@@ -1,7 +1,8 @@
 #!/bin/bash
+# shellcheck disable=2174
+
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
-
 # NOTE this downloads the latest stable version of the tools.
 
 set -euo pipefail
@@ -32,6 +33,7 @@ RELEASE=$(curl -L -s https://dl.k8s.io/release/stable.txt)
 # Just need `v1.31` here.
 MAJOR_MINOR_VERSION=$(echo "$RELEASE" | awk -F. '{print $1"."$2}')
 
+mkdir -p -m 755 /etc/apt/keyrings
 curl -fsSL "https://pkgs.k8s.io/core:/stable:/$MAJOR_MINOR_VERSION/deb/Release.key" \
     | gpg --dearmor -o /usr/share/keyrings/kubernetes-apt-keyring.gpg && \
     chmod 644 /usr/share/keyrings/kubernetes-apt-keyring.gpg

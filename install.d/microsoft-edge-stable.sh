@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=2174
 
 set -euo pipefail
 
@@ -17,11 +18,12 @@ apt-get install -y \
     curl \
     software-properties-common
 
+mkdir -p -m 755 /etc/apt/keyrings
 curl -fSsL https://packages.microsoft.com/keys/microsoft.asc \
     | gpg --dearmor \
     | tee /usr/share/keyrings/microsoft-edge.gpg > /dev/null
 
-echo deb [signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://packages.microsoft.com/repos/edge stable main \
+echo "deb [signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://packages.microsoft.com/repos/edge stable main" \
     | tee /etc/apt/sources.list.d/microsoft-edge.list
 
 apt-get update
