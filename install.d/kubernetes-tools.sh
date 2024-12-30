@@ -67,9 +67,10 @@ systemctl enable --now kubelet
 # kubectl convert
 curl -LO "https://dl.k8s.io/release/$RELEASE/bin/linux/amd64/kubectl-convert"
 curl -LO "https://dl.k8s.io/release/$RELEASE/bin/linux/amd64/kubectl-convert.sha256"
-if ! echo "$(cat kubectl-convert.sha256) kubectl-convert" | sha256sum --check
+if ! echo "$(< kubectl-convert.sha256) kubectl-convert" | sha256sum --check
 then
     # We won't log anything to stdout here as the preceding check will have done it for us.
+    echo "[ERROR] Kubectl-convert checksum failed."
     exit 1
 else
     install -o root -g root -m 0755 kubectl-convert /usr/local/bin/kubectl-convert

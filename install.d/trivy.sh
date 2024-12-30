@@ -11,12 +11,6 @@ echo -e "$ERROR This script must be run as root!" 1>&2
     exit 1
 fi
 
-trap cleanup EXIT
-
-cleanup() {
-    rm -f kubectl-convert kubectl-convert.sha256
-}
-
 apt-get update
 apt-get install wget gnupg -y
 
