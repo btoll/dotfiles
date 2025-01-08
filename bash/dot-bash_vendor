@@ -18,12 +18,15 @@ then
     export PROJECT_HOME="$HOME/projects"
 fi
 
+# go install github.com/openshift/backplane-tools@latest; backplane-tools install all
 BASH_COMPLETION=(
     helm
     kubectl
+    oc
     ocm
     osdctl
     glab
+    rosa
     trivy
 )
 

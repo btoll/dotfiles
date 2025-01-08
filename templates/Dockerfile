@@ -10,7 +10,7 @@ RUN groupadd --gid 1000 noroot \
     --no-log-init noroot
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install --no-install-recommends -y \
         git
 
 USER noroot
