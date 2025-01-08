@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -euo pipefail
+
+LANG=C
+umask 0022
+
+trap cleanup EXIT
+
+cleanup() {
+    rm -rf foo
+}
+
+usage() {
+    printf "Usage: %s --cluster btoll-test [ --profile devaccount ]\n\n" "$0"
+    printf "Args:\n"
+    printf -- "-c, --cluster  : The name of the cluster to create..\n"
+    printf -- "--dry-run      : Dry run.\n"
+    printf -- "-p, --profile  : The name of the AWS profile.\n"
+    printf -- "-h, --help     : Show usage.\n"
+    exit "$1"
+}
+
+while [ "$#" -gt 0 ]
+do
+    OPT="$1"
+    case $OPT in
+        -c|--cluster) shift; CLUSTER=$1 ;;
+        --dry-run) DRY_RUN=true ;;
+        -p|--profile) shift; PROFILE=$1 ;;
+        -h|--help) usage 0 ;;
+        *) printf "Unknown flag %s\n" "$OPT"; usage 1 ;;
+    esac
+    shift
+done
+

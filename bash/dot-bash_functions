@@ -57,11 +57,12 @@ bp() {
         if ! stat "$1" &> /dev/null
         then
             case "$1" in
-                Dockerfile)      vim -c ":read ~/templates/Dockerfile" "$1" ;;
-                Makefile)        vim -c ":read ~/templates/Makefile" "$1" ;;
-                Vagrantfile)     vim -c ":read ~/templates/vagrant/Vagrantfile" "$1" ;;
-                *.elm)           vim -c ":read ~/templates/elm" "$1" ;;
-                *.html)          vim -c ":read ~/templates/html" "$1" ;;
+                Dockerfile)      vim -c ":read $HOME/templates/Dockerfile" "$1" ;;
+                Makefile)        vim -c ":read $HOME/templates/Makefile" "$1" ;;
+                Vagrantfile)     vim -c ":read $HOME/templates/vagrant/Vagrantfile" "$1" ;;
+                *.elm)           vim -c ":read $HOME/templates/elm" "$1" ;;
+                *.html)          vim -c ":read $HOME/templates/html" "$1" ;;
+                *.sh)            vim -c ":read $HOME/templates/bash" "$1" ;;
                 *)               vim -c ":normal ibp" "$1" ;;
             esac
         else
