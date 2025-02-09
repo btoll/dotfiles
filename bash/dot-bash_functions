@@ -61,7 +61,7 @@ bp() {
         then
             case "$1" in
                 Dockerfile)      vim -c ":read $HOME/templates/Dockerfile" "$1" ;;
-                Makefile)        vim -c ":read $HOME/templates/Makefile" "$1" ;;
+                Makefile)        echo "This is deprecated, use \`create_makefile [lang]\` function." ;;
                 Vagrantfile)     vim -c ":read $HOME/templates/vagrant/Vagrantfile" "$1" ;;
                 *.elm)           vim -c ":read $HOME/templates/elm" "$1" ;;
                 *.html)          vim -c ":read $HOME/templates/html" "$1" ;;
@@ -72,6 +72,16 @@ bp() {
             printf "%b File exists, aborting.\n" "$WARN"
         fi
     fi
+}
+
+create_makefile() {
+    case "$1" in
+        C) ;& # fallthrough
+        c) vim -c ":read $HOME/templates/Makefile-c" Makefile ;;
+        go) ;&
+        Go) vim -c ":read $HOME/templates/Makefile-go" Makefile ;;
+        *) echo "Unknown, nothing to do" ;;
+    esac
 }
 
 dim_screen() {
