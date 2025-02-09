@@ -1,10 +1,13 @@
+#!/bin/bash
+#shellcheck disable=2155
+
 bag() {
     if [ "$#" -eq 0 ]; then
         printf "%b Not enough arguments.\n" "$ERROR"
         printf "Usage: bag <pattern> [<search_dir>]\n"
     else
         local startsearch="$2"
-        vim "+/$1" $(ag -il "$1" ${startsearch:="."} | uniq)
+        vim "+/$1" "$(ag -il "$1" "${startsearch:="."}" | uniq)"
     fi
 }
 
@@ -30,7 +33,7 @@ bfind() {
         #    using often is using find to generate lists of files that I then edit in
         #    vertically split Vim windows"
         #
-        find ${startsearch:="."} -type f -name "$1" -exec vim {} + 2> /dev/null
+        find "${startsearch:="."}" -type f -name "$1" -exec vim {} + 2> /dev/null
     fi
 }
 
@@ -40,7 +43,7 @@ bgrep() {
         printf "Usage: bgrep <pattern> [<root_dir>]\n"
     else
         local startsearch="$2"
-        vim "+/$1" $(grep -riIl "$1" ${startsearch:="."} | uniq)
+        vim "+/$1" "$(grep -riIl "$1" "${startsearch:="."}" | uniq)"
     fi
 }
 
@@ -94,7 +97,7 @@ dpkg_search() {
         for log in $(ls /var/log/dpkg*)
         do
             local re='\b'"$state"'\b.*'"$package"''
-            local res="$(zgrep -E $re $log)"
+            local res="$(zgrep -E "$re" "$log")"
 
             if [ "$res" = "" ]
             then
@@ -121,8 +124,8 @@ falloc() {
         NAME="$1"
         SIZE="$2"
 
-        fallocate -l $SIZE $NAME
-        sudo mkfs.ext3 $NAME
+        fallocate -l "$SIZE $NAME"
+        sudo mkfs.ext3 "$NAME"
     fi
 }
 
@@ -130,7 +133,7 @@ falloc() {
 ff() {
     local projects_dir=${1:-"$HOME/projects"}
     dir=$(find "$projects_dir" -type d -not -path '*/\.*' -maxdepth 10 2> /dev/null | fzf)
-    cd $dir
+    cd "$dir" || return
 }
 
 get_code_point() {
@@ -173,14 +176,14 @@ git_clone() {
         then
             printf "%b Cloned into ./$git_alias/\n" "$INFO"
 
-            read -p "Install git hooks? [y|N]: " should_install
+            read -rp "Install git hooks? [y|N]: " should_install
 
             if [ "$should_install" = y ] || [ "$should_install" = Y ]
             then
                 # Don't change into another dir w/o user permission!
                 # Do this in a subshell for now.
                 (
-                    cd "$git_alias" ;
+                    cd "$git_alias" || return ;
                     git_hooks_install
                 )
             else
@@ -209,7 +212,7 @@ hexbits() {
         printf "Usage: hexbits <hexadecimal> [number of display bytes]\n"
         printf "For example: hexbits 0x646f67 2\n"
     else
-        asbits $(htoi "$1") ${2:-4}
+        asbits "$(htoi "$1")" "${2:-4}"
     fi
 }
 
@@ -226,16 +229,17 @@ list_make_targets() {
         printf "Usage: list_make_targets [Makefile]\n"
         printf "%b Too many arguments.\n" "$ERROR"
     else
-        # Collect strings that begin with a lower- or upper-case character
+        # Collect strings that begin with a lower- or upper-case character or
+        # a `$` sign (for a variable).
         # and contain a colon.
         # This will filter out comments and `.PHONY`.
         # The collected strings will also contain the target's dependencies.
-        sed -n 's/^\([a-zA-Z-].*:\)/\1/p' "${1:-Makefile}"
+        sed -n 's/^\([a-zA-Z$-].*:\)/\1/p' "${1:-Makefile}"
     fi
 }
 
 mcd() {
-    mkdir -p "$1" && cd "$_"
+    mkdir -p "$1" && cd "$_" || return
 }
 
 mnt_me() {
@@ -246,15 +250,14 @@ mnt_me() {
         NAME="$1"
         MNT="$2"
 
-        lsmod | grep loop &> /dev/null
-
-        # Add the loop device if not present.
-        if [ $? -gt 0 ]; then
+        if ! lsmod | grep loop &> /dev/null
+        then
+            # Add the loop device if not present.
             sudo modprobe loop
         fi
 
-        mkdir -p $MNT
-        sudo mount -o loop $NAME $MNT
+        mkdir -p "$MNT"
+        sudo mount -o loop "$NAME" "$MNT"
     fi
 }
 
@@ -298,7 +301,7 @@ moby_dick() {
 # have the selection automatically create and run the container.
 nspawn() {
     sudo systemd-nspawn --machine \
-        $(machinectl list-images --no-legend | awk '{ print $1 }' | fzf --border-label="systemd-nspawn machines") \
+        "$(machinectl list-images --no-legend | awk '{ print $1 }' | fzf --border-label="systemd-nspawn machines")" \
         --quiet
 }
 
@@ -313,12 +316,12 @@ parse_aws_creds() {
         printf "%b Access keys for profile \`$account\` do not exist!\n" "[ERROR]"
     else
         creds=$(< "$access_keys" tail -1)
-        a=$(echo $creds | awk -F, '{ print $1 }')
-        b=$(echo $creds | awk -F, '{ print $2 }')
+        a=$(echo "$creds" | awk -F, '{ print $1 }')
+        b=$(echo "$creds" | awk -F, '{ print $2 }')
 
         printf "export AWS_DEFAULT_REGION=us-east-2\n"
-        printf "export AWS_ACCESS_KEY_ID=%s\n" $(printf "%s\n" $a)
-        printf "export AWS_SECRET_ACCESS_KEY=\"%s\"\n" $(printf "%s\n" $b)
+        printf "export AWS_ACCESS_KEY_ID=%s\n" "$(printf "%s\n" "$a")"
+        printf "export AWS_SECRET_ACCESS_KEY=\"%s\"\n" "$(printf "%s\n" "$b")"
     fi
 }
 
@@ -356,11 +359,11 @@ rmi_images_by_name() {
 }
 
 rm_containers() {
-    docker container rm $(docker container ls -aq)
+    docker container rm "$(docker container ls -aq)"
 }
 
 rm_volumes() {
-    docker volume rm $(docker volume ls --quiet)
+    docker volume rm "$(docker volume ls --quiet)"
 }
 
 secure_browse() {
@@ -375,9 +378,8 @@ secure_browse() {
         printf "%b Not enough arguments.\n" "$ERROR"
         printf "Usage: secure_browse <website_to_tunnel_traffic>\n"
     else
-        ssh -f -N -D 1080 "$1"
-
-        if [ $? -ne 0 ]; then
+        if ! ssh -f -N -D 1080 "$1"
+        then
             printf "%b Could not establish tunnel\n" "$WARN"
         else
             firefox &> /dev/null &
@@ -481,17 +483,17 @@ vagrant_init() {
 
     if [ -n "$1" ]
     then
-        mkdir -p "$1" && cd "$_"
+        mkdir -p "$1" && cd "$_" || return
         hostname="$1"
     else
-        hostname="$(basename $(pwd))"
-        echo $hostname
+        hostname="$(basename "$(pwd)")"
+        echo "$hostname"
     fi
 
-    cp -ir "$HOME/templates/vagrant/"* $(pwd)
+    cp -ir "$HOME/templates/vagrant/"* "$(pwd)"
     # Set hostname in Vagrantfiles:
     # config.vm.hostname = "vagrant-HOSTNAME"
-    sed -i "s/HOSTNAME/$hostname/" $(pwd)/Vagrantfile*
+    sed -i "s/HOSTNAME/$hostname/" "$(pwd)"/Vagrantfile*
 }
 
 wifi_connect() {
