@@ -221,12 +221,16 @@ h() {
     fi
 }
 
-list_targets() {
-    if [ "$#" -lt 1 ]; then
-        printf "%b Not enough arguments.\n" "$ERROR"
-        printf "Usage: list_targets <Makefile>\n"
+list_make_targets() {
+    if [ "$#" -gt 1 ]; then
+        printf "Usage: list_make_targets [Makefile]\n"
+        printf "%b Too many arguments.\n" "$ERROR"
     else
-        sed -n 's/\(^[a-zA-Z-]*:\)/\1/p' "$1"
+        # Collect strings that begin with a lower- or upper-case character
+        # and contain a colon.
+        # This will filter out comments and `.PHONY`.
+        # The collected strings will also contain the target's dependencies.
+        sed -n 's/^\([a-zA-Z-].*:\)/\1/p' "${1:-Makefile}"
     fi
 }
 
