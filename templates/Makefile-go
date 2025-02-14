@@ -6,15 +6,18 @@ prefix		= /usr/local
 exec_prefix = ${prefix}
 bindir		= $(exec_prefix)/bin
 
-.PHONY: all build check clean dist distcheck distclean install install-strip installcheck uninstall
+.PHONY: build audit check clean dist distcheck distclean install install-strip installcheck lint test uninstall
 
-# The default target.
-all: $(PACKAGE)
+build:
+	$(CC) build
 
-$(PACKAGE): $(PACKAGE).go
-	$(CC) $(CFLAGS) -o $(PACKAGE) $(PACKAGE).go
-
-build: $(PACKAGE)
+audit:
+	$(CC) mod tidy -diff
+	$(CC) mod verify
+	test -z "$(shell gofmt -l .)"
+	$(CC) vet ./...
+	$(CC) run honnef.co/go/tools/cmd/staticcheck@latest -checks=all,-ST1000,-U1000 ./...
+	$(CC) run golang.org/x/vuln/cmd/govulncheck@latest ./...
 
 check:
 	echo "run the test suite, if any"
@@ -48,6 +51,13 @@ install-strip:
 
 installcheck:
 	echo "check the installed programs or libraries, if supported"
+
+lint:
+	$(CC) run github.com/fzipp/gocyclo/tree/main/cmd/gocyclo@latest ./...
+	$(CC) run github.com/jgautheron/goconst/cmd/goconst@latest ./...
+
+test:
+	$(CC) test -v -race -buildvcs ./...
 
 uninstall:
 	-rm -f $(DESTDIR)$(bindir)/$(PACKAGE)
