@@ -12,7 +12,7 @@ export HISTIGNORE="&:[ ]*:\.\.:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:p:wh
 
 # TODO: Use /etc/bash_completion.d/git-prompt?
 # the `|$SHLVL:$0|` bits are the number of shell levels and the type
-# of the current shell (if prepended by a hyphen (-bash), it's a
+# of the current shell (if prepended by a hyphen (-bash)), it's a
 # login shell.
 # https://www.piliapp.com/symbol/animals/
 ANIMALS=( 🐧 🦮 🐝 🐫 🦜 🐢 🦫 )

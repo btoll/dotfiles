@@ -80,7 +80,7 @@ create_makefile() {
         c) vim -c ":read $HOME/templates/Makefile-c" Makefile ;;
         go) ;&
         Go) vim -c ":read $HOME/templates/Makefile-go" Makefile ;;
-        *) echo "Unknown, nothing to do" ;;
+        *) echo "Unknown option \`$1\`, nothing to do." ;;
     esac
 }
 

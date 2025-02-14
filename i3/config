@@ -224,6 +224,7 @@ bindsym $mod+BackSpace mode "$mode_system"
 assign [class=$editor] $workspace1
 assign [class="firefox-esr"] $workspace2
 #assign [class="Pavucontrol"] $workspace3
+#assign [class="Tor Browser"] $workspace3
 
 # Execute the following programs on login.
 # They will be put into their designated workspaces
