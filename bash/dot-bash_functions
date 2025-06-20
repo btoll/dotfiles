@@ -7,7 +7,8 @@ bag() {
         printf "Usage: bag <pattern> [<search_dir>]\n"
     else
         local startsearch="$2"
-        vim "+/$1" "$(ag -il "$1" "${startsearch:="."}" | uniq)"
+        #shellcheck disable=2046
+        vim "+/$1" $(ag -il "$1" "${startsearch:="."}" | uniq)
     fi
 }
 
@@ -43,7 +44,8 @@ bgrep() {
         printf "Usage: bgrep <pattern> [<root_dir>]\n"
     else
         local startsearch="$2"
-        vim "+/$1" "$(grep -riIl "$1" "${startsearch:="."}" | uniq)"
+        #shellcheck disable=2046
+        vim "+/$1" $(grep -riIl "$1" "${startsearch:="."}" | uniq)
     fi
 }
 
@@ -152,7 +154,7 @@ get_code_point() {
     else
         # -A = Specify the input address base (n == no address)
         # -t = Specify the output format (d == signed decimal, 4 == four bytes)
-        printf "$1" | od -A n -t d4
+        printf "%s" "$1" | od -A n -t d4
     fi
 }
 
