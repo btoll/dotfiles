@@ -4,11 +4,11 @@
 bag() {
     if [ "$#" -eq 0 ]; then
         printf "%b Not enough arguments.\n" "$ERROR"
-        printf "Usage: bag <pattern> [<search_dir>]\n"
+        printf "Usage: bag <pattern> [optional parameters]\n"
     else
-        local startsearch="$2"
         #shellcheck disable=2046
-        vim "+/$1" $(ag -il "$1" "${startsearch:="."}" | uniq)
+        # ${@:2} = pass 2nd param to end.
+        vim "+/$1" $(ag -l "$1" "${@:2}"| uniq)
     fi
 }
 
