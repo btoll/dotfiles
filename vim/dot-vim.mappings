@@ -35,8 +35,8 @@ nnoremap <leader>v :e $myvimrc<cr>
 nnoremap <leader>ag :ag <c-r><c-w><cr>
 
 " Open netrw in a vertically-split window.
-nnoremap <leader>ll :Vexplore<cr>
-nnoremap <leader>ls :Vexplore<cr>
+nnoremap <leader>ll :Lexplore<cr>
+nnoremap <leader>ls :Lexplore<cr>
 
 " auto-indent blocks.
 nnoremap <leader>i v$%>
