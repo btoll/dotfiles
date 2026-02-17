@@ -22,11 +22,7 @@ fi
 BASH_COMPLETION=(
     helm
     kubectl
-    oc
-    ocm
-    osdctl
     glab
-    rosa
     trivy
 )
 
