@@ -189,7 +189,7 @@ bindsym $mod+shift+x exec --no-startup-id $i3lockwall
 
 # Set background image.
 # sudo apt-get install feh -y
-exec_always --no-startup-id feh --bg-fill $HOME/pictures/peanuts.png
+exec_always --no-startup-id feh --bg-fill $HOME/pictures/billie_holiday.jpg
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
@@ -231,6 +231,11 @@ assign [class="firefox-esr"] $workspace2
 # (see the `assign` commands above).
 exec --no-startup-id $editor tmux attach -t default
 exec --no-startup-id $browser
+
+# My network connectivity kept dropping and this was the suggested fix (2026-02-21).
+# This will put the NetworkManager applet in the system tray.
+# https://man.archlinux.org/man/nm-applet.1.en
+exec --no-startup-id nm-applet
 
 # Is there a better way to do this?
 #for_window [class="Pavucontrol"] move window to scratchpad, scratchpad show
