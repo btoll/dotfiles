@@ -31,22 +31,8 @@ export KUBE_EDITOR=$EDITOR
 # Used by i3's /usr/bin/i3-sensible-terminal script (and other scripts?).
 export TERMINAL=kitty
 
-export GOARCH=amd64
-export GOOS=linux
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export GOROOT=/usr/local/go
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
-# https://krew.sigs.k8s.io/
-export PATH="$HOME/.krew/bin:$HOME/bin:$HOME/.local/bin/gh-hooker/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
-
-# This should be temporary.
-export PATH="$PATH":~/.local/bin/backplane/latest
-
-if [ -d "$GOROOT" ]
-then
-    export PATH="$GOROOT/bin:$GOBIN:$PATH"
-fi
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
 # in ~/.gnupg/gpg.conf.
