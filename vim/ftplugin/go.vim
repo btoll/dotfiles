@@ -19,6 +19,7 @@ nnoremap <leader>d oruntime.Breakpoint()<esc>
 nnoremap <leader>D Oruntime.Breakpoint()<esc>
 
 nnoremap <leader>gh ofmt.Println("got here")<esc>
+nnoremap <leader>gs obuf := make([]byte, 1<<16)<cr>stackSize := runtime.Stack(buf, false)<cr>fmt.Printf("\n%s\n", string(buf[:stackSize]))<esc>
 nnoremap f<space> :normal [[V$%<cr>
 
 " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
