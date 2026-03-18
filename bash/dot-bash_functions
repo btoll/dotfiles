@@ -254,6 +254,10 @@ mcd() {
     mkdir -p "$1" && cd "$_" || return
 }
 
+go_mcd() {
+    mkdir -p "$1" && cd "$_" && go mod init "$_" || return
+}
+
 mnt_me() {
     if [ "$#" -lt 2 ]; then
         printf "%b Not enough arguments.\n" "$ERROR"

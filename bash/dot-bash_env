@@ -32,8 +32,9 @@ export KUBE_EDITOR=$EDITOR
 export TERMINAL=kitty
 
 #export GOROOT_BOOTSTRAP=/usr/local/src/go
+export BIN="$HOME/bin"
 export GOBIN="$HOME/go/bin"
-export PATH="$HOME/bin:$GOBIN:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
+export PATH="$BIN:$GOBIN:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
 
 # To make use of gpg-agent when not using X, uncomment `use-agent`
 # in ~/.gnupg/gpg.conf.
