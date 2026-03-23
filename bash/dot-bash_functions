@@ -62,13 +62,14 @@ bp() {
         if ! stat "$1" &> /dev/null
         then
             case "$1" in
-                Dockerfile)      vim -c ":read $HOME/templates/Dockerfile" "$1" ;;
-                Makefile)        echo "This is deprecated, use \`create_makefile [lang]\` function." ;;
-                Vagrantfile)     vim -c ":read $HOME/templates/vagrant/Vagrantfile" "$1" ;;
-                *.elm)           vim -c ":read $HOME/templates/elm" "$1" ;;
-                *.html)          vim -c ":read $HOME/templates/html" "$1" ;;
-                *.sh)            vim -c ":read $HOME/templates/bash" "$1" ;;
-                *)               vim -c ":normal ibp" "$1" ;;
+                Dockerfile)     vim -c ":read $HOME/templates/Dockerfile" "$1" ;;
+                Makefile)       echo "This is deprecated, use \`create_makefile [lang]\` function." ;;
+                Vagrantfile)    vim -c ":read $HOME/templates/vagrant/Vagrantfile" "$1" ;;
+                *.elm)          vim -c ":read $HOME/templates/elm" "$1" ;;
+                *.html)         vim -c ":read $HOME/templates/html" "$1" ;;
+                *.s|*.asm)      vim -c ":read $HOME/templates/assembly" "$1" ;;
+                *.sh)           vim -c ":read $HOME/templates/bash" "$1" ;;
+                *)              vim -c ":normal ibp" "$1" ;;
             esac
         else
             printf "%b File exists, aborting.\n" "$WARN"

@@ -1,0 +1,10 @@
+main:
+    push %rbp           # Save RBP (callee-saved)
+    mov %rsp, %rbp      # Set up stack frame
+    push %rbx           # Save RBX if you'll use it (callee-saved)
+
+    # ... your code ...
+
+    pop %rbx            # Restore RBX
+    pop %rbp            # Restore RBP
+    ret
