@@ -25,7 +25,7 @@ nnoremap f<space> :normal [[V$%<cr>
 " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
 "           let g:go_fmt_command = "goimports"
 " is set (it is).
-nnoremap <leader>l mqofmt.Println("<c-r>"", <c-r>")<esc>`q
+nnoremap <leader>l mqofmt.Printf("<c-r>"=%+v\n", <c-r>")<esc>`q
 
 " anti-Mitchell pattern - removes \s between properties and colons in objects.
 nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
