@@ -1,16 +1,19 @@
 #!/bin/bash
 # shellcheck disable=1091
 
-# Note this script is to be run on Debian.
-# It will fail on other distros, even Debian-derivatives like Ubuntu.
-# ( For example, Ubuntu doesn't have `kitty`, and it downloads an older
-# version of `stow` that doesn't support the `--dotfiles` option.
-# There could be more. )
+# Note this script is to be run on Debian and is intended to be sourced not executed!
+# It will fail on other distros, even Debian-derivatives like Ubuntu. For example,
+# Ubuntu doesn't have `kitty`, and it downloads an older version of `stow` that doesn't
+# support the `--dotfiles` option.  There could be other issues, too.
 # Deal with it.
 
-# TODO: Add a path for RHEL.
-
 set -eo pipefail
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]
+then
+    echo -e "This script is not intended to be executed!\nSource it instead."
+    exit 1
+fi
 
 install_package() {
     local package="$1"
@@ -46,8 +49,8 @@ PACKAGES=(
     i3status
     kitty
     podman
-    python3
-    python3-pip
+#    python3
+#    python3-pip
     silversearcher-ag
     stow
     tmux
@@ -64,16 +67,24 @@ do
     install_package "$package"
 done
 
-# Remove the default bash and vim files.
-rm -f "$HOME/.bash"*
-rm -rf "$HOME/.vim"*
-rm -f "$HOME/.gitconfig"
+DEFAULT_FILES=(
+    "$HOME/.bash"*
+    "$HOME/.vim"*
+    "$HOME/.tmux"*
+    "$HOME"/.gitconfig
+    "$HOME"/.local/{bin,share}/gh-hooker
+)
+
+for LOCATION in "${DEFAULT_FILES[@]}"
+do
+    rm -rf "$LOCATION"
+done
 
 TOOLS=(
     bash
     gdb
     git
-#    git-tools
+    git-tools
     gnupg
     i3
     systemd
@@ -86,11 +97,9 @@ TOOLS=(
 for tool in "${TOOLS[@]}"
 do
     case "$tool" in
-#        git-tools)
-#            mkdir -p "$HOME/bin"
-#            stow --dotfiles --target "$HOME/bin" --dir "$tool" bin
-#             stow --target /usr/share/man/man1/ --dir "$tool" man
-#            ;;
+        git-tools)
+            podman run --rm -v "$HOME/.local":/root/.local docker.io/btoll/gh-hooker:latest
+            ;;
         gnupg)
             mkdir -p "$HOME/.$tool"
             stow --target "$HOME/.$tool" "$tool"
@@ -146,10 +155,7 @@ fi
 
 # This is needed to auto-install any tmux plugins.
 # See `$HOME/.tmux.conf`.
-if [ -d "$HOME/.tmux" ]
-then
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-fi
+git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 
 if [ ! -d "$HOME/.vim/autoload" ] || [ ! -f "$HOME/.vim/autoload/plug.vim" ]
 then
@@ -160,7 +166,7 @@ then
 fi
 
 # Install vim plugins.
-# + is just a shorthand notation of -c.
+# + is just a shorthand notation of -c (command).
 # +qa = quit all
 vim +'PlugInstall --sync' +qa
 printf "%b Installed vim plugins.\n" "$SUCCESS"

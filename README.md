@@ -2,7 +2,7 @@
 
 ## Install the complete development environment
 
-    ./install.sh
+    . install.bash
 
 ## Or, install individually
 
