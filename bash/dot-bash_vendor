@@ -18,10 +18,9 @@ then
     export PROJECT_HOME="$HOME/projects"
 fi
 
-# go install github.com/openshift/backplane-tools@latest; backplane-tools install all
 BASH_COMPLETION=(
-    helm
-    kubectl
+#    helm
+#    kubectl
     glab
     trivy
 )
@@ -42,11 +41,6 @@ then
     alias k="kubectl"
     complete -o default -F __start_kubectl k
 fi
-
-#if command -v oc > /dev/null
-#then
-#    alias kubectl=oc
-#fi
 
 # https://www.vagrantup.com/docs/other/environmental-variables
 if command -v vagrant > /dev/null

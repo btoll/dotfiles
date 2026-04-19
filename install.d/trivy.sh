@@ -18,7 +18,7 @@ mkdir -p -m 755 /usr/share/keyrings
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key \
     | gpg --dearmor \
     | tee /usr/share/keyrings/trivy.gpg > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" \
+    echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -cs) main" \
     | tee -a /etc/apt/sources.list.d/trivy.list
 
 apt-get update

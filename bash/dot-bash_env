@@ -72,7 +72,8 @@ export DEBFULLNAME="Benjamin Toll"
 #fi
 
 # https://github.com/sharkdp/bat#man
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+# When I upgraded to Trixie the man pages were no longer being rendered properly.
+#export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 if [ -f "$HOME/.kube/config" ]
 then

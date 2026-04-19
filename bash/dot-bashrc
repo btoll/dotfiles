@@ -6,12 +6,12 @@
 # Checking for the prompt var is a hack to avoid `scp` from
 # trying to allocate a tty for noninteractive bash sessions.
 # It's happening because there are commands in the scripts
-# below that were cause bash to try and allocate a tty.
+# below that were causing bash to try and allocate a tty.
 # It's more feasible to wrap this in a conditional than to
 # move them to `.bash_profile`.
 # https://unix.stackexchange.com/a/557670
 #
-# Note that not preventing this scripts from running in a
+# Note that not preventing these scripts from running in a
 # non-interactive bash session was having unintended side
 # effects such as `scp` not being able to copy to a remote
 # server.
@@ -57,7 +57,7 @@ fi
 #    xmodmap $HOME/.Xmodmap
 #fi
 
-# Make less more friendly for non-text input files, see lesspipe(1).
+# Make `less` more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Set variable identifying the chroot you work in (used in the prompt below).

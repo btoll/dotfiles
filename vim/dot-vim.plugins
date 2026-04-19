@@ -21,13 +21,6 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 "<------------------------------------------------------------->
 Plug 'koalaman/shellcheck'
 
-"Plug 'mattn/gist-vim.git'
-" https://github.com/mattn/gist-vim.git
-" Instructions
-"   1. git config --global github.user xxx@xxx.com (writes to ~/.gitconfig).
-"   2. Install https://github.com/mattn/webapi-vim in ~/.vim/bundle (assuming Pathogen) to resolve errors.
-"   3. Enter github password when prompted when creating gist (saves oAuth token in ~/.gist-vim).
-
 Plug 'scrooloose/syntastic'
 " https://github.com/vim-syntastic/syntastic/tree/master/syntax_checkers
 set statusline+=%#warningmsg#
@@ -77,9 +70,6 @@ Plug 'sainnhe/sonokai'
 
 Plug 'rking/ag.vim'
 
-"Plug 'scrooloose/nerdtree'
-"
-" Install instructions:
 " https://github.com/ycm-core/YouCompleteMe#linux-64-bit
 Plug 'ycm-core/YouCompleteMe'
 
@@ -93,7 +83,7 @@ let g:molokai_original = 1
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 "let g:go_auto_sameids = 1 " Highlight same identifiers in file.
 let g:go_auto_type_info = 1 " Automatically show function signature of symbol under cursor.
-"set updatetime=800 // Default time to show function signature in status line (800ms).
+"set updatetime=800 " Default time to show function signature in status line (800ms).
 let g:go_decls_includes = 'func,type'
 let g:go_def_mode = 'gopls'
 let g:go_fmt_command = 'goimports'
@@ -119,8 +109,6 @@ let g:go_textobj_include_function_doc = 1
 let g:go_version_warning = 0
 
 "Plug 'aquasecurity/vim-trivy'
-
-"Plug 'hashivim/vim-terraform.git'
 
 " The default netrw plugin.
 let g:netrw_banner=0
