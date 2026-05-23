@@ -237,6 +237,16 @@ h() {
     fi
 }
 
+kill_server() {
+    if [ "$#" -eq 0 ]; then
+        printf "Usage: kill_server <port>\n"
+    else
+        #shellcheck disable=2046
+        ss -plnt | ag "$1" | sed 's/.*pid=\([0-9]*\),.*/\1/p'
+        kill -SIGTERM $(ss -plnt | ag "$1" | sed 's/.*pid=\([0-9]*\),.*/\1/p')
+    fi
+}
+
 list_make_targets() {
     if [ "$#" -gt 1 ]; then
         printf "Usage: list_make_targets [Makefile]\n"

@@ -11,7 +11,6 @@ alias gcc="gcc -Wall -Wextra -std=c2x -pedantic"
 
 alias :q="exit"
 alias :x="exit"
-alias brm="rm -rf"
 alias bunzip2="bunzip2 -v"
 alias bzip2="bzip2 -v -9"
 alias c="cd"
