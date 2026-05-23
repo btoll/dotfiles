@@ -72,6 +72,7 @@ Plug 'rking/ag.vim'
 
 " https://github.com/ycm-core/YouCompleteMe#linux-64-bit
 Plug 'ycm-core/YouCompleteMe'
+let g:ycm_max_num_candidates = 100
 
 Plug 'fatih/molokai'
 let g:rehash256 = 1
@@ -86,6 +87,7 @@ let g:go_auto_type_info = 1 " Automatically show function signature of symbol un
 "set updatetime=800 " Default time to show function signature in status line (800ms).
 let g:go_decls_includes = 'func,type'
 let g:go_def_mode = 'gopls'
+let g:go_doc_keywordprg_enabled = 1 " This allows for K to be mapped to :GoDoc. See ~/.vim/plugged/vim-go/ftplugin/go.vim (and :verbose map K).
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_fail_silently = 1 " Don't show errors in quickfix window when file is saved (not working).
 let g:go_highlight_types = 1
@@ -96,6 +98,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+let g:go_hover_enabled = 0
 let g:go_info_mode = 'gopls'
 let g:go_list_type = 'quickfix' " ONLY have quickfix lists (no location lists).
 let g:go_metalinter_autosave = 1 " Calls `GoMetaLinter` when the file is saved.
