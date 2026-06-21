@@ -81,8 +81,10 @@ create_makefile() {
     case "$1" in
         C) ;& # fallthrough
         c) vim -c ":read $HOME/templates/Makefile-c" Makefile ;;
-        go) ;&
-        Go) vim -c ":read $HOME/templates/Makefile-go" Makefile ;;
+        Go) ;&
+        Golang) ;&
+        golang) ;&
+        go) vim -c ":read $HOME/templates/Makefile-go" Makefile ;;
         *) echo "Unknown option \`$1\`, nothing to do." ;;
     esac
 }

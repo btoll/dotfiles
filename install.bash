@@ -47,6 +47,7 @@ PACKAGES=(
     i3
     i3lock
     i3status
+    iproute2 # installs `ss`
     kitty
     podman
 #    python3

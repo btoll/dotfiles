@@ -1,17 +1,12 @@
-FROM debian:bookworm-slim
+FROM golang:1.25.11-trixie AS builder
 
-RUN groupadd --gid 1000 noroot \
-    && useradd \
-    --create-home \
-    --home-dir /home/noroot \
-    --uid 1000 \
-    --gid 1000 \
-    # https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
-    --no-log-init noroot
+WORKDIR /app
+COPY go.mod main.go client.go ./
+RUN CGO_ENABLED=0 GOOS=linux go build -o go-simple-chat
 
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y \
-        git
+FROM scratch
+COPY --from=builder /app/go-simple-chat /
+EXPOSE 9999
 
-USER noroot
-WORKDIR /home/noroot
+ENTRYPOINT ["/go-simple-chat"]
+

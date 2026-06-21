@@ -25,11 +25,7 @@ nnoremap f<space> :normal [[V$%<cr>
 " Note that if the `fmt` package hasn't been explicitly imported that this snippet will fail unless
 "           let g:go_fmt_command = "goimports"
 " is set (it is).
-nnoremap <leader>l mqofmt.Printf("<c-r>"=%+v\n", <c-r>")<esc>`q
-
-" anti-Mitchell pattern - removes \s between properties and colons in objects.
-nnoremap <leader>mitch :% s/\>\(\s\+\):/:/gc<cr>
-nnoremap <leader>line i/* -<esc>yl59pi */<esc>
+nnoremap <leader>l mqofmt.Printf("<c-r>"=%#v\n", <c-r>")<esc>`q
 
 " https://github.com/fatih/vim-go/wiki/Tutorial#vimrc-improvements-1
 nnoremap <leader>b :<C-u>call Build_go_files()<cr>

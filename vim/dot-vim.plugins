@@ -82,7 +82,7 @@ let g:molokai_original = 1
 " https://github.com/fatih/vim-go/wiki/Tutorial
 " To update, :GoUpdateBinaries
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-"let g:go_auto_sameids = 1 " Highlight same identifiers in file.
+let g:go_auto_sameids = 1 " Highlight same identifiers in file.
 let g:go_auto_type_info = 1 " Automatically show function signature of symbol under cursor.
 "set updatetime=800 " Default time to show function signature in status line (800ms).
 let g:go_decls_includes = 'func,type'
@@ -102,9 +102,10 @@ let g:go_hover_enabled = 0
 let g:go_info_mode = 'gopls'
 let g:go_list_type = 'quickfix' " ONLY have quickfix lists (no location lists).
 let g:go_metalinter_autosave = 1 " Calls `GoMetaLinter` when the file is saved.
-let g:go_metalinter_autosave_enabled = ['vet', 'golint'] " Don't call the whole list when saving to make it faster.
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_deadline = '5s'
+let g:go_metalinter_autosave_enabled = ['golangci-lint']
+"let g:go_metalinter_command = 'golangci-lint run --timeout=5s'
+let g:go_metalinter_command = 'golangci-lint'
+let g:go_metalinter_enabled = ['golangci-lint']
 "let g:go_play_browser_command = 'chrome' " When xdg-open misdetecting the browser.
 let g:go_play_open_browser = 1
 let g:go_test_timeout = '10s'

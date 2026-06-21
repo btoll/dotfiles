@@ -1,8 +1,8 @@
-CC      	= go
+CC      	= /usr/local/go/bin/go
 #CPPFLAGS # preprocessor flags
 #LDFLAGS
-PACKAGE		= simple-chat
-prefix		= /usr/local
+#PACKAGE		= simple-chat
+prefix		= .
 exec_prefix = ${prefix}
 bindir		= $(exec_prefix)/bin
 
@@ -44,7 +44,7 @@ distclean: clean
 # architecture-independent files.
 # https://www.gnu.org/software/automake/manual/html_node/Two_002dPart-Install.html
 install:
-	install -D -m 0755 $(PACKAGE) $(DESTDIR)$(bindir)/$(PACKAGE)
+	$(CC) install
 
 install-strip:
 	echo "same as \`make install\` then strip debugging symbols"
@@ -53,8 +53,7 @@ installcheck:
 	echo "check the installed programs or libraries, if supported"
 
 lint:
-	$(CC) run github.com/fzipp/gocyclo/tree/main/cmd/gocyclo@latest ./...
-	$(CC) run github.com/jgautheron/goconst/cmd/goconst@latest ./...
+	golangci-lint run ./...
 
 test:
 	$(CC) test -v -race -buildvcs ./...
