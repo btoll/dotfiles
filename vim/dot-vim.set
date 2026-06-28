@@ -20,10 +20,6 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 
 syntax on
 
-" This cannot be defined within the plugins block:
-" https://stackoverflow.com/a/64178519
-colorscheme sonokai
-
 " Show the line and column number of the cursor position, separated by a comma.  When there is room, the relative position
 " of the displayed text in the file is shown on the far right.
 set ruler
@@ -114,4 +110,8 @@ set wildmode=longest,list
 " https://github.com/fatih/vim-go/issues/415
 " https://vi.stackexchange.com/questions/11310/what-is-a-scratch-window
 set completeopt-=preview
+
+" This cannot be defined within the plugins block:
+" https://stackoverflow.com/a/64178519
+colorscheme sonokai
 

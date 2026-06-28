@@ -49,8 +49,10 @@ PACKAGES=(
     i3status
     iproute2 # Installs `ss`.
     kitty
+    libncurses-dev # Needed to compile Vim with python3.
     podman # Unfortunately, needed by some Vim plugins.
     python3
+    python3-dev # Needed to compile Vim with python3.
     python3-pip
     silversearcher-ag
     stow
@@ -156,7 +158,10 @@ fi
 
 # This is needed to auto-install any tmux plugins.
 # See `$HOME/.tmux.conf`.
-git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]
+then
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
 
 if [ ! -d "$HOME/.vim/autoload" ] || [ ! -f "$HOME/.vim/autoload/plug.vim" ]
 then
