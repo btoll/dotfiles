@@ -8,18 +8,12 @@
 [user]
 	name = Benjamin Toll
 	email = ben@benjamintoll.com
-	# https://security.stackexchange.com/questions/153579/is-it-safe-to-share-your-gitconfigs-user-signingkey-value-with-the-world
-	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/telling-git-about-your-signing-key
-	# https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/associating-an-email-with-your-gpg-key
-	signingkey = F55F0DBA9BE2F652
+	signingkey = DA6E88BEFB4326FF
 [alias]
 	br = branch
 	# -S|-s = GPG-sign commit.
-#	ci = commit -S
-#	ca = commit -S --amend
-#	tag = tag -s
-	ci = commit
-	ca = commit --amend
+	ci = commit -S
+	ca = commit -S --amend
 	tag = tag -s
 	co = checkout
 	d = diff
@@ -33,8 +27,7 @@
 	s = status --short --branch
 	st = status --short --branch
 [commit]
-#	gpgsign = true
-	gpgsign = false
+	gpgsign = true
 [core]
 	# Note that I compiled my own Vim binary to have support for Python3 for YouCompleteMe,
 	# so this will have a different path than the usual (non-custom) Vim binary.
@@ -60,7 +53,7 @@
 [pull]
 	rebase = true
 [push]
-    autoSetupRemote = true
+	autoSetupRemote = true
 [gpg]
 	program = gpg
 # https://stackoverflow.com/questions/59797272/receiving-fatal-could-not-read-username-for-https-github-com-terminal-prom
