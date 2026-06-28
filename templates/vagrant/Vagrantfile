@@ -5,7 +5,7 @@
 # $ eval $(ssh-agent) && ssh-add ~/.ssh/id_ed25519
 
 Vagrant.configure("2") do |config|
-    config.vm.box = "debian/bookworm64"
+    config.vm.box = "debian/trixie64"
     config.vm.hostname = "vagrant-HOSTNAME.local"
 
     # `host_ip` binds the port to the lo interface on the host (no remote access).
@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
 #    config.vm.network "public_network", ip: "192.168.1.53", bridge: "wlp3s0"
 
 #    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["vers=3,tcp"]
-    config.vm.synced_folder ".", "/vagrant"
+    config.vm.synced_folder ".", "/vagrant", type: "rsync"
     config.ssh.forward_agent = true
 
     config.vm.provider "libvirt" do |lv|
