@@ -47,11 +47,11 @@ PACKAGES=(
     i3
     i3lock
     i3status
-    iproute2 # installs `ss`
+    iproute2 # Installs `ss`.
     kitty
-    podman
-#    python3
-#    python3-pip
+    podman # Unfortunately, needed by some Vim plugins.
+    python3
+    python3-pip
     silversearcher-ag
     stow
     tmux
@@ -59,6 +59,7 @@ PACKAGES=(
     # Install the `setxkbmap` binary needed by `.bash_options` (sets caps lock to ctrl key).
     x11-xkb-utils
     xsel
+    uidmap # Needed when libvirt tries to set up user namespaces for rootless containers/VMs.
     vim
     wget
 )
@@ -73,7 +74,6 @@ DEFAULT_FILES=(
     "$HOME/.vim"*
     "$HOME/.tmux"*
     "$HOME"/.gitconfig
-    "$HOME"/.local/{bin,share}/gh-hooker
 )
 
 for LOCATION in "${DEFAULT_FILES[@]}"
@@ -99,7 +99,7 @@ for tool in "${TOOLS[@]}"
 do
     case "$tool" in
         git-tools)
-            podman run --rm -v "$HOME/.local":/root/.local docker.io/btoll/gh-hooker:latest
+#            podman run --rm -v "$HOME/.local":/root/.local docker.io/btoll/gh-hooker:latest
             ;;
         gnupg)
             mkdir -p "$HOME/.$tool"
