@@ -85,6 +85,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 let g:go_auto_sameids = 1 " Highlight same identifiers in file.
 let g:go_auto_type_info = 1 " Automatically show function signature of symbol under cursor.
 "set updatetime=800 " Default time to show function signature in status line (800ms).
+"let g:go_debug = ['lsp']
 let g:go_decls_includes = 'func,type'
 let g:go_def_mode = 'gopls'
 let g:go_doc_keywordprg_enabled = 1 " This allows for K to be mapped to :GoDoc. See ~/.vim/plugged/vim-go/ftplugin/go.vim (and :verbose map K).

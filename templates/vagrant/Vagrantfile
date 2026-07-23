@@ -17,9 +17,10 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder ".", "/vagrant", type: "rsync"
     config.ssh.forward_agent = true
 
-    config.vm.provider "libvirt" do |lv|
-        lv.cpus = 4
-        lv.memory = 8192
+    config.vm.provider :libvirt do |libvirt|
+        libvirt.cpus = 4
+        libvirt.memory = 8192
+#        libvirt.filesystem :mount, host_path: '/home/user/shared', guest_path: 'shared'
     end
 
 #    config.vm.provision :shell, run: "always", inline: "systemctl restart systemd-timesyncd.service"
@@ -63,8 +64,8 @@ Vagrant.configure("2") do |config|
         cd
 
         git clone https://github.com/btoll/dotfiles
-#        cd dotfiles
-#        source install.bash
+        # cd dotfiles
+        # source install.bash
     SHELL
 end
 

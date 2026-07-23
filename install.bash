@@ -144,6 +144,13 @@ done
 
 # We could go through contortions to determine if the pubkey is already in
 # known_hosts, but it's not worth it just to prevent a possible duplicate.
+if [ ! -d "$HOME/.ssh" ]
+then
+    mkdir --mode 0700 "$HOME/.ssh"
+    touch "$HOME/.ssh/known_hosts"
+    chmod 0600 "$HOME/.ssh/known_hosts"
+fi
+
 ssh-keyscan github.com >> "$HOME/.ssh/known_hosts"
 ssh-keyscan gitlab.com >> "$HOME/.ssh/known_hosts"
 

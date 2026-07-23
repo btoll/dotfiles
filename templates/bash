@@ -11,10 +11,24 @@ cleanup() {
     rm -rf foo
 }
 
+BINS=(
+    virsh
+    virt-install
+)
+
+for bin in "${BINS[@]}"
+do
+    if ! command -v "$bin" > /dev/null
+    then
+        printf "[ERROR] \`%s\` not found within PATH.\n" "$bin"
+        exit 1
+    fi
+done
+
 usage() {
     printf "Usage: %s --cluster btoll-test [ --profile devaccount ]\n\n" "$0"
     printf "Args:\n"
-    printf -- "-c, --cluster  : The name of the cluster to create..\n"
+    printf -- "-c, --cluster  : The name of the cluster to create.\n"
     printf -- "--dry-run      : Dry run.\n"
     printf -- "-p, --profile  : The name of the AWS profile.\n"
     printf -- "-h, --help     : Show usage.\n"
