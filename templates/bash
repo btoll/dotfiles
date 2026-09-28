@@ -5,6 +5,16 @@ set -euo pipefail
 LANG=C
 umask 0022
 
+ERROR="\e[31m[ERROR]\e[0m"
+INFO="\e[34m[INFO]\e[0m"
+SUCCESS="\e[32m[SUCCESS]\e[0m"
+
+if [ $EUID -ne 0 ]
+then
+    printf "%b This script must be run as root!\n" "$ERROR" 1>&2
+    exit 1
+fi
+
 trap cleanup EXIT
 
 cleanup() {
@@ -20,18 +30,24 @@ for bin in "${BINS[@]}"
 do
     if ! command -v "$bin" > /dev/null
     then
-        printf "[ERROR] \`%s\` not found within PATH.\n" "$bin"
+        printf "%b \`%s\` not found in PATH.\n" "$ERROR" "$bin"
         exit 1
     fi
 done
 
+SCRIPTNAME=$(basename "$0")
+
 usage() {
-    printf "Usage: %s --cluster btoll-test [ --profile devaccount ]\n\n" "$0"
-    printf "Args:\n"
-    printf -- "-c, --cluster  : The name of the cluster to create.\n"
-    printf -- "--dry-run      : Dry run.\n"
-    printf -- "-p, --profile  : The name of the AWS profile.\n"
-    printf -- "-h, --help     : Show usage.\n"
+    printf "Usage: %s OPTIONS
+
+Options:
+--cidr=         Provide the bridge network address (defaults to 172.16.0.1/12).
+--destroy, -d   Delete the network namespace(s) and the bridge.
+ -n=            The number of containers to create (defaults to one).
+--ns=           The name of the net namespace to be created (defaults to netns).
+--step=         Increase the value of the IP address by STEP (defaults to 1).
+--verbose, -v   Verbose mode.
+--help, -h      Help.\n" "$SCRIPTNAME"
     exit "$1"
 }
 
@@ -39,9 +55,9 @@ while [ "$#" -gt 0 ]
 do
     OPT="$1"
     case $OPT in
-        -c|--cluster) shift; CLUSTER=$1 ;;
+        -c|--cluster) shift ; CLUSTER=$1 ;;
         --dry-run) DRY_RUN=true ;;
-        -p|--profile) shift; PROFILE=$1 ;;
+        -p|--profile) shift ; PROFILE=$1 ;;
         -h|--help) usage 0 ;;
         *) printf "Unknown flag %s\n" "$OPT"; usage 1 ;;
     esac
