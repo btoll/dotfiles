@@ -11,17 +11,18 @@ export HISTFILESIZE=100000
 export HISTIGNORE="&:[ ]*:\.\.:exit:ls:la:ll:bg:b:fg:f:history:clear:jobs:j:p:whereis:whatis:which:stymie:stymie-go:cpy:\:q:\:x"
 
 # TODO: Use /etc/bash_completion.d/git-prompt?
-# the `|$SHLVL:$0|` bits are the number of shell levels and the type
-# of the current shell (if prepended by a hyphen (-bash)), it's a
-# login shell.
+# The `|$SHLVL:$0|` bits are the number of shell levels and the type of the current shell
+# (if prepended by a hyphen (-bash)), it's a login shell.
 # https://www.piliapp.com/symbol/animals/
 ANIMALS=( 🐧 🦮 🐝 🦬 🦜 🐢 🦫 )
 # Let's rotate a different animal depending on the day of the week.
-# %u = day of week (1..7); 1 is Monday (from `man date`)
+# %u = day of week (1..7); 1 is Monday (from `man date`).
 WEEKDAY=$(date +%u)
 # Make it zero-based.
 INDEX=$((WEEKDAY-1))
-export PS1='$(tput bold)$(tput setaf 4)\u${ANIMALS[$INDEX]}\h $(tput setaf 2)$(tput setaf 2)$SHLVL:$0 $(tput setaf 3)~~> \[$(tput bold)\]\[$(tput setaf 6)\]\w\[\]:\[$(tput bold)\]\[$(tput setaf 8)\]$(git branch 2> /dev/null | grep "^*" | colrm 1 2)\[$(tput sgr0)\]\n$ '
+# If git-prompt.sh isn't sourced, the `__git_ps1` bash function isn't available.  Use this:
+# "$(git branch 2> /dev/null | grep "^*" | colrm 1 2)"
+export PS1="\[${BOLD}${FG_BLUE}\]\u${ANIMALS[$INDEX]}\h \[${FG_GREEN}\]${SHLVL}:$0 \[${FG_YELLOW}\]~~> \[${FG_CYAN}\]\w:$(__git_ps1 '%s')\[${OFF}\]\n$ "
 
 # Use vim as default editor instead of nano.
 export EDITOR=vim
