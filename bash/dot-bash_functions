@@ -2,7 +2,8 @@
 #shellcheck disable=2155
 
 bag() {
-    if [ "$#" -eq 0 ]; then
+    if [ "$#" -eq 0 ]
+    then
         printf "%b Not enough arguments.\n" "$ERROR"
         printf "Usage: bag <pattern> [optional parameters]\n"
     else
@@ -22,7 +23,8 @@ beep() {
 }
 
 bfind() {
-    if [ "$#" -eq 0 ]; then
+    if [ "$#" -eq 0 ]
+    then
         printf "%b Not enough arguments.\n" "$ERROR"
         printf "Usage: bfind <pattern> [<search_dir>]\n"
     else
@@ -39,7 +41,8 @@ bfind() {
 }
 
 bgrep() {
-    if [ "$#" -eq 0 ]; then
+    if [ "$#" -eq 0 ]
+    then
         printf "%b Not enough arguments.\n" "$ERROR"
         printf "Usage: bgrep <pattern> [<root_dir>]\n"
     else
@@ -132,7 +135,8 @@ dpkg_search() {
 #}
 
 falloc() {
-    if [ "$#" -lt 2 ]; then
+    if [ "$#" -lt 2 ]
+    then
         printf "%b Not enough arguments.\n" "$ERROR"
         printf "Usage: falloc <name> <size (ex. 1GB, 500MB)>\n"
     else
@@ -245,7 +249,7 @@ kill_server() {
     else
         #shellcheck disable=2046
         ss -plnt | ag "$1" | sed 's/.*pid=\([0-9]*\),.*/\1/p'
-        kill -SIGTERM $(ss -plnt | ag "$1" | sed 's/.*pid=\([0-9]*\),.*/\1/p')
+        kill -SIGTERM "$(ss -plnt | ag "$1" | sed 's/.*pid=\([0-9]*\),.*/\1/p')"
     fi
 }
 
@@ -490,7 +494,8 @@ take_a_break() {
 #       import filename.png
 #
 take_screenshot() {
-    if [ "$#" -eq 0 ]; then
+    if [ "$#" -eq 0 ]
+    then
         printf "Usage: take_screenshot outfile [sleep=5]\n"
     else
         local seconds=${2:-5}
@@ -523,6 +528,19 @@ vagrant_init() {
     # Set hostname in Vagrantfiles:
     # config.vm.hostname = "vagrant-HOSTNAME"
     sed -i "s/HOSTNAME/$hostname/" "$(pwd)"/Vagrantfile*
+}
+
+vm_destroy() {
+    if [ "$#" -eq 0 ]
+    then
+        printf "%b Not enough arguments.\n" "$ERROR"
+        printf "Usage: vm-destroy NAME\n"
+    else
+        local name="$1"
+        virsh -c qemu:///system destroy "$name" 2> /dev/null
+        virsh -c qemu:///system undefine "$name"
+        virsh -c qemu:///system vol-delete --pool default "$name.qcow2" 2> /dev/null
+    fi
 }
 
 wifi_connect() {
