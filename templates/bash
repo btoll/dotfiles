@@ -38,7 +38,7 @@ done
 SCRIPTNAME=$(basename "$0")
 
 usage() {
-    printf "Usage: %s OPTIONS
+    printf "Usage: %s [OPTIONS]
 
 Options:
 --cidr=         Provide the bridge network address (defaults to 172.16.0.1/12).
