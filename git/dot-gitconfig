@@ -9,6 +9,7 @@
 	name = Benjamin Toll
 	email = ben@benjamintoll.com
 	signingkey = DA6E88BEFB4326FF
+	site = https://benjamintoll.com
 [alias]
 	br = branch
 	# -S|-s = GPG-sign commit.
