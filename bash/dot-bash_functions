@@ -214,6 +214,11 @@ git_clone() {
     fi
 }
 
+go_mcd() {
+    mkdir -p "$1" && cd "$_" && go mod init "$_" || return
+    cp "$HOME/templates/Makefile-go" Makefile
+}
+
 go_tmux() {
     SESSION=${1:-$(pwd)}
 
@@ -269,10 +274,6 @@ list_make_targets() {
 
 mcd() {
     mkdir -p "$1" && cd "$_" || return
-}
-
-go_mcd() {
-    mkdir -p "$1" && cd "$_" && go mod init "$_" || return
 }
 
 mnt_me() {
